@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<!-- meta charset="ISO-8859-1">  -->
+<title>Bengal Remedies</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name ="viewport" content="width=device-width,initial-scale=1.0" >
+<!-- link href="css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="stylesheets/bootstrap.css" rel="stylesheet">
+<link href="stylesheets/sample.css" rel="stylesheet">
+<link href="stylesheets/divposition.css" rel="stylesheet">
+
+<!--  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.min.css")">
+<script src="@routes.Assets.versioned("lib/bootstrap/js/bootstrap.min.js")" crossorigin="anonymous"></script>-->
+
+<!-- link rel="stylesheet" type="text/css" href="css/angular.treeview.css" media="screen" /> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="javascripts/bootstrap.min.js"></script>
+
+
+
+<!-- script src="js/custom.treeview.js"></script>*/ -->
+<script type="text/javascript">
+ 	$(document).ready(function(){
+		
+ 		
+ 		document.getElementById("adminlogin").style.visibility = "hidden";
+			document.getElementById("userlogin").style.visibility = "hidden";
+			document.getElementById("myCarousel").style.visibility = "visible";
+			document.getElementById("userInput").style.visibility = "hidden";
+			document.getElementById("contactusform").style.visibility = "hidden";
+			
+ 				
+	});
+ 	
+ 	
+ 	function showcontent(obj)
+ 	{
+ 		
+ 		//alert("hi");
+ 		if(obj=='adminloginclick'){
+ 			//alert("hi");
+ 			document.getElementById("adminlogin").style.visibility = "visible";
+ 			document.getElementById("userlogin").style.visibility = "hidden";
+ 			document.getElementById("myCarousel").style.visibility = "visible";
+ 			document.getElementById("userInput").style.visibility = "hidden";
+ 			document.getElementById("contactusform").style.visibility = "hidden";
+ 			
+ 		}else if(obj=='userloginclick'){
+ 			document.getElementById("userlogin").style.visibility = "visible";
+ 			document.getElementById("adminlogin").style.visibility = "hidden";
+ 			document.getElementById("myCarousel").style.visibility = "visible";
+ 			document.getElementById("userInput").style.visibility = "hidden";
+ 			document.getElementById("contactusform").style.visibility = "hidden";
+ 		}else if(obj=='formclick'){
+ 			//alert("hi");
+ 			document.getElementById("userInput").style.visibility = "visible";
+ 			document.getElementById("adminlogin").style.visibility = "hidden";
+ 			document.getElementById("userlogin").style.visibility = "hidden";
+ 			document.getElementById("myCarousel").style.visibility = "hidden";
+ 			document.getElementById("contactusform").style.visibility = "hidden";
+ 		}
+ 		else if(obj=='contactusform'){
+ 			//alert("hi");
+ 			document.getElementById("userInput").style.visibility = "hidden";
+ 			document.getElementById("adminlogin").style.visibility = "hidden";
+ 			document.getElementById("userlogin").style.visibility = "hidden";
+ 			document.getElementById("myCarousel").style.visibility = "hidden";
+ 			document.getElementById("contactusform").style.visibility = "visible";
+ 		}
+ 		
+ 		
+ };
+ 
+ function once()
+ {
+	 
+	 //alert("once");
+	 window.location.reload(true);
+ }
+ 
+ 
+ function init() {
+
+	    var divs = document.getElementsByTagName("div");
+	    for (i = 0; i < divs.length; i++) {
+	        if (divs[i].className == "wrapper") {
+	            divs[i].style.visibility = 'hidden';
+	        }
+	    }
+	    var a = document.getElementsByTagName("a");
+	    a.onclick = showcontent;
+	}
+ 
+ window.onload = init;
+
+
+</script>
+</head>
+<body>
+
+<style>
+ 			  .modal-header, h4, .close {
+ 			      background-color: #5cb85c;
+ 			      color:white !important;
+ 			      text-align: center;
+ 			      font-size: 30px;
+ 			  }
+ 			  .modal-footer {
+ 			      background-color: #f9f9f9;
+ 			  }
+ 			   .modal-body {
+ 			      background-color: white;
+ 			  }
+ 							</style>
+	
+ 			
+
+
+<div id="container">
+
+<div id="header">
+
+<div class="row" id="firstDiv" style="background:">
+<div class="col-sm-2"><img src="images/logo.gif" class="image-circle" width=150 height=102></div>
+<div class="col-sm-10 pull-right">
+<h3>Bengal pharmaceutical Company</h3>
+<ul class="nav nav-pills">
+<li class="active"><a href="javascript:once()">Home</a></li>
+<li class="dropdown"><a data-toggle="dropdown" data-target="#myModal" href="#">About US<span class="caret"></span></a>
+
+<ul class="dropdown-menu">
+<li><a data-toggle="modal" data-target="#myModalA" href="#">Introduction</a></li>
+<li><a data-toggle="modal" data-target="#myModalB" href="#">Our Goal</a></li>
+<li><a data-toggle="modal" data-target="#myModalc" href="#">Company History</a></li>
+<li><a data-toggle="modal" data-target="#myModald" href="#">Achivement</a></li>
+</ul>
+
+</li>
+
+<li><a href="javascript:showcontent('formclick')">OrderForm</a></li>
+<li><a href="javascript:showcontent('contactusform')">Contact Us</a></li>
+<li class="pull-right"><div class="dropdown">
+
+<button type="button" data-toggle="dropdown" class="btn btn-primary btn-lg outline dropdown-toggle">LOG IN<span class="caret"></span></button>
+<ul class="dropdown-menu">
+<li><a id="userloginclick" href="javascript:showcontent('userloginclick')">As USER</a></li>
+<li><a id="adminloginclick" href="javascript:showcontent('adminloginclick')">As Admin</a></li>
+</ul>
+</div></li>
+</ul>
+</div>
+</div>
+
+</div>
+
+
+
+
+<div id="body">
+
+<div class="modal" id="myModalA" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content"></div>
+<div class="modal-header">
+		<h4 class="modal-title">Introduction</h4>
+</div>
+<div class="modal-body">
+<p>July 1, 2001, we started our journey with the name and style of “BENGAL REMEDIES”, a Marketing 
+and Trading House of pharmaceutical products, on 1st July 2001 the particular day that is regarded 
+as Doctors’ day, the birthday and the day of peaceful demise of Dr. Bidhan Chandra Roy. 
+(Born in 1882, 1st July in Patna and demise on 1st July 1962). 
+The journey of thousand and thousand miles begins with one step which never stops. 
+It is a great pleasure on our part that we celebrate our each and every foundation day in 
+several parts of india and also in Kolkata (specially in ACADEMY OF FINE ARTS, 2, Cathedral Road, Kolkata – 700071) 
+We are just not a business organization – we are a family, a Pariwar, we don’t work just for the sake of a Company. 
+We work for ourselves for the growth of our Pariwar. “Emotion gives the motion of a life” and emotional involvement 
+enhances the degree of productivity, and it is needless to say that a man can never achieve to the tune of 100% 
+without the combination of emotion crowned with Professionalism. We are neither the employees nor the employer or 
+distributor; we are all the member of an “Emotionally integrated family”</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+
+
+<div class="modal" id="myModalB" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content"></div>
+<div class="modal-header">
+		<h4 class="modal-title">Our Goal</h4>
+</div>
+<div class="modal-body">
+<p>We aim at serving the nation, particularly the rural part of the country and not just the urban crowd, 
+backed by our capital of honesty, hard work and sincerity and generate further employment opportunities 
+which is crucial now-a-days throughout the country. .</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+
+<div class="modal" id="myModalc" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content"></div>
+<div class="modal-header">
+		<h4 class="modal-title">Company history</h4>
+</div>
+<div class="modal-body">
+<p>The toddler of 2001 has put its firm step in this year with a bigger endeavor that has a crave to make 
+Bengal Remedies not only a sales promotion organization in the era of medicinal business but also to make 
+it a cradle of Family for medical professionals. To help to build a medical sales career is going to be like 
+dream comes true experience for Bengal Remedies, whose objective is to make a promising career which will help 
+the aspirants to learn how to become successful with sheer dint of hard work and business acumen. The combined 
+course of technical and business knowledge touched with business communication and human relationship is going to 
+give the aspirants a strong foothold in their field of success. Bengal Remedies has decided to provide its service 
+in all time throughout the year, so that any type of aspirants (working or non-working) can opt for the trade. 
+Being a successful medical business sales promotion organization for more than a decade and having more than 1000 
+products in the market we can ensure of giving a successful career in the domain of medical professional. 
+Bengal Remedies is in search of those aspirants who are dreaming with their career in the medical sales field.
+ So, now stop dreaming and come forward to make it true..</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+
+<div class="modal" id="myModald" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content"></div>
+<div class="modal-header">
+		<h4 class="modal-title">Achivements</h4>
+</div>
+<div class="modal-body">
+<p>We are glad to let you know that we organized First Sales Meet at Digha during 19th to 20th January 2002. 
+Organized a Doctors’ Meet at Burdwan on 6th of April 2002 at “BARDHAMAN BHAVAN” Doctors’ Meet Arambag on 19th 
+May 2002 & Midnapur on 26th March 2002. Observed 1st foundation Day along with Doctors’ Day at Uttarpara 
+July 1st 2002. Second Sales Meet at Puri from 24th January to 26th January 2003 along with our all MSRs their 
+kids and their dependents. Observed 2nd foundation Day & Doctors Day on 1st July 2003 at Burdwan Observed 3rd 
+Foundation Day & Doctors Day on 1st July 2004 at Uttarpara & sales meet at Kolkata office on 2nd & 3rd January 
+2004 & Doctors’ Meet at several parts of West Bengal in different times. Observed 4th and 5th foundation Day in Digha. 
+Celebrated 6th & 7th Foundation Day & Doctors Day at Uttarpara as same in the past. Visited Varanasi & Agra as 
+business tour in the year 08-09. Observed 8th Foundation Day in Academy of Fine Arts, Kolkata on 1st July 2009. 
+Visited Puri as business tour in the year 09-10. Celebrated 9th Foundation Day & Doctors Day at Uttarpara as same in 
+the past. Sales Meet at Bangur Garden on 21st February2011 along with our all Distributors & MSRs their kids and their 
+dependents. Visited Shimla, Kullu & Manali as business tour in the year 11-12(4th June to 13th June2011) Observed 11th
+ Foundation Day in Academy of Fine Arts, Kolkata on 1st July 2012. Observed 12th Foundation day and Doctor’s day at 
+ ACADEMY OF FINE ARTS, 2, Cathedral Road, Kolkata – 700071 Business meet at SUNDARBAN 8TH – 9TH Feb 2014 We started our 
+ new office of Bengal Remedies at 1, Kali Dutt St. Kolkata-5 a partnership firm with Mr Debnath Chatterjee, 
+ Mrs Debaleena Chatterjee & Somnath Chatterjee from Feb 15. Observed 13th Foundation day and Doctor’s day at 
+ ACADEMY OF FINE ARTS, 2, Cathedral Road, Kolkata – 700071 Business meets at Darjiling 13.02.15 – 16.02.2015 
+ Observed 14th Foundation day and Doctor’s day at our own Kolkata office 1st July 2015 
+ Business meet at SUNDARBAN 30TH – 31TH Jan 2016.</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+
+<!-- <div class="modal" id="myModalContactUs" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content"></div>
+<div class="modal-header">
+		<h4 class="modal-title">About US</h4>
+</div>
+<div class="modal-body">
+ <div class="form-style-2">
+<div class="form-style-2-heading">Provide your information</div>
+<form action="" method="post">
+<label for="field1"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
+<label for="field2"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="field2" value="" /></label>
+<label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
+<label for="field4"><span>Regarding</span><select name="field4" class="select-field">
+<option value="General Question">General</option>
+<option value="Advertise">Advertisement</option>
+<option value="Partnership">Partnership</option>
+</select></label>
+<label for="field5"><span>Message <span class="required">*</span></span><textarea name="field5" class="textarea-field"></textarea></label>
+
+<label><span>&nbsp;</span><input type="submit" value="Submit" /></label>
+</form>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div> -->
+
+<div ng-app="myapp" class="row">
+<div class="btn-group-vertical col-lg-3">
+
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        Partner Production houses</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body"><ul id="menu">
+
+<li><a href="#" title="Projects">Production houses</a>	
+		<ul>
+			<li><a href="#" title="Older projects">Himachal Pradesh</a>
+				<ul>
+					<li><a href="#" title="2003 projects">IMPL</a></li>
+					<li><a href="#" title="2004 projects">JM Remedies</a></li>
+					<li><a href="#" title="2005 projects">Primus Pharma</a></li>
+				</ul>
+			</li>
+			<li><a href="#" title="Active projects">West Bengal</a>
+				<ul>
+					<li><a href="#" title="Leaf industries">SodePur</a></li>
+					<li><a href="#" title="Omnicron">TollyGange</a></li>
+					<li><a href="#" title="Unkown.com">XYZ</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul></div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        Products</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">
+      The site is under maintenance and products will be launch shortly...
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        Third Party</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">The site is under maintenance and third party data will be launch shortly...</div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div id="firstcontainer" class="col-lg-9">
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<ol class="carousel-indicators">
+<li data-target="#myCarousel" data-slide-to="0">
+<li data-target="#myCarousel" data-slide-to="1">
+</ol>
+<div class="carousel-inner" role="listbox">
+ <!-- <div class="item active"><img height="200px" src="images/Flexibility-Scalability.jpg"></div> -->
+ 
+ <div class="item active"><img height="200px" src="images/Flexibility-Scalability.jpg" ></div>
+  <div class="item"><img height="200px" src="images/strategy.jpg" ></div> 
+ 
+<!-- <div class="item"><img height="200px" src="images/strategy.jpg"></div> -->
+</div>
+<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+<div  class="wrapper" id="userlogin">
+    <form class="form-signin">       
+      <h2 class="form-signin-heading">User login</h2>
+      <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+    </form>
+  </div>
+  
+    <div class="wrapper" id="adminlogin">
+    <form class="form-signin">       
+      <h2 class="form-signin-heading">Admin login</h2>
+      <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+    </form>
+  </div>
+  
+   
+<div id="userInput">
+
+
+ <form id="form1" action="" method="post">
+FirstName<input type="text" name="firstName" id="firstName"/> <br>
+LastName<input type="text" name="lastName" id="lastName"/> <br>
+phone number<input type="text" name="phoneNum" id="phoneNum"/> <br>
+Quick Order<textarea name="quick_order" class="textarea-field"></textarea><br>
+<input type="button" value="submit">
+</form>
+ 
+  </div> 
+  
+
+  
+    
+ <div  id="contactusform">
+ 
+ <form id="contactform" action="/submitContactForm" method="POST">
+FirstName<input type="text" name="firstName" id="firstName" value="debnath"/> <br>
+LastName<input type="text" name="lastName" id="lastName" value="chatterjee"/> <br>
+PhoneNumber<input type="text" name="phonenumber" id="phonenumber" value="9836711699"/> <br>
+Email-Id<input type="text" name="emailid" id="emailid" value="debnathch@gmail.com"/> <br>
+Message<textarea name="message" class="textarea-field"value="write here"></textarea><br>
+<input type="submit" value="submit">
+
+<label class="checkbox">
+        1, Kali Dutta St, Manicktala, Darjipara, Shobhabazar, Kolkata, West Bengal 700006
+      </label>
+
+<div id="map" style="width:400px;height:400px;background:yellow"></div>
+
+<script>
+function myMap() {
+	  var myLatLng = {lat: 22.5948007, lng: 88.36672820000001};
+	  
+	  var map = new google.maps.Map(document.getElementById('map'), {
+	    zoom: 20,
+	    center: myLatLng
+	  });
+
+	  var marker = new google.maps.Marker({
+	    position: myLatLng,
+	    map: map,
+	    title: 'Hello World!'
+	  });
+	}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+</form>
+</div>
+
+</div>
+
+</div>
+
+  
+
+<div id="comments">
+<div class="col-lg-3"></div>
+<div class="col-lg-9">
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  <div class="container">
+<p><b>Copyright &copy; Bengal Remedies 2016</b></p>
+  </div>
+</nav>
+
+
+			
+
+     
+
+
+
+
+
+
+
+
+</div>
+
+
+</body> 
+</html>

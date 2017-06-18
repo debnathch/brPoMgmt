@@ -146,16 +146,20 @@
 
 
         //counter of item increate logic
-        function clickCounter() {
+        function clickCounter(cartQuty) {
+
             if(typeof(Storage) !== "undefined") {
                 if (localStorage.clickcount) {
-                    localStorage.clickcount = Number(localStorage.clickcount)+1;
+                    alert(cartQuty + " count")
+                    localStorage.clickcount = Number(localStorage.clickcount)+parseInt(cartQuty);
                 } else {
+                    alert(localStorage.clickcount + " count else")
                     localStorage.clickcount = 1;
                 }
-                document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+                localStorage.clickcount = 0
+                document.getElementById("itemCount").innerHTML =  localStorage.clickcount;
             } else {
-                document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+                document.getElementById("itemCount").innerHTML = "Sorry, your browser does not support web storage...";
             }
         }
 
@@ -166,6 +170,7 @@
                 var cartQuty = document.getElementById("qty_"+id).value;
                 var orderItem = {};
 
+                clickCounter(cartQuty);
                 orderItem["prod_id"]=id;
                 orderItem["prod_qty"]=cartQuty;
 
@@ -178,20 +183,20 @@
                     cache: false,
                     timeout: 600000,
                     success: function (data) {
-                        alert(" success ....");
+                        alert("Added to card successFully : ");
                         var json = "Thanks For your interest. Our Member will contact you shortly"
                             + JSON.stringify(data, null, 4) + "</pre>";
 
-                        console.log("SUCCESS : ", data);
+                        console.log("Added to card successFully : ", data);
 
                     },
                     error: function (e) {
 
-                        console.log("ERROR : ", e);
+                        console.log("ERROR to add the item to cart. Please call 8981089350: ", e);
 
                     }
                 });
-
+                document.getElementById("qty_"+id).value = 0;
             } else{
 
                 alert("please select atleast one item")

@@ -1,46 +1,614 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
-  </head>
-  <body ng-app="myApp">
-    <div class="container" ng-controller="AppController">
-      <div class="page-header">
-        <h1>A checklist</h1>
-      </div>
-      <div class="alert alert-info" role="alert" ng-hide="items &amp;&amp; items.length > 0">
-        There are no items yet.
-      </div>
-      <form class="form-horizontal" role="form" ng-submit="addItem(newItem)">
-        <div class="form-group" ng-repeat="item in items">
-          <div class="checkbox col-xs-9">
-            <label>
-              <input type="checkbox" ng-model="item.checked" ng-change="updateItem(item)"/> {{item.description}}
-            </label>
-          </div>
-          <div class="col-xs-3">
-            <button class="pull-right btn btn-danger" type="button" title="Delete"
-              ng-click="deleteItem(item)">
-              <span class="glyphicon glyphicon-trash"></span>
+<head>
+
+    <title>Bengal Remedies</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+
+    <!-- load the about content to UI-->
+
+    <script>
+        $(document).ready(function() {
+// only about us will be displayed
+            LoadForAboutUs();
+            $(achievement).hide();
+            $(thirdParty).hide();
+
+            $('a.gallery-link').click( function() {
+                var page = $(this).attr('href');
+                $.ajax({
+                    type: 'GET',
+                    url: '/productShop',
+                    data: page,
+                    success: function(content) {
+
+                        window.location.href = 'http://localhost:8085/productShop/product-details.html';
+                        // replace
+                    },
+                    error: function (e) {
+                        alert("fail to load "+page);
+                    }
+                });
+                return false; // to stop link
+            });
+
+            $('a.oredr-link').click( function() {
+                var page = $(this).attr('href');
+                $.ajax({
+                    type: 'GET',
+                    url: '/productShop',
+                    data: page,
+                    success: function(content) {
+
+                        window.location.href = 'http://localhost:8085/productShop/indexShop.html';
+                        // replace
+                    },
+                    error: function (e) {
+                        alert("fail to load "+page);
+                    }
+                });
+                return false; // to stop link
+            });
+
+            $('a.login-link').click( function() {
+                var page = $(this).attr('href');
+                $.ajax({
+                    type: 'GET',
+                    url: '/productShop',
+                    data: page,
+                    success: function(content) {
+
+                        window.location.href = 'http://localhost:8085/productShop/login.html';
+                        // replace
+                    },
+                    error: function (e) {
+                        alert("fail to load "+page);
+                    }
+                });
+                return false; // to stop link
+            });
+
+
+
+
+
+        });
+
+
+            function LoadOrerPage() {
+
+
+                //var response = JSON.parse(xhttp.responseText);
+                var page = $(this).attr('http://localhost:8085/productShop/indexShop.html');
+
+                window.location = 'http://localhost:8085/productShop/indexShop.html';
+//                $.ajax({
+//                    type: "GET",
+//                    contentType: "application/json",
+//                    url: "/product",
+//                    data: page,
+//                    dataType: 'json',
+//                    cache: false,
+//                    timeout: 600000,
+//                    success: function (data) {
+//                        alert(" success ....");
+//                        alert("deb");
+//                        window.location = 'http://localhost:8085/productShop/indexShop.html';
+//
+//                        var xhttp = new XMLHttpRequest();
+//
+//                        xhttp.open("GET", "http://localhost:8085/product", false);
+//                        alert("wee");
+//                        xhttp.setRequestHeader("Content-type", "application/json");
+//                        xhttp.send();
+//
+//
+//                    },
+//                    error: function (e) {
+//                        alert(" success ....");
+//                        console.log("ERROR : ", e);
+//
+//                    }
+//                });
+
+
+        }
+
+
+        function LoadForAboutUs() {
+
+            $(about).show();
+            $(achievement).hide();
+            $(thirdParty).hide();
+
+            $("#about").load("CMS/about_us.txt", function(responseTxt, statusTxt, xhr){
+                if(statusTxt == "success") {
+                    $('#aboutUs').html(statusTxt);
+                }
+                if(statusTxt == "error")
+                    alert("Error to fetch About Us content: ... Please contcat admin" + xhr.status + ": " + xhr.statusText);
+            });
+        }
+        function LoadForOurAchivement() {
+            $(about).hide();
+            $(achievement).show();
+            $(thirdParty).hide();
+            $("#achievement").load("CMS/our_achivement.txt", function(responseTxt, statusTxt, xhr){
+                if(statusTxt == "success") {
+                    $('#ourAchivement').html(statusTxt);
+                }
+                if(statusTxt == "error")
+                    alert("Error to fetch our Achiement content: ... Please contcat admin" + xhr.status + ": " + xhr.statusText);
+            });
+        }
+        function LoadForThirdParty() {
+
+            $(about).hide();
+            $(achievement).hide();
+            $(thirdParty).show();
+
+            $("#thirdParty").load("CMS/third_party.txt", function(responseTxt, statusTxt, xhr){
+                if(statusTxt == "success") {
+                    $('#thirdPartystory').html(statusTxt);
+                }
+                if(statusTxt == "error")
+                    alert("Error to fetch our Achiement content: ... Please contcat admin" + xhr.status + ": " + xhr.statusText);
+            });
+        }
+
+
+        function contactUs() {
+
+
+            var contactDetails = {}
+            contactDetails["name"] = $("#name").val();
+            contactDetails["email"] = $("#email").val();
+            contactDetails["comments"] = $("#comments").val();
+            contactDetails["phoneNo"] = $("#phoneNo").val();
+            $('#btn-contact').prop("disabled", false);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/contactUs",
+                data: JSON.stringify(contactDetails),
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    alert(" success ....");
+                    var json = "Thanks For your interest. Our Member will contact you shortly"
+                        + JSON.stringify(data, null, 4) + "</pre>";
+
+                    console.log("SUCCESS : ", data);
+                    $('#btn-contact').prop("disabled", false);
+                },
+                error: function (e) {
+
+                    console.log("ERROR : ", e);
+                    $('#btn-contact').prop("disabled", false);
+                }
+            });
+        }
+    </script>
+
+
+    <style>
+        body {
+            font: 400 15px/1.8 Lato, sans-serif;
+            color: #777;
+        }
+        h3, h4 {
+            margin: 10px 0 30px 0;
+            letter-spacing: 10px;
+            font-size: 20px;
+            color: #111;
+        }
+        .container {
+            padding: 80px 120px;
+        }
+        .person {
+            border: 10px solid transparent;
+            margin-bottom: 25px;
+            width: 80%;
+            height: 80%;
+            opacity: 0.7;
+        }
+        .person:hover {
+            border-color: #f1f1f1;
+        }
+        .carousel-inner img {
+            -webkit-filter: grayscale(90%);
+            filter: grayscale(10%); /* make all photos black and white */
+            width: 70%; /* Set width to 100% */
+            margin: auto;
+        }
+        .carousel-caption h3 {
+            color: #ff8930 !important;
+        }
+        @media (max-width: 300px) {
+            .carousel-caption {
+                display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+            }
+        }
+        .bg-1 {
+            background: #808080;
+            color: #ff822a;
+        }
+        .bg-1 h3 {color: #ffa742;}
+        .bg-1 p {font-style: italic;}
+        .list-group-item:first-child {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        .list-group-item:last-child {
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .thumbnail {
+            padding: 0 0 15px 0;
+            border: none;
+            border-radius: 0;
+        }
+        .thumbnail p {
+            margin-top: 15px;
+            color: #555;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #f1f1f1;
+            border-radius: 0;
+            transition: .2s;
+        }
+        .btn:hover, .btn:focus {
+            border: 1px solid #333;
+            background-color: #ff9739;
+            color: #000;
+        }
+        .modal-header, h4, .close {
+            background-color: #333;
+            color: #ff9a39 !important;
+            text-align: center;
+            font-size: 30px;
+        }
+        .modal-header, .modal-body {
+            padding: 40px 50px;
+        }
+        .nav-tabs li a {
+            color: #777;
+        }
+        #googleMap {
+            width: 100%;
+            height: 400px;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+        .navbar {
+            font-family: Montserrat, sans-serif;
+            margin-bottom: 0;
+            background-color: #2d2d30;
+            border: 0;
+            font-size: 11px !important;
+            letter-spacing: 4px;
+            opacity: 0.9;
+        }
+        .navbar li a, .navbar .navbar-brand {
+            color: #d5d5d5 !important;
+        }
+        .navbar-nav li a:hover {
+            color: #ff8e37 !important;
+        }
+        .navbar-nav li.active a {
+            color: #ff9028 !important;
+            background-color: #29292c !important;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+        }
+        .open .dropdown-toggle {
+            color: #ff9d45;
+            background-color: #555 !important;
+        }
+        .dropdown-menu li a {
+            color: #000 !important;
+        }
+        .dropdown-menu li a:hover {
+            background-color: #000000 !important;
+        }
+        .footer {
+            background: #000000;
+            padding: 10px 0;
+        }
+        .footer a {
+            color: #ff963d;
+            font-size: 20px;
+            padding: 10px;
+            border-right: 1px solid #061D25;
+            transition: all .5s ease;
+        }
+        .footer a:first-child {
+            border-left: 1px solid #061D25;
+        }
+        .footer a:hover {
+            color: #ff9832;
+        }
+        textarea {
+            resize: none;
+        }
+
+
+        /* Add animation (fade in the popup) */
+        @-webkit-keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity:1 ;}
+        }
+
+
+    </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
-          </div>
+            <a class="navbar-brand"> <img src="images/logo.gif" class="image-circle" width=150 height=102/></a>
         </div>
-        <hr />
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="newItem" placeholder="Enter the description..." />
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit" ng-disabled="!newItem" title="Add">
-              <span class="glyphicon glyphicon-plus"></span>
-            </button>
-          </span>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#myPage">Home</a></li>
+                <li><a href="#about" onclick="LoadForAboutUs()">About Us</a></li>
+                <li><a href="#achievement"  onclick="LoadForOurAchivement()">our Achivement</a></li>
+                <li><a href="#thirdParty" onclick="LoadForThirdParty()">Third Party</a></li>
+                <li><a href="productShop/indexShop.html"  class="gallery-link" >Gallery</a></li>
+
+                <li><a href="#order"  onclick="LoadOrerPage()">Order</a></li>
+              <!--  <li><a href="/productShop/indexShop.html"  class="oredr-link">Order</a></li>-->
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="productShop/login.html" class="login-link">Login</a></li>
+
+                <!--<li>
+                    <button type="button" data-toggle="dropdown"> Log In</button>
+                    <ul class="dropdown-menu">
+                        <li><a id="userloginclick" href="javascript:showcontent('userloginclick')">As User</a></li>
+                        <li><a id="adminloginclick" href="javascript:showcontent('adminloginclick')">As Admin</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
+            </ul>
         </div>
-      </form>
     </div>
-    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
-    <script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
-    <script type="text/javascript" src="./app/app.js"></script>
-    <script type="text/javascript" src="./app/controllers.js"></script>
-    <script type="text/javascript" src="./app/services.js"></script>
-  </body>
+</nav>
+
+
+    <!-- Intro end-->
+
+<!-- Wrapper for slides -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="images/carousel/1.jpg" alt="1" class="image-circle" width=100 height=100/>
+            <div class="carousel-caption">
+                <h2>Build a Relation ** Build a Trust</h2>
+                <h3>Generic Herbal Eye-Division</h3>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="images/carousel/2.jpg" alt="2" class="image-circle" width=100 height=100 />
+            <div class="carousel-caption">
+                <h2>Build a Relation ** Build a Trust</h2>
+                <h3>Generic Herbal Eye-Division</h3>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="images/bg.jpg" alt="bg" class="image-circle" width=100 height=100 />
+            <div class="carousel-caption">
+                <h2>Build a Relation ** Build a Trust</h2>
+                <h3>Generic Herbal Eye-Division</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<!-- About us (The Home Section) -->
+<div id="about" class="container text-left">
+    <p id="aboutUs"></p>
+    <br>
+</div>
+
+<!-- our achivement (TOUR Section) -->
+<div id="achievement" class="container text-left">
+   <p id="ourAchivement">  </p>
+</div>
+
+
+<!-- third party (The Home Section) -->
+<div id="thirdParty" class="container text-left" >
+   <p id="thirdPartystory"></p>
+<br>
+</div>
+
+<!--<div id="feedbackFailure" class="container text-left"> Thanks For your interest. There is a issue in sending mail. Please contact in +91-8981989350 <br></div>-->
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container">
+    <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
+
+
+        <div class="col-md-4">
+            <p></p>
+            <p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara, Shobhabazar, Kolkata, West Bengal 700006</em></p>
+            <p><span class="glyphicon glyphicon-phone"></span><em>Phone: +91-8981089350</em></p>
+            <p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
+        </div>
+
+        <form role="form" id="contactForm" data-toggle="validator" onsubmit="contactUs()">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-6 form-group" class="form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group" class="form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+                               data-error="Bruh, that email address is invalid" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group" class="form-group">
+                        <input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number" type="phoneNo" max maxlength="10" minlength="10">
+                    </div>
+                </div>
+                <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+                <br>
+                <div class="row">
+                    <div class="col-md-12 form-group" class="form-group">
+                        <button class="btn pull-right" id="btn-contact" type="submit" >send</button>
+                        <button  type="reset" class="btn">reset</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+
+    <br>
+    <h2 class="text-center">Key Faces</h2>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
+        <li><a data-toggle="tab" href="#menu1">Mr. Kundu</a></li>
+        <li><a data-toggle="tab" href="#menu2">Ruma</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <h2>Somnath Chatterjee, CEO</h2>
+            <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <h2>Mr. Kundu, Manager</h2>
+            <p>Always with people! </p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h2>Ruma Chatterjee, MD</h2>
+            <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+        </div>
+    </div>
+</div>
+
+
+<div id="map" style="width:400px;height:400px;background:yellow" class="container text-center"></div>
+
+<script>
+    function myMap() {
+        var myLatLng = {lat: 22.5948007, lng: 88.36672820000001};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 20,
+            center: myLatLng
+        });
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container text-right">
+        <a href="https://www.facebook.com/bengal.remedies"><i class="fa fa-facebook"></i></a>
+        <a href="https://plus.google.com/+RUMACHATTERJEE"><i class="fa fa-google-plus"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-skype"></i></a>
+        <a class="glyphicon glyphicon-envelope"> ben.remedi@gmail.com </a>
+    </div>
+
+
+</footer>
+
+
+
+<script>
+    $(document).ready(function(){
+        // Initialize Tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+                // Store hash
+                var hash = this.hash;
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 900, function(){
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+            } // End if
+        });
+    })
+</script>
+
+</body>
+<script>
+    function codeAddress() {
+        chatteron.init({
+            chatterOnClientID: "a190e0e35e89ac76b539d2ea6be02d43485b0dc824532c2c",
+            themeColor       : "3295e6",
+            label            : "Chat here"
+        });
+    }
+</script>
+<script src="https://chatteron.io/web-sdk/scripts/web-sdk.js" onload="codeAddress();">
+</script>
 </html>
+© 2017 copy rights Bengal Remeides

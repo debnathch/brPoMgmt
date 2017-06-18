@@ -18,7 +18,10 @@ public class Br_Product implements Serializable {
 	
 	@Id
 	@Column(name="prod_id")
-	int productId;
+	int product_id;
+
+	@Column(name="company_id")
+	int company_id;
 	
 	@Column(name="prod_name")
 	String product_name;

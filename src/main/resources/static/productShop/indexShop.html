@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Bengal Remedies || E-Medicine-Shopper</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/price-range.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="/js/datatable.js"></script>
+
+
+    <!-- load the about content to UI  http://www.jquery-az.com/jquery/demo.php?ex=69.0_1-->
+
+    <script>
+
+        $(function () {
+
+            var goToCartIcon = function($addTocartBtn){
+                var $cartIcon = $(".my-cart-icon");
+                var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+                $addTocartBtn.prepend($image);
+                var position = $cartIcon.position();
+                $image.animate({
+                    top: position.top,
+                    left: position.left
+                }, 500 , "linear", function() {
+                    $image.remove();
+                });
+            }
+
+            $('.my-cart-btn').myCart({
+                classCartIcon: 'my-cart-icon',
+                classCartBadge: 'my-cart-badge',
+                classProductQuantity: 'my-product-quantity',
+                classProductRemove: 'my-product-remove',
+                classCheckoutCart: 'my-cart-checkout',
+                affixCartIcon: true,
+                showCheckoutModal: true,
+                clickOnAddToCart: function($addTocart){
+                    goToCartIcon($addTocart);
+                },
+                clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+                    console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+                },
+                checkoutCart: function(products, totalPrice, totalQuantity) {
+                    console.log("checking out", products, totalPrice, totalQuantity);
+                },
+                getDiscountPrice: function(products, totalPrice, totalQuantity) {
+                    console.log("calculating discount", products, totalPrice, totalQuantity);
+                    return totalPrice * 0.5;
+                }
+            });
+
+        });
+
+
+        $(document).ready(function() {
+// only about us will be displayed
+
+
+            $('a.home-link').click( function() {
+                var page = $(this).attr('href');
+                $.ajax({
+                    type: 'GET',
+                    url: '/productShop',
+                    data: page,
+                    success: function(content) {
+
+                        window.location.href = 'http://localhost:8085/index.html';
+                        // replace
+                    },
+                    error: function (e) {
+                        alert("Please contact Admn for "+page+ " is not directed as expected");
+                    }
+                });
+                return false; // to stop link
+            });
+
+        });
+
+
+        function contactUs() {
+
+            var contactDetails = {}
+            contactDetails["name"] = $("#name").val();
+            contactDetails["email"] = $("#email").val();
+            contactDetails["comments"] = $("#comments").val();
+            contactDetails["phoneNo"] = $("#phoneNo").val();
+            $('#btn-contact').prop("disabled", false);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/contactUs",
+                data: JSON.stringify(contactDetails),
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    alert(" success ....");
+                    var json = "Thanks For your interest. Our Member will contact you shortly"
+                        + JSON.stringify(data, null, 4) + "</pre>";
+                    $('#feedbackSuccess').html(json);
+
+                    console.log("SUCCESS : ", data);
+                    $('#btn-contact').prop("disabled", false);
+                },
+                error: function (e) {
+                    alert(" Error ....");
+                    var json = "<h5>Ajax Response</h5>";
+
+                    $('#feedbackSuccess').html(json);
+
+
+                    console.log("ERROR : ", e);
+                    $('#btn-contact').prop("disabled", false);
+                }
+            });
+        }
+
+
+        //counter of item increate logic
+        function clickCounter() {
+            if(typeof(Storage) !== "undefined") {
+                if (localStorage.clickcount) {
+                    localStorage.clickcount = Number(localStorage.clickcount)+1;
+                } else {
+                    localStorage.clickcount = 1;
+                }
+                document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+            } else {
+                document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+            }
+        }
+
+// after adding into cart
+        function addToCart(id){
+
+            if(document.getElementById("qty_"+id).value != 0){
+                var cartQuty = document.getElementById("qty_"+id).value;
+                var orderItem = {};
+
+                orderItem["prod_id"]=id;
+                orderItem["prod_qty"]=cartQuty;
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/addCart",
+                    data: JSON.stringify(orderItem),
+                    dataType: 'json',
+                    cache: false,
+                    timeout: 600000,
+                    success: function (data) {
+                        alert(" success ....");
+                        var json = "Thanks For your interest. Our Member will contact you shortly"
+                            + JSON.stringify(data, null, 4) + "</pre>";
+
+                        console.log("SUCCESS : ", data);
+
+                    },
+                    error: function (e) {
+
+                        console.log("ERROR : ", e);
+
+                    }
+                });
+
+            } else{
+
+                alert("please select atleast one item")
+            }
+
+
+
+        }
+
+
+
+        $(document).ready( function () {
+
+
+            var id =  parseInt(0);
+
+            var orderItem = {};
+
+
+            var table = $('#productList').DataTable({
+                "sAjaxSource": "/product",
+                "sAjaxDataProp": "",
+                "order": [[ 0, "asc" ]],
+                "aoColumns": [
+
+
+
+                    { "mData": "company_id" , "sWidth": "10%"},
+                    { "mData": "product_name" , "sWidth": "20%" },
+                    { "mData": "product_description" , "sWidth": "30%" },
+                    { "mData": "product_pack_size" , "sWidth": "10%"},
+                    {
+                        "mData": "product_id",
+                        "bSortable": false,
+                        "mRender": function(data, type, full) {
+                            id = data;
+
+                            return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY...">';
+                        }, "sWidth": "10%"
+                    },
+
+                    {
+
+                        "mData": "product_id",
+                        "bSortable": false,
+                        "mRender": function(data, type, full) {
+
+                            id = data.toString();
+                            var a = parseInt(id);
+
+
+                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')"><i class="fa fa-shopping-cart">' + 'ADD' + '</button>';
+                        }, "sWidth": "10%"
+                    }
+
+
+
+                ]
+
+            })
+        });
+    </script>
+
+
+    <style>
+
+        h3, h4 {
+            margin: 10px 0 30px 0;
+            letter-spacing: 10px;
+            font-size: 20px;
+            color: #111;
+        }
+
+        @media (max-width: 300px) {
+            .carousel-caption {
+                display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+            }
+        }
+
+        .nav-tabs li a {
+            color: #777;
+        }
+        #googleMap {
+            width: 100%;
+            height: 400px;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+        .navbar {
+            font-family: Montserrat, sans-serif;
+            margin-bottom: 0;
+            background-color: #2d2d30;
+            border: 0;
+            font-size: 11px !important;
+            letter-spacing: 4px;
+            opacity: 0.9;
+        }
+        .navbar li a, .navbar .navbar-brand {
+            color: #d59243 !important;
+        }
+        .navbar-nav li a:hover {
+            color: #ffa81c !important;
+        }
+        .navbar-nav li.active a {
+            color: #ff9f32 !important;
+            background-color: #29292c !important;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+        }
+        .open .dropdown-toggle {
+            color: #ff9025;
+            background-color: #555 !important;
+        }
+        .dropdown-menu li a {
+            color: #000 !important;
+        }
+        .dropdown-menu li a:hover {
+            background-color: #000000 !important;
+        }
+        .footer {
+            background: #000000;
+            padding: 10px 0;
+        }
+        .footer a {
+            color: #ff9715;
+            font-size: 20px;
+            padding: 10px;
+            border-right: 1px solid #061D25;
+            transition: all .5s ease;
+        }
+        .footer a:first-child {
+            border-left: 1px solid #061D25;
+        }
+        .footer a:hover {
+            color: #ff972a;
+        }
+        textarea {
+            resize: none;
+        }
+        /*cart add*/
+
+        .badge-notify{
+            background:red;
+            position:relative;
+            top: -20px;
+            right: 10px;
+        }
+        .badge-cart {
+            font-size: .25em;
+
+            display: block;
+            position: absolute;
+            top: -.75em;
+            right: -.75em;
+            width: 2em;
+            height: 2em;
+            line-height: 2em;
+            border-radius: 50%;
+            text-align: center;
+
+            color: #ff2f17;
+            background: rgba(255, 182, 149, 0.5);
+        }
+
+        i-cart {
+            width:100px;
+            text-align:center;
+            vertical-align:middle;
+        }
+
+        .fa {
+            position: relative;
+        }
+
+    </style>
+
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="indexShop.html" class="navbar-brand" > <img src="images/home/logo.gif" class="image-circle" width=150 height=102/></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html" class="home-link">Home</a></li>
+                <li><a href="#">Order</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header id="header"><!--header-->
+    <div class="header_top"><!--header_top-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="contactinfo">
+                        <ul class="nav nav-pills">
+                            <li><a href="#"><i class="fa fa-phone"></i> +91-9836711699</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> @.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="social-icons pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header_top-->
+
+    <div class="header-middle"><!--header-middle-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="shop-menu pull-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                        <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                        <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                        <!--<li><a href="cart.html"><i class="fa fa-shopping-cart badge badge-notify my-cart-badge"></i> Cart</a></li>-->
+                        <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                        <li><a href="cart.html"><i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span class="badge-cart" id="itemCount"></span></i-cart> </a> </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div><!--/header-middle-->
+
+    <div class="header-bottom"><!--header-bottom-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="mainmenu pull-left">
+                        <ul class="nav navbar-nav collapse navbar-collapse">
+                            <li><a href="indexShop.html" class="active">Home</a></li>
+                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="shop.html">Products</a></li>
+                                    <li><a href="product-details.html">Product Details</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
+
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <li><a href="blog.html">Blog List</a></li>
+                                    <li><a href="blog-single.html">Blog Single</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="search_box pull-right">
+                        <input type="text" placeholder="Search"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header-bottom-->
+</header><!--/header-->
+
+<section id="slider"><!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>
+                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h3>Online Order </h3>
+                                <p>Place Order with Best Rate. </p>
+                                <button type="button" class="btn btn-default get">Get it now</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
+                                <img src="images/home/pricing.jpg"  class="pricing" alt="" />
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h3>Online Order </h3>
+                                <p>Place Order with Best Rate. </p>
+                                <button type="button" class="btn btn-default get">Get it now</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
+                                <img src="images/home/pricing.png"  class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h3>Online Order </h3>
+                                <p>Place Order with Best Rate. </p>
+                                <button type="button" class="btn btn-default get">Get it now</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
+                                <img src="images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>E</span>-SHOPPER</h1>
+                                <h3>Online Order </h3>
+                                <p>Place Order with Best Rate. </p>
+                                <button type="button" class="btn btn-default get">Get it now</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="images/home/girl4.jpg" class="girl img-responsive" alt="" />
+                                <img src="images/home/pricing.png" class="pricing" alt="" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="left-sidebar">
+                    <h2>Category</h2>
+                    <div class="panel-group category-products" id="accordian">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        Bengal Remedies
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="sportswear" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="#">BETA </a></li>
+                                        <li><a href="#">NON BETA </a></li>
+                                        <li><a href="#">INJECTION </a></li>
+                                        <li><a href="#">EYE</a></li>
+                                        <li><a href="#">HERBAL </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        DWARIKA PHERMA
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="mens" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="#">BETA</a></li>
+                                        <li><a href="#">NON BETA</a></li>
+                                        <li><a href="#">EYE</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordian" href="#womens">
+                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                        JM
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="womens" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li><a href="#">Fendi</a></li>
+                                        <li><a href="#">Guess</a></li>
+                                        <li><a href="#">Valentino</a></li>
+                                        <li><a href="#">Dior</a></li>
+                                        <li><a href="#">Versace</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5 class="panel-title"><a href="#">ILPL</a></h5>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5 class="panel-title"><a href="#">MAHA ABTAR</a></h5>
+                            </div>
+                        </div>
+
+                    </div><!--/category-products-->
+
+                    <div class="brands_products"><!--brands_products-->
+                        <h2>Brands</h2>
+                        <div class="brands-name">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
+                                <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+                                <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
+                                <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
+                                <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
+                                <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
+                                <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+                            </ul>
+                        </div>
+                    </div><!--/brands_products-->
+
+                 <!--   <div class="price-range">&lt;!&ndash;price-range&ndash;&gt;
+                        <h2>Price Range</h2>
+                        <div class="well text-center">
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                        </div>
+                    </div>&lt;!&ndash;/price-range&ndash;&gt;
+
+                    <div class="shipping text-center">&lt;!&ndash;shipping&ndash;&gt;
+                        <img src="images/home/shipping.jpg" alt="" />
+                    </div>&lt;!&ndash;/shipping&ndash;&gt;-->
+
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-10 padding-right">
+                <h4>Product List</h4>
+                <table id="productList" class="display table-bordered table-condensed table-striped table-hover">
+
+                    <!-- Header Table -->
+                    <thead>
+                    <tr>
+
+                        <th>company</th>
+                        <th>product name</th>
+                        <th>product description</th>
+                        <th>box description</th>
+                        <th>Quantity</th>
+                        <th>Add to Cart</th>
+
+
+
+                    </tr>
+                    </thead>
+                    <!-- Footer Table -->
+                    <tfoot>
+                    <tr>
+<!--
+                        <th>company</th>
+                        <th>product name</th>
+                        <th>product description</th>
+                        <th>box description</th>
+                        <th>Quantity</th>
+                        <th>Add to Cart</th>-->
+
+
+
+                    </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+ <section>
+     <!-- Container (Contact Section) -->
+     <div id="contact" class="container">
+         <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
+
+
+         <div class="col-md-4">
+             <p></p>
+             <p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara, Shobhabazar, Kolkata, West Bengal 700006</em></p>
+             <p><span class="glyphicon glyphicon-phone"></span><em>Phone: +91-8981089350</em></p>
+             <p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
+         </div>
+
+         <form role="form" id="contactForm" data-toggle="validator" onsubmit="contactUs()">
+             <div class="col-md-8">
+                 <div class="row">
+                     <div class="col-sm-6 form-group" class="form-group">
+                         <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                     </div>
+                     <div class="col-sm-6 form-group" class="form-group">
+                         <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+                                data-error="Bruh, that email address is invalid" required>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-12 form-group" class="form-group">
+                         <input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number" type="phoneNo" minlength="10">
+                     </div>
+                 </div>
+                 <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+                 <br>
+                 <div class="row">
+                     <div class="col-md-12 form-group" class="form-group">
+                         <button class="btn pull-right" id="btn-contact" type="submit" >send</button>
+                         <button  type="reset" class="btn">reset</button>
+                     </div>
+                 </div>
+             </div>
+         </form>
+
+
+         <br>
+         <h3 class="text-center">Key Faces</h3>
+         <ul class="nav nav-tabs">
+             <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
+             <li><a data-toggle="tab" href="#menu1">Mr. Kundu</a></li>
+             <li><a data-toggle="tab" href="#menu2">Ruma</a></li>
+         </ul>
+
+         <div class="tab-content">
+             <div id="home" class="tab-pane fade in active">
+                 <h2>Somnath Chatterjee, CEO</h2>
+                 <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
+             </div>
+             <div id="menu1" class="tab-pane fade">
+                 <h2>Mr. Kundu, Manager</h2>
+                 <p>Always with people! </p>
+             </div>
+             <div id="menu2" class="tab-pane fade">
+                 <h2>Ruma Chatterjee, MD</h2>
+                 <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+             </div>
+         </div>
+     </div>
+
+
+     <div id="map" style="width:400px;height:400px;background:yellow" class="container text-center"></div>
+
+     <script>
+    function myMap() {
+        var myLatLng = {lat: 22.5948007, lng: 88.36672820000001};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 20,
+            center: myLatLng
+        });
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+    }
+</script>
+     <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+ </section>
+
+
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container text-right">
+        <a href="https://www.facebook.com/bengal.remedies"><i class="fa fa-facebook"></i></a>
+        <a href="https://plus.google.com/+RUMACHATTERJEE"><i class="fa fa-google-plus"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-skype"></i></a>
+        <a class="glyphicon glyphicon-envelope"> ben.remedi@gmail.com </a>
+    </div>
+
+
+</footer>
+
+
+<script>
+    $(document).ready(function(){
+        // Initialize Tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+                // Store hash
+                var hash = this.hash;
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 900, function(){
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+            } // End if
+        });
+    })
+</script>
+
+</body>
+</html>
+© 2017 copy rights Bengal Remeides

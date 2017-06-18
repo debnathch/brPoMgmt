@@ -16,17 +16,13 @@ public class PurchaeOrderDao {
 	@Autowired
     private PurchaseOrderRepository purchaseOrderRepo;
 	
-	@Autowired
-    private ProductRepository productRepository;
+
 	
 	public Iterable<Purchase_Order> FindPurchaseOrder(){
 		
 		return purchaseOrderRepo.findAll();
 	}
 	
-public Iterable<Br_Product> FindProductList(){
-		
-		return productRepository.findAll();
-	}
+
 
 }

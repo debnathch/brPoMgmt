@@ -40,6 +40,38 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 INSERT INTO `purchase_order`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', 'khepi_ma_katwa', '2016-10-03 00:00:00', '2');
 
 
+-- COMPANY DETAILS
+
+DROP TABLE IF EXISTS `purchase_order`.`company` ;
+CREATE TABLE IF NOT EXISTS `purchase_order`.`company` (
+  `company_id`  INT NOT NULL,
+
+  `company_name` varchar(255) NOT NULL,
+  `parent_company_id` INT NOT NULL,
+  `company_address` varchar(255) NOT NULL,
+  `company_desc` varchar(255) NOT NULL,
+
+#   foreign key  (`company_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_type_id`),
+  PRIMARY KEY (`company_id`));
+
+  
+INSERT INTO `purchase_order`.`company` 
+	(`company_id`,`company_name`, `parent_company_id`,`company_address`, `company_desc`) 
+    values (1,  'BENGAL REMEDIES', 1, 'KOLKATA', 'Parent Company');
+	
+INSERT INTO `purchase_order`.`company` 
+	(`company_id`,`company_name`, `parent_company_id`,`company_address`, `company_desc`) 
+    values (2,  'DWARKA_PHERMA', 1,'KOLKATA', 'BENGAL REMEDIES');
+	
+INSERT INTO `purchase_order`.`company` 
+	(`company_id`,`company_name`, `parent_company_id`,`company_address`, `company_desc`) 
+    values (3,  'JM_REMEDIES', 3, 'KOLKATA', 'Parent Company');
+	
+INSERT INTO `purchase_order`.`company` 
+	(`company_id`,`company_name`, `parent_company_id`,`company_address`, `company_desc`) 
+    values (4,  'KANT_BIOTECH', 3, 'KOLKATA', 'Parent Company');
+	
+
 
 -- DRUG DETAILS
  DROP TABLE IF EXISTS `purchase_order`.`br_drug_details` ;
@@ -66,16 +98,20 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_product_type` (
 DROP TABLE IF EXISTS `purchase_order`.`br_product_list` ;
 CREATE TABLE IF NOT EXISTS `purchase_order`.`br_product_list` (
   `prod_id`  INT NOT NULL,
+  
   `prod_type_id` INT NOT NULL,
+  `company_id` INT NOT NULL,
   `prod_name` varchar(255) NOT NULL,
+ 
   `prod_description` varchar(255) NOT NULL,
   `prod_pack_size` varchar(255) NOT NULL,
   `prod_trade_price` FLOAT NOT NULL,
   `prod_mrp_incl_vat` FLOAT NOT NULL,
   `prod_net_exclude_vat` FLOAT NOT NULL,
   
-  foreign key  (`prod_type_id`) REFERENCES `purchase_order`.`br_product_type`(`prod_type_id`),
-  PRIMARY KEY (`prod_id`));
+	foreign key  (`prod_type_id`) REFERENCES `purchase_order`.`br_product_type`(`prod_type_id`),
+	foreign key  (`company_id`) REFERENCES `purchase_order`.`company`(`company_id`),
+	PRIMARY KEY (`prod_id`));
   
 
 
@@ -118,87 +154,87 @@ INSERT INTO `purchase_order`.`br_product_type`
 
 -- TABLETS
 INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (20, 1, 'AZIBRA-500(DPCO)', 'Azithromycin 500mg', '10x3 tab', '449.20', '561.50', '219.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (20, 1, 1,'AZIBRA-500(DPCO)', 'Azithromycin 500mg', '10x3 tab', '449.20', '561.50', '219.00');
     
 INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (21, 1, 'B-FLU','Fluconazole-150mg' ,'20X1 Tab BLISTER',	'184.00'	,'230.00',	'70.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (21, 1, 1, 'B-FLU','Fluconazole-150mg' ,'20X1 Tab BLISTER',	'184.00'	,'230.00',	'70.00');
     
 INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (22, 1, 'BRACEF-200LB',	'Cefixime  200 mg + +Lactic Acid Bacillus-60million spo',	'10 Tab ALU-ALU',	'1001.00',	'1300.00',	'40.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (22, 1, 1, 'BRACEF-200LB',	'Cefixime  200 mg + +Lactic Acid Bacillus-60million spo',	'10 Tab ALU-ALU',	'1001.00',	'1300.00',	'40.00');
     
   INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (23, 1, 'BRACEF-CV',	'Cefixime  200 mg +Clavulanate Potassium 125 mg'	,'10 Tab ALU-ALU',	'154.00',	'200.00',	'80.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (23, 1,1, 'BRACEF-CV',	'Cefixime  200 mg +Clavulanate Potassium 125 mg'	,'10 Tab ALU-ALU',	'154.00',	'200.00',	'80.00');
     
     INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (24, 1, 'BRACEF-O(DPCO)',	'Cefixime 200mg+Ofloxacin 200mg',	'10 Tab ALU-ALU',	'89.60',	'112.00',	'49.28');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (24, 1, 1, 'BRACEF-O(DPCO)',	'Cefixime 200mg+Ofloxacin 200mg',	'10 Tab ALU-ALU',	'89.60',	'112.00',	'49.28');
   
    INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (25, 1, 'BRAMOX-625-LB',	'Amoxy 500mg+ Clavulanate125mg+Lactic Acid Bacillus-60million spo',	'10 Tab ALU-ALU',	'184.80',	'240.00',	'80.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (25, 1,1,  'BRAMOX-625-LB',	'Amoxy 500mg+ Clavulanate125mg+Lactic Acid Bacillus-60million spo',	'10 Tab ALU-ALU',	'184.80',	'240.00',	'80.00');
     
      INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (26, 1, 'BRAMOX-KID',	'Amoxycillin 200 mg + Clavulanic Acid 28.5 mg',	'10 Tab ALU-ALU',	'77.00',	'100.00',	'34.44');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (26, 1,1,  'BRAMOX-KID',	'Amoxycillin 200 mg + Clavulanic Acid 28.5 mg',	'10 Tab ALU-ALU',	'77.00',	'100.00',	'34.44');
     
      INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (27, 1, 'BRAZOL-400',	'Albendazole 400 mg', 	'20X1 BLISTER',	'163.20',	'204.00',	'60.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (27, 1, 1, 'BRAZOL-400',	'Albendazole 400 mg', 	'20X1 BLISTER',	'163.20',	'204.00',	'60.00');
     
      INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (28, 1, 'BROND-4',	'Ondansetron-4 mg(MOUTH DESOLVING)'	 , '1X10 BLISTER',	'34.65',	'45.00',	'7.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (28, 1, 1, 'BROND-4',	'Ondansetron-4 mg(MOUTH DESOLVING)'	 , '1X10 BLISTER',	'34.65',	'45.00',	'7.00');
     
      INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (29, 1, 'CHYMOBEN FORTE',	'Trypsin-Chymotrypsin, 100000 Armour units of enzymatic activity',	'1X10',	'98.00',	'127.50',	'35.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (29, 1, 1, 'CHYMOBEN FORTE',	'Trypsin-Chymotrypsin, 100000 Armour units of enzymatic activity',	'1X10',	'98.00',	'127.50',	'35.00');
     
      INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (30, 1, 'DKORT-6',	'Deflazacort - 6 mg tab (Alu Alu)',	'1X10',	'55.44',	'72.00',	'17.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (30, 1, 1, 'DKORT-6',	'Deflazacort - 6 mg tab (Alu Alu)',	'1X10',	'55.44',	'72.00',	'17.00');
     
       INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (31, 1, 'ESO-DSR',	'Esomeprazole Magnesium Trihydrate 40mg Domperidone I.P. 30mg (ALU ALU)',	'1X10',	'61.60',	'80.00',	'17.50');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (31, 1,1,  'ESO-DSR',	'Esomeprazole Magnesium Trihydrate 40mg Domperidone I.P. 30mg (ALU ALU)',	'1X10',	'61.60',	'80.00',	'17.50');
 
 
   INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (32, 1, 'FENTA-S',	'Aceclofenac 100 mg + Paracetamol 325 mg + serratiopeptidase 15 mg',	'1X10 BLISTER',	'50.05',	'65.00',	'16.50');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (32, 1,1, 'FENTA-S',	'Aceclofenac 100 mg + Paracetamol 325 mg + serratiopeptidase 15 mg',	'1X10 BLISTER',	'50.05',	'65.00',	'16.50');
 
 
   INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (33, 1, 'FEVER X Tablet',	'Paracetamol 500mg + Phenylephrine 5mg + Cetirizine - 5mg','20X10 BLISTER',	'616.00',	'800.00',	'170.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (33, 1,1, 'FEVER X Tablet',	'Paracetamol 500mg + Phenylephrine 5mg + Cetirizine - 5mg','20X10 BLISTER',	'616.00',	'800.00',	'170.00');
 
 
   INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (34, 1,'HYPEN(DPCO)','Aceclofenac 100 mg + Paracetamol 325 mg',  	'20X10 BLISTER',	'464.00',	'580.00',	'180.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (34, 1,1,'HYPEN(DPCO)','Aceclofenac 100 mg + Paracetamol 325 mg',  	'20X10 BLISTER',	'464.00',	'580.00',	'180.00');
 
 
   INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (35, 1, 'LEEV-5'	,'Levocetirizine Dihydrochloride 5mg',	'1X10 BLISTER',	'15.40',	'20.00',	'5.90');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (35, 1,1, 'LEEV-5'	,'Levocetirizine Dihydrochloride 5mg',	'1X10 BLISTER',	'15.40',	'20.00',	'5.90');
 
 
   INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (36, 1, 'LEEV-M',	'Montelukast 10mg + Levocetirizine 5 mg  ALU-ALU',	'1X10 BLISTER',	'80.85',	'105.00',	'28.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (36, 1,1, 'LEEV-M',	'Montelukast 10mg + Levocetirizine 5 mg  ALU-ALU',	'1X10 BLISTER',	'80.85',	'105.00',	'28.00');
 
 
   INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (37, 1, 'SUMIRON XT',	'Ferrous Ascorbate 100mg + Folic Acid 1.5mg + B12 15mcg + Zinc Sulphate',	'1X10'	,'69.30',	'90.00',	'20.12');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (37, 1,1, 'SUMIRON XT',	'Ferrous Ascorbate 100mg + Folic Acid 1.5mg + B12 15mcg + Zinc Sulphate',	'1X10'	,'69.30',	'90.00',	'20.12');
 
 
   INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (38, 1, 'POTON-40',	'Pantoprazole 40mg',	 '1X10 ALU-ALU'	,'36.96',	'48.00',	'12.70');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (38, 1,1, 'POTON-40',	'Pantoprazole 40mg',	 '1X10 ALU-ALU'	,'36.96',	'48.00',	'12.70');
 
 
 
@@ -208,7 +244,7 @@ INSERT INTO `purchase_order`.`br_product_list`
 
 -- LIQUIDS
 INSERT INTO `purchase_order`.`br_product_list` 
-	( `prod_id`, `prod_type_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
-    values (1, 2, 'ALLZYME Syrup', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '200 ml', '65.45', '85', '30');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`) 
+    values (1, 2,1, 'ALLZYME Syrup', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '200 ml', '65.45', '85', '30');
     
  

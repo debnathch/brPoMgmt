@@ -150,13 +150,13 @@
 
             if(typeof(Storage) !== "undefined") {
                 if (localStorage.clickcount) {
-                    alert(cartQuty + " count")
+                    alert(cartQuty + " count  "+localStorage.clickcount);
                     localStorage.clickcount = Number(localStorage.clickcount)+parseInt(cartQuty);
                 } else {
                     alert(localStorage.clickcount + " count else")
                     localStorage.clickcount = 1;
                 }
-                localStorage.clickcount = 0
+                //localStorage.clickcount = 0
                 document.getElementById("itemCount").innerHTML =  localStorage.clickcount;
             } else {
                 document.getElementById("itemCount").innerHTML = "Sorry, your browser does not support web storage...";

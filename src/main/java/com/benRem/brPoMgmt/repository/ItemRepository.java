@@ -7,6 +7,6 @@ import com.benRem.brPoMgmt.domain.Br_Product;
 
 @Repository
 public interface ItemRepository extends CrudRepository<Br_Product, Long>{
-	//List<Purchase_Order> findAllPurchaseOrder();
+	//List<Br_Product> findAllPurchaseOrder();
 	
 }

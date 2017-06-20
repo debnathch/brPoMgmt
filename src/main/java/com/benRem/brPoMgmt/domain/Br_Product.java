@@ -3,12 +3,11 @@ package com.benRem.brPoMgmt.domain;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
+
+import org.json.JSONObject;
 
 
 @Entity
@@ -20,9 +19,11 @@ public class Br_Product implements Serializable {
 	@Column(name="prod_id")
 	int product_id;
 
-	@Column(name="company_id")
-	int company_id;
-	
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "company_id")
+	private Company company;
+
 	@Column(name="prod_name")
 	String product_name;
 	
@@ -41,8 +42,92 @@ public class Br_Product implements Serializable {
 	@Column(name="prod_net_exclude_vat")
 	Float product_net_exclude_vat;
 
-	
-	
-	
 
+	public Br_Product(){
+	}
+
+	public Br_Product(String name){
+		this.product_name = name;
+	}
+
+	public Br_Product(String name, Company company){
+		this.product_name = name;
+		this.company = company;
+	}
+
+
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	public String getProduct_description() {
+		return product_description;
+	}
+
+	public void setProduct_description(String product_description) {
+		this.product_description = product_description;
+	}
+
+	public String getProduct_pack_size() {
+		return product_pack_size;
+	}
+
+	public void setProduct_pack_size(String product_pack_size) {
+		this.product_pack_size = product_pack_size;
+	}
+
+	public Float getProduct_trade_price() {
+		return product_trade_price;
+	}
+
+	public void setProduct_trade_price(Float product_trade_price) {
+		this.product_trade_price = product_trade_price;
+	}
+
+	public Float getProduct_mrp_price_icl_vat() {
+		return product_mrp_price_icl_vat;
+	}
+
+	public void setProduct_mrp_price_icl_vat(Float product_mrp_price_icl_vat) {
+		this.product_mrp_price_icl_vat = product_mrp_price_icl_vat;
+	}
+
+	public Float getProduct_net_exclude_vat() {
+		return product_net_exclude_vat;
+	}
+
+	public void setProduct_net_exclude_vat(Float product_net_exclude_vat) {
+		this.product_net_exclude_vat = product_net_exclude_vat;
+	}
+
+	public String toString(){
+		String info = "";
+
+		JSONObject jsonInfo = new JSONObject();
+		jsonInfo.put("product_id",this.product_id);
+		jsonInfo.put("product_name",this.product_name);
+
+		JSONObject companyObj = new JSONObject();
+		companyObj.put("company_name", this.company.getCompany_name());
+		companyObj.put("company_id", this.company.getCompany_id());
+		jsonInfo.put("companyMake", companyObj);
+		jsonInfo.put("product_description",this.product_description);
+		jsonInfo.put("product_pack_size",this.product_pack_size);
+
+		info = jsonInfo.toString();
+		return info;
+	}
 }

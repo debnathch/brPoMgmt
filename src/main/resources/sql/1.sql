@@ -51,8 +51,7 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`company` (
   `company_address` varchar(255) NOT NULL,
   `company_desc` varchar(255) NOT NULL,
 
-#   foreign key  (`company_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_type_id`),
-  PRIMARY KEY (`company_id`));
+#   foreign key  (`company_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_type_id`), PRIMARY KEY (`company_id`));
 
   
 INSERT INTO `purchase_order`.`company` 

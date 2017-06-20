@@ -1,7 +1,9 @@
 package com.benRem.brPoMgmt.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +31,11 @@ public class ProductDao {
   
  // @RequestMapping(method = RequestMethod.GET)
   public List<Br_Product> findItems() {
-	  List<Br_Product> target = new ArrayList<Br_Product>();
+	  List<Br_Product> target = new ArrayList<>();
 	  repo.findAll().forEach(target::add);
-	 
-	  return target;
+
+      System.out.println("**** fetching of products done ******" );
+      return target;
   }
   
   //@RequestMapping(method = RequestMethod.POST)

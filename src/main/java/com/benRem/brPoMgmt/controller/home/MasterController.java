@@ -7,6 +7,8 @@ import com.benRem.brPoMgmt.dao.ProductDao;
 import com.benRem.brPoMgmt.reqResObj.AjaxResponseBody;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
+import com.benRem.brPoMgmt.reqResObj.response.Products;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.benRem.brPoMgmt.domain.Br_Product;
 import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
 
+import java.io.DataInput;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,15 +83,16 @@ public class MasterController {
 	}
 
 	 @RequestMapping(value="/product", method = RequestMethod.GET)
-	 public List<Br_Product> orderPage()  {
+	 public List<Products> orderPage() throws IOException {
 
 	        System.out.println("****** Landing product page *****");
+		 List<Products> productList = new ArrayList<>();
+		 ObjectMapper objMapper = new ObjectMapper();
+	        for(Br_Product eachProduct : productDao.findItems()) {
+				productList.add(objMapper.readValue(eachProduct.toString(), Products.class));
+			}
 
-	        for(Br_Product brProduct : productDao.findItems()){
-	        	System.out.println(brProduct + " product");
-	        }
-
-		 return  productDao.findItems();
+		 	return  productList;
 
 
 	    }

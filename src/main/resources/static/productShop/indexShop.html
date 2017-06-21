@@ -659,13 +659,14 @@
                         <h2>Brands</h2>
                         <div class="brands-name">
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-                                <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-                                <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-                                <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-                                <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-                                <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-                                <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+                                <li><a href="#"> <span class="pull-right"></span>Syrup</a></li>
+                                <li><a href="#"> <span class="pull-right"></span>Tablet Erde</a></li>
+                                <li><a href="#"> <span class="pull-right"></span>Injection</a></li>
+                                <li><a href="#"> <span class="pull-right"></span>Herbal</a></li>
+                                <li><a href="#"> <span class="pull-right"></span>Oinment</a></li>
+                                <li><a href="#"> <span class="pull-right"></span>Eye-Product</a></li>
+                                <li><a href="#"> <span class="pull-right"></span>Beta</a></li>
+                                <li><a href="#"> <span class="pull-right"></span>Non-Beta</a></li>
                             </ul>
                         </div>
                     </div><!--/brands_products-->
@@ -726,6 +727,14 @@
             </div>
         </div>
     </div>
+</section>
+
+<!-- journey photo as slider-->
+<section>
+    <div>
+
+    </div>
+
 </section>
 
  <section>
@@ -793,24 +802,6 @@
          </div>
      </div>
 
-
-     <div id="map" style="width:400px;height:400px;background:yellow" class="container text-center"></div>
-
-     <script>
-    function myMap() {
-        var myLatLng = {lat: 22.5948007, lng: 88.36672820000001};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 20,
-            center: myLatLng
-        });
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: 'Hello World!'
-        });
-    }
-</script>
-     <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
  </section>
 
 
@@ -858,5 +849,16 @@
 </script>
 
 </body>
+<script>
+    function codeAddress() {
+        chatteron.init({
+            chatterOnClientID: "a190e0e35e89ac76b539d2ea6be02d43485b0dc824532c2c",
+            themeColor       : "3295e6",
+            label            : "Chat here"
+        });
+    }
+</script>
+<script src="https://chatteron.io/web-sdk/scripts/web-sdk.js" onload="codeAddress();">
+</script>
 </html>
 © 2017 copy rights Bengal Remeides

@@ -4,6 +4,8 @@ import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import com.benRem.brPoMgmt.dao.ProductDao;
+import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
+import com.benRem.brPoMgmt.domain.Purchase_Order;
 import com.benRem.brPoMgmt.reqResObj.AjaxResponseBody;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
@@ -35,6 +37,9 @@ import java.util.stream.Collectors;
 public class MasterController {
 	
 	@Autowired
+	PurchaeOrderDao purchaseOrderDao;
+
+	@Autowired
 	ProductDao productDao;
 	  
 	  @Autowired
@@ -59,6 +64,9 @@ public class MasterController {
 	public ResponseEntity<?> addToCart(@Valid @RequestBody OrderItem orderItem)  {
 		System.out.println(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
 		AjaxResponseBody result = new AjaxResponseBody();
+
+
+		purchaseOrderDao.saveToCart(orderItem);
 		return ResponseEntity.ok(result) ;
 	}
 
@@ -89,6 +97,7 @@ public class MasterController {
 		 List<Products> productList = new ArrayList<>();
 		 ObjectMapper objMapper = new ObjectMapper();
 	        for(Br_Product eachProduct : productDao.findItems()) {
+
 				productList.add(objMapper.readValue(eachProduct.toString(), Products.class));
 			}
 

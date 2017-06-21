@@ -1,492 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Cart | E-Shopper</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
+
+	<title>Bengal Remedies || E-Medicine-Shopper</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/prettyPhoto.css" rel="stylesheet">
+	<link href="css/price-range.css" rel="stylesheet">
+	<link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-</head><!--/head-->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<link rel="shortcut icon" href="images/ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 
-<body>
-	<header id="header"><!--header-->
-		<div class="header_top"><!--header_top-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="contactinfo">
-							<ul class="nav nav-pills">
-								<li><a href=""><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href=""><i class="fa fa-envelope"></i> info@domain.com</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="social-icons pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-facebook"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter"></i></a></li>
-								<li><a href=""><i class="fa fa-linkedin"></i></a></li>
-								<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header_top-->
-		
-		<div class="header-middle"><!--header-middle-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
-						</div>
-						<div class="btn-group pull-right">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									USA
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="">Canada</a></li>
-									<li><a href="">UK</a></li>
-								</ul>
-							</div>
-							
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									DOLLAR
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="">Canadian Dollar</a></li>
-									<li><a href="">Pound</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
-								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="cart.html" class="active"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
-	
-		<div class="header-bottom"><!--header-bottom-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html">Home</a></li>
-								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html" class="active">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
-                                    </ul>
-                                </li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li> 
-								<li><a href="404.html">404</a></li>
-								<li><a href="contact-us.html">Contact</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-bottom-->
-	</header><!--/header-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<section id="cart_items">
-		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li class="active">Shopping Cart</li>
-				</ol>
-			</div>
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
 
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+	<script src="/js/datatable.js"></script>
+
+
+	<!-- load the about content to UI  http://www.jquery-az.com/jquery/demo.php?ex=69.0_1-->
+
+	<script>
+
+        $(function () {
+
+            var goToCartIcon = function($addTocartBtn){
+                var $cartIcon = $(".my-cart-icon");
+                var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+                $addTocartBtn.prepend($image);
+                var position = $cartIcon.position();
+                $image.animate({
+                    top: position.top,
+                    left: position.left
+                }, 500 , "linear", function() {
+                    $image.remove();
+                });
+            }
+
+            $('.my-cart-btn').myCart({
+                classCartIcon: 'my-cart-icon',
+                classCartBadge: 'my-cart-badge',
+                classProductQuantity: 'my-product-quantity',
+                classProductRemove: 'my-product-remove',
+                classCheckoutCart: 'my-cart-checkout',
+                affixCartIcon: true,
+                showCheckoutModal: true,
+                clickOnAddToCart: function($addTocart){
+                    goToCartIcon($addTocart);
+                },
+                clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+                    console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+                },
+                checkoutCart: function(products, totalPrice, totalQuantity) {
+                    console.log("checking out", products, totalPrice, totalQuantity);
+                },
+                getDiscountPrice: function(products, totalPrice, totalQuantity) {
+                    console.log("calculating discount", products, totalPrice, totalQuantity);
+                    return totalPrice * 0.5;
+                }
+            });
+
+        });
+
+
+        $(document).ready(function() {
+// only about us will be displayed
+
+
+            $('a.home-link').click( function() {
+                var page = $(this).attr('href');
+                $.ajax({
+                    type: 'GET',
+                    url: '/productShop',
+                    data: page,
+                    success: function(content) {
+
+                        window.location.href = 'http://localhost:8085/index.html';
+                        // replace
+                    },
+                    error: function (e) {
+                        alert("Please contact Admn for "+page+ " is not directed as expected");
+                    }
+                });
+                return false; // to stop link
+            });
+
+        });
+
+
+        function contactUs() {
+
+            var contactDetails = {}
+            contactDetails["name"] = $("#name").val();
+            contactDetails["email"] = $("#email").val();
+            contactDetails["comments"] = $("#comments").val();
+            contactDetails["phoneNo"] = $("#phoneNo").val();
+            $('#btn-contact').prop("disabled", false);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/contactUs",
+                data: JSON.stringify(contactDetails),
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    alert(" success ....");
+                    var json = "Thanks For your interest. Our Member will contact you shortly"
+                        + JSON.stringify(data, null, 4) + "</pre>";
+                    $('#feedbackSuccess').html(json);
+
+                    console.log("SUCCESS : ", data);
+                    $('#btn-contact').prop("disabled", false);
+                },
+                error: function (e) {
+                    alert(" Error ....");
+                    var json = "<h5>Ajax Response</h5>";
+
+                    $('#feedbackSuccess').html(json);
+
+
+                    console.log("ERROR : ", e);
+                    $('#btn-contact').prop("disabled", false);
+                }
+            });
+        }
+
+
+        //counter of item increate logic
+        function clickCounter(cartQuty) {
+
+            if(typeof(Storage) !== "undefined") {
+                if (localStorage.clickcount) {
+                    alert(cartQuty + " count  "+localStorage.clickcount);
+                    localStorage.clickcount = Number(localStorage.clickcount)+parseInt(cartQuty);
+                } else {
+                    alert(localStorage.clickcount + " count else")
+                    localStorage.clickcount = 1;
+                }
+                //localStorage.clickcount = 0
+                document.getElementById("itemCount").innerHTML =  localStorage.clickcount;
+            } else {
+                document.getElementById("itemCount").innerHTML = "Sorry, your browser does not support web storage...";
+            }
+        }
+
+        // after adding into cart
+        function addToCart(id){
+
+            if(document.getElementById("qty_"+id).value != 0){
+                var cartQuty = document.getElementById("qty_"+id).value;
+                var orderItem = {};
+
+                clickCounter(cartQuty);
+                orderItem["prod_id"]=id;
+                orderItem["prod_qty"]=cartQuty;
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/addCart",
+                    data: JSON.stringify(orderItem),
+                    dataType: 'json',
+                    cache: false,
+                    timeout: 600000,
+                    success: function (data) {
+                        alert("Added to card successFully : ");
+                        var json = "Thanks For your interest. Our Member will contact you shortly"
+                            + JSON.stringify(data, null, 4) + "</pre>";
+
+                        console.log("Added to card successFully : ", data);
+
+                    },
+                    error: function (e) {
+
+                        console.log("ERROR to add the item to cart. Please call 8981089350: ", e);
+
+                    }
+                });
+                document.getElementById("qty_"+id).value = 0;
+            } else{
+
+                alert("please select atleast one item")
+            }
+
+
+
+        }
+
+
+
+        $(document).ready( function () {
+
+
+            var id =  parseInt(0);
+
+            var orderItem = {};
+
+
+            var table = $('#productList').DataTable({
+                "sAjaxSource": "/product",
+                "sAjaxDataProp": "",
+                "order": [[ 0, "asc" ]],
+                "aoColumns": [
+
+
+
+                    { "mData": "companyMake.company_name" , "sWidth": "10%"},
+                    { "mData": "product_name" , "sWidth": "20%" },
+                    { "mData": "product_description" , "sWidth": "30%" },
+                    { "mData": "product_pack_size" , "sWidth": "10%"},
+                    {
+                        "mData": "product_id",
+                        "bSortable": false,
+                        "mRender": function(data, type, full) {
+                            id = data;
+
+                            return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY...">';
+                        }, "sWidth": "10%"
+                    }
+
+
+
+                ]
+
+            })
+        });
+	</script>
+
+
+	<style>
+
+		h3, h4 {
+			margin: 10px 0 30px 0;
+			letter-spacing: 10px;
+			font-size: 20px;
+			color: #111;
+		}
+
+		@media (max-width: 300px) {
+			.carousel-caption {
+				display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+			}
+		}
+
+		.nav-tabs li a {
+			color: #777;
+		}
+		#googleMap {
+			width: 100%;
+			height: 400px;
+			-webkit-filter: grayscale(100%);
+			filter: grayscale(100%);
+		}
+		.navbar {
+			font-family: Montserrat, sans-serif;
+			margin-bottom: 0;
+			background-color: #2d2d30;
+			border: 0;
+			font-size: 11px !important;
+			letter-spacing: 4px;
+			opacity: 0.9;
+		}
+		.navbar li a, .navbar .navbar-brand {
+			color: #d59243 !important;
+		}
+		.navbar-nav li a:hover {
+			color: #ffa81c !important;
+		}
+		.navbar-nav li.active a {
+			color: #ff9f32 !important;
+			background-color: #29292c !important;
+		}
+		.navbar-default .navbar-toggle {
+			border-color: transparent;
+		}
+		.open .dropdown-toggle {
+			color: #ff9025;
+			background-color: #555 !important;
+		}
+		.dropdown-menu li a {
+			color: #000 !important;
+		}
+		.dropdown-menu li a:hover {
+			background-color: #000000 !important;
+		}
+		.footer {
+			background: #000000;
+			padding: 10px 0;
+		}
+		.footer a {
+			color: #ff9715;
+			font-size: 20px;
+			padding: 10px;
+			border-right: 1px solid #061D25;
+			transition: all .5s ease;
+		}
+		.footer a:first-child {
+			border-left: 1px solid #061D25;
+		}
+		.footer a:hover {
+			color: #ff972a;
+		}
+		textarea {
+			resize: none;
+		}
+		/*cart add*/
+
+		.badge-notify{
+			background:red;
+			position:relative;
+			top: -20px;
+			right: 10px;
+		}
+		.badge-cart {
+			font-size: .25em;
+
+			display: block;
+			position: absolute;
+			top: -.75em;
+			right: -.75em;
+			width: 2em;
+			height: 2em;
+			line-height: 2em;
+			border-radius: 50%;
+			text-align: center;
+
+			color: #ff2f17;
+			background: rgba(255, 182, 149, 0.5);
+		}
+
+		i-cart {
+			width:100px;
+			text-align:center;
+			vertical-align:middle;
+		}
+
+		.fa {
+			position: relative;
+		}
+
+	</style>
+
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="indexShop.html" class="navbar-brand" > <img src="images/home/logo.gif" class="image-circle" width=150 height=102/></a>
 		</div>
-	</section> <!--/#cart_items-->
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="index.html" class="home-link">Home</a></li>
+				<li><a href="#">Order</a></li>
+				<li><a href="#contact">Contact</a></li>
 
-	<section id="do_action">
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<header id="header"><!--header-->
+	<div class="header_top"><!--header_top-->
 		<div class="container">
-			<div class="heading">
-				<h3>What would you like to do next?</h3>
-				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-			</div>
 			<div class="row">
 				<div class="col-sm-6">
-					<div class="chose_area">
-						<ul class="user_option">
-							<li>
-								<input type="checkbox">
-								<label>Use Coupon Code</label>
-							</li>
-							<li>
-								<input type="checkbox">
-								<label>Use Gift Voucher</label>
-							</li>
-							<li>
-								<input type="checkbox">
-								<label>Estimate Shipping & Taxes</label>
-							</li>
+					<div class="contactinfo">
+						<ul class="nav nav-pills">
+							<li><a href="#"><i class="fa fa-phone"></i> +91-9836711699</a></li>
+							<li><a href="#"><i class="fa fa-envelope"></i> @.com</a></li>
 						</ul>
-						<ul class="user_info">
-							<li class="single_field">
-								<label>Country:</label>
-								<select>
-									<option>United States</option>
-									<option>Bangladesh</option>
-									<option>UK</option>
-									<option>India</option>
-									<option>Pakistan</option>
-									<option>Ucrane</option>
-									<option>Canada</option>
-									<option>Dubai</option>
-								</select>
-								
-							</li>
-							<li class="single_field">
-								<label>Region / State:</label>
-								<select>
-									<option>Select</option>
-									<option>Dhaka</option>
-									<option>London</option>
-									<option>Dillih</option>
-									<option>Lahore</option>
-									<option>Alaska</option>
-									<option>Canada</option>
-									<option>Dubai</option>
-								</select>
-							
-							</li>
-							<li class="single_field zip-field">
-								<label>Zip Code:</label>
-								<input type="text">
-							</li>
-						</ul>
-						<a class="btn btn-default update" href="">Get Quotes</a>
-						<a class="btn btn-default check_out" href="">Continue</a>
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
-							<li>Cart Sub Total <span>$59</span></li>
-							<li>Eco Tax <span>$2</span></li>
-							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$61</span></li>
+					<div class="social-icons pull-right">
+						<ul class="nav navbar-nav">
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 						</ul>
-							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section><!--/#do_action-->
+	</div><!--/header_top-->
 
-	<footer id="footer"><!--Footer-->
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-						</div>
+	<div class="header-middle"><!--header-middle-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="shop-menu pull-right">
+					<ul class="nav navbar-nav">
+
+						<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+						<!--<li><a href="cart.html"><i class="fa fa-shopping-cart badge badge-notify my-cart-badge"></i> Cart</a></li>-->
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div><!--/header-middle-->
+
+	<div class="header-bottom"><!--header-bottom-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-9">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
 					</div>
-					<div class="col-sm-7">
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe2.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe3.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-						
-						<div class="col-sm-3">
-							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe4.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="address">
-							<img src="images/home/map.png" alt="" />
-							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
-						</div>
+					<!--<div class="mainmenu pull-left">
+						<ul class="nav navbar-nav collapse navbar-collapse">
+							<li><a href="indexShop.html" class="active">Home</a></li>
+							<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+								<ul role="menu" class="sub-menu">
+									<li><a href="shop.html">Products</a></li>
+									<li><a href="product-details.html">Product Details</a></li>
+									<li><a href="checkout.html">Checkout</a></li>
+
+									<li><a href="login.html">Login</a></li>
+									<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								</ul>
+							</li>
+							<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+								<ul role="menu" class="sub-menu">
+									<li><a href="blog.html">Blog List</a></li>
+									<li><a href="blog-single.html">Blog Single</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>-->
+				</div>
+				<div class="col-sm-3">
+					<div class="search_box pull-right">
+						<input type="text" placeholder="Search"/>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Service</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Online Help</a></li>
-								<li><a href="">Contact Us</a></li>
-								<li><a href="">Order Status</a></li>
-								<li><a href="">Change Location</a></li>
-								<li><a href="">FAQ’s</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Quock Shop</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">T-Shirt</a></li>
-								<li><a href="">Mens</a></li>
-								<li><a href="">Womens</a></li>
-								<li><a href="">Gift Cards</a></li>
-								<li><a href="">Shoes</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Policies</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Terms of Use</a></li>
-								<li><a href="">Privecy Policy</a></li>
-								<li><a href="">Refund Policy</a></li>
-								<li><a href="">Billing System</a></li>
-								<li><a href="">Ticket System</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Company Information</a></li>
-								<li><a href="">Careers</a></li>
-								<li><a href="">Store Location</a></li>
-								<li><a href="">Affillate Program</a></li>
-								<li><a href="">Copyright</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3 col-sm-offset-1">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<form action="#" class="searchform">
-								<input type="text" placeholder="Your email address" />
-								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
-							</form>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
-				</div>
-			</div>
-		</div>
-		
-	</footer><!--/Footer-->
-	
+	</div><!--/header-bottom-->
+</header><!--/header-->
 
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="left-sidebar">
+
+
+					<div class="brands_products"><!--brands_products-->
+						<h2>Brands</h2>
+						<div class="brands-name">
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#"> <span class="pull-right"></span>Syrup</a></li>
+								<li><a href="#"> <span class="pull-right"></span>Tablet Erde</a></li>
+								<li><a href="#"> <span class="pull-right"></span>Injection</a></li>
+								<li><a href="#"> <span class="pull-right"></span>Herbal</a></li>
+								<li><a href="#"> <span class="pull-right"></span>Oinment</a></li>
+								<li><a href="#"> <span class="pull-right"></span>Eye-Product</a></li>
+								<li><a href="#"> <span class="pull-right"></span>Beta</a></li>
+								<li><a href="#"> <span class="pull-right"></span>Non-Beta</a></li>
+							</ul>
+						</div>
+					</div><!--/brands_products-->
+
+					<!--   <div class="price-range">&lt;!&ndash;price-range&ndash;&gt;
+                           <h2>Price Range</h2>
+                           <div class="well text-center">
+                               <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+                               <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+                           </div>
+                       </div>&lt;!&ndash;/price-range&ndash;&gt;
+
+                       <div class="shipping text-center">&lt;!&ndash;shipping&ndash;&gt;
+                           <img src="images/home/shipping.jpg" alt="" />
+                       </div>&lt;!&ndash;/shipping&ndash;&gt;-->
+
+				</div>
+			</div>
+
+
+
+			<div class="col-sm-10 padding-right">
+				<h5>Your Cart List</h5>
+				<table id="productList" class="display table-bordered table-condensed table-striped table-hover">
+
+					<!-- Header Table -->
+					<thead>
+					<tr>
+
+						<th>company</th>
+						<th>product name</th>
+						<th>product description</th>
+						<th>box description</th>
+						<th>Quantity</th>
+
+
+
+
+					</tr>
+					</thead>
+					<!-- Footer Table -->
+					<tfoot>
+					<tr>
+
+					</tr>
+					</tfoot>
+				</table>
+
+			</div>
+		</div>
+	</div>
+</section>
+<!-- journey photo as slider-->
+<section>
+	<div>
+
+	</div>
+
+</section>
+
+<section>
+	<!-- Container (Contact Section) -->
+	<div id="contact" class="container">
+		<h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
+
+
+		<div class="col-md-4">
+			<p></p>
+			<p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara, Shobhabazar, Kolkata, West Bengal 700006</em></p>
+			<p><span class="glyphicon glyphicon-phone"></span><em>Phone: +91-8981089350</em></p>
+			<p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
+		</div>
+
+		<form role="form" id="contactForm" data-toggle="validator" onsubmit="contactUs()">
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-sm-6 form-group" class="form-group">
+						<input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+					</div>
+					<div class="col-sm-6 form-group" class="form-group">
+						<input class="form-control" id="email" name="email" placeholder="Email" type="email"
+							   data-error="Bruh, that email address is invalid" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 form-group" class="form-group">
+						<input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number" type="phoneNo" minlength="10">
+					</div>
+				</div>
+				<textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+				<br>
+				<div class="row">
+					<div class="col-md-12 form-group" class="form-group">
+						<button class="btn pull-right" id="btn-contact" type="submit" >send</button>
+						<button  type="reset" class="btn">reset</button>
+					</div>
+				</div>
+			</div>
+		</form>
+
+
+		<br>
+		<h3 class="text-center">Key Faces</h3>
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
+			<li><a data-toggle="tab" href="#menu1">Mr. Kundu</a></li>
+			<li><a data-toggle="tab" href="#menu2">Ruma</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+				<h2>Somnath Chatterjee, CEO</h2>
+				<p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
+			</div>
+			<div id="menu1" class="tab-pane fade">
+				<h2>Mr. Kundu, Manager</h2>
+				<p>Always with people! </p>
+			</div>
+			<div id="menu2" class="tab-pane fade">
+				<h2>Ruma Chatterjee, MD</h2>
+				<p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+
+
+
+
+<!-- Footer -->
+<footer class="footer">
+	<div class="container text-right">
+		<a href="https://www.facebook.com/bengal.remedies"><i class="fa fa-facebook"></i></a>
+		<a href="https://plus.google.com/+RUMACHATTERJEE"><i class="fa fa-google-plus"></i></a>
+		<a href="#"><i class="fa fa-twitter"></i></a>
+		<a href="#"><i class="fa fa-linkedin"></i></a>
+		<a href="#"><i class="fa fa-skype"></i></a>
+		<a class="glyphicon glyphicon-envelope"> ben.remedi@gmail.com </a>
+	</div>
+
+
+</footer>
+
+
+<script>
+    $(document).ready(function(){
+        // Initialize Tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+                // Store hash
+                var hash = this.hash;
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 900, function(){
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+            } // End if
+        });
+    })
+</script>
+
 </body>
+<script>
+    function codeAddress() {
+        chatteron.init({
+            chatterOnClientID: "a190e0e35e89ac76b539d2ea6be02d43485b0dc824532c2c",
+            themeColor       : "3295e6",
+            label            : "Chat here"
+        });
+    }
+</script>
+<script src="https://chatteron.io/web-sdk/scripts/web-sdk.js" onload="codeAddress();">
+</script>
 </html>
+© 2017 copy rights Bengal Remeides

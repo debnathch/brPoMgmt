@@ -21,6 +21,9 @@
     <script>
         $(document).ready(function() {
 // only about us will be displayed
+
+            document.getElementById("contactAlert").isDisabled;
+            $("#contactAlert").hide();
             LoadForAboutUs();
             $(achievement).hide();
             $(thirdParty).hide();
@@ -92,7 +95,7 @@
                 //var response = JSON.parse(xhttp.responseText);
                 var page = $(this).attr('http://localhost:8085/productShop/indexShop.html');
 
-                window.location = 'http://localhost:8085/productShop/indexShop.html';
+                    window.location = 'http://localhost:8085/productShop/indexShop.html';
 //                $.ajax({
 //                    type: "GET",
 //                    contentType: "application/json",
@@ -186,7 +189,7 @@
                 cache: false,
                 timeout: 600000,
                 success: function (data) {
-                    alert(" success ....");
+                    $("#contactAlert").show();
                     var json = "Thanks For your interest. Our Member will contact you shortly"
                         + JSON.stringify(data, null, 4) + "</pre>";
 
@@ -194,7 +197,7 @@
                     $('#btn-contact').prop("disabled", false);
                 },
                 error: function (e) {
-
+                    $("#contactAlert").show();
                     console.log("ERROR : ", e);
                     $('#btn-contact').prop("disabled", false);
                 }
@@ -372,7 +375,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand"> <img src="images/logo.gif" class="image-circle" width=150 height=102/></a>
+            <a href="index.html" class="navbar-brand" > <img src="images/logo.gif" class="image-circle" width=150 height=102/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">

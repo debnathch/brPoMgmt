@@ -7,6 +7,26 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+
+
+-------------------------------
+-- Customer Table
+-------------------------------
+
+DROP TABLE IF EXISTS `purchase_order`.`customer` ;
+
+CREATE TABLE IF NOT EXISTS `purchase_order`.`customer` (
+  `customer_id`  INT NOT NULL,
+  `customer_name` varchar(255) NOT NULL,
+  `customer_address` varchar(255) NOT NULL,
+  `customer_type` INT NOT NULL,
+
+  PRIMARY KEY (`customer_id`)),
+
+
+
+
+
 -- -----------------------------------------------------
 -- Schema purchase_order
 -- -----------------------------------------------------
@@ -25,10 +45,20 @@ DROP TABLE IF EXISTS `purchase_order`.`br_purchase_order` ;
 
 CREATE TABLE IF NOT EXISTS `purchase_order`.`br_purchase_order` (
   `po_id`  INT NOT NULL,
-  `order_from` varchar(255) NOT NULL,
+  `customer_id` INT NOT NULL,
+  `prod_id` INT NOT NULL,
+  `product_quantity` INT NOT NULL,
   `order_date` DATETIME NULL,
-  `po_details_id` INT NOT NULL,
-  PRIMARY KEY (`po_id`));
+  `is_active`  varchar(5) NOT NULL,
+  PRIMARY KEY (`po_id`),
+
+foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`)
+  );
+
+
+
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -37,7 +67,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
-INSERT INTO `purchase_order`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', 'khepi_ma_katwa', '2016-10-03 00:00:00', '2');
+INSERT INTO `purchase_order`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', '1','1','20' ,'2016-10-03 00:00:00', 'Y');
 
 
 -- COMPANY DETAILS
@@ -51,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`company` (
   `company_address` varchar(255) NOT NULL,
   `company_desc` varchar(255) NOT NULL,
 
-#   foreign key  (`company_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_type_id`), PRIMARY KEY (`company_id`));
+
+  PRIMARY KEY (`company_id`));
 
   
 INSERT INTO `purchase_order`.`company` 
@@ -93,7 +124,9 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_product_type` (
   PRIMARY KEY (`prod_type_id`));
   
   
-
+-- -----------------------------------------------------
+-- product list
+-- -----------------------------------------------------
 DROP TABLE IF EXISTS `purchase_order`.`br_product_list` ;
 CREATE TABLE IF NOT EXISTS `purchase_order`.`br_product_list` (
   `prod_id`  INT NOT NULL,
@@ -109,11 +142,13 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_product_list` (
   `prod_net_exclude_vat` FLOAT NOT NULL,
   
 	foreign key  (`prod_type_id`) REFERENCES `purchase_order`.`br_product_type`(`prod_type_id`),
-	foreign key  (`company_id`) REFERENCES `purchase_order`.`company`(`company_id`),
+
 	PRIMARY KEY (`prod_id`));
   
 
-
+-- -----------------------------------------------------
+-- drug associated with product
+-- -----------------------------------------------------
   
   DROP TABLE IF EXISTS `purchase_order`.`br_drug_prod_associate` ;
  
@@ -126,9 +161,27 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_drug_prod_associate` (
    foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`),
   PRIMARY KEY (`drug_prod_assoc_id`));
   
+
+
+-- -----------------------------------------------------
+-- order cart
+-- -----------------------------------------------------
+
+    DROP TABLE IF EXISTS `purchase_order`.`order_cart` ;
+
+CREATE TABLE IF NOT EXISTS `purchase_order`.`order_cart` (
+   `customer_id` DOUBLE NOT NULL,
+  `prod_id`  INT NOT NULL,
+  `product_quantity`  INT NOT NULL,
+
+  PRIMARY KEY (`customer_id`),
+
+   foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`));
+
   
-  
-   
+   -- -----------------------------------------------------
+-- insert statement .. master data
+-- -----------------------------------------------------
     
 INSERT INTO `purchase_order`.`br_product_type` 
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`) 

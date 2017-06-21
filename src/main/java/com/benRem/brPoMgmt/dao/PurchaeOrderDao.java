@@ -35,6 +35,10 @@ public class PurchaeOrderDao {
 
 	}
 
+	public Iterable<Order_Cart> findFromCart(){
+
+		return null;
+	}
 
 	public Iterable<Purchase_Order> FindPurchaseOrder(){
 		

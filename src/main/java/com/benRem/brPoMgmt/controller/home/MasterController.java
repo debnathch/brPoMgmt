@@ -5,8 +5,7 @@ import javax.validation.Valid;
 
 import com.benRem.brPoMgmt.dao.ProductDao;
 import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
-import com.benRem.brPoMgmt.domain.Purchase_Order;
-import com.benRem.brPoMgmt.reqResObj.AjaxResponseBody;
+import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import com.benRem.brPoMgmt.reqResObj.response.Products;
@@ -22,7 +21,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.benRem.brPoMgmt.domain.Br_Product;
 import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
 
-import java.io.DataInput;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +39,9 @@ public class MasterController {
 
 	@Autowired
 	ProductDao productDao;
+
+
+
 	  
 	  @Autowired
 	  SmptMailSender smptp;
@@ -69,6 +70,18 @@ public class MasterController {
 		purchaseOrderDao.saveToCart(orderItem);
 		return ResponseEntity.ok(result) ;
 	}
+
+	@RequestMapping(value ="/fetchFromCart", method = RequestMethod.POST)
+	public ResponseEntity<?> fetchFromCart(@Valid @RequestBody String CustomerId)  {
+
+
+		AjaxResponseBody result = new AjaxResponseBody();
+
+
+		//purchaseOrderDao.saveToCart(orderItem);
+		return ResponseEntity.ok(result) ;
+	}
+
 
 	@RequestMapping(value ="/login", method = RequestMethod.GET)
 	public RedirectView login()  {

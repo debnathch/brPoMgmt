@@ -1,4 +1,4 @@
-package com.benRem.brPoMgmt.reqResObj;
+package com.benRem.brPoMgmt.reqResObj.response;
 
 import lombok.Data;
 

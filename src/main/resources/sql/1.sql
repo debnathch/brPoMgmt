@@ -7,8 +7,9 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+DROP SCHEMA IF EXISTS `purchase_order` ;
 
-
+CREATE SCHEMA `purchase_order` ;
 -------------------------------
 -- Customer Table
 -------------------------------
@@ -21,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`customer` (
   `customer_address` varchar(255) NOT NULL,
   `customer_type` INT NOT NULL,
 
-  PRIMARY KEY (`customer_id`)),
+  PRIMARY KEY (`customer_id`));
 
 
 
@@ -45,18 +46,50 @@ DROP TABLE IF EXISTS `purchase_order`.`br_purchase_order` ;
 
 CREATE TABLE IF NOT EXISTS `purchase_order`.`br_purchase_order` (
   `po_id`  INT NOT NULL,
+  `po_line_item_id`  INT NOT NULL,
   `customer_id` INT NOT NULL,
+  `is_cart`  varchar(5) NOT NULL,
+  `is_active`  varchar(5) NOT NULL,
+  PRIMARY KEY (`po_id`),
+  foreign key  (`po_line_item_id`) REFERENCES `purchase_order`.`br_purchase_order_line`(`po_line_item_id`)
+  );
+
+
+-- -----------------------------------------------------
+-- purchase order line item
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `purchase_order`.`br_purchase_order_line` ;
+
+CREATE TABLE IF NOT EXISTS `purchase_order`.`br_purchase_order_line` (
+
+  `po_line_item_id`  INT NOT NULL,
+  `po_id`  INT NOT NULL,
   `prod_id` INT NOT NULL,
   `product_quantity` INT NOT NULL,
   `order_date` DATETIME NULL,
-  `is_active`  varchar(5) NOT NULL,
-  PRIMARY KEY (`po_id`),
-
-foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`)
+  PRIMARY KEY (`po_line_item_id`),
+  foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`),
+  foreign key  (`po_id`) REFERENCES `purchase_order`.`br_purchase_order`(`po_id`)
   );
 
 
 
+
+-- -----------------------------------------------------
+-- order cart
+-- -----------------------------------------------------
+
+-- DROP TABLE IF EXISTS `purchase_order`.`order_cart` ;
+
+-- CREATE TABLE IF NOT EXISTS `purchase_order`.`order_cart` (
+--  `customer_id` DOUBLE NOT NULL,
+--  `prod_id`  INT NOT NULL,
+--  `product_quantity`  INT NOT NULL,
+
+--  PRIMARY KEY (`customer_id`),
+
+--   foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`));
 
 
 
@@ -67,7 +100,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
-INSERT INTO `purchase_order`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', '1','1','20' ,'2016-10-03 00:00:00', 'Y');
+-- INSERT INTO `purchase_order`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', '1','1','20' ,'2016-10-03 00:00:00', 'Y');
 
 
 -- COMPANY DETAILS
@@ -163,27 +196,13 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_drug_prod_associate` (
   
 
 
--- -----------------------------------------------------
--- order cart
--- -----------------------------------------------------
-
-    DROP TABLE IF EXISTS `purchase_order`.`order_cart` ;
-
-CREATE TABLE IF NOT EXISTS `purchase_order`.`order_cart` (
-   `customer_id` DOUBLE NOT NULL,
-  `prod_id`  INT NOT NULL,
-  `product_quantity`  INT NOT NULL,
-
-  PRIMARY KEY (`customer_id`),
-
-   foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`));
 
   
    -- -----------------------------------------------------
 -- insert statement .. master data
 -- -----------------------------------------------------
     
-INSERT INTO `purchase_order`.`br_product_type` 
+INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`) 
     values (1,  'TABLET', 'TABLET');
     

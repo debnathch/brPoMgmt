@@ -149,15 +149,15 @@
         function clickCounter(cartQuty) {
 
             if(typeof(Storage) !== "undefined") {
-                if (localStorage.clickcount) {
-                    alert(cartQuty + " count  "+localStorage.clickcount);
-                    localStorage.clickcount = Number(localStorage.clickcount)+parseInt(cartQuty);
+                if (sessionStorage.clickcount) {
+                    alert(cartQuty + " count  "+sessionStorage.clickcount);
+                    sessionStorage.clickcount = Number(sessionStorage.clickcount)+parseInt(cartQuty);
                 } else {
-                    alert(localStorage.clickcount + " count else")
-                    localStorage.clickcount = 1;
+                    alert(sessionStorage.clickcount + " count else")
+                    sessionStorage.clickcount = 1;
                 }
                 //localStorage.clickcount = 0
-                document.getElementById("itemCount").innerHTML =  localStorage.clickcount;
+                document.getElementById("itemCount").innerHTML =  sessionStorage.clickcount;
             } else {
                 document.getElementById("itemCount").innerHTML = "Sorry, your browser does not support web storage...";
             }

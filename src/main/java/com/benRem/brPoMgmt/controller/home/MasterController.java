@@ -66,7 +66,7 @@ public class MasterController {
 		System.out.println(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
 		AjaxResponseBody result = new AjaxResponseBody();
 
-
+		// add to cart to table
 		purchaseOrderDao.saveToCart(orderItem);
 		return ResponseEntity.ok(result) ;
 	}

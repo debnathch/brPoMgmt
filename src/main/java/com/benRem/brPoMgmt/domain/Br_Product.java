@@ -55,14 +55,23 @@ public class Br_Product implements Serializable {
 		this.product_name = name;
 	}
 
-	public Br_Product(String name, Company company){
+	public Br_Product(String name, Company company,ProductType productType){
 		this.product_name = name;
 		this.company = company;
+		this.productType = productType;
 	}
 
 
 
-	public Company getCompany() {
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    public Company getCompany() {
 		return company;
 	}
 

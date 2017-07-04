@@ -29,6 +29,19 @@ public class ProductType {
     @OneToMany(mappedBy = "br_product_type", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Br_Product> productList;
 
+
+    public ProductType(){
+    }
+
+    public ProductType(String name){
+        this.product_type_name = name;
+    }
+
+    public ProductType(String product_type_name,List<Br_Product> productList) {
+        this.product_type_name = product_type_name;
+        this.productList = productList;
+    }
+
     public int getProduct_type_id() {
         return product_type_id;
     }

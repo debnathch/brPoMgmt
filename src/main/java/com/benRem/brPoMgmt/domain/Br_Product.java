@@ -24,6 +24,11 @@ public class Br_Product implements Serializable {
 	@JoinColumn(name = "company_id")
 	private Company company;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "prod_type_id")
+	private ProductType productType;
+
+
 	@Column(name="prod_name")
 	String product_name;
 	

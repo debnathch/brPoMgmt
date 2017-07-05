@@ -18,44 +18,45 @@ public class ProductType {
 
     @Id
     @Column(name="prod_type_id")
-    int product_type_id;
+    int prod_type_id;
 
     @Column(name="prod_type_name")
-    String product_type_name;
+    String prod_type_name;
 
+    @OneToMany(mappedBy ="productType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    List<Br_Product> productList;
+    
     @Column(name="prod_type_drug_comb")
     String product_drug_type;
 
-    @OneToMany(mappedBy = "br_product_type", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<Br_Product> productList;
 
 
     public ProductType(){
     }
 
     public ProductType(String name){
-        this.product_type_name = name;
+        this.prod_type_name = name;
     }
 
     public ProductType(String product_type_name,List<Br_Product> productList) {
-        this.product_type_name = product_type_name;
+        this.prod_type_name = product_type_name;
         this.productList = productList;
     }
 
     public int getProduct_type_id() {
-        return product_type_id;
+        return prod_type_id;
     }
 
     public void setProduct_type_id(int product_type_id) {
-        this.product_type_id = product_type_id;
+        this.prod_type_id = product_type_id;
     }
 
     public String getProduct_type_name() {
-        return product_type_name;
+        return prod_type_name;
     }
 
     public void setProduct_type_name(String product_type_name) {
-        this.product_type_name = product_type_name;
+        this.prod_type_name = product_type_name;
     }
 
     public String getProduct_drug_type() {
@@ -77,7 +78,7 @@ public class ProductType {
     public String toString(){
         String info = "";
         JSONObject jsonInfo = new JSONObject();
-        jsonInfo.put("product_type_name",this.product_type_name);
+        jsonInfo.put("product_type_name",this.prod_type_name);
 
         JSONArray productArray = new JSONArray();
         if(this.productList != null){

@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 @Entity
 @Table(name="company")
 @Data
-public class Company {
+public class Company implements Serializable {
 
     @Id
     @Column(name="company_id")

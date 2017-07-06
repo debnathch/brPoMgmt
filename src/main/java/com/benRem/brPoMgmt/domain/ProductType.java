@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name="br_product_type")
 @Data
-public class ProductType {
+public class ProductType implements Serializable {
 
     @Id
     @Column(name="prod_type_id")

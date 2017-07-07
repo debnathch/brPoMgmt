@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_purchase_order` (
   `customer_id` INT NOT NULL,
   `is_cart`  varchar(5) NOT NULL,
   `is_active`  varchar(5) NOT NULL,
+  `order_date` DATETIME NULL,
   PRIMARY KEY (`po_id`)
 --  foreign key  (`po_line_item_id`) REFERENCES `purchase_order`.`br_purchase_order_line`(`po_line_item_id`)
   );
@@ -67,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_purchase_order_line` (
   `po_id`  INT NOT NULL,
   `prod_id` INT NOT NULL,
   `product_quantity` INT NOT NULL,
-  `order_date` DATETIME NULL,
+
   PRIMARY KEY (`po_line_item_id`),
   foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`),
   foreign key  (`po_id`) REFERENCES `purchase_order`.`br_purchase_order`(`po_id`)

@@ -2,10 +2,12 @@ package com.benRem.brPoMgmt.domain;
 
 import com.sun.javafx.beans.IDProperty;
 import lombok.Data;
+import lombok.Generated;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ import java.util.List;
 @Data
 public class PurchaseOrder implements Serializable {
 
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="po_id")
     BigInteger poId;
 
@@ -27,13 +29,20 @@ public class PurchaseOrder implements Serializable {
 
 
     @ManyToOne(optional = false)
-            @JoinColumn(name="", referencedColumnName = "customer_id")
+            @JoinColumn(name="customer_id", referencedColumnName = "customer_id")
     private Customer customer;
+
+    @OneToMany
+    @JoinColumn(name="po_id", referencedColumnName = "po_id")
+    private List<PurchaseOrderLineItem> poLineItems;
 
     @Column(name="is_cart")
     private String isCart;
 
     @Column(name="is_active")
     private String isActivate;
+
+    @Column(name="order_date")
+    private Timestamp orderDate;
 
 }

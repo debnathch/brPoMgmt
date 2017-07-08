@@ -29,7 +29,7 @@ public class PurchaseOrder implements Serializable {
 
 
     @ManyToOne(optional = false)
-            @JoinColumn(name="customer_id", referencedColumnName = "customer_id")
+            @JoinColumn(name="customer_id", referencedColumnName = "customer_id", updatable = false,insertable = false)
     private Customer customer;
 
     @OneToMany

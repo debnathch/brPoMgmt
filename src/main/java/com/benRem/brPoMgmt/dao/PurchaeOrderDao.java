@@ -1,6 +1,7 @@
 package com.benRem.brPoMgmt.dao;
 
 import java.math.BigInteger;
+import java.sql.Date;
 
 import com.benRem.brPoMgmt.domain.PurchaseOrder;
 import com.benRem.brPoMgmt.domain.PurchaseOrderLineItem;
@@ -32,6 +33,7 @@ public class PurchaeOrderDao {
 		orderToCart.setPoId(BigInteger.valueOf(1));
 		orderToCart.setIsActivate("Y");
 		orderToCart.setIsCart("Y");
+		orderToCart.setOrderDate(new java.sql.Timestamp(System.currentTimeMillis()));
 
 		PurchaseOrderLineItem purchaseOrderLineItem = new PurchaseOrderLineItem();
 

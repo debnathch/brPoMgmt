@@ -30,7 +30,7 @@ public class PurchaseOrderLineItem implements Serializable {
     BigInteger productQty;
 
     @OneToOne
-            @JoinColumn(referencedColumnName = "prod_id")
+            @JoinColumn(name="prod_id",referencedColumnName = "prod_id",updatable = false,insertable = false)
     Br_Product productItem;
 
 

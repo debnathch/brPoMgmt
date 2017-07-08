@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `purchase_order`.`br_purchase_order_line` ;
 
 CREATE TABLE IF NOT EXISTS `purchase_order`.`br_purchase_order_line` (
 
-  `po_line_item_id`  INT NOT NULL,
+  `po_line_item_id`  INT(1) NOT NULL AUTO_INCREMENT,
   `po_id`  INT NOT NULL,
   `prod_id` INT NOT NULL,
   `product_quantity` INT NOT NULL,

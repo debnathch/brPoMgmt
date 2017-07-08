@@ -6,6 +6,7 @@ import java.sql.Date;
 import com.benRem.brPoMgmt.domain.PurchaseOrder;
 import com.benRem.brPoMgmt.domain.PurchaseOrderLineItem;
 import com.benRem.brPoMgmt.repository.OrderCartRepository;
+import com.benRem.brPoMgmt.repository.PurchaseOrderLineItemRepository;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,10 @@ public class PurchaeOrderDao {
 	@Autowired
 	private OrderCartRepository orderCartRepository;
 
+	@Autowired
+	private PurchaseOrderLineItemRepository orderLineItemRepository;
+
+
 
 
 
@@ -30,24 +35,27 @@ public class PurchaeOrderDao {
 		PurchaseOrder orderToCart = new PurchaseOrder();
 
 		orderToCart.setCustomerId(BigInteger.valueOf(10));
-		orderToCart.setPoId(BigInteger.valueOf(1));
+		//orderToCart.setPoId(BigInteger.valueOf(1));
 		orderToCart.setIsActivate("Y");
 		orderToCart.setIsCart("Y");
 		orderToCart.setOrderDate(new java.sql.Timestamp(System.currentTimeMillis()));
+		orderToCart = orderCartRepository.save(orderToCart);
 
-		PurchaseOrderLineItem purchaseOrderLineItem = new PurchaseOrderLineItem();
+		if(orderToCart !=null) {
 
-		purchaseOrderLineItem.setPoId(BigInteger.valueOf(1));
+			PurchaseOrderLineItem purchaseOrderLineItem = new PurchaseOrderLineItem();
 
-		purchaseOrderLineItem.setProdId(new BigInteger(orderCart.getProd_id()));
-		purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
+			purchaseOrderLineItem.setPoId(orderToCart.getPoId());
 
-		if(orderCartRepository.save(orderToCart) !=null) {
-			purchaseOrderRepo.save(orderToCart);
+			purchaseOrderLineItem.setProdId(new BigInteger(orderCart.getProd_id()));
+			purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
 
-			for(PurchaseOrder po : orderCartRepository.findAll()){
-				System.out.println(po.getPoLineItems().get(0).getPoLineItemId() + "$$$$$$$$$$$$  BAPI $$$$$$$$$$$$$$$$$$$");
-			}
+
+			orderLineItemRepository.save(purchaseOrderLineItem);
+
+//			for(PurchaseOrder po : orderCartRepository.findAll()){
+//				System.out.println(po.getPoLineItems().get(0).getPoLineItemId() + "$$$$$$$$$$$$  BAPI $$$$$$$$$$$$$$$$$$$");
+//			}
 		}
 		else
 			return "fail";

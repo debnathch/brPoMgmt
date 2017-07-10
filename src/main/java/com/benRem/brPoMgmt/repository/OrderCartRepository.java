@@ -21,7 +21,7 @@ public interface OrderCartRepository extends CrudRepository<PurchaseOrder, Long>
 
    // `purchase_order`.`br_purchase_order`
 
-    @Query("select o from PurchaseOrder o where  is_cart=Y and 'company_id'=id ")
+    @Query("select o from PurchaseOrder o where  is_cart=?2 and 'company_id'=?2 ")
     PurchaseOrder findCartDetails(@Param("Y")String Y,@Param("id")Long id);
 
     /*@Query("select * from `purchase_order`.`br_purchase_order` o where  `is_cart`='Y'  ")

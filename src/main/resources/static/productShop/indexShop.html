@@ -150,8 +150,10 @@
 
             if(typeof(Storage) !== "undefined") {
                 if (sessionStorage.clickcount) {
+
                     alert(cartQuty + " count  "+sessionStorage.clickcount);
                     sessionStorage.clickcount = Number(sessionStorage.clickcount)+parseInt(cartQuty);
+
                 } else {
                     alert(sessionStorage.clickcount + " count else")
                     sessionStorage.clickcount = 1;
@@ -214,8 +216,13 @@
             var id =  parseInt(0);
 
             var orderItem = {};
+            if(sessionStorage.clickcount = "undefined") {
+                document.getElementById("itemCount").innerHTML =  parseInt("0");
+                sessionStorage.clickcount =  parseInt("0");
+            } else {
+                 document.getElementById("itemCount").innerHTML =  sessionStorage.clickcount;
+            }
 
-            document.getElementById("itemCount").innerHTML =  sessionStorage.clickcount;
 
             var table = $('#productList').DataTable({
                 "sAjaxSource": "/product",

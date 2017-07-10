@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name="br_purchase_order")
+@Table(name="br_purchase_order" , schema = "purchase_order")
 @Data
 public class PurchaseOrder implements Serializable {
 

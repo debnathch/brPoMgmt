@@ -66,9 +66,9 @@ public class MasterController {
 	public ResponseEntity<?> addToCart(@Valid @RequestBody OrderItem orderItem)  {
 		System.out.println(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
 		AjaxResponseBody result = new AjaxResponseBody();
-
+		Integer customerId = Integer.parseInt("10");
 		// add to cart to table
-		if(purchaseOrderDao.saveToCart(orderItem).equalsIgnoreCase("success"))
+		if(purchaseOrderDao.saveToCart(customerId , orderItem).equalsIgnoreCase("success"))
 			return ResponseEntity.ok(result) ;
 		else
 			return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
@@ -76,20 +76,20 @@ public class MasterController {
 	}
 
 	@RequestMapping(value ="/triggerToOrder", method = RequestMethod.POST)
-	public ResponseEntity<?> triggerToOrder(@Valid @RequestBody OrderItem orderItem)  {
+	public ResponseEntity<?> triggerToOrder(@Valid @RequestBody String customerId)  {
 
 		AjaxResponseBody result = new AjaxResponseBody();
 
 		// add to cart to table
-		if(purchaseOrderDao.triggerForOrder(orderItem).equalsIgnoreCase("success"))
+		if(purchaseOrderDao.triggerForOrder(customerId).equalsIgnoreCase("success"))
 			return ResponseEntity.ok(result) ;
 		else
 			return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
 
 	}
 
-	@RequestMapping(value ="/fetchFromCart", method = RequestMethod.POST)
-	public List<Products> fetchFromCart(@Valid @RequestBody String customerId) throws IOException {
+	@RequestMapping(value ="/fetchFromCart", method = RequestMethod.GET)
+	public List<Products> fetchFromCart() throws IOException {
 
 
 		AjaxResponseBody result = new AjaxResponseBody();
@@ -97,7 +97,7 @@ public class MasterController {
 			System.out.println("****** fetching from cart  *****");
 			List<Products> productList = new ArrayList<>();
 			ObjectMapper objMapper = new ObjectMapper();
-			purchaseOrderDao.findFromCart(customerId);
+			purchaseOrderDao.fetchCartDetails("10");
 
 			for(Br_Product eachProduct : productDao.findItems()) {
 

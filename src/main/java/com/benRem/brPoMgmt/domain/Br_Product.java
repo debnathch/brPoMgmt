@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 
 @Entity
-@Table(name="br_product_list")
+@Table(name="br_product_list", schema = "purchase_order")
 @Data
 public class Br_Product implements Serializable {
 	

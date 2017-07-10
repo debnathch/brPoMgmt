@@ -20,10 +20,15 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`customer` (
   `customer_id`  INT NOT NULL,
   `customer_name` varchar(255) NOT NULL,
   `customer_address` varchar(255) NOT NULL,
-  `customer_type` INT NOT NULL,
+  `customer_type` varchar(255) NOT NULL,
 
   PRIMARY KEY (`customer_id`));
 
+select * from `purchase_order`.`customer`;
+
+INSERT INTO `purchase_order`.`customer`
+	(`customer_id`,`customer_name`, `customer_address`,`customer_type`)
+    values (10,  'SUMITA ENTERPRISE', 'KOLKATA', 'Distributor');
 
 
 
@@ -117,6 +122,8 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`company` (
 
 
   PRIMARY KEY (`company_id`));
+
+
 
 
 INSERT INTO `purchase_order`.`company`

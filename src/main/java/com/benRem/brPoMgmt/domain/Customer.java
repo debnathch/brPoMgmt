@@ -14,7 +14,7 @@ import java.math.BigInteger;
  */
 
 @Entity
-@Table(name="customer")
+@Table(name="customer", schema = "purchase_order")
 @Data
 public class Customer implements Serializable {
 

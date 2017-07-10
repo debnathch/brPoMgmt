@@ -14,7 +14,7 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name="company")
+@Table(name="company", schema = "purchase_order")
 @Data
 public class Company implements Serializable {
 

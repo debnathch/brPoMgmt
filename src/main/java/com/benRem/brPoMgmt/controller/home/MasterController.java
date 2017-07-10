@@ -12,6 +12,7 @@ import com.benRem.brPoMgmt.reqResObj.response.Products;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -67,19 +68,43 @@ public class MasterController {
 		AjaxResponseBody result = new AjaxResponseBody();
 
 		// add to cart to table
-		purchaseOrderDao.saveToCart(orderItem);
-		return ResponseEntity.ok(result) ;
+		if(purchaseOrderDao.saveToCart(orderItem).equalsIgnoreCase("success"))
+			return ResponseEntity.ok(result) ;
+		else
+			return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
+
+	}
+
+	@RequestMapping(value ="/triggerToOrder", method = RequestMethod.POST)
+	public ResponseEntity<?> triggerToOrder(@Valid @RequestBody OrderItem orderItem)  {
+
+		AjaxResponseBody result = new AjaxResponseBody();
+
+		// add to cart to table
+		if(purchaseOrderDao.triggerForOrder(orderItem).equalsIgnoreCase("success"))
+			return ResponseEntity.ok(result) ;
+		else
+			return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
+
 	}
 
 	@RequestMapping(value ="/fetchFromCart", method = RequestMethod.POST)
-	public ResponseEntity<?> fetchFromCart(@Valid @RequestBody String CustomerId)  {
+	public List<Products> fetchFromCart(@Valid @RequestBody String customerId) throws IOException {
 
 
 		AjaxResponseBody result = new AjaxResponseBody();
 
+			System.out.println("****** fetching from cart  *****");
+			List<Products> productList = new ArrayList<>();
+			ObjectMapper objMapper = new ObjectMapper();
+			purchaseOrderDao.findFromCart(customerId);
 
-		//purchaseOrderDao.saveToCart(orderItem);
-		return ResponseEntity.ok(result) ;
+			for(Br_Product eachProduct : productDao.findItems()) {
+
+				productList.add(objMapper.readValue(eachProduct.toString(), Products.class));
+			}
+		return  productList;
+
 	}
 
 

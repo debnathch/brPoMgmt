@@ -12,6 +12,7 @@ public class OrderItem {
 
     String prod_id;
     String prod_qty;
+    String customerId;
 
 
 }

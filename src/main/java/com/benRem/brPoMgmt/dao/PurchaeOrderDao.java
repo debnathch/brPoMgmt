@@ -65,7 +65,7 @@ public class PurchaeOrderDao {
 		} catch(Exception e) {
 			if(orderToCart!=null && orderToCart.getPoId()!=null ){
 
-				orderCartRepository.delete(orderToCart);
+				//orderCartRepository.delete(orderToCart);
 			}
 
 			return "fail";
@@ -86,7 +86,7 @@ public class PurchaeOrderDao {
 
 	public Iterable<PurchaseOrder> findFromCart(String customerId){
 
-		PurchaseOrder poCart = orderCartRepository.findCartDetails();
+		PurchaseOrder poCart = orderCartRepository.findCartDetails("Y",new Long(customerId));
 
 		System.out.println(" CART CART ********* "+ poCart.getPoId());
 

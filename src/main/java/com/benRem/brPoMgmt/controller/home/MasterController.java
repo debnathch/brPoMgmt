@@ -8,6 +8,8 @@ import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
+import com.benRem.brPoMgmt.reqResObj.response.OrderInCart;
+import com.benRem.brPoMgmt.reqResObj.response.ProductLine;
 import com.benRem.brPoMgmt.reqResObj.response.Products;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -89,19 +91,28 @@ public class MasterController {
 	}
 
 	@RequestMapping(value ="/fetchFromCart", method = RequestMethod.GET)
-	public List<Products> fetchFromCart() throws IOException {
+	public List<OrderInCart> fetchFromCart() throws IOException {
 
 
 		AjaxResponseBody result = new AjaxResponseBody();
 
 			System.out.println("****** fetching from cart  *****");
-			List<Products> productList = new ArrayList<>();
+			List<OrderInCart> productList = new ArrayList<>();
+
 			ObjectMapper objMapper = new ObjectMapper();
-			purchaseOrderDao.fetchCartDetails("10");
 
-			for(Br_Product eachProduct : productDao.findItems()) {
 
-				productList.add(objMapper.readValue(eachProduct.toString(), Products.class));
+			for(ProductLine eachProduct : purchaseOrderDao.fetchCartDetails("10")) {
+
+				OrderInCart eachLineProduct = new OrderInCart();
+				eachLineProduct.setProduct_name(eachProduct.getBrProduct().getProduct_name());
+				eachLineProduct.setProductQty(eachProduct.getProductQty());
+				eachLineProduct.setCompany(eachProduct.getBrProduct().getCompany());
+				eachLineProduct.setProduct_description(eachProduct.getBrProduct().getProduct_description());
+				eachLineProduct.setProduct_id(eachProduct.getBrProduct().getProduct_id());
+				eachLineProduct.setProduct_pack_size(eachProduct.getBrProduct().getProduct_pack_size());
+
+				productList.add(objMapper.readValue(eachLineProduct.toString(), OrderInCart.class));
 			}
 		return  productList;
 

@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`customer` (
 
 select * from `purchase_order`.`customer`;
 
-INSERT INTO `purchase_order`.`customer`
-	(`customer_id`,`customer_name`, `customer_address`,`customer_type`)
-    values (10,  'SUMITA ENTERPRISE', 'KOLKATA', 'Distributor');
+    INSERT INTO `purchase_order`.`customer`
+        (`customer_id`,`customer_name`, `customer_address`,`customer_type`)
+        values (10,  'SUMITA ENTERPRISE', 'KOLKATA', 'Distributor');
 
 
 

@@ -1,6 +1,9 @@
 package com.benRem.brPoMgmt.reqResObj.response;
 
+import com.benRem.brPoMgmt.domain.Company;
 import lombok.Data;
+
+import java.math.BigInteger;
 
 /**
  * Created by debnathchatterjee on 21/06/17.
@@ -9,6 +12,12 @@ import lombok.Data;
 @Data
 public class OrderInCart {
 
-    Products products;
-    int productQty;
+    int product_id;
+    Company company;
+    String product_name;
+    String product_description;
+
+    String product_pack_size;
+
+    BigInteger productQty;
 }

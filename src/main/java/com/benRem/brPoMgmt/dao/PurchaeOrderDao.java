@@ -13,6 +13,8 @@ import com.benRem.brPoMgmt.repository.CustomerRepository;
 import com.benRem.brPoMgmt.repository.OrderCartRepository;
 import com.benRem.brPoMgmt.repository.PurchaseOrderLineItemRepository;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
+import com.benRem.brPoMgmt.reqResObj.response.ProductLine;
+import com.benRem.brPoMgmt.reqResObj.response.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -153,19 +155,28 @@ public class PurchaeOrderDao {
 		return poCart;
 	}
 
-	public List<Br_Product> fetchCartDetails(String customerId){
+	public List<ProductLine> fetchCartDetails(String customerId){
 
-		List<Br_Product> orderItemsInCart = new ArrayList<>();
+		List<ProductLine> productLines = new ArrayList<>();
+		//List<Br_Product> orderItemsInCart = new ArrayList<>();
 		try{
 
 			List<PurchaseOrderLineItem> poLineItems = orderCartRepository.findCartItemDetails(findPurchaseOrderAsCart(customerId).get(0).getPoId());
 
-			poLineItems.forEach(poLineItem -> orderItemsInCart.add(poLineItem.getProductItem()));
+			//poLineItems.forEach(poLineItem -> orderItemsInCart.add(poLineItem.getProductItem()));
+
+			for(PurchaseOrderLineItem eachProduct : poLineItems){
+				ProductLine productLine = new ProductLine();
+				productLine.setBrProduct(eachProduct.getProductItem());
+				productLine.setProductQty(eachProduct.getProductQty());
+				productLines.add(productLine);
+			}
+
 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return orderItemsInCart;
+		return productLines;
 	}
 
 	public Iterable<PurchaseOrder> FindPurchaseOrder(){

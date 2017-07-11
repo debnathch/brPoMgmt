@@ -106,7 +106,7 @@ public class PurchaeOrderDao {
 
 	private void updatePoLineItemWithQty(PurchaseOrderLineItem poLineItem, int updatedQty) {
 		System.out.println(updatedQty + "  ********* updated qty ");
-		orderLineItemRepository.updatePOLineItemQty(BigInteger.valueOf(updatedQty), poLineItem.getPoLineItemId() );
+		orderLineItemRepository.updatePOLineItemQty(new BigInteger(String.valueOf(updatedQty)), poLineItem.getPoLineItemId() );
 	}
 
 	//TODO

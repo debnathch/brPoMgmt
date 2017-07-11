@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -21,6 +22,7 @@ public interface PurchaseOrderLineItemRepository extends CrudRepository<Purchase
     @Query("select o from PurchaseOrderLineItem o where  o.poId =:id")
     List<PurchaseOrderLineItem> findCartItemDetails(@Param("id") BigInteger id);
 
+    @Transactional
     @Modifying
     @Query("UPDATE PurchaseOrderLineItem c SET c.productQty = :qty WHERE c.id = :id")
     Integer updatePOLineItemQty(@Param("qty") BigInteger qty, @Param("id") BigInteger id);

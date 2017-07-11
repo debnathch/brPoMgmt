@@ -42,6 +42,7 @@ public class PurchaeOrderDao {
 			Customer cust = customerRepository.findOne(BigInteger.valueOf(customerId));
 			List<PurchaseOrder> poCart = findPurchaseOrderAsCart(customerId.toString());
 
+			// customer dont have any product in cart
 			if (poCart.isEmpty()) {
 				PurchaseOrder orderToCart = new PurchaseOrder();
 				orderToCart.setCustomerId(BigInteger.valueOf(customerId));
@@ -52,6 +53,7 @@ public class PurchaeOrderDao {
 				orderToCart.setCustomer(cust);
 				orderToCart = orderCartRepository.save(orderToCart);
 
+				// id cart is saved successfully then system will add the line item with this cart.
 				if (orderToCart != null) {
 
 					PurchaseOrderLineItem purchaseOrderLineItem = new PurchaseOrderLineItem();
@@ -64,32 +66,33 @@ public class PurchaeOrderDao {
 
 					orderLineItemRepository.save(purchaseOrderLineItem);
 					return "success";
-				/*	List<PurchaseOrderLineItem> cartItemList = orderToCart.getPoLineItems();
-					if (cartItemList != null) {
-						cartItemList = new ArrayList<PurchaseOrderLineItem>();
-						cartItemList.add(purchaseOrderLineItem);
-					}
-					orderToCart.setPoLineItems(cartItemList);
-					if (orderCartRepository.save(orderToCart) != null) {
-						return "success";
-					} else {
-						return "fail";
-					}*/
-
 				} else
 					return "fail";
 			} else {
 				PurchaseOrder orderToCart = poCart.get(0);
+				//TODO need to check whether this product is there in cart item or not. If there is any product , system will update the quantity.
+				boolean isUpdated = false;
+				for(PurchaseOrderLineItem poLineItem : orderToCart.getPoLineItems()){
 
-				PurchaseOrderLineItem purchaseOrderLineItem = new PurchaseOrderLineItem();
+					if(new BigInteger(orderCart.getProd_id()).intValue()==(poLineItem.getProductItem().getProduct_id())){
+						System.out.println("**** yahooooo item is in cart ******");
+						isUpdated = true;
+						updatePoLineItemWithQty(poLineItem, poLineItem.getProductQty().intValue()+Integer.parseInt(orderCart.getProd_qty()));
+					}
+				}
+				// new line item is going to be inserted
+				if(!isUpdated){
+					PurchaseOrderLineItem purchaseOrderLineItem = new PurchaseOrderLineItem();
 
-				purchaseOrderLineItem.setPoId(orderToCart.getPoId());
+					purchaseOrderLineItem.setPoId(orderToCart.getPoId());
 
-				purchaseOrderLineItem.setProdId(new BigInteger(orderCart.getProd_id()));
-				purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
+					purchaseOrderLineItem.setProdId(new BigInteger(orderCart.getProd_id()));
+					purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
 
 
-				orderLineItemRepository.save(purchaseOrderLineItem);
+					orderLineItemRepository.save(purchaseOrderLineItem);
+				}
+
 				return "success";
 			}
 
@@ -99,6 +102,11 @@ public class PurchaeOrderDao {
 
 		}
 
+	}
+
+	private void updatePoLineItemWithQty(PurchaseOrderLineItem poLineItem, int updatedQty) {
+		System.out.println(updatedQty + "  ********* updated qty ");
+		orderLineItemRepository.updatePOLineItemQty(BigInteger.valueOf(updatedQty), poLineItem.getPoLineItemId() );
 	}
 
 	//TODO
@@ -155,7 +163,7 @@ public class PurchaeOrderDao {
 		List<CartProduct> cartProducts = new ArrayList<>();
 		try{
 
-			List<PurchaseOrderLineItem> poLineItems = orderCartRepository.findCartItemDetails(findPurchaseOrderAsCart(customerId).get(0).getPoId());
+			List<PurchaseOrderLineItem> poLineItems = orderLineItemRepository.findCartItemDetails(findPurchaseOrderAsCart(customerId).get(0).getPoId());
 
 			//poLineItems.forEach(poLineItem -> orderItemsInCart.add(poLineItem.getProductItem()));
 

@@ -24,8 +24,8 @@ public interface OrderCartRepository extends CrudRepository<PurchaseOrder, BigIn
     @Query("select o from PurchaseOrder o where  o.isCart=:isCart and o.isActivate=:isActivate and  o.customerId =:id")
     List<PurchaseOrder> findPurchaseOrderCartDetails(@Param("isCart") String isCart, @Param("isActivate") String isActivate, @Param("id") BigInteger id);
 
-    @Query("select o from PurchaseOrderLineItem o where  o.poId =:id")
-    List<PurchaseOrderLineItem> findCartItemDetails(@Param("id") BigInteger id);
+   /* @Query("select o from PurchaseOrderLineItem o where  o.poId =:id")
+    List<PurchaseOrderLineItem> findCartItemDetails(@Param("id") BigInteger id);*/
 
 
     /*@Query("select * from `purchase_order`.`br_purchase_order` o where  `is_cart`='Y'  ")

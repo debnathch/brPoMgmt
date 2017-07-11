@@ -228,15 +228,8 @@
                     { "mData": "product_name" , "sWidth": "20%" },
                     { "mData": "product_description" , "sWidth": "30%" },
                     { "mData": "product_pack_size" , "sWidth": "10%"},
-                    {
-                        "mData": "product_id",
-                        "bSortable": false,
-                        "mRender": function(data, type, full) {
-                            id = data;
+                    { "mData": "product_qty" , "sWidth": "10%"},
 
-                            return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY...">';
-                        }, "sWidth": "10%"
-                    }
 
 
 

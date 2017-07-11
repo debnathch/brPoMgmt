@@ -21,6 +21,7 @@ public class Products {
 
     String product_pack_size;
 
+    String product_qty;
 
 
 }

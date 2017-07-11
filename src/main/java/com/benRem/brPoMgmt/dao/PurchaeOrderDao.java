@@ -5,16 +5,11 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.benRem.brPoMgmt.domain.Br_Product;
-import com.benRem.brPoMgmt.domain.Customer;
-import com.benRem.brPoMgmt.domain.PurchaseOrder;
-import com.benRem.brPoMgmt.domain.PurchaseOrderLineItem;
+import com.benRem.brPoMgmt.domain.*;
 import com.benRem.brPoMgmt.repository.CustomerRepository;
 import com.benRem.brPoMgmt.repository.OrderCartRepository;
 import com.benRem.brPoMgmt.repository.PurchaseOrderLineItemRepository;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
-import com.benRem.brPoMgmt.reqResObj.response.ProductLine;
-import com.benRem.brPoMgmt.reqResObj.response.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -155,28 +150,33 @@ public class PurchaeOrderDao {
 		return poCart;
 	}
 
-	public List<ProductLine> fetchCartDetails(String customerId){
+	public List<CartProduct> fetchCartDetails(String customerId){
 
-		List<ProductLine> productLines = new ArrayList<>();
-		//List<Br_Product> orderItemsInCart = new ArrayList<>();
+		List<CartProduct> cartProducts = new ArrayList<>();
 		try{
 
 			List<PurchaseOrderLineItem> poLineItems = orderCartRepository.findCartItemDetails(findPurchaseOrderAsCart(customerId).get(0).getPoId());
 
 			//poLineItems.forEach(poLineItem -> orderItemsInCart.add(poLineItem.getProductItem()));
 
-			for(PurchaseOrderLineItem eachProduct : poLineItems){
-				ProductLine productLine = new ProductLine();
-				productLine.setBrProduct(eachProduct.getProductItem());
-				productLine.setProductQty(eachProduct.getProductQty());
-				productLines.add(productLine);
-			}
+			for(PurchaseOrderLineItem poLine : poLineItems){
 
+				CartProduct cartProduct = new CartProduct();
+				Br_Product brProduct = poLine.getProductItem();
+				cartProduct.setCompany(brProduct.getCompany());
+				cartProduct.setProduct_description(brProduct.getProduct_description());
+				cartProduct.setProduct_id(brProduct.getProduct_id());
+				cartProduct.setProduct_name(brProduct.getProduct_name());
+				cartProduct.setProduct_pack_size(brProduct.getProduct_pack_size());
+				cartProduct.setProduct_qty(poLine.getProductQty());
+
+				cartProducts.add(cartProduct);
+			}
 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return productLines;
+		return cartProducts;
 	}
 
 	public Iterable<PurchaseOrder> FindPurchaseOrder(){

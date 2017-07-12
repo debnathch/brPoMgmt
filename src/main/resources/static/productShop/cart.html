@@ -220,7 +220,8 @@
 
   function SubmitOrder() {
 			var orderForCustomerId = 10;
-			alert(" submit the order ");
+
+			document.getElementById("btn-order").disabled = true;
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
@@ -230,12 +231,12 @@
                 cache: false,
                 timeout: 600000,
                 success: function (data) {
-                    $("#contactAlert").show();
+                  	alert("Your Order is placed successFully. Our Member will contact you shortly");
                     var json = "Your Order is placed successFully. Our Member will contact you shortly"
                         + JSON.stringify(data, null, 4) + "</pre>";
 
                     console.log("SUCCESS : ", data);
-                    $('#btn-order').prop("disabled", false);
+
                 },
                 error: function (e) {
 
@@ -583,18 +584,16 @@
 <!-- journey photo as slider-->
 
 <section>
-	<div>
-		<button class="btn pull-middle" id="btn-order" onclick="SubmitOrder()" >place Your order</button>
+	<div class="col-sm-6 ">
+
+	</div>
+	<div class="col-sm-6 ">
+		<button class="btn pull-left" id="btn-order" onclick="SubmitOrder()" >place Your order</button>
 	</div>
 
 </section>
 
-<section>
-	<div>
 
-	</div>
-
-</section>
 
 <section>
 	<!-- Container (Contact Section) -->

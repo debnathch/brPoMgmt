@@ -25,6 +25,20 @@ public class Customer implements Serializable {
     @Column(name="customer_name")
     String customerName;
 
+    @Column(name="customer_GST")
+    String custGstNum;
+
+    @Column(name="customer_LiscNum")
+    String custLscNum;
+
+    @Column(name="customer_EMail")
+    String custEmail;
+
+    @Column(name="customer_Phone1")
+    String custPrimeryPhone;
+
+    @Column(name="customer_Phone2")
+    String custSecondaryPhone;
 
     @Column(name="customer_address")
     String customerAddress;
@@ -59,6 +73,46 @@ public class Customer implements Serializable {
 
     public String getCustomerType() {
         return customerType;
+    }
+
+    public String getCustGstNum() {
+        return custGstNum;
+    }
+
+    public void setCustGstNum(String custGstNum) {
+        this.custGstNum = custGstNum;
+    }
+
+    public String getCustLscNum() {
+        return custLscNum;
+    }
+
+    public void setCustLscNum(String custLscNum) {
+        this.custLscNum = custLscNum;
+    }
+
+    public String getCustEmail() {
+        return custEmail;
+    }
+
+    public void setCustEmail(String custEmail) {
+        this.custEmail = custEmail;
+    }
+
+    public String getCustPrimeryPhone() {
+        return custPrimeryPhone;
+    }
+
+    public void setCustPrimeryPhone(String custPrimeryPhone) {
+        this.custPrimeryPhone = custPrimeryPhone;
+    }
+
+    public String getCustSecondaryPhone() {
+        return custSecondaryPhone;
+    }
+
+    public void setCustSecondaryPhone(String custSecondaryPhone) {
+        this.custSecondaryPhone = custSecondaryPhone;
     }
 
     public void setCustomerType(String customerType) {

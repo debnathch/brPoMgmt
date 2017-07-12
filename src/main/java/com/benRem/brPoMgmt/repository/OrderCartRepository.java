@@ -2,12 +2,15 @@ package com.benRem.brPoMgmt.repository;
 
 import com.benRem.brPoMgmt.domain.PurchaseOrder;
 import com.benRem.brPoMgmt.domain.PurchaseOrderLineItem;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +26,11 @@ public interface OrderCartRepository extends CrudRepository<PurchaseOrder, BigIn
 
     @Query("select o from PurchaseOrder o where  o.isCart=:isCart and o.isActivate=:isActivate and  o.customerId =:id")
     List<PurchaseOrder> findPurchaseOrderCartDetails(@Param("isCart") String isCart, @Param("isActivate") String isActivate, @Param("id") BigInteger id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE PurchaseOrder c SET c.isCart = :isCart and c.order_date = :order_date WHERE c.id = :id")
+    Integer updateFromCartToOrder(@Param("isCart") String isCart, @Param("order_date") Timestamp order_date, @Param("id") BigInteger id);
 
    /* @Query("select o from PurchaseOrderLineItem o where  o.poId =:id")
     List<PurchaseOrderLineItem> findCartItemDetails(@Param("id") BigInteger id);*/

@@ -4,6 +4,7 @@ import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
 import com.benRem.brPoMgmt.domain.CartProduct;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
+import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,10 @@ import java.util.List;
 @Slf4j
 
 public class OrderController {
+
     @Autowired
     PurchaeOrderDao purchaseOrderDao;
+
 
     @RequestMapping(value ="/addCart", method = RequestMethod.POST)
     public ResponseEntity<?> addToCart(@Valid @RequestBody OrderItem orderItem)  {
@@ -51,8 +54,11 @@ public class OrderController {
         AjaxResponseBody result = new AjaxResponseBody();
 
         // add to cart to table
-        if(purchaseOrderDao.triggerForOrder(customerId).equalsIgnoreCase("success"))
+        if(purchaseOrderDao.triggerForOrder(customerId).equalsIgnoreCase("success")) {
+
             return ResponseEntity.ok(result) ;
+        }
+
         else
             return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
 

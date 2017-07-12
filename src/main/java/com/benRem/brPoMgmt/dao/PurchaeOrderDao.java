@@ -10,10 +10,12 @@ import com.benRem.brPoMgmt.repository.CustomerRepository;
 import com.benRem.brPoMgmt.repository.OrderCartRepository;
 import com.benRem.brPoMgmt.repository.PurchaseOrderLineItemRepository;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
+import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.benRem.brPoMgmt.repository.PurchaseOrderRepository;
+import util.puchaseOrderConstant;
 
 @Component
 public class PurchaeOrderDao {
@@ -30,10 +32,13 @@ public class PurchaeOrderDao {
 	@Autowired
 	private CustomerRepository customerRepository;
 
+	@Autowired
+	SmptMailSender smptp;
 
 
 
 
+// this method is saving the cart item for each add of each item.
 
 	public String saveToCart(Integer customerId , OrderItem orderCart) {
 
@@ -47,8 +52,8 @@ public class PurchaeOrderDao {
 				PurchaseOrder orderToCart = new PurchaseOrder();
 				orderToCart.setCustomerId(BigInteger.valueOf(customerId));
 
-				orderToCart.setIsActivate("Y");
-				orderToCart.setIsCart("Y");
+				orderToCart.setIsActivate(puchaseOrderConstant.isActivate.constParam());
+				orderToCart.setIsCart(puchaseOrderConstant.isCart.constParam());
 				orderToCart.setOrderDate(new java.sql.Timestamp(System.currentTimeMillis()));
 				orderToCart.setCustomer(cust);
 				orderToCart = orderCartRepository.save(orderToCart);
@@ -104,12 +109,13 @@ public class PurchaeOrderDao {
 
 	}
 
+	// this method will update the quantity of the added cart item.
 	private void updatePoLineItemWithQty(PurchaseOrderLineItem poLineItem, int updatedQty) {
 		System.out.println(updatedQty + "  ********* updated qty ");
 		orderLineItemRepository.updatePOLineItemQty(new BigInteger(String.valueOf(updatedQty)), poLineItem.getPoLineItemId() );
 	}
 
-	//TODO
+	//method will trigger for order
 	public String triggerForOrder(String customerId){
 
 
@@ -117,23 +123,14 @@ public class PurchaeOrderDao {
 			Customer cust = customerRepository.findOne(new BigInteger(customerId));
 			List<PurchaseOrder> poCart = findPurchaseOrderAsCart(customerId.toString());
 
-			/*if (!poCart.isEmpty()) {
+			if (!poCart.isEmpty()) {
 
 				PurchaseOrder po = poCart.get(0);
-				po.setOrderDate(new java.sql.Timestamp(System.currentTimeMillis()));
-				po.setIsCart("N");
-				orderCartRepository.save(po);
+				updateCartToOrder(po.getPoId());
 
-					PurchaseOrderLineItem purchaseOrderLineItem = poCart.get(0).getPoLineItems();
+				smptp.sendMailForOrder(cust);
+			}
 
-					purchaseOrderLineItem.setPoId(orderToCart.getPoId());
-
-					purchaseOrderLineItem.setProdId(new BigInteger(orderCart.getProd_id()));
-					purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
-
-
-					orderLineItemRepository.save(purchaseOrderLineItem); }
-*/
 			return "success";
 
 
@@ -143,13 +140,18 @@ public class PurchaeOrderDao {
 		}
 
 	}
+	// this method will update the PO order from cart to order status
+	private void updateCartToOrder(BigInteger poId) {
 
+		orderCartRepository.updateFromCartToOrder(puchaseOrderConstant.isOrder.constParam(), new java.sql.Timestamp(System.currentTimeMillis()), poId);
+	}
 
+	// this method will retrun the purchase order which have been added in cart
 	private List<PurchaseOrder> findPurchaseOrderAsCart(String customerId) {
 
 		List<PurchaseOrder> poCart = new ArrayList<>();
 		try{
-			poCart = orderCartRepository.findPurchaseOrderCartDetails("Y","Y",new BigInteger(customerId));
+			poCart = orderCartRepository.findPurchaseOrderCartDetails(puchaseOrderConstant.isCart.constParam(),puchaseOrderConstant.isActivate.constParam(),new BigInteger(customerId));
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -158,6 +160,7 @@ public class PurchaeOrderDao {
 		return poCart;
 	}
 
+	// this method will retrun the cart item details from cart
 	public List<CartProduct> fetchCartDetails(String customerId){
 
 		List<CartProduct> cartProducts = new ArrayList<>();

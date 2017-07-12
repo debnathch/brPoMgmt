@@ -30,7 +30,7 @@ public interface OrderCartRepository extends CrudRepository<PurchaseOrder, BigIn
     @Transactional
     @Modifying
     @Query("UPDATE PurchaseOrder c SET c.isCart = :isCart  WHERE c.id = :id")
-    Integer updateFromCartToOrder(@Param("isCart") String isCart,  @Param("id") BigInteger id);
+    Integer updateFromCartToOrder(@Param("isCart") String isCart, @Param("id") BigInteger id);
 
    /* @Query("select o from PurchaseOrderLineItem o where  o.poId =:id")
     List<PurchaseOrderLineItem> findCartItemDetails(@Param("id") BigInteger id);*/

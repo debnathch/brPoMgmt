@@ -52,7 +52,7 @@ public class OrderController {
     public ResponseEntity<?> triggerToOrder(@Valid @RequestBody String customerId)  {
 
         AjaxResponseBody result = new AjaxResponseBody();
-
+        System.out.println(" ****** Placing your order ********** ");
         // add to cart to table
         if(purchaseOrderDao.triggerForOrder(customerId).equalsIgnoreCase("success")) {
 

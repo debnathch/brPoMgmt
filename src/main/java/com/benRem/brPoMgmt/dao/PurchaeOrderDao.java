@@ -103,6 +103,7 @@ public class PurchaeOrderDao {
 
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "fail";
 
 		}
@@ -137,6 +138,7 @@ public class PurchaeOrderDao {
 
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "fail";
 
 		}
@@ -168,24 +170,25 @@ public class PurchaeOrderDao {
 		List<CartProduct> cartProducts = new ArrayList<>();
 		try{
 
-			List<PurchaseOrderLineItem> poLineItems = orderLineItemRepository.findCartItemDetails(findPurchaseOrderAsCart(customerId).get(0).getPoId());
+			if(!findPurchaseOrderAsCart(customerId).isEmpty()) {
+				List<PurchaseOrderLineItem> poLineItems = orderLineItemRepository.findCartItemDetails(findPurchaseOrderAsCart(customerId).get(0).getPoId());
 
-			//poLineItems.forEach(poLineItem -> orderItemsInCart.add(poLineItem.getProductItem()));
+				//poLineItems.forEach(poLineItem -> orderItemsInCart.add(poLineItem.getProductItem()));
 
-			for(PurchaseOrderLineItem poLine : poLineItems){
+				for(PurchaseOrderLineItem poLine : poLineItems){
 
-				CartProduct cartProduct = new CartProduct();
-				Br_Product brProduct = poLine.getProductItem();
-				cartProduct.setCompany(brProduct.getCompany());
-				cartProduct.setProduct_description(brProduct.getProduct_description());
-				cartProduct.setProduct_id(brProduct.getProduct_id());
-				cartProduct.setProduct_name(brProduct.getProduct_name());
-				cartProduct.setProduct_pack_size(brProduct.getProduct_pack_size());
-				cartProduct.setProduct_qty(poLine.getProductQty());
+					CartProduct cartProduct = new CartProduct();
+					Br_Product brProduct = poLine.getProductItem();
+					cartProduct.setCompany(brProduct.getCompany());
+					cartProduct.setProduct_description(brProduct.getProduct_description());
+					cartProduct.setProduct_id(brProduct.getProduct_id());
+					cartProduct.setProduct_name(brProduct.getProduct_name());
+					cartProduct.setProduct_pack_size(brProduct.getProduct_pack_size());
+					cartProduct.setProduct_qty(poLine.getProductQty());
 
-				cartProducts.add(cartProduct);
+					cartProducts.add(cartProduct);
+				}
 			}
-
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

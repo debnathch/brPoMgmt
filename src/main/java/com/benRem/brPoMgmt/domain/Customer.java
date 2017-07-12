@@ -28,10 +28,10 @@ public class Customer implements Serializable {
     @Column(name="customer_GST")
     String custGstNum;
 
-    @Column(name="customer_LiscNum")
+    @Column(name="customer_lisc_num")
     String custLscNum;
 
-    @Column(name="customer_EMail")
+    @Column(name="customer_email")
     String custEmail;
 
     @Column(name="customer_Phone1")

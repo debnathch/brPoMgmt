@@ -129,6 +129,8 @@ public class PurchaeOrderDao {
 				updateCartToOrder(po.getPoId());
 
 				smptp.sendMailForOrder(cust);
+
+				System.out.println(" Mail sent and order placed successfully ");
 			}
 
 			return "success";
@@ -143,7 +145,7 @@ public class PurchaeOrderDao {
 	// this method will update the PO order from cart to order status
 	private void updateCartToOrder(BigInteger poId) {
 
-		orderCartRepository.updateFromCartToOrder(puchaseOrderConstant.isOrder.constParam(), new java.sql.Timestamp(System.currentTimeMillis()), poId);
+		orderCartRepository.updateFromCartToOrder(puchaseOrderConstant.isOrder.constParam(),  poId);
 	}
 
 	// this method will retrun the purchase order which have been added in cart

@@ -1,5 +1,6 @@
 package com.benRem.brPoMgmt.controller.home;
 
+import com.benRem.brPoMgmt.dao.CustomerDao;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
 import com.benRem.brPoMgmt.reqResObj.ContactDetailsForOrder;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
@@ -32,6 +33,8 @@ public class HomeController {
 
     @Autowired
     SmptMailSender smptp;
+    @Autowired
+    CustomerDao custDao;
 
     @RequestMapping(value ="/welcome", method = RequestMethod.GET)
     public RedirectView welcome()  {
@@ -50,8 +53,11 @@ public class HomeController {
     public RedirectView customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
 
 
+       /* if(custDao.createCustomer(contactDetailsForOrder)) {
+            System.out.println("****** contating Bengal Remedies *****"+contactDetailsForOrder.getContactEmail());
+        }
+*/
 
-        System.out.println("****** contating Bengal Remedies *****"+contactDetailsForOrder.getContactEmail());
 
         return new RedirectView("productShop/indexShop.html");
     }

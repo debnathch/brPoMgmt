@@ -1,5 +1,6 @@
-package com.benRem.brPoMgmt.domain;
+package com.benRem.brPoMgmt.reqResObj.response;
 
+import com.benRem.brPoMgmt.domain.Company;
 import lombok.Data;
 import org.json.JSONObject;
 

@@ -2,10 +2,7 @@ package com.benRem.brPoMgmt.domain;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
 
@@ -18,14 +15,14 @@ import java.math.BigInteger;
 @Data
 public class Customer implements Serializable {
 
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "customer_id")
     BigInteger customerId;
 
     @Column(name="customer_name")
     String customerName;
 
-    @Column(name="customer_GST")
+    @Column(name="customer_gst")
     String custGstNum;
 
     @Column(name="customer_lisc_num")

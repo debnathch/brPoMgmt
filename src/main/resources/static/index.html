@@ -178,7 +178,7 @@
         function customerContactDetailsForProduct(){
 
 
-            this.href = "http://localhost:8085/productShop/indexShop.html";
+this.href = "http://localhost:8085/productShop/indexShop.html";
             var contactDetailsForOrder = {};
             contactDetailsForOrder["contactName"] = $("#contactName").val();
             contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
@@ -201,6 +201,7 @@
                     $('#btn-contact').prop("disabled", false);
                 },
                 error: function (e) {
+
                     $("#contactAlert").show();
                     console.log("ERROR : ", e);
                     $('#btn-contact').prop("disabled", false);

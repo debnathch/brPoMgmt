@@ -1,10 +1,9 @@
 package com.benRem.brPoMgmt.controller.order;
 
 import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
-import com.benRem.brPoMgmt.domain.CartProduct;
+import com.benRem.brPoMgmt.reqResObj.response.CartProduct;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
-import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

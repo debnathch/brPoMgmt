@@ -176,7 +176,9 @@
         }
 
         function customerContactDetailsForProduct(){
-           alert("customerContactDetailsForProduct ");
+
+
+            this.href = "http://localhost:8085/productShop/indexShop.html";
             var contactDetailsForOrder = {};
             contactDetailsForOrder["contactName"] = $("#contactName").val();
             contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
@@ -587,32 +589,35 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Contact Details</h4>
+                <h5 class="modal-title">Contact Details</h5>
             </div>
-            <form method="post" onsubmit="customerContactDetailsForProduct()" >
-                <div class="field half first">
-                    <label for="name">  Name</label>
-                    <input type="text" name="contactName" id="contactName" />
-                </div>
-                <div class="field half">
-                    <label for="email">  Email</label>
-                    <input type="text" name="contactEmail" id="contactEmail" />
-                </div>
-                <div class="field half">
-                    <label for="email">  Phone</label>
-                    <input type="text" name="contactPhone" id="contactPhone" />
-                </div>
-                <ul class="actions">
+            <form role="form" data-toggle="validator" onsubmit="customerContactDetailsForProduct()">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-sm-6 form-group" class="form-group">
+                            <input class="form-control" id="contactName" name="name" placeholder="Name" type="text" required>
+                        </div>
+                        <div class="col-sm-6 form-group" class="form-group">
+                            <input class="form-control" id="contactEmail" name="email" placeholder="Email" type="email"
+                                   data-error="Bruh, that email address is invalid" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 form-group" class="form-group">
+                            <input class="form-control" id="contactPhone" name="phoneNo" placeholder="Phone Number" type="phoneNo" max maxlength="10" minlength="10">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12 form-group" class="form-group">
+                            <button class="btn pull-right" id="btn-contact-Product" type="submit" >send</button>
+                            <button type="button" class="btn pull-left" data-dismiss="modal">close</button>
+                        </div>
 
-                    <button class="btn pull-left" id="btn-contact-Product" type="submit" >submit</button>
-
-                </ul>
-
+                    </div>
+                </div>
             </form>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
         </div>
 
     </div>

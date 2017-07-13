@@ -47,25 +47,13 @@ public class HomeController {
     }
 
     @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST)
-    public ResponseEntity<?> customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder, Errors errors){
+    public RedirectView customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
 
-        AjaxResponseBody result = new AjaxResponseBody();
 
-        //If error, just return a 400 bad request, along with the error message
-        if (errors.hasErrors()) {
-
-            result.setMsg(errors.getAllErrors()
-                    .stream().map(x -> x.getDefaultMessage())
-                    .collect(Collectors.joining(",")));
-
-            return ResponseEntity.badRequest().body(result);
-
-        }
 
         System.out.println("****** contating Bengal Remedies *****"+contactDetailsForOrder.getContactEmail());
 
-        result.setMsg(" Mail send successfully");
-        return ResponseEntity.ok(result);
+        return new RedirectView("productShop/indexShop.html");
     }
 
 

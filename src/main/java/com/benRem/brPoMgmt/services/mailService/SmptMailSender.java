@@ -2,12 +2,14 @@ package com.benRem.brPoMgmt.services.mailService;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import com.benRem.brPoMgmt.domain.Customer;
+import com.benRem.brPoMgmt.domain.PurchaseOrderLineItem;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
@@ -54,7 +56,7 @@ private JavaMailSender javaMailSender;
 
 
 
-	public void sendMailForOrder(Customer cust)
+	public void sendMailForOrder(Customer cust, List<PurchaseOrderLineItem> lineItem)
 			throws MessagingException {
 		try {
 			HtmlEmail email = new HtmlEmail();
@@ -69,7 +71,9 @@ private JavaMailSender javaMailSender;
 			email.setFrom(authuser, "debnath");
 
 			email.setSubject("TestMail");
-			email.setHtmlMsg("<html><body><h4>welcome to Bengal Remedies " +cust.getCustomerName()+" contacts you with mobile number "+cust.getCustPrimeryPhone() +" and his mail id is :"+ cust.getCustEmail()+"</h4></body></html>");
+			email.setHtmlMsg("<html><body><h4>welcome to Bengal Remedies " +cust.getCustomerName()+
+					" contacts you with mobile number "+cust.getCustPrimeryPhone() +" and his mail id is :"
+					+ cust.getCustEmail()+"</h4></body></html>");
 			email.addTo(authuser, cust.getCustomerName());
 			email.setTLS(true);
 			//https://www.google.com/settings/security/lesssecureapps turn it off. to send the mail

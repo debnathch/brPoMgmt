@@ -129,7 +129,7 @@ public class PurchaeOrderDao {
 				PurchaseOrder po = poCart.get(0);
 				updateCartToOrder(po.getPoId());
 
-				smptp.sendMailForOrder(cust);
+				smptp.sendMailForOrder(cust, po.getPoLineItems());
 
 				System.out.println(" Mail sent and order placed successfully ");
 			}

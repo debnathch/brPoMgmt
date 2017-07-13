@@ -11,6 +11,11 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- loading main css and js -->
+
+    <script src="assets/js/main.js"></script>
+    <!--    <link rel="stylesheet" href="assets/css/main.css" />
+    -->
 
 
 
@@ -170,6 +175,36 @@
             });
         }
 
+        function customerContactDetailsForProduct(){
+           alert("customerContactDetailsForProduct ");
+            var contactDetailsForOrder = {};
+            contactDetailsForOrder["contactName"] = $("#contactName").val();
+            contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
+            contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/customerDetailsForProductOrder",
+                data: JSON.stringify(contactDetailsForOrder),
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    $("#contactAlert").show();
+                    var json = "Thanks For your interest. Our Member will contact you shortly"
+                        + JSON.stringify(data, null, 4) + "</pre>";
+
+                    console.log("SUCCESS : ", data);
+                    $('#btn-contact').prop("disabled", false);
+                },
+                error: function (e) {
+                    $("#contactAlert").show();
+                    console.log("ERROR : ", e);
+                    $('#btn-contact').prop("disabled", false);
+                }
+            });
+        }
 
         function contactUs() {
 
@@ -385,7 +420,8 @@
                 <li><a href="#thirdParty" onclick="LoadForThirdParty()">Third Party</a></li>
                 <li><a href="productShop/indexShop.html"  class="gallery-link" >Gallery</a></li>
 
-                <li><a href="#order"  onclick="LoadOrerPage()">Products</a></li>
+                <!--<li><a href="#order"  onclick="LoadOrerPage()">Products</a></li>-->
+                <li><a href="#myModal" data-toggle="modal" data-target="#myModal">Products</a></li>
               <!--  <li><a href="/productShop/indexShop.html"  class="oredr-link">Order</a></li>-->
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="productShop/login.html" class="login-link">Login</a></li>
@@ -527,7 +563,7 @@
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
             <h2>Somnath Chatterjee, CEO</h2>
-            <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
+            <p>Man, we've been on the road for some time now.</p>
         </div>
         <div id="menu1" class="tab-pane fade">
             <h2>Mr. Kundu, Manager</h2>
@@ -539,6 +575,49 @@
         </div>
     </div>
 </div>
+
+<!-- contact details before product details -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Contact Details</h4>
+            </div>
+            <form method="post" onsubmit="customerContactDetailsForProduct()" >
+                <div class="field half first">
+                    <label for="name">  Name</label>
+                    <input type="text" name="contactName" id="contactName" />
+                </div>
+                <div class="field half">
+                    <label for="email">  Email</label>
+                    <input type="text" name="contactEmail" id="contactEmail" />
+                </div>
+                <div class="field half">
+                    <label for="email">  Phone</label>
+                    <input type="text" name="contactPhone" id="contactPhone" />
+                </div>
+                <ul class="actions">
+
+                    <button class="btn pull-left" id="btn-contact-Product" type="submit" >submit</button>
+
+                </ul>
+
+            </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 
 <div id="map" style="width:400px;height:400px;background:yellow" class="container text-center"></div>

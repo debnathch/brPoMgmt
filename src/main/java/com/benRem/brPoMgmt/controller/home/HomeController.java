@@ -50,16 +50,16 @@ public class HomeController {
     }
 
     @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST)
-    public RedirectView customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
+    public void customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
 
-
-       /* if(custDao.createCustomer(contactDetailsForOrder)) {
-            System.out.println("****** contating Bengal Remedies *****"+contactDetailsForOrder.getContactEmail());
+        try {
+            if(custDao.createCustomer(contactDetailsForOrder)) {
+                System.out.println("****** contating Bengal Remedies *****"+contactDetailsForOrder.getContactEmail());
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-*/
 
-
-        return new RedirectView("productShop/indexShop.html");
     }
 
 

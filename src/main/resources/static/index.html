@@ -22,7 +22,19 @@
 
 
     <!-- load the about content to UI-->
+    <script type="text/javascript">
+    $(window).on('load',function(){
 
+
+        if(sessionStorage["PopupShown"] != 'yes'){
+        $('#myModal').modal('show');
+        sessionStorage["PopupShown"] = 'yes';
+        }
+
+
+
+    });
+</script>
     <script>
         $(document).ready(function() {
 // only about us will be displayed
@@ -101,34 +113,6 @@
                 var page = $(this).attr('http://localhost:8085/productShop/indexShop.html');
 
                     window.location = 'http://localhost:8085/productShop/indexShop.html';
-//                $.ajax({
-//                    type: "GET",
-//                    contentType: "application/json",
-//                    url: "/product",
-//                    data: page,
-//                    dataType: 'json',
-//                    cache: false,
-//                    timeout: 600000,
-//                    success: function (data) {
-//                        alert(" success ....");
-//                        alert("deb");
-//                        window.location = 'http://localhost:8085/productShop/indexShop.html';
-//
-//                        var xhttp = new XMLHttpRequest();
-//
-//                        xhttp.open("GET", "http://localhost:8085/product", false);
-//                        alert("wee");
-//                        xhttp.setRequestHeader("Content-type", "application/json");
-//                        xhttp.send();
-//
-//
-//                    },
-//                    error: function (e) {
-//                        alert(" success ....");
-//                        console.log("ERROR : ", e);
-//
-//                    }
-//                });
 
 
         }
@@ -178,7 +162,6 @@
         function customerContactDetailsForProduct(){
 
 
-this.href = "http://localhost:8085/productShop/indexShop.html";
             var contactDetailsForOrder = {};
             contactDetailsForOrder["contactName"] = $("#contactName").val();
             contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
@@ -423,20 +406,10 @@ this.href = "http://localhost:8085/productShop/indexShop.html";
                 <li><a href="#thirdParty" onclick="LoadForThirdParty()">Third Party</a></li>
                 <li><a href="productShop/indexShop.html"  class="gallery-link" >Gallery</a></li>
 
-                <!--<li><a href="#order"  onclick="LoadOrerPage()">Products</a></li>-->
-                <li><a href="#myModal" data-toggle="modal" data-target="#myModal">Products</a></li>
-              <!--  <li><a href="/productShop/indexShop.html"  class="oredr-link">Order</a></li>-->
+                <li><a href="#order"  onclick="LoadOrerPage()">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="productShop/login.html" class="login-link">Login</a></li>
 
-                <!--<li>
-                    <button type="button" data-toggle="dropdown"> Log In</button>
-                    <ul class="dropdown-menu">
-                        <li><a id="userloginclick" href="javascript:showcontent('userloginclick')">As User</a></li>
-                        <li><a id="adminloginclick" href="javascript:showcontent('adminloginclick')">As Admin</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>-->
             </ul>
         </div>
     </div>
@@ -589,7 +562,6 @@ this.href = "http://localhost:8085/productShop/indexShop.html";
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h5 class="modal-title">Contact Details</h5>
             </div>
             <form role="form" data-toggle="validator" onsubmit="customerContactDetailsForProduct()">
@@ -612,7 +584,7 @@ this.href = "http://localhost:8085/productShop/indexShop.html";
                     <div class="row">
                         <div class="col-md-12 form-group" class="form-group">
                             <button class="btn pull-right" id="btn-contact-Product" type="submit" >send</button>
-                            <button type="button" class="btn pull-left" data-dismiss="modal">close</button>
+                            <button  type="reset" class="btn">reset</button>
                         </div>
 
                     </div>

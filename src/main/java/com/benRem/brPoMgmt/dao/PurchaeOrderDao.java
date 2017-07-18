@@ -151,7 +151,7 @@ public class PurchaeOrderDao {
 	}
 
 	// this method will retrun the purchase order which have been added in cart
-	private List<PurchaseOrder> findPurchaseOrderAsCart(String customerId) {
+	public List<PurchaseOrder> findPurchaseOrderAsCart(String customerId) {
 
 		List<PurchaseOrder> poCart = new ArrayList<>();
 		try{
@@ -194,6 +194,7 @@ public class PurchaeOrderDao {
 		}
 		return cartProducts;
 	}
+
 
 	public Iterable<PurchaseOrder> FindPurchaseOrder(){
 		

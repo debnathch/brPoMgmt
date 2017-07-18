@@ -215,13 +215,20 @@
 
             var id =  parseInt(0);
 
+$.ajax({
+            type: 'GET',
+            url: '/fetchCartCount',
+            data: '10',
+            dataType: 'json',
+            success: function(data) {
+
+             sessionStorage.clickcount =  parseInt(data);
+             document.getElementById("itemCount").innerHTML = sessionStorage.clickcount;
+          } // Success Function
+          });   // Ajax Call
+
+
             var orderItem = {};
-            if(sessionStorage.clickcount = "undefined") {
-                document.getElementById("itemCount").innerHTML =  parseInt("0");
-                sessionStorage.clickcount =  parseInt("0");
-            } else {
-                 document.getElementById("itemCount").innerHTML =  sessionStorage.clickcount;
-            }
 
 
             var table = $('#productList').DataTable({

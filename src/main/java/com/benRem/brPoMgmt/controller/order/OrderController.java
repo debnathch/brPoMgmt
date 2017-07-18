@@ -82,6 +82,14 @@ public class OrderController {
 
     }
 
+    @RequestMapping(value ="/fetchCartCount", method = RequestMethod.GET)
+    public String fetchAllFromCart() throws IOException {
+
+        return  String.valueOf(purchaseOrderDao.findPurchaseOrderAsCart("10").size()) ;
+
+
+    }
+
 
 
 }

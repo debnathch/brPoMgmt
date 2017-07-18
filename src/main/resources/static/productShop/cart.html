@@ -43,49 +43,12 @@
 
     <script>
 
-        $(function () {
 
-            var goToCartIcon = function($addTocartBtn){
-                var $cartIcon = $(".my-cart-icon");
-                var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
-                $addTocartBtn.prepend($image);
-                var position = $cartIcon.position();
-                $image.animate({
-                    top: position.top,
-                    left: position.left
-                }, 500 , "linear", function() {
-                    $image.remove();
-                });
-            }
-
-            $('.my-cart-btn').myCart({
-                classCartIcon: 'my-cart-icon',
-                classCartBadge: 'my-cart-badge',
-                classProductQuantity: 'my-product-quantity',
-                classProductRemove: 'my-product-remove',
-                classCheckoutCart: 'my-cart-checkout',
-                affixCartIcon: true,
-                showCheckoutModal: true,
-                clickOnAddToCart: function($addTocart){
-                    goToCartIcon($addTocart);
-                },
-                clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
-                    console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
-                },
-                checkoutCart: function(products, totalPrice, totalQuantity) {
-                    console.log("checking out", products, totalPrice, totalQuantity);
-                },
-                getDiscountPrice: function(products, totalPrice, totalQuantity) {
-                    console.log("calculating discount", products, totalPrice, totalQuantity);
-                    return totalPrice * 0.5;
-                }
-            });
-
-        });
 
 
         $(document).ready(function() {
 // only about us will be displayed
+
 
  $('#successOrderModal').modal('hide');
             $('a.home-link').click( function() {
@@ -110,11 +73,10 @@
 
            function LoadOrerPage() {
 
-                alert("loading ");
                 //var response = JSON.parse(xhttp.responseText);
-                var page = $(this).attr('http://localhost:8085/productShop/indexShop.html');
+                //var page = $(this).attr('http://localhost:8085/productShop/indexShop.html');
 
-                    window.location = 'http://localhost:8085/productShop/indexShop.html';
+                    window.location.href = 'http://localhost:8085/productShop/indexShop.html';
 
 
         }
@@ -224,7 +186,8 @@
   function SubmitOrder() {
 			var orderForCustomerId = 10;
 
-			document.getElementById("btn-order").disabled = true;
+
+		document.getElementById("btn-order").style.display = "none";
 
 			 $.ajaxSetup({
 			        beforeSend: function () {
@@ -267,14 +230,13 @@
             var id =  parseInt(0);
 
             var orderItem = {};
-//document.getElementById("btn-order").disabled = true;
+
 
             var table = $('#productList').DataTable({
                 "sAjaxSource": "/fetchFromCart",
                 "sAjaxDataProp": "",
                 "order": [[ 0, "asc" ]],
                 "aoColumns": [
-
 
 
                     { "mData": "company.company_name" , "sWidth": "10%"},
@@ -284,11 +246,10 @@
                     { "mData": "product_qty" , "sWidth": "10%"},
 
 
-
-
                 ]
-
+                
             })
+
         });
 
 
@@ -427,7 +388,9 @@
         width: 128px;
     }
 
-
+.modal-body {
+    max-height: 800px;
+}
 
 
 
@@ -577,20 +540,21 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Order is placed successFully</h5>
+                            <h3 class="modal-title">Order is placed successFully</h3>
+                            <h5 class="modal-title">Our Member will contact you shortly.</h5>
                         </div>
-                        <form role="form" data-toggle="validator" onsubmit="LoadOrerPage()">
+                        <form role="form" data-toggle="validator">
                             <div class="col-md-8">
 
                                 <div class="row">
                                     <div class="col-sm-12 form-group" class="form-group">
-                                        <p>Our Member will contact you shortly.</p>
+
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-md-12 form-group" class="form-group">
-                                        <button class="btn pull-right" id="btn-order-Product" type="submit" >..continue..</button>
+                                        <a class="btn pull-right" id="btn-order-Product"  >..CONTINUE..</a>
 
                                     </div>
 
@@ -603,6 +567,15 @@
                 </div>
             </div>
 
+            <script>
+
+                $("#btn-order-Product").click(function(){
+
+   window.location.href = "http://localhost:8085/productShop/indexShop.html";
+
+
+});
+            </script>
 
             <div class="col-sm-10 padding-right">
                 <h5>Your Cart List</h5>

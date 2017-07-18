@@ -184,7 +184,7 @@ public class PurchaeOrderDao {
 					cartProduct.setProduct_id(brProduct.getProduct_id());
 					cartProduct.setProduct_name(brProduct.getProduct_name());
 					cartProduct.setProduct_pack_size(brProduct.getProduct_pack_size());
-					cartProduct.setProduct_qty(poLine.getProductQty());
+					cartProduct.setProduct_qty(poLine.getProductQty().toString());
 
 					cartProducts.add(cartProduct);
 				}

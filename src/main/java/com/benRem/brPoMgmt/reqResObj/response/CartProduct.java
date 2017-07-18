@@ -24,7 +24,7 @@ public class CartProduct {
 
     String product_pack_size;
 
-    BigInteger product_qty;
+    String product_qty;
 
     public String toString(){
         String info = "";

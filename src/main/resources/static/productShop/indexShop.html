@@ -151,11 +151,11 @@
             if(typeof(Storage) !== "undefined") {
                 if (sessionStorage.clickcount) {
 
-                    alert(cartQuty + " count  "+sessionStorage.clickcount);
+
                     sessionStorage.clickcount = Number(sessionStorage.clickcount)+parseInt(cartQuty);
 
                 } else {
-                    alert(sessionStorage.clickcount + " count else")
+
                     sessionStorage.clickcount = 1;
                 }
                 //localStorage.clickcount = 0

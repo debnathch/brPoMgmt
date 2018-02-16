@@ -32,6 +32,9 @@ public class Company implements Serializable {
     @Column(name="parent_company_id")
     int parent_company_id;
 
+    @Column(name="parent_company_name")
+    String parent_company_name;
+
     @Column(name="company_address")
     String company_address;
 
@@ -97,6 +100,7 @@ public class Company implements Serializable {
         String info = "";
         JSONObject jsonInfo = new JSONObject();
         jsonInfo.put("company_name",this.company_name);
+        jsonInfo.put("parent_company_name",this.parent_company_name);
 
         JSONArray productArray = new JSONArray();
         if(this.productList != null){

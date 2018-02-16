@@ -70,11 +70,11 @@ private JavaMailSender javaMailSender;
 
 			email.setFrom(authuser, "debnath");
 
-			email.setSubject("TestMail");
+			email.setSubject("order mail :"+ lineItem.get(0).getPoId());
 			email.setHtmlMsg("<html><body><h4>welcome to Bengal Remedies " +cust.getCustomerName()+
 					" contacts you with mobile number "+cust.getCustPrimeryPhone() +" and his mail id is :"
 					+ cust.getCustEmail()+"</h4></body></html>");
-			email.addTo(authuser, cust.getCustomerName());
+			email.addTo(cust.getCustEmail(), cust.getCustEmail());
 			email.setTLS(true);
 			//https://www.google.com/settings/security/lesssecureapps turn it off. to send the mail
 			email.send();

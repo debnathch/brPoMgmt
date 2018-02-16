@@ -10,4 +10,6 @@ public class CompanyMake {
 
     String company_id;
     String company_name;
+    String parent_company_name;
+
 }

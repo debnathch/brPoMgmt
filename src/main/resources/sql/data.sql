@@ -120,8 +120,10 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`company` (
 
   `company_name` varchar(255) NOT NULL,
   `parent_company_id` INT NOT NULL,
+   `parent_company_name` varchar(255) NOT NULL,
+
   `company_address` varchar(255) NOT NULL,
-  `company_desc` varchar(255) NOT NULL,
+  `company_desc` varchar(255)  ,
 
 
   PRIMARY KEY (`company_id`));
@@ -130,21 +132,32 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`company` (
 
 
 INSERT INTO `purchase_order`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`company_address`, `company_desc`)
-    values (1,  'BENGAL REMEDIES', 1, 'KOLKATA', 'Parent Company');
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (1,  'BENGAL REMEDIES', 1, 'BENGAL REMEDIES' ,'KOLKATA', 'Parent Company');
 
 INSERT INTO `purchase_order`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`company_address`, `company_desc`)
-    values (2,  'DWARKA_PHERMA', 1,'KOLKATA', 'BENGAL REMEDIES');
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (2,  'DWARKA_PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
 
 INSERT INTO `purchase_order`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`company_address`, `company_desc`)
-    values (3,  'JM_REMEDIES', 3, 'KOLKATA', 'Parent Company');
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (3,  'DWARKA_PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES')
 
 INSERT INTO `purchase_order`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`company_address`, `company_desc`)
-    values (4,  'KANT_BIOTECH', 3, 'KOLKATA', 'Parent Company');
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (4,  'JM_HEALTHCARE', 2, 'JM_REMEDIES','CHANDIGARH', 'Parent Company');
 
+INSERT INTO `purchase_order`.`company`
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (5,  'JM_REMEDIES', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
+
+INSERT INTO `purchase_order`.`company`
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (6,  'ALPIC', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
+
+INSERT INTO `purchase_order`.`company`
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (6,  'KAN_BIOTECH', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
 
 
 -- DRUG DETAILS

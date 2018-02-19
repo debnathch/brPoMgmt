@@ -180,7 +180,32 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_product_type` (
    `prod_type_drug_comb` varchar(255) NOT NULL,
   PRIMARY KEY (`prod_type_id`));
 
+   -- -----------------------------------------------------
+-- insert statement .. product type data
+-- -----------------------------------------------------
+INSERT INTO `purchase_order`.`br_product_type`
+	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+    values (1,  'TABLET', 'TABLET');
 
+    INSERT INTO `purchase_order`.`br_product_type`
+	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+    values (2,  'LIQID', 'TABLET');
+
+    INSERT INTO `purchase_order`.`br_product_type`
+	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+    values (3,  'CAPSULES', 'CAPSULES');
+
+     INSERT INTO `purchase_order`.`br_product_type`
+	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+    values (4,  'DRY SYRUP', 'DRY SYRUP');
+
+    INSERT INTO `purchase_order`.`br_product_type`
+	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+    values (5,  'INJECTION', 'INJECTION');
+
+    INSERT INTO `purchase_order`.`br_product_type`
+	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+    values (6,  'OINMENTS', 'OINMENTS');
 -- -----------------------------------------------------
 -- product list
 -- -----------------------------------------------------
@@ -222,29 +247,9 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_drug_prod_associate` (
 
 
 
-   -- -----------------------------------------------------
--- insert statement .. master data
--- -----------------------------------------------------
 
-INSERT INTO `purchase_order`.`br_product_type`
-	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-    values (1,  'TABLET', 'TABLET');
 
-    INSERT INTO `purchase_order`.`br_product_type`
-	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-    values (2,  'LIQID', 'TABLET');
 
-    INSERT INTO `purchase_order`.`br_product_type`
-	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-    values (3,  'CAPSULES', 'CAPSULES');
-
-     INSERT INTO `purchase_order`.`br_product_type`
-	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-    values (4,  'DRY SYRUP', 'DRY SYRUP');
-
-    INSERT INTO `purchase_order`.`br_product_type`
-	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-    values (5,  'INJECTION', 'INJECTION');
 
 
 -- TABLETS

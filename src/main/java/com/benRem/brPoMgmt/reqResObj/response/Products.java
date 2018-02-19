@@ -15,6 +15,8 @@ public class Products {
 
     CompanyMake companyMake;
 
+    ProductType productType;
+
     String product_name;
 
     String product_description;

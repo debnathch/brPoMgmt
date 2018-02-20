@@ -137,11 +137,11 @@ INSERT INTO `purchase_order`.`company`
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (2,  'DWARKA_PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
+    values (2,  'DWARKA PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (3,  'DWARKA_PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES')
+    values (3,  'BENGAL PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES')
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
@@ -189,7 +189,7 @@ INSERT INTO `purchase_order`.`br_product_type`
 
     INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-    values (2,  'LIQID', 'TABLET');
+    values (2,  'LIQUID', 'TABLET');
 
     INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
@@ -226,6 +226,10 @@ INSERT INTO `purchase_order`.`br_product_type`
     INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (11,  'TOOTHPASTE', 'TOOTH PASTE');
+
+    INSERT INTO `purchase_order`.`br_product_type`
+	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+    values (12,  'POWDER', 'Powder');
 -- -----------------------------------------------------
 -- product list
 -- -----------------------------------------------------
@@ -882,3 +886,358 @@ INSERT INTO `purchase_order`.`br_product_list`
 INSERT INTO `purchase_order`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
     values (133, 11,2, 'DENT-O', 'Potassium Nitrate-5% w/w, + Sodium Monofluorophosphate-0.70%w/w,Triclosan-0.30% w/w.In a flavoured base.q.s', '50mg', '65.45', '85', '30');
+
+
+-- JM HEALTH --- ALPIC --
+-- Tablets
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (134, 1,6, 'SERTA-10', 'Serratiopeptidase 10 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (135, 1,6, 'PANTAPIC - 40', 'Pantoprazole 40 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (136, 1,6, 'PANTAPIC - D', 'Pantoprazole 40 mg Domperidone 10 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (137, 1,6, 'PANTAPIC - DSR', 'Pantoprazole 40 mg (DSR)Domperidone 30 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (138, 1,6, 'OMECID -D', 'Omeprazole 20 mg Domperidone 10 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (139, 1,6, 'OMECID - 20', 'Omeprazole 20 mg ', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (140, 1,6, 'RABPRO - 20', 'Rabeprazole 20 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (141, 1,6, 'RABPRO - D', 'Rabeprazole 20 mg and Domperidone 10 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (142, 1,6, 'RABPRO - DSR', 'Rabeprazole 20 mg  (DSR)Domperidone 30 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (143, 1,6, 'ALFLOX -OZ', 'Ofloxacin 200 mg+Ornidazole 500 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (144, 1,6, 'ALFLOX - 200', 'Ofloxacin Usp 200 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (145, 1,6, 'ALFER-XT TAB', 'Ferrous Ascorbate 100mg+ Folic Acid 1.5mg+Zinc Sulphate 7.5mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (146, 1,6, 'NIMI-PLUS', 'Nimesulide 100 mg + Paracetamol 325 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (147, 1,6, 'PARAGESIC', 'Diclo Pot 50mg + Paracetamol 325mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (148, 1,6, 'PARAGESIC - S', 'Diclofenac 50mg + Para 325mg + Serra 10mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (149, 1,6, 'DICMOL -MR', 'Diclofence 50mg + Paracetamol 325mg, Chlorzoxane 250', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (150, 1,6, 'ACEFAN PLUS', 'Aceclofenac 100 mg + Paracetamol 325 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (151, 1,6, 'ACEFAN - SP', 'ACC 100mg + Serra 10mg + Para 325mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (152, 1,6, 'ALPROTIC SACHET', 'A blend of 6 Natural Probiotics Strains,Prebiotic (Fructo Oligo Saccharides) & Zinc Sachet', '20x 1.5gm', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (153, 1,6, 'MOXY PIC -250', 'z', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (154, 1,6, 'MOXY PIC - 500', 'Serratiopeptidase 10 mg', '10x15 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (155, 1,6, 'VEECLAV - 375', 'Amoxicillin 250mg + lavulanic Acid 125 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (156, 1,6, 'VEECLAV - 625', ' Amoxycillin 500 mg+ Clavulanic Acid 125 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (157, 1,6, 'VEECLAV - DT', 'Amoxycillin 200 mg + Clavulanic Acid 28.5 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (158, 1,6, 'MOXY - D', 'Amoxycillin 250mg+Dicloxacillin 250mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (159, 1,6, 'SANCEF -100', 'Cefixime 100 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (160, 1,6, 'SANCEF - 200', 'Cefixime 200 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (161, 1,6, 'SANCEF -CV', '"Cefixime 200 mg + lavulanic 125 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (166, 1,6, 'SANCEF - O', 'Cefixime 200 + Ofloxacin 200 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (167, 1,6, 'SANCEF-AZ', 'Cefixime 200 + Azithromycin 250 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (168, 1,6, 'AZIPIC -250', 'Azithromycin 250 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (167, 1,6, 'AZIPIC -500', 'Azithromycin 500 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (168, 1,6, 'ALROXIME -250', 'Cefuroxime 250', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (169, 1,6, 'ALROXIME  - 500', 'Cefuroxime 500', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (170, 1,6, 'SERTA-10', 'Serratiopeptidase 10 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (172, 1,6, 'ZINRON -5', '"Cap Carbonyl Iron Equiv. to Elemental iron 100mg+vitamin C 75mg + Folic Acid 1.5 mg+vit. B12 15mg + zinc sulphate monohydrate 61.8mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (173, 1,6, 'GLOWVIT PLUS', 'Ginseng, Ashwagandha, Multivitamin, Multimineral & Anti Oxidants ', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (174, 1,6, 'LYCOPIC', 'Lycopene with Multivitamins', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (175, 1,6, 'LYCOPIC-G', 'Lycopene Grap Seeds lutein, vitamins, zinc & selenium', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (176, 1,6, 'KEEPOD -100', 'Cefpodoxime Proxtil 100 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (177, 1,6, 'KEEPOD - 200', 'Cefpodoxime Proxtil 200 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (178, 1,6, 'KEEPOD - CV', '"Cefpodoxime Proxtil 200 mg + Clavulanic 125 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (179, 1,6, 'LEVOLIC 500', 'Levofloxacin 500 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (180, 1,6, 'MONTE PLUS', 'Montelukast 10mg + Levocetirizine 5 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (181, 1,6, 'MONTE-PLUS KID', 'Levocetirizine Hcl….2.5mg + Montelukast Sodium…..5mg', '10x10 ALU ALU', '65.45', '85', '30');
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (182, 1,6, 'COLD-RID', 'Caffeine + cetirizine + Phenylephrine + Paracetamol 325', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (183, 1,6, 'FUNGAL GUARD-150', 'Fluconazole U.S.P. 150mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (184, 1,6, 'CORT -6', 'Deflazacort 6mg', '10x10 ALU ALU', '65.45', '85', '30');
+    values
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (185, 1,6, 'OSTOCERIN -50', 'Diacerein 50mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (186, 1,6, 'OSTOCERIN -PLUS', 'Diacerein 50mg+ Glucosamine ', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (187, 1,6, 'NERVINE -GM', 'Methylcobalamin 500mcg+Gabapentin 300 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (188, 1,6, 'NERVINE - P', 'Methylcobalamin 500mcg+Pregabalin 75mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (189, 1,6, 'RABE-IT', 'Rabeprazole Sodium 20mg + Itopride Hydrochloride 150mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (190, 1,6, 'KEEPOD D/S', 'D/S Cefodoxime Proxtil 50 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (191, 1,6, 'GLOWVIT -MV', 'MULTI VITAMIN DROP', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (192, 1,6, 'VEECLAV D/S', 'D/S Amoxy 200mg+ Clavu 28.5 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (193, 1,6, 'SANCEF D/S', 'D/S Cefixime(anhydrous) 50 mg', '10x10 ALU ALU', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (194, 1,6, 'ALPIZYME DROP', 'DIGESTIVE ENZYME DROP', '10x10 ALU ALU', '65.45', '85', '30');
+
+-- LIQUID --
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (195, 2,6, 'ALPICYP SYRUP', 'CYPROHEPTADINE+TRICOLINE CITRATE SYRUP', '200ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (196, 2,6, 'ALFER-XT', 'Ferrous Ascorbate 100mg+ Folic Acid 1.5mg+Zinc Sulphate 7.5mg', '200ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (197, 2,6, 'MEGAHIS', 'Each 5ml contains: Magaldrate IP 400mg + Simethicone IP 20mg +Colour: Sunset Yellow FCF', '170ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (198, 2,6, 'MONTE PLUS SYRUP', 'Levocetirizine Hcl….2.5mg + Montelukast Sodium…..4mg', '30ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (199, 2,6, 'ALPICYP SYRUP', 'CYPROHEPTADINE+TRICOLINE CITRATE SYRUP', '100ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (200, 2,6, 'KUFRID', 'Each 5ml contains: Terbutaline Sulphate IP   1.25mg + Bromhexine Hydrochloridel IP 2mg + Guaiphenesin IP 50mgMenthol IP 0.5mg + Flavoured palatable base  q.s.+ Colour: Sunset Yellow FCF ', '100ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (201, 2,6, 'EUROBION SYRUP', 'Enriched with B-Complex & L-Lysine Syrup', '200ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (202, 2,6, 'LYCOPIC', 'Lycopene with Multivitamin & Multimineral Syrup', '200ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (203, 2,6, 'ALPIZYME-200', '"Each 5ml contains: Fungal Diastase IP 50mg + Pepsin IP 10mg', '200ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (204, 2,6, 'ALPIZYME-100', '"Each 5ml contains: Fungal Diastase IP 50mg + Pepsin IP 10mg', '200ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (205, 2,6, 'KUFRID-DX-SYP', 'DEXTROMETHORPHAN HCL+CPM+PHENYLEPHRINE', '100ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (206, 2,6, 'GLOWVIT MV SYP', 'MULTIVITAMIN+MULTIMINAREL SYRUP', '200ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (207, 2,6, 'ALCYCIP SYP', 'CYPROHEPTADINE+TRICOLINE CITRATE', '200ml', '65.45', '85', '30');
+
+-- powder section --
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (208, 12,6, 'GROWVIT PLUS', 'Protein Powder with Mecbalamin', '200ml', '65.45', '85', '30');
+
+-- Injectable --
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (209, 5,6, 'ALXONE-500', 'Ceftriaxone 500 mg', '10ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (210, 5,6, 'ALXONE-1000', 'Ceftriaxone1000 mg', '10ml', '65.45', '85', '30');
+
+    INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (211, 5,6, 'ALXONE-SB  375', 'Ceftriaxone 250 mg + Sulbactam 125 mg', '10ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (212, 5,6, 'ALXONE-SB  750', 'Ceftriaxone 500 mg + Sulbactam 250 mg', '10ml', '65.45', '85', '30');
+
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (213, 5,6, 'GYNORONE-200', 'Natural Micronised Progestrone 200 mg + (Dispo Pack)', '3ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (214, 5,6, 'MIKA - 250', 'Amikacin 250 mg', '2ml', '65.45', '85', '30');
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (215, 5,6, 'MIKA - 500', 'Amikacin 500 mg', '2ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (216, 5,6, 'GROWVIT PLUS', 'Protein Powder with Mecbalamin', '2ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (217, 5,6, 'VEEDECK-25', 'Nandrolone Decanoate 25 mg (Dispo pack)', '2ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (218, 5,6, 'VEEDECK-50', 'Nandrolone Decanoate 50 mg (Dispo pack)', '2ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (219, 5,6, 'PENTAPIC-40', 'Pantoptazole 40 mg / ml', '40MG/ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (220, 5,6, 'NERVINE -PLUS', 'Mecobalamin 1000mcg+Pyridoxine  Hydrochloride 100mg+Niacinamide 100mg +Benzyl Alcohol 1.5% v/v', '200ml', '65.45', '85', '30');
+
+    INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (221, 5,6, 'NERVINE', 'Mecobalamin 1500mcg', '200ml', '65.45', '85', '30');
+
+INSERT INTO `purchase_order`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_mrp_incl_vat`, `prod_net_exclude_vat`)
+    values (222, 5,6, 'RABPRO-20 INJ', 'Rabeprazole Sodium Injection IP', '200ml', '65.45', '85', '30');
+

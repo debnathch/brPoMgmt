@@ -36,10 +36,7 @@ CREATE SCHEMA `purchase_order` ;
          values (10,  'SUMITA ENTERPRISE','GST-123456','Lsc-67895','debnathch@gmail.com','9838773388','9988776655', 'KOLKATA', 'Distributor');
 
 
--- -----------------------------------------------------
--- Schema purchase_order
--- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `purchase_order` ;
+
 
 -- -----------------------------------------------------
 -- Schema purchase_order

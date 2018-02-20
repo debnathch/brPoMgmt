@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -44,6 +44,7 @@
         $(function () {
 
             var goToCartIcon = function($addTocartBtn){
+
                 var $cartIcon = $(".my-cart-icon");
                 var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
                 $addTocartBtn.prepend($image);
@@ -54,6 +55,7 @@
                 }, 500 , "linear", function() {
                     $image.remove();
                 });
+
             }
 
             $('.my-cart-btn').myCart({
@@ -68,7 +70,8 @@
                     goToCartIcon($addTocart);
                 },
                 clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
-                    console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+                   console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+
                 },
                 checkoutCart: function(products, totalPrice, totalQuantity) {
                     console.log("checking out", products, totalPrice, totalQuantity);
@@ -76,17 +79,18 @@
                 getDiscountPrice: function(products, totalPrice, totalQuantity) {
                     console.log("calculating discount", products, totalPrice, totalQuantity);
                     return totalPrice * 0.5;
+
                 }
+
             });
 
         });
 
 
         $(document).ready(function() {
+
 // only about us will be displayed
-
-
-            $('a.home-link').click( function() {
+             $('a.home-link').click( function() {
                 var page = $(this).attr('href');
                 $.ajax({
                     type: 'GET',
@@ -95,7 +99,7 @@
                     success: function(content) {
 
                         window.location.href = 'http://localhost:8085/index.html';
-                        // replace
+
                     },
                     error: function (e) {
                         alert("Please contact Admn for "+page+ " is not directed as expected");
@@ -105,7 +109,6 @@
             });
 
         });
-
 
         function contactUs() {
 
@@ -117,173 +120,333 @@
             $('#btn-contact').prop("disabled", false);
             $.ajax({
                 type: "POST",
+
                 contentType: "application/json",
+
                 url: "/contactUs",
+
                 data: JSON.stringify(contactDetails),
+
                 dataType: 'json',
+
                 cache: false,
+
                 timeout: 600000,
+
                 success: function (data) {
                     alert(" success ....");
                     var json = "Thanks For your interest. Our Member will contact you shortly"
+
                         + JSON.stringify(data, null, 4) + "</pre>";
-                    $('#feedbackSuccess').html(json);
 
+                    $('#feedbackSuccess').html(json);
                     console.log("SUCCESS : ", data);
+
                     $('#btn-contact').prop("disabled", false);
+
                 },
+
                 error: function (e) {
+
                     alert(" Error ....");
+
                     var json = "<h5>Ajax Response</h5>";
-
                     $('#feedbackSuccess').html(json);
-
-
                     console.log("ERROR : ", e);
+
                     $('#btn-contact').prop("disabled", false);
+
                 }
+
             });
+
         }
 
-
         //counter of item increate logic
+
         function clickCounter(cartQuty) {
 
             if(typeof(Storage) !== "undefined") {
                 if (sessionStorage.clickcount) {
-
-
                     sessionStorage.clickcount = Number(sessionStorage.clickcount)+parseInt("1");
 
                 } else {
-
                     sessionStorage.clickcount = 1;
                 }
                 //localStorage.clickcount = 0
+
                 document.getElementById("itemCount").innerHTML =  sessionStorage.clickcount;
             } else {
                 document.getElementById("itemCount").innerHTML = "Sorry, your browser does not support web storage...";
             }
+
         }
 
+
+
 // after adding into cart
+
         function addToCart(id){
 
             if(document.getElementById("qty_"+id).value != 0){
-                var cartQuty = document.getElementById("qty_"+id).value;
-                var orderItem = {};
 
+                var cartQuty = document.getElementById("qty_"+id).value;
+
+                var orderItem = {};
                 clickCounter(cartQuty);
+
                 orderItem["prod_id"]=id;
+
                 orderItem["prod_qty"]=cartQuty;
 
                 $.ajax({
+
                     type: "POST",
+
                     contentType: "application/json",
+
                     url: "/addCart",
+
                     data: JSON.stringify(orderItem),
+
                     dataType: 'json',
+
                     cache: false,
+
                     timeout: 600000,
+
                     success: function (data) {
+
                         alert("Added to card successFully : ");
+
                         var json = "Thanks For your interest. Our Member will contact you shortly"
+
                             + JSON.stringify(data, null, 4) + "</pre>";
 
+
+
                         console.log("Added to card successFully : ", data);
-
                     },
-                    error: function (e) {
 
+                    error: function (e) {
                         console.log("ERROR to add the item to cart. Please call 8981089350: ", e);
 
                     }
+
                 });
+
                 document.getElementById("qty_"+id).value = 0;
+
             } else{
-
                 alert("please select atleast one item")
+
             }
-
-
 
         }
 
+    function filterProductTable(productType){
 
+                alert(productType);
+
+              table.cell( $("#prodType") ).data(productType) ;
+
+        }
 
         $(document).ready( function () {
-
 
             var id =  parseInt(0);
 
 $.ajax({
+
             type: 'GET',
+
             url: '/fetchCartCount',
+
             data: '10',
+
             dataType: 'json',
+
             success: function(data) {
 
+
+
              sessionStorage.clickcount =  parseInt(data);
+
              document.getElementById("itemCount").innerHTML = sessionStorage.clickcount;
+
           } // Success Function
+
           });   // Ajax Call
+
+
+
 
 
             var orderItem = {};
 
-            var ul = document.getElementById("productType");
-            for( var i = 0; i < 2; i++ )
-                {
 
-                    var li = document.createElement("li");
-                    li.appendChild(document.createTextNode("debnath"));
-                    ul.appendChild(li);
-                }
+
+            var ul = document.getElementById("productType");
+
+
+
 
 
             var table = $('#productList').DataTable({
+
                 "sAjaxSource": "/product",
+
                 "sAjaxDataProp": "",
+
                 "order": [[ 0, "asc" ]],
+
+                retrieve: true,
+
+                searchHighlight: true,
+
                 "aoColumns": [
 
 
 
+
+
+
+
                     { "mData": "companyMake.parent_company_name" , "sWidth": "10%"},
+
                     { "mData": "companyMake.company_name" , "sWidth": "10%"},
 
+
+
                     { "mData": "productType.prod_type_name" , "sWidth": "10%"},
+
                     { "mData": "product_name" , "sWidth": "20%" },
+
                     { "mData": "product_description" , "sWidth": "30%" },
+
                     { "mData": "product_pack_size" , "sWidth": "10%"},
+
                     {
+
                         "mData": "product_id",
+
                         "bSortable": false,
+
                         "mRender": function(data, type, full) {
+
                             id = data;
 
+
+
                             return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY...">';
+
                         }, "sWidth": "10%"
+
                     },
+
+
 
                     {
 
+
+
                         "mData": "product_id",
+
                         "bSortable": false,
+
                         "mRender": function(data, type, full) {
 
+
+
                             id = data.toString();
+
                             var a = parseInt(id);
 
 
+
+
+
                             return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')"><i class="fa fa-shopping-cart">' + 'ADD' + '</button>';
+
                         }, "sWidth": "10%"
+
                     }
 
+
+
                 ]
-            })
+
+            });
+
+
+
+            table.on( 'draw', function () {
+
+        var body = $( table.table().body() );
+
+
+
+        body.highlight( table.search() );
+
+    } );
+
+
+
+$.ajax({
+
+                    type: 'GET',
+
+                    url: '/productType',
+
+                    dataType: 'json',
+
+                    success: function(data) {
+
+
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            var li = document.createElement("li");
+
+                            var a = document.createElement("a");
+
+                            a.setAttribute('href',"#");
+
+
+
+                            a.setAttribute('onClick',"filterProductTable('"+data[i].prod_type_name+"')");
+
+                            var span = document.createElement("span");
+
+                            span.setAttribute('class',"pull-right");
+
+                            a.appendChild(document.createTextNode(data[i].prod_type_name));
+
+                            a.appendChild(span);
+
+                            li.appendChild(a);
+
+
+
+                            ul.appendChild(li);
+
+                        }
+
+
+
+                    },
+
+                    error: function (e) {
+
+                        alert("Please contact Admn for "+page+ " is not directed as expected");
+
+                    }
+
+                });
 
         });
+
+
     </script>
 
 
@@ -398,6 +561,7 @@ $.ajax({
             position: relative;
         }
 
+
     </style>
 
 
@@ -412,7 +576,8 @@ $.ajax({
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="start.html" class="navbar-brand" > <img src="images/home/logo.gif" class="image-circle" width=150 height=102/></a>
+            <a href="start.html" class="navbar-brand"> <img src="images/home/logo.gif" class="image-circle" width=150
+                                                            height=102/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -467,7 +632,10 @@ $.ajax({
                         <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                         <!--<li><a href="cart.html"><i class="fa fa-shopping-cart badge badge-notify my-cart-badge"></i> Cart</a></li>-->
                         <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
-                        <li><a href="cart.html"><i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span class="badge-cart" id="itemCount"></span></i-cart> </a> </li>
+                        <li><a href="cart.html">
+                            <i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span
+                                    class="badge-cart" id="itemCount"></span></i-cart>
+                        </a></li>
 
                     </ul>
                 </div>
@@ -481,7 +649,8 @@ $.ajax({
             <div class="row">
                 <div class="col-sm-9">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -540,8 +709,8 @@ $.ajax({
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.jpg"  class="pricing" alt="" />
+                                <img src="images/home/girl1.jpg" class="girl img-responsive" alt=""/>
+                                <img src="images/home/pricing.jpg" class="pricing" alt=""/>
                             </div>
                         </div>
                         <div class="item">
@@ -552,21 +721,8 @@ $.ajax({
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png"  class="pricing" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E-Medicine</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png" class="pricing" alt="" />
+                                <img src="images/home/girl2.jpg" class="girl img-responsive" alt=""/>
+                                <img src="images/home/pricing.png" class="pricing" alt=""/>
                             </div>
                         </div>
 
@@ -578,8 +734,21 @@ $.ajax({
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/girl4.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png" class="pricing" alt="" />
+                                <img src="images/home/girl3.jpg" class="girl img-responsive" alt=""/>
+                                <img src="images/home/pricing.png" class="pricing" alt=""/>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1><span>E-Medicine</span>-SHOPPER</h1>
+                                <h3>Online Order </h3>
+                                <p>Place Order with Best Rate. </p>
+                                <button type="button" class="btn btn-default get">Get it now</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="images/home/girl4.jpg" class="girl img-responsive" alt=""/>
+                                <img src="images/home/pricing.png" class="pricing" alt=""/>
                             </div>
                         </div>
 
@@ -684,34 +853,15 @@ $.ajax({
                     <div class="brands_products"><!--brands_products-->
                         <h2>PRODUCT TYPE</h2>
                         <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked" id = "productType">
-                                <li><a href="#"> <span class="pull-right"></span>Syrup</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Tablet Erde</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Injection</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Herbal</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Oinment</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Eye-Product</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Beta</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Non-Beta</a></li>
+                            <ul class="nav nav-pills nav-stacked" id="productType">
+
                             </ul>
                         </div>
                     </div><!--/brands_products-->
 
-                 <!--   <div class="price-range">&lt;!&ndash;price-range&ndash;&gt;
-                        <h2>Price Range</h2>
-                        <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-                        </div>
-                    </div>&lt;!&ndash;/price-range&ndash;&gt;
-
-                    <div class="shipping text-center">&lt;!&ndash;shipping&ndash;&gt;
-                        <img src="images/home/shipping.jpg" alt="" />
-                    </div>&lt;!&ndash;/shipping&ndash;&gt;-->
 
                 </div>
             </div>
-
 
 
             <div class="col-sm-10 padding-right">
@@ -732,20 +882,18 @@ $.ajax({
                         <th>Add to Cart</th>
 
 
-
                     </tr>
                     </thead>
                     <!-- Footer Table -->
                     <tfoot>
                     <tr>
-<!--
-                        <th>company</th>
-                        <th>product name</th>
-                        <th>product description</th>
-                        <th>box description</th>
-                        <th>Quantity</th>
-                        <th>Add to Cart</th>-->
-
+                        <!--
+                                                <th>company</th>
+                                                <th>product name</th>
+                                                <th>product description</th>
+                                                <th>box description</th>
+                                                <th>Quantity</th>
+                                                <th>Add to Cart</th>-->
 
 
                     </tr>
@@ -765,75 +913,74 @@ $.ajax({
 
 </section>
 
- <section>
-     <!-- Container (Contact Section) -->
-     <div id="contact" class="container">
-         <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
+<section>
+    <!-- Container (Contact Section) -->
+    <div id="contact" class="container">
+        <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
 
 
-         <div class="col-md-4">
-             <p></p>
-             <p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara, Shobhabazar, Kolkata, West Bengal 700006</em></p>
-             <p><span class="glyphicon glyphicon-phone"></span><em>Phone: +91-8981089350</em></p>
-             <p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
-         </div>
+        <div class="col-md-4">
+            <p></p>
+            <p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara,
+                Shobhabazar, Kolkata, West Bengal 700006</em></p>
+            <p><span class="glyphicon glyphicon-phone"></span><em>Phone: +91-8981089350</em></p>
+            <p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
+        </div>
 
-         <form role="form" id="contactForm" data-toggle="validator" onsubmit="contactUs()">
-             <div class="col-md-8">
-                 <div class="row">
-                     <div class="col-sm-6 form-group" class="form-group">
-                         <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-                     </div>
-                     <div class="col-sm-6 form-group" class="form-group">
-                         <input class="form-control" id="email" name="email" placeholder="Email" type="email"
-                                data-error="Bruh, that email address is invalid" required>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-sm-12 form-group" class="form-group">
-                         <input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number" type="phoneNo" minlength="10">
-                     </div>
-                 </div>
-                 <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-                 <br>
-                 <div class="row">
-                     <div class="col-md-12 form-group" class="form-group">
-                         <button class="btn pull-right" id="btn-contact" type="submit" >send</button>
-                         <button  type="reset" class="btn">reset</button>
-                     </div>
-                 </div>
-             </div>
-         </form>
-
-
-         <br>
-         <h3 class="text-center">Key Faces</h3>
-         <ul class="nav nav-tabs">
-             <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
-             <li><a data-toggle="tab" href="#menu1">Mr. Kundu</a></li>
-             <li><a data-toggle="tab" href="#menu2">Ruma</a></li>
-         </ul>
-
-         <div class="tab-content">
-             <div id="home" class="tab-pane fade in active">
-                 <h2>Somnath Chatterjee, CEO</h2>
-                 <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
-             </div>
-             <div id="menu1" class="tab-pane fade">
-                 <h2>Mr. Kundu, Manager</h2>
-                 <p>Always with people! </p>
-             </div>
-             <div id="menu2" class="tab-pane fade">
-                 <h2>Ruma Chatterjee, MD</h2>
-                 <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
-             </div>
-         </div>
-     </div>
-
- </section>
+        <form role="form" id="contactForm" data-toggle="validator" onsubmit="contactUs()">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-6 form-group" class="form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group" class="form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+                               data-error="Bruh, that email address is invalid" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group" class="form-group">
+                        <input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number"
+                               type="phoneNo" minlength="10">
+                    </div>
+                </div>
+                <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+                <br>
+                <div class="row">
+                    <div class="col-md-12 form-group" class="form-group">
+                        <button class="btn pull-right" id="btn-contact" type="submit">send</button>
+                        <button type="reset" class="btn">reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
 
 
+        <br>
+        <h3 class="text-center">Key Faces</h3>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
+            <li><a data-toggle="tab" href="#menu1">Mr. Kundu</a></li>
+            <li><a data-toggle="tab" href="#menu2">Ruma</a></li>
+        </ul>
 
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h2>Somnath Chatterjee, CEO</h2>
+                <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h2>Mr. Kundu, Manager</h2>
+                <p>Always with people! </p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h2>Ruma Chatterjee, MD</h2>
+                <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 
 <!-- Footer -->
@@ -874,6 +1021,7 @@ $.ajax({
             } // End if
         });
     })
+
 </script>
 
 </body>
@@ -885,8 +1033,10 @@ $.ajax({
             label            : "Chat here"
         });
     }
+
 </script>
 <script src="https://chatteron.io/web-sdk/scripts/web-sdk.js" onload="codeAddress();">
 </script>
+
 </html>
 © 2017 copy rights Bengal Remeides

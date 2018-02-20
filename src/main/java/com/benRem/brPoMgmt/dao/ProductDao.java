@@ -3,7 +3,9 @@ package com.benRem.brPoMgmt.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.benRem.brPoMgmt.domain.ProductType;
 import com.benRem.brPoMgmt.repository.ProductRepository;
+import com.benRem.brPoMgmt.repository.ProductTypeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,9 @@ import com.benRem.brPoMgmt.domain.Br_Product;
 @RequestMapping("/items")
 public class ProductDao {
   @Autowired
-  private ProductRepository repo;
+  private ProductRepository ProductRepo;
+  @Autowired
+  private ProductTypeRepository productTypeRepo;
 
 
 
@@ -29,27 +33,33 @@ public class ProductDao {
  // @RequestMapping(method = RequestMethod.GET)
   public List<Br_Product> findItems() {
 	  List<Br_Product> target = new ArrayList<>();
-	  repo.findAll().forEach(target::add);
+      ProductRepo.findAll().forEach(target::add);
 
       System.out.println("**** fetching of products done ******" );
       return target;
+  }
+
+  public List<ProductType> findAllProductTypes() {
+      List<ProductType> productTypes = new ArrayList<>();
+      productTypeRepo.findAll().forEach(productTypes :: add);
+      return  productTypes;
   }
   
   //@RequestMapping(method = RequestMethod.POST)
   public Br_Product addItem(@RequestBody Br_Product item) {
 	
-    return repo.save(item);
+    return ProductRepo.save(item);
   }
   
   //@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
   public Br_Product updateItem(@RequestBody Br_Product updatedItem, @PathVariable Integer id) {
    // updatedItem.se;
-    return repo.save(updatedItem);
+    return ProductRepo.save(updatedItem);
   }
   
  // @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
   public void deleteItem(@PathVariable Long id) {
-    repo.delete(id);
+      ProductRepo.delete(id);
   }
   
   

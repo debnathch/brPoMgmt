@@ -79,7 +79,7 @@ public class ProductType implements Serializable {
     public String toString(){
         String info = "";
         JSONObject jsonInfo = new JSONObject();
-        jsonInfo.put("product_type_name",this.prod_type_name);
+        jsonInfo.put("prod_type_name",this.prod_type_name);
 
         JSONArray productArray = new JSONArray();
         if(this.productList != null){

@@ -3,6 +3,7 @@ package com.benRem.brPoMgmt.controller.product;
 import com.benRem.brPoMgmt.dao.ProductDao;
 import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
 import com.benRem.brPoMgmt.domain.Br_Product;
+import com.benRem.brPoMgmt.reqResObj.response.ProductType;
 import com.benRem.brPoMgmt.reqResObj.response.Products;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -50,8 +51,21 @@ public class productController {
         }
 
         return  productList;
+    }
 
+    @RequestMapping(value = "/productType", method=RequestMethod.GET )
+    public List<ProductType> getProductTypes() throws IOException {
 
+        System.out.println(" **** fetching the product Type ");
+        List<ProductType> productTypeList = new ArrayList<>();
+
+        ObjectMapper objMapper = new ObjectMapper();
+
+        for(com.benRem.brPoMgmt.domain.ProductType eachProductType : productDao.findAllProductTypes()){
+
+            productTypeList.add(objMapper.readValue(eachProductType.toString(), ProductType.class));
+        }
+        return  productTypeList;
     }
 
 }

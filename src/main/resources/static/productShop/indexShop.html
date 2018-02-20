@@ -231,6 +231,15 @@ $.ajax({
 
             var orderItem = {};
 
+            var ul = document.getElementById("productType");
+            for( var i = 0; i < 2; i++ )
+                {
+
+                    var li = document.createElement("li");
+                    li.appendChild(document.createTextNode("debnath"));
+                    ul.appendChild(li);
+                }
+
 
             var table = $('#productList').DataTable({
                 "sAjaxSource": "/product",
@@ -675,7 +684,7 @@ $.ajax({
                     <div class="brands_products"><!--brands_products-->
                         <h2>PRODUCT TYPE</h2>
                         <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked">
+                            <ul class="nav nav-pills nav-stacked" id = "productType">
                                 <li><a href="#"> <span class="pull-right"></span>Syrup</a></li>
                                 <li><a href="#"> <span class="pull-right"></span>Tablet Erde</a></li>
                                 <li><a href="#"> <span class="pull-right"></span>Injection</a></li>

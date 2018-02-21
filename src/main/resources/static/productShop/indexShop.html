@@ -355,6 +355,59 @@ $.ajax({
 
                 });
 
+                $.ajax({
+
+                    type: 'GET',
+
+                    url: '/companyType',
+
+                    dataType: 'json',
+
+                    success: function(data) {
+
+
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            var li = document.createElement("li");
+
+                            var a = document.createElement("a");
+
+                            a.setAttribute('href',"#");
+
+
+
+                            a.setAttribute('onClick',"filterProductTable('"+data[i].company_name+"')");
+
+                            var span = document.createElement("span");
+
+                            span.setAttribute('class',"pull-right");
+
+                            a.appendChild(document.createTextNode(data[i].company_name));
+
+                            a.appendChild(span);
+
+                            li.appendChild(a);
+
+
+
+                            ul.appendChild(li);
+
+                        }
+
+
+
+                    },
+
+                    error: function (e) {
+
+                        alert("Please contact Admn for "+page+ " is not directed as expected");
+
+                    }
+
+                });
+
+
         });
 
 
@@ -683,81 +736,18 @@ $.ajax({
         <div class="row">
             <div class="col-sm-2">
                 <div class="left-sidebar">
-                    <h2>COMPANY</h2>
+                    <h2>CATEGORY</h2>
                     <div class="panel-group category-products" id="accordian">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        Bengal Remedies
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="sportswear" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">BETA </a></li>
-                                        <li><a href="#">NON BETA </a></li>
-                                        <li><a href="#">INJECTION </a></li>
-                                        <li><a href="#">EYE</a></li>
-                                        <li><a href="#">HERBAL </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        DWARIKA PHERMA
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="mens" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">BETA</a></li>
-                                        <li><a href="#">NON BETA</a></li>
-                                        <li><a href="#">EYE</a></li>
 
-                                    </ul>
-                                </div>
+                        <div class="brands_products"><!--brands_products-->
+                            <h2>COMPANY TYPE</h2>
+                            <div class="brands-name">
+                                <ul class="nav nav-pills nav-stacked" id="companyType">
+
+                                </ul>
                             </div>
                         </div>
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#womens">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        JM
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="womens" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">Fendi</a></li>
-                                        <li><a href="#">Guess</a></li>
-                                        <li><a href="#">Valentino</a></li>
-                                        <li><a href="#">Dior</a></li>
-                                        <li><a href="#">Versace</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title"><a href="#">ILPL</a></h5>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title"><a href="#">MAHA ABTAR</a></h5>
-                            </div>
-                        </div>
 
                     </div><!--/category-products-->
 

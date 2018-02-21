@@ -110,7 +110,7 @@ public class Company implements Serializable {
                 productArray.put(subJson);
             });
         }
-        jsonInfo.put("products", productArray);
+        //jsonInfo.put("products", productArray);
         info = jsonInfo.toString();
         return info;
     }

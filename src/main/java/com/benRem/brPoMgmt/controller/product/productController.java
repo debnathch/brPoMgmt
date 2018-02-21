@@ -3,6 +3,7 @@ package com.benRem.brPoMgmt.controller.product;
 import com.benRem.brPoMgmt.dao.ProductDao;
 import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
 import com.benRem.brPoMgmt.domain.Br_Product;
+import com.benRem.brPoMgmt.domain.Company;
 import com.benRem.brPoMgmt.reqResObj.response.ProductType;
 import com.benRem.brPoMgmt.reqResObj.response.Products;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -67,5 +68,22 @@ public class productController {
         }
         return  productTypeList;
     }
+
+    @RequestMapping(value = "/companyType", method=RequestMethod.GET )
+    public List<Company> getCompanyTypes() throws IOException {
+
+        System.out.println(" **** fetching the company Type ");
+        List<Company> companyTypeList = new ArrayList<>();
+
+        ObjectMapper objMapper = new ObjectMapper();
+
+        for(com.benRem.brPoMgmt.domain.Company company : productDao.findCompanyTypes()){
+
+            companyTypeList.add(objMapper.readValue(company.toString(), Company.class));
+        }
+        return  companyTypeList;
+    }
+
+
 
 }

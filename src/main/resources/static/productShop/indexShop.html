@@ -41,54 +41,81 @@
 
     <script>
 
-        $(function () {
+var table;
+        $(document).ready(function() {
 
-            var goToCartIcon = function($addTocartBtn){
+// start
 
-                var $cartIcon = $(".my-cart-icon");
-                var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
-                $addTocartBtn.prepend($image);
-                var position = $cartIcon.position();
-                $image.animate({
-                    top: position.top,
-                    left: position.left
-                }, 500 , "linear", function() {
-                    $image.remove();
-                });
+  table = $('#productList').DataTable({
 
-            }
+                "sAjaxSource": "/product",
+                "sAjaxDataProp": "",
 
-            $('.my-cart-btn').myCart({
-                classCartIcon: 'my-cart-icon',
-                classCartBadge: 'my-cart-badge',
-                classProductQuantity: 'my-product-quantity',
-                classProductRemove: 'my-product-remove',
-                classCheckoutCart: 'my-cart-checkout',
-                affixCartIcon: true,
-                showCheckoutModal: true,
-                clickOnAddToCart: function($addTocart){
-                    goToCartIcon($addTocart);
-                },
-                clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
-                   console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+                "order": [[ 0, "asc" ]],
 
-                },
-                checkoutCart: function(products, totalPrice, totalQuantity) {
-                    console.log("checking out", products, totalPrice, totalQuantity);
-                },
-                getDiscountPrice: function(products, totalPrice, totalQuantity) {
-                    console.log("calculating discount", products, totalPrice, totalQuantity);
-                    return totalPrice * 0.5;
+                retrieve: true,
 
-                }
+                searchHighlight: true,
+
+                "aoColumns": [
+
+                    { "mData": "companyMake.parent_company_name" , "sWidth": "10%"},
+
+                    { "mData": "companyMake.company_name" , "sWidth": "10%"},
+
+                    { "mData": "productType.prod_type_name" , "sWidth": "10%"},
+
+                    { "mData": "product_name" , "sWidth": "20%" },
+                    { "mData": "product_description" , "sWidth": "30%" },
+                    { "mData": "product_pack_size" , "sWidth": "10%"},
+
+                    {
+                        "mData": "product_id",
+
+                        "bSortable": false,
+
+                        "mRender": function(data, type, full) {
+
+                            id = data;
+
+
+
+                            return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY...">';
+
+                        }, "sWidth": "10%"
+
+                    },
+
+
+
+                    {
+
+
+
+                        "mData": "product_id",
+
+                        "bSortable": false,
+
+                        "mRender": function(data, type, full) {
+
+                            id = data.toString();
+
+                            var a = parseInt(id);
+
+                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')"><i class="fa fa-shopping-cart">' + 'ADD' + '</button>';
+
+                        }, "sWidth": "10%"
+
+                    }
+
+
+
+                ]
 
             });
 
-        });
-
-
-        $(document).ready(function() {
-
+table.search('TABLET').draw();
+// end
 // only about us will be displayed
              $('a.home-link').click( function() {
                 var page = $(this).attr('href');
@@ -248,7 +275,7 @@
 
                 alert(productType);
 
-              table.cell( $("#prodType") ).data(productType) ;
+               table.search(productType).draw();
 
         }
 
@@ -267,128 +294,14 @@ $.ajax({
             dataType: 'json',
 
             success: function(data) {
-
-
-
              sessionStorage.clickcount =  parseInt(data);
-
              document.getElementById("itemCount").innerHTML = sessionStorage.clickcount;
-
           } // Success Function
 
           });   // Ajax Call
-
-
-
-
-
             var orderItem = {};
-
-
-
             var ul = document.getElementById("productType");
 
-
-
-
-
-            var table = $('#productList').DataTable({
-
-                "sAjaxSource": "/product",
-
-                "sAjaxDataProp": "",
-
-                "order": [[ 0, "asc" ]],
-
-                retrieve: true,
-
-                searchHighlight: true,
-
-                "aoColumns": [
-
-
-
-
-
-
-
-                    { "mData": "companyMake.parent_company_name" , "sWidth": "10%"},
-
-                    { "mData": "companyMake.company_name" , "sWidth": "10%"},
-
-
-
-                    { "mData": "productType.prod_type_name" , "sWidth": "10%"},
-
-                    { "mData": "product_name" , "sWidth": "20%" },
-
-                    { "mData": "product_description" , "sWidth": "30%" },
-
-                    { "mData": "product_pack_size" , "sWidth": "10%"},
-
-                    {
-
-                        "mData": "product_id",
-
-                        "bSortable": false,
-
-                        "mRender": function(data, type, full) {
-
-                            id = data;
-
-
-
-                            return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY...">';
-
-                        }, "sWidth": "10%"
-
-                    },
-
-
-
-                    {
-
-
-
-                        "mData": "product_id",
-
-                        "bSortable": false,
-
-                        "mRender": function(data, type, full) {
-
-
-
-                            id = data.toString();
-
-                            var a = parseInt(id);
-
-
-
-
-
-                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')"><i class="fa fa-shopping-cart">' + 'ADD' + '</button>';
-
-                        }, "sWidth": "10%"
-
-                    }
-
-
-
-                ]
-
-            });
-
-
-
-            table.on( 'draw', function () {
-
-        var body = $( table.table().body() );
-
-
-
-        body.highlight( table.search() );
-
-    } );
 
 
 

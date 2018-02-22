@@ -154,7 +154,7 @@ INSERT INTO `purchase_order`.`company`
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (6,  'KAN_BIOTECH', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
+    values (7,  'KAN_BIOTECH', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
 
 
 -- DRUG DETAILS

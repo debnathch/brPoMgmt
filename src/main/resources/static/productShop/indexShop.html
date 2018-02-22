@@ -298,7 +298,8 @@ $.ajax({
 
           });   // Ajax Call
             var orderItem = {};
-            var ul = document.getElementById("productType");
+            var ulP = document.getElementById("productType");
+            var ulC = document.getElementById("companyType");
 
 
 
@@ -339,7 +340,7 @@ $.ajax({
 
 
 
-                            ul.appendChild(li);
+                            ulP.appendChild(li);
 
                         }
 
@@ -391,7 +392,7 @@ $.ajax({
 
 
 
-                            ul.appendChild(li);
+                            ulC.appendChild(li);
 
                         }
 
@@ -736,8 +737,9 @@ $.ajax({
         <div class="row">
             <div class="col-sm-2">
                 <div class="left-sidebar">
-                    <h2>CATEGORY</h2>
-                    <div class="panel-group category-products" id="accordian">
+                    <h2>Category</h2>
+
+
 
                         <div class="brands_products"><!--brands_products-->
                             <h2>COMPANY TYPE</h2>
@@ -746,10 +748,10 @@ $.ajax({
 
                                 </ul>
                             </div>
-                        </div>
+                        </div><!--/brands_products-->
 
 
-                    </div><!--/category-products-->
+
 
                     <div class="brands_products"><!--brands_products-->
                         <h2>PRODUCT TYPE</h2>

@@ -138,15 +138,15 @@ INSERT INTO `purchase_order`.`company`
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (3,  'BENGAL PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES')
+    values (3,  'BENGAL PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (4,  'JM_HEALTHCARE', 2, 'JM_REMEDIES','CHANDIGARH', 'Parent Company');
+    values (4,  'JM HEALTHCARE', 2, 'JM_REMEDIES','CHANDIGARH', 'Parent Company');
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (5,  'JM_REMEDIES', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
+    values (5,  'JM REMEDIES', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
@@ -154,7 +154,7 @@ INSERT INTO `purchase_order`.`company`
 
 INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (7,  'KAN_BIOTECH', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
+    values (7,  'KAN BIOTECH', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
 
 
 -- DRUG DETAILS

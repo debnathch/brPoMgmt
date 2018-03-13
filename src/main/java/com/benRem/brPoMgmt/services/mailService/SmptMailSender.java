@@ -8,9 +8,11 @@ import java.util.Locale;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
 import com.benRem.brPoMgmt.domain.Customer;
 import com.benRem.brPoMgmt.domain.PurchaseOrderLineItem;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
+import com.benRem.brPoMgmt.reqResObj.response.CartProduct;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,10 @@ import org.thymeleaf.context.Context;
 public class SmptMailSender {
 
 @Autowired
-private JavaMailSender javaMailSender;  
+private JavaMailSender javaMailSender;
+	@Autowired
+private	PurchaeOrderDao purchaseOrderDao;
+
 
  @Autowired 
  private TemplateEngine templateEngine;
@@ -71,13 +76,35 @@ private JavaMailSender javaMailSender;
 			email.setFrom(authuser, "debnath");
 
 			email.setSubject("order mail :"+ lineItem.get(0).getPoId());
+			StringBuffer orderTable = new StringBuffer();
+			orderTable.append("<tr>")
+					//.append("<td>").append(" Company ").append("</td>")
+					.append("<td>").append(" ProductName ").append("</td>")
+					.append("<td>").append(" PackSize ").append("</td>")
+					.append("<td>").append(" Quantity ").append("</td>")
+					.append("<td>").append(" Description ").append("</td>")
+					.append("</tr>");
+			for(CartProduct eachProduct : purchaseOrderDao.fetchCartDetails("10")) {
+				orderTable.append("<tr>")
+						//.append("<td>").append(" ").append(eachProduct.getCompany()).append(" ").append("</td>")
+						.append("<td>").append(" ").append(eachProduct.getProduct_name()).append(" ").append("</td>")
+						.append("<td>").append(" ").append(eachProduct.getProduct_pack_size()).append(" ").append("</td>")
+						.append("<td>").append(" ").append(eachProduct.getProduct_qty()).append(" ").append("</td>")
+						.append("<td>").append(" ").append(eachProduct.getProduct_description()).append(" ").append("</td>")
+						.append("</tr>");
+
+
+			}
 			email.setHtmlMsg("<html><body><h4>welcome to Bengal Remedies " +cust.getCustomerName()+
 					" contacts you with mobile number "+cust.getCustPrimeryPhone() +" and his mail id is :"
-					+ cust.getCustEmail()+"</h4></body></html>");
+					+ cust.getCustEmail()+"</h4>"+
+							orderTable+
+					"</body></html>");
 			email.addTo(cust.getCustEmail(), cust.getCustEmail());
 			email.setTLS(true);
 			//https://www.google.com/settings/security/lesssecureapps turn it off. to send the mail
 			email.send();
+			purchaseOrderDao.updateCartToOrder(lineItem.get(0).getPoId());
 		} catch (EmailException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

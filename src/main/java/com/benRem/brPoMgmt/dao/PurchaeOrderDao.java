@@ -127,7 +127,7 @@ public class PurchaeOrderDao {
 			if (!poCart.isEmpty()) {
 
 				PurchaseOrder po = poCart.get(0);
-				updateCartToOrder(po.getPoId());
+
 
 				smptp.sendMailForOrder(cust, po.getPoLineItems());
 
@@ -145,7 +145,7 @@ public class PurchaeOrderDao {
 
 	}
 	// this method will update the PO order from cart to order status
-	private void updateCartToOrder(BigInteger poId) {
+	public void updateCartToOrder(BigInteger poId) {
 
 		orderCartRepository.updateFromCartToOrder(puchaseOrderConstant.isOrder.constParam(),  poId);
 	}

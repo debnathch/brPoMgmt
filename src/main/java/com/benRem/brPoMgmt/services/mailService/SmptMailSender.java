@@ -79,18 +79,18 @@ private	PurchaeOrderDao purchaseOrderDao;
 			StringBuffer orderTable = new StringBuffer();
 			orderTable.append("<tr>")
 					//.append("<td>").append(" Company ").append("</td>")
-					.append("<td>").append(" ProductName ").append("</td>")
-					.append("<td>").append(" PackSize ").append("</td>")
-					.append("<td>").append(" Quantity ").append("</td>")
-					.append("<td>").append(" Description ").append("</td>")
+					.append("<td>").append("   ProductName   ").append("</td>")
+					.append("<td>").append("   PackSize   ").append("</td>")
+					.append("<td>").append("   Quantity   ").append("</td>")
+					.append("<td>").append("     Description   ").append("</td>")
 					.append("</tr>");
 			for(CartProduct eachProduct : purchaseOrderDao.fetchCartDetails("10")) {
 				orderTable.append("<tr>")
 						//.append("<td>").append(" ").append(eachProduct.getCompany()).append(" ").append("</td>")
-						.append("<td>").append(" ").append(eachProduct.getProduct_name()).append(" ").append("</td>")
-						.append("<td>").append(" ").append(eachProduct.getProduct_pack_size()).append(" ").append("</td>")
-						.append("<td>").append(" ").append(eachProduct.getProduct_qty()).append(" ").append("</td>")
-						.append("<td>").append(" ").append(eachProduct.getProduct_description()).append(" ").append("</td>")
+						.append("<td>").append(" ").append(eachProduct.getProduct_name()).append("     ").append("</td>")
+						.append("<td>").append(" ").append(eachProduct.getProduct_pack_size()).append("     ").append("</td>")
+						.append("<td>").append(" ").append(eachProduct.getProduct_qty()).append("       ").append("</td>")
+						.append("<td>").append(" ").append(eachProduct.getProduct_description()).append("     ").append("</td>")
 						.append("</tr>");
 
 

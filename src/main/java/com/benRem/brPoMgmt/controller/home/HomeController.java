@@ -1,6 +1,7 @@
 package com.benRem.brPoMgmt.controller.home;
 
 import com.benRem.brPoMgmt.dao.CustomerDao;
+import com.benRem.brPoMgmt.domain.Customer;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
 import com.benRem.brPoMgmt.reqResObj.ContactDetailsForOrder;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
@@ -50,16 +51,21 @@ public class HomeController {
     }
 
     @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST)
-    public void customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
+    public Customer customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
 
+        Customer returnCustomer = null;
         try {
-            if(custDao.createCustomer(contactDetailsForOrder)) {
-                System.out.println("****** contating Bengal Remedies *****"+contactDetailsForOrder.getContactEmail());
+            returnCustomer = custDao.searchForCustomer(contactDetailsForOrder.getContactPhone());
+            if(returnCustomer ==null){
+                returnCustomer = custDao.createCustomer(contactDetailsForOrder);
+
             }
+
         } catch(Exception e) {
             e.printStackTrace();
         }
 
+        return returnCustomer;
     }
 
 

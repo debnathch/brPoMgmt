@@ -49,6 +49,7 @@
         function customerContactDetailsForProduct(){
 
 
+var customerName = "Anonymus";
     var contactDetailsForOrder = {};
     contactDetailsForOrder["contactName"] = $("#contactName").val();
     contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
@@ -63,6 +64,10 @@
         cache: false,
         timeout: 600000,
         success: function (data) {
+        alert("success");
+
+        alert(data.customerName);
+        customerName = data.customerName;
             $("#contactAlert").show();
             var json = "Thanks For your interest. Our Member will contact you shortly"
                 + JSON.stringify(data, null, 4) + "</pre>";
@@ -71,14 +76,15 @@
             $('#btn-contact').prop("disabled", false);
 
         },
-        error: function (e) {
-
-            $("#contactAlert").show();
-            console.log("ERROR : ", e);
-            $('#btn-contact').prop("disabled", false);
-        }
+       error: function(xhr, textStatus, error){
+      alert(xhr.statusText);
+      alert(textStatus);
+      alert(error);
+  }
     });
 sessionStorage.userVisited = 'Y';
+
+sessionStorage.CustomerName = customerName;
 
 }
     </script>

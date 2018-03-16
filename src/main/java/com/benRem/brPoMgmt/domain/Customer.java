@@ -1,6 +1,7 @@
 package com.benRem.brPoMgmt.domain;
 
 import lombok.Data;
+import org.json.JSONObject;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +16,8 @@ import java.math.BigInteger;
 @Data
 public class Customer implements Serializable {
 
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    //@GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
     @Column(name = "customer_id")
     BigInteger customerId;
 
@@ -116,7 +118,23 @@ public class Customer implements Serializable {
         this.customerType = customerType;
     }
 
+    public String toString(){
+        String info = "";
 
+        JSONObject jsonInfo = new JSONObject();
+        jsonInfo.put("customerId",this.customerId);
+        jsonInfo.put("customerName",this.customerName);
+        jsonInfo.put("custGstNum",this.custGstNum);
+        jsonInfo.put("custLscNum",this.custLscNum);
+        jsonInfo.put("custEmail",this.custEmail);
+        jsonInfo.put("custPrimeryPhone",this.custPrimeryPhone);
+        jsonInfo.put("custSecondaryPhone",this.custSecondaryPhone);
+        jsonInfo.put("customerAddress",this.customerAddress);
+        jsonInfo.put("customerType",this.customerType);
+
+        info = jsonInfo.toString();
+        return info;
+    }
 
 
 

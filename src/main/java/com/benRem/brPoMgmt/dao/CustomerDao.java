@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
+
 /**
  * Created by debnathchatterjee on 13/07/17.
  */
@@ -19,21 +21,20 @@ public class CustomerDao {
     @Autowired
     CustomerRepository customerRepository;
 
-    public boolean createCustomer(ContactDetailsForOrder contactDetailsForOrder){
+    public Customer createCustomer(ContactDetailsForOrder contactDetailsForOrder){
 
         Customer customer = new Customer();
+        customer.setCustomerId(new BigInteger(contactDetailsForOrder.getContactPhone()));
         customer.setCustomerName(contactDetailsForOrder.getContactName());
         customer.setCustEmail(contactDetailsForOrder.getContactEmail());
         customer.setCustPrimeryPhone(contactDetailsForOrder.getContactPhone());
-        if(customerRepository.save(customer)!=null){
-            return true;
-        } else {
-            return false;
-        }
+        return customerRepository.save(customer);
+
     }
 
-    public void searchForCustomer(){
+    public Customer searchForCustomer(String custId){
 
+       return  customerRepository.findOne(new BigInteger(custId));
     }
 
     public void updateCustomer(){

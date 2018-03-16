@@ -64,7 +64,7 @@ public class OrderController {
     }
 
     @RequestMapping(value ="/fetchFromCart", method = RequestMethod.GET)
-    public List<CartProduct> fetchFromCart() throws IOException {
+    public List<CartProduct> fetchFromCart(String CustomerId) throws IOException {
 
 
         AjaxResponseBody result = new AjaxResponseBody();
@@ -74,7 +74,7 @@ public class OrderController {
         ObjectMapper objMapper = new ObjectMapper();
 
 
-        for(CartProduct eachProduct : purchaseOrderDao.fetchCartDetails("10")) {
+        for(CartProduct eachProduct : purchaseOrderDao.fetchCartDetails(CustomerId)) {
 
             productList.add(objMapper.readValue(eachProduct.toString(), CartProduct.class));
         }

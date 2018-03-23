@@ -670,16 +670,13 @@ $.ajax({
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-                        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                        <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                        <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                        <!--<li><a href="cart.html"><i class="fa fa-shopping-cart badge badge-notify my-cart-badge"></i> Cart</a></li>-->
+
                         <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                         <li><a href="cart.html">
                             <i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span
                                     class="badge-cart" id="itemCount"></span></i-cart>
                         </a></li>
-
+                        <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -702,17 +699,7 @@ $.ajax({
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="indexShop.html" class="active">Home</a></li>
-                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="shop.html">Products</a></li>
-                                    <li><a href="product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
 
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                </ul>
-                            </li>
                             <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="blog.html">Blog List</a></li>
@@ -724,7 +711,11 @@ $.ajax({
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <form method="get" action="http://www.google.com/search" target="_blank">
+                            <input type="text" name="q" placeholder="Google Search"/>
+                            <!--<input type="submit" value="search"/>-->
+                        </form>
+
                     </div>
                 </div>
             </div>

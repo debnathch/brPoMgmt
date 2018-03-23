@@ -84,7 +84,7 @@ private	PurchaeOrderDao purchaseOrderDao;
 					.append("<td>").append("   Quantity   ").append("</td>")
 					.append("<td>").append("     Description   ").append("</td>")
 					.append("</tr>");
-			for(CartProduct eachProduct : purchaseOrderDao.fetchCartDetails("10")) {
+			for(CartProduct eachProduct : purchaseOrderDao.fetchCartDetails(cust.getCustomerId().toString())) {
 				orderTable.append("<tr>")
 						//.append("<td>").append(" ").append(eachProduct.getCompany()).append(" ").append("</td>")
 						.append("<td>").append(" ").append(eachProduct.getProduct_name()).append("     ").append("</td>")

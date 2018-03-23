@@ -49,7 +49,7 @@ private	PurchaeOrderDao purchaseOrderDao;
 		
 	    email.setSubject("TestMail");
 	    email.setHtmlMsg("<html><body><h4>welcome to Bengal Remedies " +toMail.getName()+" contacts you with mobile number "+toMail.getPhoneNo() +" and given a comments : "+toMail.getComments()+" and his mail id is :"+ toMail.getEmail()+"</h4></body></html>");
-	    email.addTo(authuser, toMail.getName());
+	    email.addTo(toMail.getEmail(), toMail.getEmail());
 	    email.setTLS(true);
 	    //https://www.google.com/settings/security/lesssecureapps turn it off. to send the mail
 	    email.send();

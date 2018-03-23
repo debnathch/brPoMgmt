@@ -184,8 +184,8 @@
         }
 
   function SubmitOrder() {
-			var orderForCustomerId = 10;
 
+        var customer = JSON.parse(sessionStorage.cust);
 
 		document.getElementById("btn-order").style.display = "none";
 
@@ -199,10 +199,10 @@
         });
 
             $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/triggerToOrder",
-  				data: JSON.stringify(orderForCustomerId),
+                type: 'POST',
+
+                url: '/triggerToOrder',
+  				data: { "customerId" : customer.customer_id},
                 dataType: 'json',
                 cache: false,
                 timeout: 600000,
@@ -238,7 +238,7 @@
                 "order": [[ 0, "asc" ]],
                  ajax: {
                         "url": "/fetchFromCart",
-                        "async": true,
+                        "async": false,
                         "data": {"customerId":customer.customer_id},
 
                         "datatype": "json",

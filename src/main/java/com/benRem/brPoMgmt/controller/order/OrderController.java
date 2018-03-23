@@ -50,10 +50,10 @@ public class OrderController {
     }
 
     @RequestMapping(value ="/triggerToOrder", method = RequestMethod.POST)
-    public ResponseEntity<?> triggerToOrder(@Valid @RequestBody String customerId)  {
+    public ResponseEntity<?> triggerToOrder( String customerId)  {
 
         AjaxResponseBody result = new AjaxResponseBody();
-        System.out.println(" ****** Placing your order ********** ");
+        System.out.println(" ****** Placing your order ********** "+ customerId);
         // add to cart to table
         if(purchaseOrderDao.triggerForOrder(customerId).equalsIgnoreCase("success")) {
 

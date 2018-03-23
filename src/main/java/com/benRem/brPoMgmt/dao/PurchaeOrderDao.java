@@ -40,17 +40,17 @@ public class PurchaeOrderDao {
 
 // this method is saving the cart item for each add of each item.
 
-	public String saveToCart(Integer customerId , OrderItem orderCart) {
+	public String saveToCart(BigInteger customerId , OrderItem orderCart) {
 
 
 		try {
-			Customer cust = customerRepository.findOne(BigInteger.valueOf(customerId));
+			Customer cust = customerRepository.findOne(customerId);
 			List<PurchaseOrder> poCart = findPurchaseOrderAsCart(customerId.toString());
 
 			// customer dont have any product in cart
 			if (poCart.isEmpty()) {
 				PurchaseOrder orderToCart = new PurchaseOrder();
-				orderToCart.setCustomerId(BigInteger.valueOf(customerId));
+				orderToCart.setCustomerId(customerId);
 
 				orderToCart.setIsActivate(puchaseOrderConstant.isActivate.constParam());
 				orderToCart.setIsCart(puchaseOrderConstant.isCart.constParam());

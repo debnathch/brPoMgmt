@@ -21,21 +21,7 @@
 
 
 
-    <!-- load the about content to UI-->
-    <script type="text/javascript">
-    $(window).on('load',function(){
 
-
-
-        if(sessionStorage["PopupShown"] != 'yes'){
-        $('#myModal').modal('show');
-        sessionStorage["PopupShown"] = 'yes';
-        }
-
-
-
-    });
-</script>
     <script>
         $(document).ready(function() {
 // only about us will be displayed
@@ -160,39 +146,48 @@
             });
         }
 
-        function customerContactDetailsForProduct(){
+     function customerContactDetailsForProduct(){
+
+    var contactDetailsForOrder = {};
+    contactDetailsForOrder["contactName"] = document.getElementById("contactName").value;
+    contactDetailsForOrder["contactEmail"] = document.getElementById("contactEmail").value;
+    contactDetailsForOrder["contactPhone"] = document.getElementById("contactPhone").value;
+
+    alert("Saving your information");
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/customerDetailsForProductOrder",
+        data: JSON.stringify(contactDetailsForOrder),
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+
+        success: function (data) {
+
+            var cust = { 'customer_Id': data.customerId,
+                         'customer_name':data.customerName,
+                         'customer_email' : data.custEmail,
+                         'customer_mobile': data.custPrimeryPhone };
+            sessionStorage.setItem('cust', JSON.stringify(cust));
+            var customer = JSON.parse(sessionStorage.cust);
+            alert("Welcome " + customer.customer_name);
+            console.log("SUCCESS : ", data);
+            $('#btn-contact').prop("disabled", false);
+            sessionStorage.userVisited = 'Y';
 
 
-            var contactDetailsForOrder = {};
-            contactDetailsForOrder["contactName"] = $("#contactName").val();
-            contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
-            contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
 
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/customerDetailsForProductOrder",
-                data: JSON.stringify(contactDetailsForOrder),
-                dataType: 'json',
-                cache: false,
-                timeout: 600000,
-                success: function (data) {
-                    $("#contactAlert").show();
-                    var json = "Thanks For your interest. Our Member will contact you shortly"
-                        + JSON.stringify(data, null, 4) + "</pre>";
+        },
+       error: function(xhr, textStatus, error){
+       alert(" Fail to save customer Information ");
+      alert(xhr.responseText);
 
-                    console.log("SUCCESS : ", data);
-                    $('#btn-contact').prop("disabled", false);
-                },
-                error: function (e) {
+  }
+    });
 
-                    $("#contactAlert").show();
-                    console.log("ERROR : ", e);
-                    $('#btn-contact').prop("disabled", false);
-                }
-            });
-        }
 
+}
         function contactUs() {
 
 
@@ -554,48 +549,6 @@
 </div>
 
 <!-- contact details before product details -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Contact Details</h5>
-            </div>
-            <form role="form" data-toggle="validator" onsubmit="customerContactDetailsForProduct()">
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-sm-6 form-group" class="form-group">
-                            <input class="form-control" id="contactName" name="name" placeholder="Name" type="text" required>
-                        </div>
-                        <div class="col-sm-6 form-group" class="form-group">
-                            <input class="form-control" id="contactEmail" name="email" placeholder="Email" type="email"
-                                   data-error="Bruh, that email address is invalid" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 form-group" class="form-group">
-                            <input class="form-control" id="contactPhone" name="phoneNo" placeholder="Phone Number" type="phoneNo" max maxlength="10" minlength="10">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12 form-group" class="form-group">
-                            <button class="btn pull-right" id="btn-contact-Product" type="submit" >send</button>
-                            <button  type="reset" class="btn">reset</button>
-                        </div>
-
-                    </div>
-                </div>
-            </form>
-
-        </div>
-
-    </div>
-</div>
 
 
 

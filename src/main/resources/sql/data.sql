@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `purchase_order`.`br_purchase_order` ;
 CREATE TABLE IF NOT EXISTS `purchase_order`.`br_purchase_order` (
   `po_id`  INT(1) NOT NULL AUTO_INCREMENT,
  -- `po_line_item_id`  INT NOT NULL,
-  `customer_id` INT NOT NULL,
+  `customer_id` BIGINT NOT NULL,
   `is_cart`  varchar(5) NOT NULL,
   `is_active`  varchar(5) NOT NULL,
   `order_date` TIMESTAMP NULL,

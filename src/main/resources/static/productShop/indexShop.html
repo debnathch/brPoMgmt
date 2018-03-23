@@ -39,22 +39,17 @@
 
     <!-- load the about content to UI  http://www.jquery-az.com/jquery/demo.php?ex=69.0_1-->
 
+
     <script>
-
-
-
-
-
 
         function customerContactDetailsForProduct(){
 
-
-var customerName = "Anonymus";
     var contactDetailsForOrder = {};
-    contactDetailsForOrder["contactName"] = $("#contactName").val();
-    contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
-    contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
+    contactDetailsForOrder["contactName"] = document.getElementById("contactName").value;
+    contactDetailsForOrder["contactEmail"] = document.getElementById("contactEmail").value;
+    contactDetailsForOrder["contactPhone"] = document.getElementById("contactPhone").value;
 
+    alert("Saving your information");
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -63,36 +58,36 @@ var customerName = "Anonymus";
         dataType: 'json',
         cache: false,
         timeout: 600000,
+
         success: function (data) {
-        alert("success");
 
-        alert(data.customerName);
-        customerName = data.customerName;
-            $("#contactAlert").show();
-            var json = "Thanks For your interest. Our Member will contact you shortly"
-                + JSON.stringify(data, null, 4) + "</pre>";
-
+            var cust = { 'customer_id': data.customerId,
+                         'customer_name':data.customerName,
+                         'customer_email' : data.custEmail,
+                         'customer_mobile': data.custPrimeryPhone };
+            sessionStorage.setItem('cust', JSON.stringify(cust));
+            customer = JSON.parse(sessionStorage.cust);
+            alert("Welcome " + customer.customer_name);
             console.log("SUCCESS : ", data);
             $('#btn-contact').prop("disabled", false);
+            sessionStorage.userVisited = 'Y';
+
+
 
         },
        error: function(xhr, textStatus, error){
-      alert(xhr.statusText);
-      alert(textStatus);
-      alert(error);
+       alert(" Fail to save customer Information ");
+      alert(xhr.responseText);
+
   }
     });
-sessionStorage.userVisited = 'Y';
 
-sessionStorage.CustomerName = customerName;
 
 }
-    </script>
-
-    <script>
 
 var table;
 var node;
+var customer;
         $(document).ready(function() {
 
 
@@ -289,9 +284,13 @@ table.search('TABLET').draw();
                 var orderItem = {};
                 clickCounter(cartQuty);
 
+                var customer = JSON.parse(sessionStorage.cust);
+
                 orderItem["prod_id"]=id;
 
                 orderItem["prod_qty"]=cartQuty;
+
+                orderItem["customerId"]= customer.customer_id;
 
                 $.ajax({
 
@@ -347,6 +346,8 @@ table.search('TABLET').draw();
         $(document).ready( function () {
 
             var id =  parseInt(0);
+            var customer = JSON.parse(sessionStorage.cust);
+
 
 $.ajax({
 
@@ -354,7 +355,7 @@ $.ajax({
 
             url: '/fetchCartCount',
 
-            data: '10',
+            data: {"customerId":customer.customer_id},
 
             dataType: 'json',
 
@@ -477,9 +478,9 @@ $.ajax({
 
 
         });
-$(function() {
 
-            console.log(sessionStorage.userVisited);
+        $(function() {
+
          if(sessionStorage.userVisited != 'Y'){
             $("#popModal").modal('show');
 

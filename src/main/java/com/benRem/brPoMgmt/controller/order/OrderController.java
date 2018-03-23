@@ -1,6 +1,7 @@
 package com.benRem.brPoMgmt.controller.order;
 
 import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
+import com.benRem.brPoMgmt.domain.PurchaseOrder;
 import com.benRem.brPoMgmt.reqResObj.response.CartProduct;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class OrderController {
     public ResponseEntity<?> addToCart(@Valid @RequestBody OrderItem orderItem)  {
         System.out.println(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
         AjaxResponseBody result = new AjaxResponseBody();
-        Integer customerId = Integer.parseInt("10");
+        BigInteger customerId = new BigInteger(orderItem.getCustomerId());
         // add to cart to table
         if(purchaseOrderDao.saveToCart(customerId , orderItem).equalsIgnoreCase("success"))
             return ResponseEntity.ok(result) ;
@@ -64,17 +66,17 @@ public class OrderController {
     }
 
     @RequestMapping(value ="/fetchFromCart", method = RequestMethod.GET)
-    public List<CartProduct> fetchFromCart(String CustomerId) throws IOException {
+    public List<CartProduct> fetchFromCart(String customerId) throws IOException {
 
 
         AjaxResponseBody result = new AjaxResponseBody();
-
+        //CustomerId = "9836711699";
         System.out.println("****** fetching from cart  *****");
         List<CartProduct> productList = new ArrayList<>();
         ObjectMapper objMapper = new ObjectMapper();
 
 
-        for(CartProduct eachProduct : purchaseOrderDao.fetchCartDetails(CustomerId)) {
+        for(CartProduct eachProduct : purchaseOrderDao.fetchCartDetails(customerId)) {
 
             productList.add(objMapper.readValue(eachProduct.toString(), CartProduct.class));
         }
@@ -83,9 +85,20 @@ public class OrderController {
     }
 
     @RequestMapping(value ="/fetchCartCount", method = RequestMethod.GET)
-    public String fetchAllFromCart() throws IOException {
+    public String fetchAllFromCart(String customerId) throws IOException {
 
-        return  String.valueOf(purchaseOrderDao.findPurchaseOrderAsCart("10").size()) ;
+        if(customerId !=null){
+            List<PurchaseOrder> poList= purchaseOrderDao.findPurchaseOrderAsCart(customerId);
+            if(poList !=null){
+                return  String.valueOf(poList.size());
+            } else {
+                return "0";
+            }
+        } else {
+            return  "0";
+        }
+
+
 
 
     }

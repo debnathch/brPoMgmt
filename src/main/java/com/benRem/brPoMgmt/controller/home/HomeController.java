@@ -8,6 +8,7 @@ import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
 import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -51,7 +52,9 @@ public class HomeController {
     }
 
     @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST)
-    public Customer customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
+    public ResponseEntity<?> customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
+
+        System.out.println(contactDetailsForOrder.getContactEmail()+"****** entry to add product *****"+contactDetailsForOrder.getContactPhone());
 
         Customer returnCustomer = null;
         try {
@@ -60,12 +63,18 @@ public class HomeController {
                 returnCustomer = custDao.createCustomer(contactDetailsForOrder);
 
             }
-
+            return ResponseEntity.ok(returnCustomer) ;
         } catch(Exception e) {
             e.printStackTrace();
+            return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
         }
 
-        return returnCustomer;
+
+
+
+
+
+
     }
 
 

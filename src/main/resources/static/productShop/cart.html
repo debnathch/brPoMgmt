@@ -230,12 +230,24 @@
             var id =  parseInt(0);
 
             var orderItem = {};
-
+            var customer = JSON.parse(sessionStorage.cust);
 
             var table = $('#productList').DataTable({
-                "sAjaxSource": "/fetchFromCart",
+
                 "sAjaxDataProp": "",
                 "order": [[ 0, "asc" ]],
+                 ajax: {
+                        "url": "/fetchFromCart",
+                        "async": true,
+                        "data": {"customerId":customer.customer_id},
+
+                        "datatype": "json",
+                        "contenttype": "application/json; charset=utf-8",
+                        "type": "GET"
+                    },
+
+
+
                 "aoColumns": [
 
 

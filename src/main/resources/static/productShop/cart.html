@@ -227,6 +227,14 @@
         $(document).ready( function () {
 
 
+           if(sessionStorage.userVisited != 'Y'){
+
+                document.getElementById("displayUser").innerHTML='Welcome Anonymous';
+            } else {
+                var customer = JSON.parse(sessionStorage.cust);
+                document.getElementById("displayUser").innerHTML='Welcome ' + customer.customer_name + '';
+            }
+
             var id =  parseInt(0);
 
 
@@ -528,22 +536,6 @@
             <div class="col-sm-2">
                 <div class="left-sidebar">
 
-
-                    <div class="brands_products"><!--brands_products-->
-                        <h2>Brands</h2>
-                        <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#"> <span class="pull-right"></span>Syrup</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Tablet Erde</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Injection</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Herbal</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Oinment</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Eye-Product</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Beta</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Non-Beta</a></li>
-                            </ul>
-                        </div>
-                    </div><!--/brands_products-->
 
 
 

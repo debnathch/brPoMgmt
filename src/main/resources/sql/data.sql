@@ -31,13 +31,6 @@ CREATE SCHEMA `purchase_order` ;
 
 
 
-     INSERT INTO `purchase_order`.`customer`
-         (`customer_id`,`customer_name`,`customer_gst`,`customer_lisc_num`, `customer_email`,`customer_Phone1` ,`customer_Phone2`, `customer_address`,`customer_type`)
-         values (9838773388,  'SUMITA ENTERPRISE','GST-123456','Lsc-67895','debnathch@gmail.com','9838773388','9988776655', 'KOLKATA', 'Distributor');
-
-
-
-
 -- -----------------------------------------------------
 -- Schema purchase_order
 -- -----------------------------------------------------

@@ -187,7 +187,7 @@
 
         var customer = JSON.parse(sessionStorage.cust);
 
-		document.getElementById("btn-order").style.display = "none";
+
 
 			 $.ajaxSetup({
 			        beforeSend: function () {
@@ -229,7 +229,10 @@
 
             var id =  parseInt(0);
 
-            var orderItem = {};
+
+
+            node = document.getElementById('refreshLine');
+            node.style.visibility = 'hidden';
             var customer = JSON.parse(sessionStorage.cust);
 
             var table = $('#productList').DataTable({
@@ -244,6 +247,7 @@
                         "datatype": "json",
                         "contenttype": "application/json; charset=utf-8",
                         "type": "GET"
+
                     },
 
 
@@ -260,7 +264,17 @@
 
                 ]
                 
-            })
+            });
+
+            var rowInCartTable = table.rows().data();
+
+            if(rowInCartTable.length  == 0) {
+
+                node.style.visibility = 'visible';
+                document.getElementById("btnorder").style.display = "none";
+
+
+            }
 
         });
 
@@ -472,8 +486,8 @@
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
 
-                        <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                        <!--<li><a href="cart.html"><i class="fa fa-shopping-cart badge badge-notify my-cart-badge"></i> Cart</a></li>-->
+                        <li><button class="btn pull-left" id="btnorder" onclick="SubmitOrder()">place Your order</button></li>
+                        <li><a href="login.html" ><span><i class="glyphicon glyphicon-user" id="displayUser" ></i></span>  </a></li>
 
                     </ul>
                 </div>
@@ -566,7 +580,7 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-md-12 form-group" class="form-group">
-                                        <a class="btn pull-right" id="btn-order-Product"  >..CONTINUE..</a>
+                                        <a class="btn pull-right" id="-Product"  >..CONTINUE..</a>
 
                                     </div>
 
@@ -581,7 +595,7 @@
 
             <script>
 
-                $("#btn-order-Product").click(function(){
+                $("#-Product").click(function(){
 
    window.location.href = "http://localhost:8085/productShop/indexShop.html";
 
@@ -591,6 +605,7 @@
 
             <div class="col-sm-10 padding-right">
                 <h5>Your Cart List</h5>
+                <h5 id = "refreshLine" style="color:red;">Cart is Empty Now</h5>
                 <table id="productList" class="display table-bordered table-condensed table-striped table-hover">
 
                     <!-- Header Table -->
@@ -620,15 +635,6 @@
 </section>
 <!-- journey photo as slider-->
 
-<section>
-    <div class="col-sm-6 ">
-
-    </div>
-    <div class="col-sm-6 ">
-        <button class="btn pull-left" id="btn-order" onclick="SubmitOrder()">place Your order</button>
-    </div>
-
-</section>
 
 
 <section>

@@ -1,5 +1,6 @@
 package com.benRem.brPoMgmt.controller.admin;
 
+import com.benRem.brPoMgmt.dao.ProductDao;
 import com.benRem.brPoMgmt.domain.Company;
 import com.benRem.brPoMgmt.domain.ProductType;
 import com.benRem.brPoMgmt.repository.CompanyRepository;
@@ -37,14 +38,10 @@ import java.util.Map;
 
 public class AdminController {
 
-    @Autowired
-    ProductRepository productRepository;
+
 
     @Autowired
-    CompanyRepository companyRepository;
-
-    @Autowired
-    ProductTypeRepository productTypeRepository;
+    ProductDao productDao;
 
     @RequestMapping(value = "/prodfileupload", method = RequestMethod.POST)
     @ApiOperation("Upload XLSX file ")
@@ -53,22 +50,24 @@ public class AdminController {
         AjaxResponseBody response = new AjaxResponseBody();
         try {
             log.debug(form.getCompany() + " "+ form.getProdType());
-            InputStream stream = form.getProductExcel()[0].getInputStream();
-            /*XSSFWorkbook workbook = new XSSFWorkbook(stream);
-            XSSFSheet sheet = workbook.getSheetAt(0);
-
-            Iterator<Row> rowIterator = sheet.iterator();*/
-            Company comp = companyRepository.findCompanyIdByName(form.getCompany());
-            ProductType prodType = productTypeRepository.findProdTypeIdByType(form.getProdType());
-           int isdeleted = productRepository.deleteProductForBulkUpload(comp, prodType);
-            System.out.println(isdeleted);
 
 
-            /*while (rowIterator.hasNext()) {
+            if(productDao.deleteItem(form.getCompany(),form.getProdType()) == 0) {
+                InputStream stream = form.getProductExcel()[0].getInputStream();
+                /*XSSFWorkbook workbook = new XSSFWorkbook(stream);
+                XSSFSheet sheet = workbook.getSheetAt(0);
+
+                Iterator<Row> rowIterator = sheet.iterator();*/
+                /*while (rowIterator.hasNext()) {
                 // Skip read heading
 
             }*/
-            //productRepository.save();
+                //productRepository.save();
+                response.setMsg("The file has been successfully processed");
+
+            }
+
+
             return ResponseEntity.ok(response);
 
         } catch (IOException e) {

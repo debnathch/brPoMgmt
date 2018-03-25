@@ -33,6 +33,7 @@ public class ProductDao {
 
 
 
+
   
  // @RequestMapping(method = RequestMethod.GET)
   public List<Br_Product> findItems() {
@@ -68,8 +69,11 @@ public class ProductDao {
   }
   
  // @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-  public void deleteItem(@PathVariable Integer id) {
-      ProductRepo.delete(id);
+  public int deleteItem(String company, String productType) {
+      Company comp = companyRepository.findCompanyIdByName(company);
+      ProductType prodType = productTypeRepo.findProdTypeIdByType(productType);
+      return ProductRepo.deleteProductForBulkUpload(comp, prodType);
+
   }
   
   

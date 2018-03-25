@@ -191,6 +191,7 @@ INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (3,  'CAPSULES', 'CAPSULES');
 
+
      INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (4,  'DRY SYRUP', 'DRY SYRUP');
@@ -226,6 +227,11 @@ INSERT INTO `purchase_order`.`br_product_type`
     INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (12,  'POWDER', 'Powder');
+
+
+    INSERT INTO `purchase_order`.`br_product_type`
+        (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+        values (13,  'SOFTGEL CAPSULES', 'CAPSULES');
 -- -----------------------------------------------------
 -- product list
 -- -----------------------------------------------------

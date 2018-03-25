@@ -24,14 +24,29 @@ public class PurchaseOrderLineItem implements Serializable {
     BigInteger poId;
 
     @Column(name="prod_id")
-    BigInteger prodId;
+    int prodId;
+
+    @Column(name="prod_name")
+    String product_name;
+
+    @Column(name="prod_description")
+    String product_description;
+
+    @Column(name="prod_pack_size")
+    String product_pack_size;
+
+    @Column(name="prod_trade_price")
+    Float product_trade_price;
+
+    @Column(name="prod_hsn_code")
+    String product_hsn_code;
 
     @Column(name="product_quantity")
     BigInteger productQty;
 
-    @OneToOne
+   /* @OneToOne
             @JoinColumn(name="prod_id",referencedColumnName = "prod_id",updatable = false,insertable = false)
-    Br_Product productItem;
+    Br_Product productItem;*/
 
 
 

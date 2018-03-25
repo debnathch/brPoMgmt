@@ -68,7 +68,7 @@ public class ProductDao {
   }
   
  // @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-  public void deleteItem(@PathVariable Long id) {
+  public void deleteItem(@PathVariable Integer id) {
       ProductRepo.delete(id);
   }
   

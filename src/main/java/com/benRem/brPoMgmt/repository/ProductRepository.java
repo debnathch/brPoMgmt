@@ -7,7 +7,7 @@ import com.benRem.brPoMgmt.domain.Br_Product;
 
 
 @Repository
-public interface ProductRepository extends CrudRepository<Br_Product, Long>{
+public interface ProductRepository extends CrudRepository<Br_Product, Integer>{
 	//List<Purchase_Order> findAllPurchaseOrder();
 	
 }

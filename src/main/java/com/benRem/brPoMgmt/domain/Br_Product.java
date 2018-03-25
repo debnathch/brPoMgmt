@@ -40,12 +40,16 @@ public class Br_Product implements Serializable {
 	
 	@Column(name="prod_trade_price")
 	Float product_trade_price;
-	
-	@Column(name="prod_mrp_incl_vat")
+
+	@Column(name="prod_hsn_code")
+	String product_hsn_code;
+
+
+	/*@Column(name="prod_mrp_incl_vat")
 	Float product_mrp_price_icl_vat;
 	
 	@Column(name="prod_net_exclude_vat")
-	Float product_net_exclude_vat;
+	Float product_net_exclude_vat;*/
 
 
 	public Br_Product(){
@@ -110,21 +114,20 @@ public class Br_Product implements Serializable {
 	public void setProduct_trade_price(Float product_trade_price) {
 		this.product_trade_price = product_trade_price;
 	}
-
-	public Float getProduct_mrp_price_icl_vat() {
-		return product_mrp_price_icl_vat;
+	public int getProduct_id() {
+		return product_id;
 	}
 
-	public void setProduct_mrp_price_icl_vat(Float product_mrp_price_icl_vat) {
-		this.product_mrp_price_icl_vat = product_mrp_price_icl_vat;
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
 	}
 
-	public Float getProduct_net_exclude_vat() {
-		return product_net_exclude_vat;
+	public String getProduct_hsn_code() {
+		return product_hsn_code;
 	}
 
-	public void setProduct_net_exclude_vat(Float product_net_exclude_vat) {
-		this.product_net_exclude_vat = product_net_exclude_vat;
+	public void setProduct_hsn_code(String product_hsn_code) {
+		this.product_hsn_code = product_hsn_code;
 	}
 
 	public String toString(){

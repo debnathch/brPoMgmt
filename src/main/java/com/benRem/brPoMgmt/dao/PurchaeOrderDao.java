@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.benRem.brPoMgmt.domain.*;
-import com.benRem.brPoMgmt.repository.CustomerRepository;
-import com.benRem.brPoMgmt.repository.OrderCartRepository;
-import com.benRem.brPoMgmt.repository.PurchaseOrderLineItemRepository;
+import com.benRem.brPoMgmt.repository.*;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import com.benRem.brPoMgmt.reqResObj.response.CartProduct;
 import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.benRem.brPoMgmt.repository.PurchaseOrderRepository;
 import util.puchaseOrderConstant;
 
 @Component
@@ -28,6 +25,9 @@ public class PurchaeOrderDao {
 
 	@Autowired
 	private PurchaseOrderLineItemRepository orderLineItemRepository;
+
+	@Autowired
+	private ProductRepository productRepository ;
 
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -65,7 +65,14 @@ public class PurchaeOrderDao {
 
 					purchaseOrderLineItem.setPoId(orderToCart.getPoId());
 
-					purchaseOrderLineItem.setProdId(new BigInteger(orderCart.getProd_id()));
+					//fetch product details from prodId
+					Br_Product product = productRepository.findOne(Integer.valueOf(orderCart.getProd_id()));
+
+					purchaseOrderLineItem.setProdId(product.getProduct_id());
+					purchaseOrderLineItem.setProduct_name(product.getProduct_name());
+					purchaseOrderLineItem.setProduct_description(product.getProduct_description());
+					purchaseOrderLineItem.setProduct_pack_size(product.getProduct_pack_size());
+					purchaseOrderLineItem.setProduct_hsn_code(product.getProduct_hsn_code());
 					purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
 
 
@@ -79,7 +86,7 @@ public class PurchaeOrderDao {
 				boolean isUpdated = false;
 				for(PurchaseOrderLineItem poLineItem : orderToCart.getPoLineItems()){
 
-					if(new BigInteger(orderCart.getProd_id()).intValue()==(poLineItem.getProductItem().getProduct_id())){
+					if(new BigInteger(orderCart.getProd_id()).intValue()==(poLineItem.getProdId())){
 						System.out.println("**** yahooooo item is in cart ******");
 						isUpdated = true;
 						updatePoLineItemWithQty(poLineItem, poLineItem.getProductQty().intValue()+Integer.parseInt(orderCart.getProd_qty()));
@@ -90,8 +97,14 @@ public class PurchaeOrderDao {
 					PurchaseOrderLineItem purchaseOrderLineItem = new PurchaseOrderLineItem();
 
 					purchaseOrderLineItem.setPoId(orderToCart.getPoId());
+					//fetch product details from prodId
+					Br_Product product = productRepository.findOne(Integer.valueOf(orderCart.getProd_id()));
 
-					purchaseOrderLineItem.setProdId(new BigInteger(orderCart.getProd_id()));
+					purchaseOrderLineItem.setProdId(product.getProduct_id());
+					purchaseOrderLineItem.setProduct_name(product.getProduct_name());
+					purchaseOrderLineItem.setProduct_description(product.getProduct_description());
+					purchaseOrderLineItem.setProduct_pack_size(product.getProduct_pack_size());
+					purchaseOrderLineItem.setProduct_hsn_code(product.getProduct_hsn_code());
 					purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
 
 
@@ -178,7 +191,7 @@ public class PurchaeOrderDao {
 				for(PurchaseOrderLineItem poLine : poLineItems){
 
 					CartProduct cartProduct = new CartProduct();
-					Br_Product brProduct = poLine.getProductItem();
+					Br_Product brProduct = productRepository.findOne(Integer.valueOf(poLine.getProdId()));
 					cartProduct.setCompany(brProduct.getCompany());
 					cartProduct.setProduct_description(brProduct.getProduct_description());
 					cartProduct.setProduct_id(brProduct.getProduct_id());

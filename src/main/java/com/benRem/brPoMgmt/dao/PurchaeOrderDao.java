@@ -209,6 +209,41 @@ public class PurchaeOrderDao {
 	}
 
 
+	// this method is saving the cart item for each add of each item.
+
+	public String delFromCart(BigInteger customerId , OrderItem orderCart) {
+
+
+		try {
+			Customer cust = customerRepository.findOne(customerId);
+			List<PurchaseOrder> poCart = findPurchaseOrderAsCart(customerId.toString());
+
+			PurchaseOrder orderToCart = poCart.get(0);
+			for(PurchaseOrderLineItem poLineItem : orderToCart.getPoLineItems()){
+
+				if(new BigInteger(orderCart.getProd_id()).intValue()==(poLineItem.getProdId())){
+					System.out.println("**** yahooooo item is in cart ******");
+
+					deletePoLineItemWithQty(poLineItem);
+				}
+			}
+
+
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return "fail";
+		}
+
+	}
+
+	// this method will update the quantity of the added cart item.
+	private void deletePoLineItemWithQty(PurchaseOrderLineItem poLineItem) {
+
+		orderLineItemRepository.delete(poLineItem.getPoLineItemId());
+	}
+
 	public Iterable<PurchaseOrder> FindPurchaseOrder(){
 		
 		return purchaseOrderRepo.findAll();

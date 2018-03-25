@@ -140,31 +140,35 @@
             }
         }
 
-        // after adding into cart
-        function addToCart(id){
+        // deleting from cart
+        function delFromCart(id){
 
-            if(document.getElementById("qty_"+id).value != 0){
-                var cartQuty = document.getElementById("qty_"+id).value;
+
+            if(true){
+                var cartQuty = '0';
                 var orderItem = {};
 
-                clickCounter(cartQuty);
                 orderItem["prod_id"]=id;
                 orderItem["prod_qty"]=cartQuty;
+
+                 var customer = JSON.parse(sessionStorage.cust);
+                 orderItem["customerId"]= customer.customer_id;
 
                 $.ajax({
                     type: "POST",
                     contentType: "application/json",
-                    url: "/addCart",
+                    url: "/delFromCart",
                     data: JSON.stringify(orderItem),
                     dataType: 'json',
                     cache: false,
                     timeout: 600000,
                     success: function (data) {
-                        alert("Added to card successFully : ");
+                        alert("deleted from the cart successFully  : ");
                         var json = "Thanks For your interest. Our Member will contact you shortly"
                             + JSON.stringify(data, null, 4) + "</pre>";
 
-                        console.log("Added to card successFully : ", data);
+                        console.log("deleted from the cart successFully : ", data);
+                        window.location.href = 'http://localhost:8085/productShop/cart.html';
 
                     },
                     error: function (e) {
@@ -173,7 +177,7 @@
 
                     }
                 });
-                document.getElementById("qty_"+id).value = 0;
+
             } else{
 
                 alert("please select atleast one item")
@@ -268,7 +272,17 @@
                     { "mData": "product_description" , "sWidth": "30%" },
                     { "mData": "product_pack_size" , "sWidth": "10%"},
                     { "mData": "product_qty" , "sWidth": "10%"},
+                     {
+                        "mData": "product_id",
+                        "bSortable": false,
+                        "mRender": function(data, type, full) {
+                            id = data.toString();
+                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="delFromCart('+id+')"><i class="fa fa-shopping-cart">' + 'Delete' + '</button>';
 
+
+                        }, "sWidth": "10%"
+
+                    }
 
                 ]
                 
@@ -279,6 +293,7 @@
             if(rowInCartTable.length  == 0) {
 
                 node.style.visibility = 'visible';
+                sessionStorage.clickcount = 0;
                 document.getElementById("btnorder").style.display = "none";
 
 
@@ -609,6 +624,7 @@
                         <th>product description</th>
                         <th>box description</th>
                         <th>Quantity</th>
+                        <th>Delete cartItem</th>
 
 
                     </tr>

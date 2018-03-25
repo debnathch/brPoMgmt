@@ -2,6 +2,7 @@ package com.benRem.brPoMgmt.controller.order;
 
 import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
 import com.benRem.brPoMgmt.domain.PurchaseOrder;
+import com.benRem.brPoMgmt.repository.PurchaseOrderRepository;
 import com.benRem.brPoMgmt.reqResObj.response.CartProduct;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
@@ -35,6 +36,9 @@ public class OrderController {
     @Autowired
     PurchaeOrderDao purchaseOrderDao;
 
+    @Autowired
+    private PurchaseOrderRepository purchaseOrderRepo;
+
 
     @RequestMapping(value ="/addCart", method = RequestMethod.POST)
     public ResponseEntity<?> addToCart(@Valid @RequestBody OrderItem orderItem)  {
@@ -43,6 +47,19 @@ public class OrderController {
         BigInteger customerId = new BigInteger(orderItem.getCustomerId());
         // add to cart to table
         if(purchaseOrderDao.saveToCart(customerId , orderItem).equalsIgnoreCase("success"))
+            return ResponseEntity.ok(result) ;
+        else
+            return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
+
+    }
+
+    @RequestMapping(value ="/delFromCart", method = RequestMethod.POST)
+    public ResponseEntity<?> delFromCart(@Valid @RequestBody OrderItem orderItem)  {
+        System.out.println(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
+        AjaxResponseBody result = new AjaxResponseBody();
+        BigInteger customerId = new BigInteger(orderItem.getCustomerId());
+        // add to cart to table
+        if(purchaseOrderDao.delFromCart(customerId , orderItem).equalsIgnoreCase("success"))
             return ResponseEntity.ok(result) ;
         else
             return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
@@ -87,10 +104,22 @@ public class OrderController {
     @RequestMapping(value ="/fetchCartCount", method = RequestMethod.GET)
     public String fetchAllFromCart(String customerId) throws IOException {
 
+        int cartCount = 0;
         if(customerId !=null){
             List<PurchaseOrder> poList= purchaseOrderDao.findPurchaseOrderAsCart(customerId);
+
             if(poList !=null){
-                return  String.valueOf(poList.size());
+                cartCount = poList.size();
+                for(PurchaseOrder po : poList){
+                    // check any orderItem is there in the po or not. if there is no order item delete the po.
+                    if(po.getPoLineItems().isEmpty()) {
+                        purchaseOrderRepo.delete(po.getPoId());
+                        cartCount --;
+                    }
+                }
+
+
+                return  String.valueOf(cartCount);
             } else {
                 return "0";
             }

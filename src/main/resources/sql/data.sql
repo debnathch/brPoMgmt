@@ -257,16 +257,16 @@ CREATE TABLE IF NOT EXISTS `purchase_order`.`br_product_list` (
 -- drug associated with product
 -- -----------------------------------------------------
 
-  DROP TABLE IF EXISTS `purchase_order`.`br_drug_prod_associate` ;
-
-CREATE TABLE IF NOT EXISTS `purchase_order`.`br_drug_prod_associate` (
-  `drug_prod_assoc_id`  INT NOT NULL,
-  `drug_id`  INT NOT NULL,
-  `prod_id` INT NOT NULL,
-  `drug_prod_details` varchar(255) NOT NULL,
-  foreign key  (`drug_id`) REFERENCES `purchase_order`.`br_drug_details`(`drug_id`),
-   foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`),
-  PRIMARY KEY (`drug_prod_assoc_id`));
+--  DROP TABLE IF EXISTS `purchase_order`.`br_drug_prod_associate` ;
+--
+--CREATE TABLE IF NOT EXISTS `purchase_order`.`br_drug_prod_associate` (
+--  `drug_prod_assoc_id`  INT NOT NULL,
+--  `drug_id`  INT NOT NULL,
+--  `prod_id` INT NOT NULL,
+--  `drug_prod_details` varchar(255) NOT NULL,
+--  foreign key  (`drug_id`) REFERENCES `purchase_order`.`br_drug_details`(`drug_id`),
+--   foreign key  (`prod_id`) REFERENCES `purchase_order`.`br_product_list`(`prod_id`),
+--  PRIMARY KEY (`drug_prod_assoc_id`));
 
 
 

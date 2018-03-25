@@ -1,9 +1,14 @@
 package com.benRem.brPoMgmt.controller.admin;
 
+import com.benRem.brPoMgmt.domain.Company;
+import com.benRem.brPoMgmt.domain.ProductType;
+import com.benRem.brPoMgmt.repository.CompanyRepository;
 import com.benRem.brPoMgmt.repository.ProductRepository;
+import com.benRem.brPoMgmt.repository.ProductTypeRepository;
 import com.benRem.brPoMgmt.repository.PurchaseOrderLineItemRepository;
 import com.benRem.brPoMgmt.reqResObj.UploadProuctForm;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
+
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Row;
@@ -34,8 +39,12 @@ public class AdminController {
 
     @Autowired
     ProductRepository productRepository;
+
     @Autowired
-    PurchaseOrderLineItemRepository purchaseOrderLineItemRepository;
+    CompanyRepository companyRepository;
+
+    @Autowired
+    ProductTypeRepository productTypeRepository;
 
     @RequestMapping(value = "/prodfileupload", method = RequestMethod.POST)
     @ApiOperation("Upload XLSX file ")
@@ -49,7 +58,12 @@ public class AdminController {
             XSSFSheet sheet = workbook.getSheetAt(0);
 
             Iterator<Row> rowIterator = sheet.iterator();*/
-            productRepository.deleteAll();
+            Company comp = companyRepository.findCompanyIdByName(form.getCompany());
+            ProductType prodType = productTypeRepository.findProdTypeIdByType(form.getProdType());
+           int isdeleted = productRepository.deleteProductForBulkUpload(comp, prodType);
+            System.out.println(isdeleted);
+
+
             /*while (rowIterator.hasNext()) {
                 // Skip read heading
 

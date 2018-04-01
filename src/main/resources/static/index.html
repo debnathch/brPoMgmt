@@ -23,7 +23,29 @@
 
 
     <script>
+        var port;
+        var host;
+
         $(document).ready(function() {
+
+
+$.ajax({
+                type: 'GET',
+                url: '/loadConfig',
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function(data) {
+
+                    port = data.port;
+                    host = data.host;
+
+                },
+                error: function (e) {
+                    alert("Please contact Admn for "+page+ " is not directed as expected");
+                }
+            });
+            
 // only about us will be displayed
 
             document.getElementById("contactAlert").isDisabled;
@@ -40,7 +62,7 @@
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://localhost:8085/productShop/product-details.html';
+                        window.location.href = 'http://'+host+':'+ port + '/productShop/product-details.html';
                         // replace
                     },
                     error: function (e) {
@@ -58,7 +80,7 @@
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://localhost:8085/productShop/indexShop.html';
+                        window.location.href = 'http://'+host+':'+ port + '/productShop/indexShop.html';
                         // replace
                     },
                     error: function (e) {
@@ -76,7 +98,7 @@
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://localhost:8085/productShop/login.html';
+                        window.location.href = 'http://'+host+':'+ port + '/productShop/login.html';
                         // replace
                     },
                     error: function (e) {
@@ -97,9 +119,9 @@
 
 
                 //var response = JSON.parse(xhttp.responseText);
-                var page = $(this).attr('http://localhost:8085/productShop/indexShop.html');
+                var page = $(this).attr('http://'+host+':'+ port + '/productShop/indexShop.html');
 
-                    window.location = 'http://localhost:8085/productShop/indexShop.html';
+                    window.location = 'http://'+host+':'+ port + '/productShop/indexShop.html';
 
 
         }

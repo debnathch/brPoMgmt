@@ -12,6 +12,10 @@ import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -53,15 +57,63 @@ public class AdminController {
 
 
             if(productDao.deleteItem(form.getCompany(),form.getProdType()) == 0) {
-                InputStream stream = form.getProductExcel()[0].getInputStream();
-                /*XSSFWorkbook workbook = new XSSFWorkbook(stream);
-                XSSFSheet sheet = workbook.getSheetAt(0);
 
-                Iterator<Row> rowIterator = sheet.iterator();*/
-                /*while (rowIterator.hasNext()) {
-                // Skip read heading
+                if(form.getProductExcel()[0].getName().contains(".xls") || form.getProductExcel()[0].getName().contains(".XLS")) {
+                    InputStream stream = form.getProductExcel()[0].getInputStream();
+                    HSSFWorkbook workbook = new HSSFWorkbook(stream);
+                    HSSFSheet sheet = workbook.getSheetAt(0);
 
-            }*/
+                    Iterator<Row> rowIterator = sheet.iterator();
+                    while (rowIterator.hasNext()) {
+                        // Skip read heading
+                        Row currentRow = rowIterator.next();
+                        Iterator<Cell> cellIterator = currentRow.iterator();
+                        while (cellIterator.hasNext()) {
+
+                            Cell currentCell = cellIterator.next();
+                            //getCellTypeEnum shown as deprecated for version 3.15
+                            //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                            if (currentCell.getCellTypeEnum() == CellType.STRING) {
+                                System.out.print(currentCell.getStringCellValue() + "--");
+                            } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+                                System.out.print(currentCell.getNumericCellValue() + "--");
+                            }
+
+
+                        }
+
+
+                    }
+                } else if(form.getProductExcel()[0].getName().contains(".xlsx") || form.getProductExcel()[0].getName().contains(".XLSX")){
+
+                    InputStream stream = form.getProductExcel()[0].getInputStream();
+                    XSSFWorkbook workbook = new XSSFWorkbook(stream);
+                    XSSFSheet sheet = workbook.getSheetAt(0);
+
+
+                    Iterator<Row> rowIterator = sheet.iterator();
+                    while (rowIterator.hasNext()) {
+                        // Skip read heading
+                        Row currentRow = rowIterator.next();
+                        Iterator<Cell> cellIterator = currentRow.iterator();
+                        while (cellIterator.hasNext()) {
+
+                            Cell currentCell = cellIterator.next();
+                            //getCellTypeEnum shown as deprecated for version 3.15
+                            //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                            if (currentCell.getCellTypeEnum() == CellType.STRING) {
+                                System.out.print(currentCell.getStringCellValue() + "--");
+                            } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+                                System.out.print(currentCell.getNumericCellValue() + "--");
+                            }
+
+
+                        }
+
+
+                    }
+                }
+
                 //productRepository.save();
                 response.setMsg("The file has been successfully processed");
 

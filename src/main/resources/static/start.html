@@ -12,6 +12,42 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	<script>
+
+var port;
+var host;
+
+		 $(document).ready(function() {
+
+
+        $.ajax({
+                type: 'GET',
+                url: '/loadConfig',
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function(data) {
+
+                    port = data.port;
+                    host = data.host;
+
+                },
+                error: function (e) {
+                    alert("Please contact Admn for "+page+ " is not directed as expected");
+                }
+            });
+        });
+
+            function redirectURL( url ) {
+				alert(url);
+            	window.location.href = 'http://'+host+':'+ port + url;
+
+            }
+	</script>
 </head>
 
 <body>
@@ -55,8 +91,8 @@
 			<div class="row">
 
 				<div class="col-md-12">
-					<button class="btn pull-left" id="btn-welcome" type="submit" onclick="location.href = 'http://localhost:8085/index.html';">Take a Tour</button>
-					<button class="btn pull-right" id="btn-contact" type="submit" onclick="location.href = 'http://localhost:8085/productShop/login.html';">Login/Register</button>
+					<button class="btn pull-left" id="btn-welcome" onclick="redirectURL('/index.html')">Take a Tour</button>
+					<button class="btn pull-right" id="btn-contact" onclick="redirectURL('/productShop/login.html')">Login/Register</button>
 				</div>
 			</div>
 

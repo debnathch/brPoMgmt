@@ -49,6 +49,25 @@
         $(document).ready(function() {
 // only about us will be displayed
 
+var port;
+var host;
+
+$.ajax({
+                type: 'GET',
+                url: '/loadConfig',
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function(data) {
+
+                    port = data.port;
+                    host = data.host;
+
+                },
+                error: function (e) {
+                    alert("Please contact Admn for "+page+ " is not directed as expected");
+                }
+            });
 
  $('#successOrderModal').modal('hide');
             $('a.home-link').click( function() {
@@ -59,7 +78,7 @@
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://localhost:8085/index.html';
+                        window.location.href = 'http://'+host+':'+ port + '/index.html';
                         // replace
                     },
                     error: function (e) {
@@ -74,9 +93,9 @@
            function LoadOrerPage() {
 
                 //var response = JSON.parse(xhttp.responseText);
-                //var page = $(this).attr('http://localhost:8085/productShop/indexShop.html');
+                //var page = $(this).attr('http://'+host+':'+ port + '/indexShop.html');
 
-                    window.location.href = 'http://localhost:8085/productShop/indexShop.html';
+                    window.location.href = 'http://'+host+':'+ port + '/indexShop.html';
 
 
         }
@@ -168,7 +187,7 @@
                             + JSON.stringify(data, null, 4) + "</pre>";
 
                         console.log("deleted from the cart successFully : ", data);
-                        window.location.href = 'http://localhost:8085/productShop/cart.html';
+                        window.location.href = 'http://'+host+':'+ port + '/productShop/cart.html';
 
                     },
                     error: function (e) {
@@ -604,7 +623,7 @@
 
                 $("#-Product").click(function(){
 
-   window.location.href = "http://localhost:8085/productShop/indexShop.html";
+   window.location.href = "http://'+host+':'+ port + '/productShop/indexShop.html";
 
 
 });

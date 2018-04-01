@@ -33,9 +33,29 @@
 	<!-- load the about content to UI-->
 
 	<script>
+	var port;
+	var host;
+
         $(document).ready(function() {
 // only about us will be displayed
 
+
+$.ajax({
+                type: 'GET',
+                url: '/loadConfig',
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                success: function(data) {
+
+                    port = data.port;
+                    host = data.host;
+
+                },
+                error: function (e) {
+                    alert("Please contact Admn for "+page+ " is not directed as expected");
+                }
+            });
 
             $('a.home-link').click( function() {
                 var page = $(this).attr('href');
@@ -45,7 +65,7 @@
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://localhost:8085/index.html';
+                        window.location.href = 'http://'+host+':'+ port + '/index.html';
                         // replace
                     },
                     error: function (e) {

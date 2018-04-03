@@ -34,6 +34,9 @@ public class ProductDao {
 
 
 
+  public List<Br_Product> findConditionalProductList(ProductType prodType, Company company){
+      return ProductRepo.findConditionalProductList(prodType , company);
+  }
   
  // @RequestMapping(method = RequestMethod.GET)
   public List<Br_Product> findItems() {

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
 import java.math.BigInteger;
+import java.util.List;
 
 
 /*@NamedNativeQueries({
@@ -31,4 +32,8 @@ public interface ProductRepository extends CrudRepository<Br_Product, Integer>{
     @Modifying
     @Query("delete from Br_Product as brProduct where brProduct.company = :company_id and brProduct.productType = :prod_type_id")
     Integer deleteProductForBulkUpload(@Param("company_id") Company company_id, @Param("prod_type_id") ProductType prod_type_id);
+
+    @Query("select o from Br_Product o where o.productType = :prod_type_id and o.company = :company_id")
+    List<Br_Product> findConditionalProductList(@Param("prod_type_id") ProductType prod_type_id, @Param("company_id") Company company_id);
+
 }

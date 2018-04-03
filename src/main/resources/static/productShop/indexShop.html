@@ -67,7 +67,7 @@
                          'customer_mobile': data.custPrimeryPhone };
             sessionStorage.setItem('cust', JSON.stringify(cust));
             customer = JSON.parse(sessionStorage.cust);
-            alert("Welcome " + customer.customer_name);
+
             console.log("SUCCESS : ", data);
             $('#btn-contact').prop("disabled", false);
             sessionStorage.userVisited = 'Y';
@@ -76,8 +76,8 @@
 
         },
        error: function(xhr, textStatus, error){
-       alert(" Fail to save customer Information ");
-      alert(xhr.responseText);
+       alert(" Fail to save customer Information . Please try it once more");
+
 
   }
     });

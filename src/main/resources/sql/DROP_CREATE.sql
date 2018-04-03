@@ -185,7 +185,7 @@ INSERT INTO `purchase_order`.`br_product_type`
 
     INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-    values (2,  'LIQUID', 'TABLET');
+    values (2,  'LIQUID', 'LIQUID');
 
     INSERT INTO `purchase_order`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
@@ -236,13 +236,13 @@ INSERT INTO `purchase_order`.`br_product_type`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `purchase_order`.`br_product_list` ;
 CREATE TABLE IF NOT EXISTS `purchase_order`.`br_product_list` (
-  `prod_id`  INT NOT NULL,
+  `prod_id`  INT NOT NULL AUTO_INCREMENT,
 
   `prod_type_id` INT NOT NULL,
   `company_id` INT NOT NULL,
   `prod_name` varchar(255) NOT NULL,
 
-  `prod_description` varchar(255) NOT NULL,
+  `prod_description` varchar(1000) NOT NULL,
   `prod_pack_size` varchar(255) NOT NULL,
   `prod_trade_price` FLOAT ,
   `prod_hsn_code` varchar(100) ,

@@ -15,7 +15,7 @@ import org.json.JSONObject;
 @Data
 public class Br_Product implements Serializable {
 	
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="prod_id")
 	int product_id;
 

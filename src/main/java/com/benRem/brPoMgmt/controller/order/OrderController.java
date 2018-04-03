@@ -6,6 +6,7 @@ import com.benRem.brPoMgmt.repository.PurchaseOrderRepository;
 import com.benRem.brPoMgmt.reqResObj.response.CartProduct;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import com.benRem.brPoMgmt.reqResObj.response.AjaxResponseBody;
+import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,10 @@ public class OrderController {
 
     @Autowired
     private PurchaseOrderRepository purchaseOrderRepo;
+
+    @Autowired
+    SmptMailSender smptp;
+
 
 
     @RequestMapping(value ="/addCart", method = RequestMethod.POST)
@@ -126,12 +131,16 @@ public class OrderController {
         } else {
             return  "0";
         }
-
-
-
-
     }
 
+    @RequestMapping(value ="/sendChartToCustomer", method = RequestMethod.GET)
+    public ResponseEntity<?> sendRateList( String customerId) {
+        AjaxResponseBody result = new AjaxResponseBody();
+
+        purchaseOrderDao.triggertoSendRateChart(customerId);
+        result.setMsg("Rate chart is send to your given mail ID .. Please contact us with other company rate chart");
+        return  ResponseEntity.ok(result);
+    }
 
 
 }

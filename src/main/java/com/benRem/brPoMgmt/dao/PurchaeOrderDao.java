@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 import util.puchaseOrderConstant;
 
+import javax.mail.MessagingException;
+
 @Component
 public class PurchaeOrderDao {
 	
@@ -252,6 +254,20 @@ public class PurchaeOrderDao {
 
 	private void saveCartWithOrderLine(){
 
+
+	}
+
+	//method will trigger for order
+	public String triggertoSendRateChart(String customerId){
+
+		Customer cust = customerRepository.findOne(new BigInteger(customerId));
+		try {
+			smptp.sendRateWithAttachement(cust);
+			return "success";
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			return "fail";
+		}
 
 	}
 

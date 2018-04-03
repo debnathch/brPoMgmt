@@ -13,6 +13,7 @@ import com.benRem.brPoMgmt.domain.Customer;
 import com.benRem.brPoMgmt.domain.PurchaseOrderLineItem;
 import com.benRem.brPoMgmt.reqResObj.ContactDetails;
 import com.benRem.brPoMgmt.reqResObj.response.CartProduct;
+import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ private	PurchaeOrderDao purchaseOrderDao;
 
  @Autowired 
  private TemplateEngine templateEngine;
+
+
  public void sendSimpleMail(ContactDetails toMail)
             throws MessagingException {
 	 try {
@@ -110,5 +113,47 @@ private	PurchaeOrderDao purchaseOrderDao;
 			e.printStackTrace();
 		}
 	}
+
+
+	public void sendRateWithAttachement(Customer cust)
+			throws MessagingException {
+		try {
+			HtmlEmail email = new HtmlEmail();
+			String authuser = "debnath.chaterje@gmail.com";
+			String authpwd = "deb-2011leena25";
+			email.setSmtpPort(587);
+			// email.setAuthenticator(new DefaultAuthenticator(authuser, authpwd));
+			email.setAuthentication(authuser, authpwd);
+			email.setDebug(true);
+			email.setHostName("smtp.gmail.com");
+
+			email.setFrom(authuser, "debnath");
+			// attachement
+
+			EmailAttachment e=new EmailAttachment();
+			e.setDisposition(EmailAttachment.ATTACHMENT);
+			//e.setDescription(desc)(desc)
+			e.setPath("documents/BENGAL_REMEDIES/BENGAL_REMEDIES/DWARKA_PHARMA.xls");
+
+			e.setDescription("Dwarka Rate chart");
+
+			e.setName("DWARKA_PHARMA.xls");
+			email.attach(e);
+
+
+			email.setSubject("TestMail");
+			email.setHtmlMsg("<html><body><h4>welcome to Bengal Remedies " +cust.getCustEmail()+"</h4></body></html>");
+			email.addTo(cust.getCustEmail(), cust.getCustEmail());
+			email.setTLS(true);
+			//https://www.google.com/settings/security/lesssecureapps turn it off. to send the mail
+			email.send();
+		} catch (EmailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+
 
 }

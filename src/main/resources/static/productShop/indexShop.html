@@ -42,6 +42,36 @@
 
     <script>
 
+    function sendRateChart() {
+    alert('sending Rate chart');
+
+     var customer = JSON.parse(sessionStorage.cust);
+
+      $.ajax({
+                type: 'GET',
+
+                url: '/sendChartToCustomer',
+  				data: { "customerId" : customer.customer_id},
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+
+                success: function (data) {
+
+                     $("#rateChartSendModal").modal('show');
+                    console.log("SUCCESS : ", data);
+
+                },
+                error: function (e) {
+                alert("There is a problem. Our Member will contact you shortly");
+                    console.log("ERROR : ", e);
+                    $('#btn-order').prop("disabled", false);
+                }
+            });
+
+
+    }
+
         function customerContactDetailsForProduct(){
 
     var contactDetailsForOrder = {};
@@ -745,6 +775,28 @@ $.ajax({
         </div>
     </div><!--/header-bottom-->
 </header><!--/header-->
+
+<!-- mail modal for rate chart -->
+
+<div id="rateChartSendModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Rate Chart Send</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <!-- Popup Modal -->
 <div id="popModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -806,7 +858,7 @@ $.ajax({
                                 <h1><span>E- Medicine</span>-SHOPPER</h1>
                                 <h3>Online Order </h3>
                                 <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
+                                <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="images/home/girl1.jpg" class="girl img-responsive" alt=""/>
@@ -818,7 +870,7 @@ $.ajax({
                                 <h1><span>E-Medicine</span>-SHOPPER</h1>
                                 <h3>Online Order </h3>
                                 <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
+                                <button type="button" class="btn btn-default get" onclick="sendRateChart()">Get it now</button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="images/home/girl2.jpg" class="girl img-responsive" alt=""/>
@@ -831,7 +883,7 @@ $.ajax({
                                 <h1><span>E-Medicine</span>-SHOPPER</h1>
                                 <h3>Online Order </h3>
                                 <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
+                                <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="images/home/girl3.jpg" class="girl img-responsive" alt=""/>
@@ -844,7 +896,7 @@ $.ajax({
                                 <h1><span>E-Medicine</span>-SHOPPER</h1>
                                 <h3>Online Order </h3>
                                 <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
+                                <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
                             </div>
                             <div class="col-sm-6">
                                 <img src="images/home/girl4.jpg" class="girl img-responsive" alt=""/>

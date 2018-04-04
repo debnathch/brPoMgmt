@@ -226,6 +226,25 @@ var host;
             });
 
 table.search('TABLET').draw();
+
+ $('#productList thead th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    });
+
+     // Apply the search
+    table.columns().every( function () {
+        var that = this;
+
+        $( 'input', this.header() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
 // end
 // only about us will be displayed
              $('a.home-link').click( function() {
@@ -671,13 +690,12 @@ $.ajax({
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="start.html" class="navbar-brand"> <img src="images/home/logo.gif" class="image-circle" width=150
+            <a href="index.html" class="navbar-brand"> <img src="images/home/logo.gif" class="image-circle" width=150
                                                             height=102/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.html" class="home-link">Home</a></li>
-                <li><a href="#">Order</a></li>
                 <li><a href="#contact">Contact</a></li>
 
             </ul>
@@ -723,7 +741,7 @@ $.ajax({
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
 
-                        <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                        <!--<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>-->
                         <li><a href="cart.html">
                             <i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span
                                     class="badge-cart" id="itemCount"></span></i-cart>

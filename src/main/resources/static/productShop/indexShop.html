@@ -79,7 +79,7 @@
     contactDetailsForOrder["contactEmail"] = document.getElementById("contactEmail").value;
     contactDetailsForOrder["contactPhone"] = document.getElementById("contactPhone").value;
 
-    alert("Saving your information");
+
     $.ajax({
         type: "POST",
         contentType: "application/json",
@@ -106,7 +106,7 @@
 
         },
        error: function(xhr, textStatus, error){
-       alert(" Fail to save customer Information . Please try it once more");
+
 
 
   }
@@ -241,11 +241,11 @@ table.search('TABLET').draw();
     table.columns().every( function () {
         var that = this;
 
+
         $( 'input', this.header() ).on( 'keyup change', function () {
+
             if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
+                that.search( this.value ).draw();
             }
         } );
     } );
@@ -925,7 +925,17 @@ body {
 
     </div>
 </div>
-<section id="slider"><!--slider-->
+<div class="modal-dialog">
+
+<video width="450" controls autoplay>
+    <source src="BR.mp4" type="video/mp4">
+
+    Your browser does not support HTML5 video.
+</video>
+
+    <button type="button" class="btn btn-default get" onclick="sendRateChart()">Get The Rate List now</button>
+</div>
+<!--<section id="slider">&lt;!&ndash;slider&ndash;&gt;
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -1001,7 +1011,8 @@ body {
             </div>
         </div>
     </div>
-</section><!--/slider-->
+</section>&lt;!&ndash;/slider&ndash;&gt;-->
+
 
 <section>
     <div class="container">
@@ -1012,8 +1023,8 @@ body {
 
                     <div class="brands_products" ><!--brands_products-->
                             <h2>COMPANY TYPE</h2>
-                            <div class="brands-name">
-                                <ul class="nav nav-pills nav-stacked" id="companyType" onclick="closeNav()" href=#productTable">
+                            <div class="brands-name collapse navbar-collapse" >
+                                <ul class="nav nav-pills nav-stacked" id="companyType" onclick="closeNav()"><a href=#productTable"></a>
 
                                 </ul>
                             </div>
@@ -1022,7 +1033,7 @@ body {
                     <div class="brands_products" ><!--brands_products-->
                         <h2>PRODUCT TYPE</h2>
                         <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav()" ><a href=#productTable"></a>
+                            <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav()"><a href=#productTable"></a>
 
                             </ul>
                         </div>
@@ -1033,7 +1044,7 @@ body {
 
 
 
-            <div class="col-sm-10 " id="productTable">
+            <div id="productTable" class="col-sm-10 container" >
                 <h4>Product List</h4>
 
                 <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>

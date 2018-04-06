@@ -51,6 +51,8 @@ public class HomeController {
         return new RedirectView("start.html");
     }
 
+
+
     @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST)
     public ResponseEntity<?> customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
 

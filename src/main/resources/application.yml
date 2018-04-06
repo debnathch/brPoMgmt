@@ -5,3 +5,22 @@ mail:
   port: 587
   username: debnath.chaterje@gmail.com
   password: deb-2011leena25
+spring:
+  profiles:
+    active: google
+# Spring Security configuration
+security:
+  oauth2:
+    client:
+      clientId: 983228758208-q6phocraj7eko9brhb9ticipojb0tja7.apps.googleusercontent.com
+      clientSecret: oxtmKWvQ7XlzD2OGmZJtTYpw
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true

@@ -232,6 +232,7 @@ table.search('TABLET').draw();
 
         var title = $(this).text();
 
+
          if(!title.match(/^(box description|Quantity|Add to Cart)$/)) {
             $(this).html( '<input type="text" placeholder="'+title+'" />' );
         }
@@ -243,7 +244,7 @@ table.search('TABLET').draw();
 
 
         $( 'input', this.header() ).on( 'keyup change', function () {
-
+        table.search('').draw();
             if ( that.search() !== this.value ) {
                 that.search( this.value ).draw();
             }

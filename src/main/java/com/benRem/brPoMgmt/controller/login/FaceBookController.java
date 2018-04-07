@@ -1,4 +1,4 @@
-package com.benRem.brPoMgmt.services.socialService;
+package com.benRem.brPoMgmt.controller.login;
 
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
+@Controller
+@RequestMapping("/")
 //FaceBook app secret bd1ac4c094d537a664c049e5af93d9b1
 //appId facebook 642087329301902
 public class FaceBookController {

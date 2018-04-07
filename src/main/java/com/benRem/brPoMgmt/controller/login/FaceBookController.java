@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/facebook")
 //FaceBook app secret bd1ac4c094d537a664c049e5af93d9b1
 //appId facebook 642087329301902
 public class FaceBookController {

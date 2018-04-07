@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="http://bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
-    <script src="/js/datatable.js"></script>
+    <!--<script src="/js/datatable.js"></script>-->
 
 
     <!-- load the about content to UI  http://www.jquery-az.com/jquery/demo.php?ex=69.0_1-->
@@ -90,6 +90,7 @@
         timeout: 600000,
 
         success: function (data) {
+        alert(data.customerId);
 
             var cust = { 'customer_id': data.customerId,
                          'customer_name':data.customerName,
@@ -420,6 +421,12 @@ table.search('TABLET').draw();
         $(document).ready( function () {
 
             var id =  parseInt(0);
+             console.log(sessionStorage.cust);
+
+            if(sessionStorage.cust != undefined) {
+
+
+
             var customer = JSON.parse(sessionStorage.cust);
 
 
@@ -439,6 +446,8 @@ $.ajax({
           } // Success Function
 
           });   // Ajax Call
+
+                 }
             var orderItem = {};
             var ulP = document.getElementById("productType");
             var ulC = document.getElementById("companyType");
@@ -1201,7 +1210,7 @@ body {
 </script>
 
 </body>
-<script>
+<!--<script>
     function codeAddress() {
         chatteron.init({
             chatterOnClientID: "a190e0e35e89ac76b539d2ea6be02d43485b0dc824532c2c",
@@ -1212,7 +1221,7 @@ body {
 
 </script>
 <script src="https://chatteron.io/web-sdk/scripts/web-sdk.js" onload="codeAddress();">
-</script>
+</script>-->
 
 </html>
 © 2017 copy rights Bengal Remeides

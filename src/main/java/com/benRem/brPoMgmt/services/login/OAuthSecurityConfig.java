@@ -67,9 +67,9 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Starts authorizing configurations.
                 .authorizeRequests()
                 // Ignore the "/" and "/index.html"
-                .antMatchers("/home","/**", "/**.html", "/**.js", "/**.css").permitAll()
+                .antMatchers().fullyAuthenticated()
                 // Authenticate all remaining URLs.
-                .anyRequest().fullyAuthenticated()
+               .anyRequest().permitAll()
                 .and()
                 // Setting the logout URL "/logout" - default logout URL.
                 .logout()

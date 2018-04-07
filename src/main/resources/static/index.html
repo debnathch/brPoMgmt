@@ -242,6 +242,12 @@ $.ajax({
                 }
             });
         }
+
+         function redirectURLToHome( url ) {
+
+            	window.location.href = 'http://'+host+':'+ port + url;
+
+            }
     </script>
 
 
@@ -418,7 +424,7 @@ $.ajax({
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#myPage">Home</a></li>
+                <li><a onClick="redirectURLToHome('/start.html')">Home</a></li>
                 <li><a href="#about" onclick="LoadForAboutUs()">About Us</a></li>
                 <li><a href="#achievement"  onclick="LoadForOurAchivement()">our Achivement</a></li>
                 <li><a href="#thirdParty" onclick="LoadForThirdParty()">Third Party</a></li>

@@ -258,13 +258,13 @@ public class PurchaeOrderDao {
 	}
 
 	//method will trigger for order
-	public String triggertoSendRateChart(String customerId){
+	public String triggertoSendRateChart(String customerId) {
 
 		Customer cust = customerRepository.findOne(new BigInteger(customerId));
 		try {
 			smptp.sendRateWithAttachement(cust);
 			return "success";
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return "fail";
 		}

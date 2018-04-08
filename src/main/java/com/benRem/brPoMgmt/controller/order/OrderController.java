@@ -137,9 +137,14 @@ public class OrderController {
     public ResponseEntity<?> sendRateList( String customerId) {
         AjaxResponseBody result = new AjaxResponseBody();
 
-        purchaseOrderDao.triggertoSendRateChart(customerId);
-        result.setMsg("Rate chart is send to your given mail ID .. Please contact us with other company rate chart");
-        return  ResponseEntity.ok(result);
+        if(purchaseOrderDao.triggertoSendRateChart(customerId).equalsIgnoreCase("success")) {
+            result.setMsg("Rate chart is send to your given mail ID .. Please contact us with other company rate chart");
+            return  ResponseEntity.ok(result);
+        } else {
+            result.setMsg("Issue faced to send mail");
+            return  ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
+        }
+
     }
 
 

@@ -127,8 +127,8 @@ private	PurchaeOrderDao purchaseOrderDao;
 
 
 	public void sendRateWithAttachement(Customer cust)
-			throws MessagingException {
-		try {
+			throws Exception {
+
 			HtmlEmail email = new HtmlEmail();
 			String authuser = mailUserName;
 			String authpwd = mailPassword;
@@ -159,10 +159,7 @@ private	PurchaeOrderDao purchaseOrderDao;
 			email.setTLS(true);
 			//https://www.google.com/settings/security/lesssecureapps turn it off. to send the mail
 			email.send();
-		} catch (EmailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 
 

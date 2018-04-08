@@ -26,7 +26,11 @@ public class BrPoMgmtApplicationTests {
 
 		Customer cust = new Customer();
 
-		smptMailSender.sendRateWithAttachement(cust);
+		try {
+			smptMailSender.sendRateWithAttachement(cust);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 
 	}

@@ -1,5 +1,7 @@
 package com.benRem.brPoMgmt.controller.login;
 
+import com.benRem.brPoMgmt.dao.CustomerDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.PagedList;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //FaceBook app secret bd1ac4c094d537a664c049e5af93d9b1
 //appId facebook 642087329301902
 public class FaceBookController {
+
+    @Autowired
+    CustomerDao customerDao;
 
     private Facebook facebook;
     private ConnectionRepository connectionRepository;
@@ -46,6 +51,7 @@ public class FaceBookController {
         model.addAttribute("facebookProfile", facebook.fetchObject("me", User.class, fields));
         PagedList<Post> feed = facebook.feedOperations().getFeed();
         model.addAttribute("feed", feed);
+
         return "hello";
     }
 

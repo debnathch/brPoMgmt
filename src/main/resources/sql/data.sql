@@ -24,7 +24,8 @@ CREATE SCHEMA `purchase_order` ;
        `customer_email` varchar(255) ,
        `customer_Phone1` varchar(255) NOT NULL,
        `customer_Phone2` varchar(255) ,
-       `customer_address` varchar(255) ,
+       `customer_location` varchar(1000),
+       `customer_address` varchar(1000) ,
        `customer_type` varchar(255) ,
 
        PRIMARY KEY (`customer_id`));
@@ -155,6 +156,17 @@ INSERT INTO `purchase_order`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (7,  'KAN BIOTECH', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
 
+INSERT INTO `purchase_order`.`company`
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (8,  'MAHAAVTAR', 2, 'MAHAAVTAR' ,'DELHI', 'Parent Company');
+
+INSERT INTO `purchase_order`.`company`
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (9,  'TOTAL CARE', 2, 'TOTAL CARE' ,'AMBALA', 'child Company');
+
+INSERT INTO `purchase_order`.`company`
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (10,  'GENIAL', 2, 'GENIAL' ,'CHANDIGARH', 'child Company');
 
 -- DRUG DETAILS
  DROP TABLE IF EXISTS `purchase_order`.`br_drug_details` ;

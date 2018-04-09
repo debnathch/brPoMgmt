@@ -10,6 +10,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
 	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,6 +23,7 @@ var port;
 var host;
 
 		 $(document).ready(function() {
+
 
 
         $.ajax({
@@ -42,15 +44,60 @@ var host;
             });
         });
 
-            function redirectURL( url ) {
 
-            	window.location.href = 'http://'+host+':'+ port + url;
+ function contactUs() {
 
-            }
+            var contactDetails = {}
+            contactDetails["name"] = $("#name").val();
+            contactDetails["email"] = $("#email").val();
+            contactDetails["comments"] = $("#message").val();
+            contactDetails["phoneNo"] = $("#phone").val();
+
+ 		document.getElementById("submit").style.visibility = "hidden";
+            $.ajax({
+                type: "POST",
+
+                contentType: "application/json",
+
+                url: "/contactUs",
+
+                data: JSON.stringify(contactDetails),
+
+                dataType: 'json',
+                cache: false,
+
+                timeout: 600000,
+			beforeSend: function () {
+               $(".modal").show();
+            },
+            complete: function () {
+                $(".modal").hide();
+            } ,
+                success: function (data) {
+
+					window.location.href = 'http://'+host+':'+ port + '/loginSocial.html';
+
+                },
+
+                error: function (jqXHR, exception) {
+
+					window.location.href = 'http://'+host+':'+ port + '/loginSocial.html';
+                }
+
+            });
+
+        }
+
+
 	</script>
+	<style>
+		.modal-body {
+    max-height: 800px;
+	</style>
 </head>
 
 <body>
+<!-- loader gif-->
 
 <!-- Wrapper -->
 <div id="wrapper">
@@ -63,7 +110,7 @@ var host;
 			<div class="inner">
 				<h2>Bengal Remedies</h2>
 				<h3>Quality ** Confidence ** Commitment </h3>
-				<p><a href="https://www.facebook.com/bengal.remedies" target="_blank">FACEBOOK PAGE</a></p>
+				<p><a href="http://bengalremedi.com/" target="_blank">Our another Website</a></p>
 			</div>
 		</div>
 		<nav>
@@ -91,8 +138,8 @@ var host;
 			<div class="row">
 
 				<div class="col-md-12">
-					<button class="btn pull-left" id="btn-welcome" onclick="redirectURL('/loginSocial.html')">Take a Tour</button>
-					<button class="btn pull-right" id="btn-contact" onclick="redirectURL('/productShop/login.html')">Login/Register</button>
+					<a class="btn pull-left" id="btn-welcome" href="/loginSocial.html">Take a Tour</a>
+					<a class="btn pull-right" id="btn-contact" href="/productShop/login.html">Login/Register</a>
 				</div>
 			</div>
 
@@ -101,7 +148,14 @@ var host;
 		<!-- Contact -->
 		<article id="contact">
 			<h2 class="major">Contact</h2>
-			<form method="post" action="/contactUs">
+			<div class="modal" style="display: none">
+				<div class="center">
+					<img alt="" src="images/Spin.gif" />
+					Sending your comments  to our team
+				</div>
+			</div>
+			<form data-toggle="validator" onsubmit="contactUs()">
+
 				<div class="field half first">
 					<label for="name">Name</label>
 					<input type="text" name="name" id="name" />
@@ -110,24 +164,26 @@ var host;
 					<label for="email">Email</label>
 					<input type="text" name="email" id="email" />
 				</div>
+				<div class="field half">
+					<label for="phone">Phone</label>
+					<input type="text" name="phone" id="phone" />
+				</div>
 				<div class="field">
 					<label for="message">Message</label>
 					<textarea name="message" id="message" rows="4"></textarea>
 				</div>
 				<ul class="actions">
-					<li><input type="submit" value="Send Message" class="special" /></li>
+					<li><input type="submit" value="Send Message" class="special" id="submit" /></li>
 					<li><input type="reset" value="Reset" /></li>
 				</ul>
 
 			</form>
 			<ul class="icons">
-				<li><a href="https://plus.google.com/+RUMACHATTERJEE" class="icon fa-google"><span class="label">Twitter</span></a></li>
-				<li><a href="https://www.facebook.com/bengal.remedies" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-				<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+				<li><a href="https://plus.google.com/+RUMACHATTERJEE" target="_blank" class="icon fa-google"><span class="label">Google</span></a></li>
+				<li><a href="https://www.facebook.com/bengal.remedies" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+
 			</ul>
 		</article>
-
 
 	</div>
 

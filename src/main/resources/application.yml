@@ -5,8 +5,8 @@ spring:
 security:
   oauth2:
     client:
-      clientId: 983228758208-q6phocraj7eko9brhb9ticipojb0tja7.apps.googleusercontent.com
-      clientSecret: oxtmKWvQ7XlzD2OGmZJtTYpw
+      clientId: 837663666068-vfk7ut298mcbb5t601fd9afh56rj1erp.apps.googleusercontent.com
+      clientSecret: ripmTGqKehCbqkt5CBXEfDe5
       accessTokenUri: https://www.googleapis.com/oauth2/v4/token
       userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
       clientAuthenticationScheme: form
@@ -23,4 +23,4 @@ server:
 mail:
   port: 587
   username: debnath.chaterje@gmail.com
-  password: deb-2011leena25
+  password: debnath1982

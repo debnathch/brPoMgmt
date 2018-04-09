@@ -97,22 +97,27 @@ public class HomeController {
         }
 
         System.out.println("****** contating Bengal Remedies *****"+contDetails.getEmail());
-        mainSend(contDetails);
-        result.setMsg(" Mail send successfully");
-        return ResponseEntity.ok(result);
+        try {
+            mainSend(contDetails);
+            result.setMsg(" Mail send successfully");
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            result.setMsg(" Issue with Mail send.. Please contact with us later");
+            e.printStackTrace();
+            return ResponseEntity.ok(HttpStatus.EXPECTATION_FAILED);
+
+        }
+
     }
 
 
 
 
-    private void mainSend(ContactDetails toMail){
+    private void mainSend(ContactDetails toMail) throws Exception{
 
-        try {
+
             smptp.sendSimpleMail(toMail );
-        } catch (MessagingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
     }
 
 

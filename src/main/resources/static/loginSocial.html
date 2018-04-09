@@ -11,12 +11,14 @@
 
 
 <body ng-app="SocialOAuth2Microservice" ng-controller="AppCtrl" ng-cloak>
+<div class=" col-md-4 col-md-offset-4">
 <img src="images/logo.gif" width=100 height=100/>
+</div>
 <div class="container" style="margin-top: 50px;">
     <!-- Login panel -->
     <div class=" col-md-4 col-md-offset-4">
         <div class="panel panel-default" ng-show="!user">
-            <div class="panel-heading">Google login </div>
+            <div> <img src="images/googleLogin.png" width=340 height=120/> </div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <a class="btn btn-default fa-google" href="/google/login">Google Login</a>
@@ -44,27 +46,24 @@
         <!-- End Home Panel -->
 
     </div>
-</div>
 
-<div class="container" style="margin-top: 50px;">
     <!-- Login panel -->
     <div class=" col-md-4 col-md-offset-4">
         <div class="panel panel-default" ng-show="!user">
-            <div class="panel-heading">Facebook login </div>
+            <div class="panel-heading"><img src="images/fbLogin.png" width=300 height=50/></div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <!--<a class="btn btn-default fa fa-facebook" href="/facebook">Facebook Login</a>-->
 
                     <form action="/connect/facebook" method="POST">
-                        <button class="btn btn-default fa fa-facebook" type="submit">Connect to Facebook</button>
+                        <button class="btn btn-default" type="submit">Connect to Facebook</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container" style="margin-top: 50px;">
+
     <!-- Login panel -->
     <div class=" col-md-4 col-md-offset-4">
         <div class="panel panel-default" ng-show="!user">

@@ -9,6 +9,7 @@ import com.benRem.brPoMgmt.repository.*;
 import com.benRem.brPoMgmt.reqResObj.OrderItem;
 import com.benRem.brPoMgmt.reqResObj.response.CartProduct;
 import com.benRem.brPoMgmt.services.mailService.SmptMailSender;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,7 @@ import util.puchaseOrderConstant;
 import javax.mail.MessagingException;
 
 @Component
+@Slf4j
 public class PurchaeOrderDao {
 	
 	@Autowired
@@ -89,7 +91,7 @@ public class PurchaeOrderDao {
 				for(PurchaseOrderLineItem poLineItem : orderToCart.getPoLineItems()){
 
 					if(new BigInteger(orderCart.getProd_id()).intValue()==(poLineItem.getProdId())){
-						System.out.println("**** yahooooo item is in cart ******");
+						log.debug("**** yahooooo item is in cart ******");
 						isUpdated = true;
 						updatePoLineItemWithQty(poLineItem, poLineItem.getProductQty().intValue()+Integer.parseInt(orderCart.getProd_qty()));
 					}
@@ -127,7 +129,7 @@ public class PurchaeOrderDao {
 
 	// this method will update the quantity of the added cart item.
 	private void updatePoLineItemWithQty(PurchaseOrderLineItem poLineItem, int updatedQty) {
-		System.out.println(updatedQty + "  ********* updated qty ");
+		log.debug(updatedQty + "  ********* updated qty ");
 		orderLineItemRepository.updatePOLineItemQty(new BigInteger(String.valueOf(updatedQty)), poLineItem.getPoLineItemId() );
 	}
 
@@ -146,7 +148,7 @@ public class PurchaeOrderDao {
 
 				smptp.sendMailForOrder(cust, po.getPoLineItems());
 
-				System.out.println(" Mail sent and order placed successfully ");
+				log.debug(" Mail sent and order placed successfully ");
 			}
 
 			return "success";
@@ -224,7 +226,7 @@ public class PurchaeOrderDao {
 			for(PurchaseOrderLineItem poLineItem : orderToCart.getPoLineItems()){
 
 				if(new BigInteger(orderCart.getProd_id()).intValue()==(poLineItem.getProdId())){
-					System.out.println("**** yahooooo item is in cart ******");
+					log.debug("**** yahooooo item is in cart ******");
 
 					deletePoLineItemWithQty(poLineItem);
 				}

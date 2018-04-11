@@ -43,7 +43,7 @@ public class ProductDao {
 	  List<Br_Product> target = new ArrayList<>();
       ProductRepo.findAll().forEach(target::add);
 
-      System.out.println("**** fetching of products done ******" );
+      log.debug("**** fetching of products done ******" );
       return target;
   }
 

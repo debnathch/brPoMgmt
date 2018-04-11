@@ -36,14 +36,14 @@ public class productController {
 
     @RequestMapping(value ="/productShop", method = RequestMethod.GET)
     public RedirectView productGallery()  {
-        System.out.println("****** landed to shoping page*****");
+        log.debug("****** landed to shoping page*****");
         return new RedirectView("productShop/indexShop.html");
     }
 
     @RequestMapping(value="/product", method = RequestMethod.GET)
     public List<Products> orderPage() throws IOException {
 
-        System.out.println("****** Landing product page *****");
+        log.debug("****** Landing product page *****");
         List<Products> productList = new ArrayList<>();
         ObjectMapper objMapper = new ObjectMapper();
         for(Br_Product eachProduct : productDao.findItems()) {
@@ -57,7 +57,7 @@ public class productController {
     @RequestMapping(value = "/productType", method=RequestMethod.GET )
     public List<ProductType> getProductTypes() throws IOException {
 
-        System.out.println(" **** fetching the product Type ");
+        log.debug(" **** fetching the product Type ");
         List<ProductType> productTypeList = new ArrayList<>();
 
         ObjectMapper objMapper = new ObjectMapper();
@@ -72,7 +72,7 @@ public class productController {
     @RequestMapping(value = "/companyType", method=RequestMethod.GET )
     public List<Company> getCompanyTypes() throws IOException {
 
-        System.out.println(" **** fetching the company Type ");
+        log.debug(" **** fetching the company Type ");
         List<Company> companyTypeList = new ArrayList<>();
 
         ObjectMapper objMapper = new ObjectMapper();

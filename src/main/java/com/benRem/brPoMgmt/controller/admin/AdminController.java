@@ -68,7 +68,7 @@ public class AdminController {
 
             if(currentProductList!=null && currentProductList.size()>0){
                 int succssDel = productDao.deleteItem(form.getCompany(), form.getProdType());
-                System.out.println(succssDel);
+
 
                 if( succssDel == currentProductList.size()) {
                     isContinue = true;
@@ -108,7 +108,7 @@ public class AdminController {
                                 //getCellTypeEnum shown as deprecated for version 3.15
                                 //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
                                 if (currentCell.getCellTypeEnum() == CellType.STRING) {
-                                    System.out.print(currentCell.getStringCellValue() + "--");
+                                    log.debug(currentCell.getStringCellValue() + "--");
 
 
                                     if(column_count ==2)
@@ -159,11 +159,11 @@ public class AdminController {
                                 //getCellTypeEnum shown as deprecated for version 3.15
                                 //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
                                 if (currentCell.getCellTypeEnum() == CellType.STRING) {
-                                    System.out.print(currentCell.getStringCellValue() + "--");
+                                    log.debug(currentCell.getStringCellValue() + "--");
                                 } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-                                    System.out.print(currentCell.getNumericCellValue() + "--");
+                                    log.debug(currentCell.getNumericCellValue() + "--");
                                 }
-                                System.out.println("/n");
+                                log.debug("/n");
 
 
                             }

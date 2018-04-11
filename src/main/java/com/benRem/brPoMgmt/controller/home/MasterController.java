@@ -29,7 +29,7 @@ public class MasterController {
     @RequestMapping(value = "/loadConfig", method = RequestMethod.GET)
     public ResponseEntity<?> loadConfig() {
 
-        System.out.println("load config from spring YML");
+        log.debug("load config from spring YML");
 
         Config configParams = new Config();
         try {

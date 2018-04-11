@@ -40,13 +40,13 @@ public class HomeController {
 
     @RequestMapping(value ="/welcome", method = RequestMethod.GET)
     public RedirectView welcome()  {
-        System.out.println("****** landed to home page*****");
+        log.debug("****** landed to home page*****");
         return new RedirectView("index.html");
     }
 
     @RequestMapping(value ="/home", method = RequestMethod.GET)
     public RedirectView greeting()  {
-        System.out.println("****** entry to website *****");
+        log.debug("****** entry to website *****");
 
         return new RedirectView("start.html");
     }
@@ -56,7 +56,7 @@ public class HomeController {
     @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST)
     public ResponseEntity<?> customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
 
-        System.out.println(contactDetailsForOrder.getContactEmail()+"****** entry to add product *****"+contactDetailsForOrder.getContactPhone());
+        log.debug(contactDetailsForOrder.getContactEmail()+"****** entry to add product *****"+contactDetailsForOrder.getContactPhone());
 
         Customer returnCustomer = null;
         try {
@@ -96,7 +96,7 @@ public class HomeController {
 
         }
 
-        System.out.println("****** contating Bengal Remedies *****"+contDetails.getEmail());
+        log.debug("****** contating Bengal Remedies *****"+contDetails.getEmail());
         try {
             mainSend(contDetails);
             result.setMsg(" Mail send successfully");

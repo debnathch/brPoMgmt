@@ -47,7 +47,7 @@ public class OrderController {
 
     @RequestMapping(value ="/addCart", method = RequestMethod.POST)
     public ResponseEntity<?> addToCart(@Valid @RequestBody OrderItem orderItem)  {
-        System.out.println(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
+        log.debug(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
         AjaxResponseBody result = new AjaxResponseBody();
         BigInteger customerId = new BigInteger(orderItem.getCustomerId());
         // add to cart to table
@@ -60,7 +60,7 @@ public class OrderController {
 
     @RequestMapping(value ="/delFromCart", method = RequestMethod.POST)
     public ResponseEntity<?> delFromCart(@Valid @RequestBody OrderItem orderItem)  {
-        System.out.println(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
+        log.debug(orderItem.getProd_id()+"****** entry to cart *****"+orderItem.getProd_qty());
         AjaxResponseBody result = new AjaxResponseBody();
         BigInteger customerId = new BigInteger(orderItem.getCustomerId());
         // add to cart to table
@@ -75,7 +75,7 @@ public class OrderController {
     public ResponseEntity<?> triggerToOrder( String customerId)  {
 
         AjaxResponseBody result = new AjaxResponseBody();
-        System.out.println(" ****** Placing your order ********** "+ customerId);
+        log.debug(" ****** Placing your order ********** "+ customerId);
         // add to cart to table
         if(purchaseOrderDao.triggerForOrder(customerId).equalsIgnoreCase("success")) {
 
@@ -93,7 +93,7 @@ public class OrderController {
 
         AjaxResponseBody result = new AjaxResponseBody();
         //CustomerId = "9836711699";
-        System.out.println("****** fetching from cart  *****");
+        log.debug("****** fetching from cart  *****");
         List<CartProduct> productList = new ArrayList<>();
         ObjectMapper objMapper = new ObjectMapper();
 

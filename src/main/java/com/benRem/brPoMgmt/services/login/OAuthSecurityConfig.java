@@ -1,5 +1,6 @@
 package com.benRem.brPoMgmt.services.login;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
@@ -21,6 +22,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
  */
 @Configurable
 @EnableWebSecurity
+@Slf4j
 public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private OAuth2ClientContext oauth2ClientContext;
@@ -30,6 +32,7 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void setOauth2ClientContext(OAuth2ClientContext oauth2ClientContext) {
         this.oauth2ClientContext = oauth2ClientContext;
+
     }
 
     @Autowired

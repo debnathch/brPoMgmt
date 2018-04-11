@@ -19,7 +19,7 @@ public class HomeLoginController {
 
     @RequestMapping(value ="/login", method = RequestMethod.GET)
     public RedirectView login()  {
-        System.out.println("****** entry to website *****");
+        log.debug("****** entry to website *****");
 
         return new RedirectView("productShop/login.html");
     }

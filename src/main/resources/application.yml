@@ -24,3 +24,12 @@ mail:
   port: 587
   username: debnath.chaterje@gmail.com
   password: debnath1982
+logging:
+  level:
+    root:
+      org.springframework.web: ERROR
+      com.benRem.brPoMgmt: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file: logs/logfile.log

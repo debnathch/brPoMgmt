@@ -15,7 +15,7 @@ security:
         - email
         - profile
     resource:
-      userInfoUri: https://www.    .com/oauth2/v3/userinfo
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
       preferTokenInfo: true
 server:
   port: 8085

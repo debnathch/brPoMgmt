@@ -15,7 +15,7 @@ security:
         - email
         - profile
     resource:
-      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      userInfoUri: https://www.    .com/oauth2/v3/userinfo
       preferTokenInfo: true
 server:
   port: 8085
@@ -32,4 +32,4 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-  file: logs/logfile.log
+  #file: logs/logfile.log

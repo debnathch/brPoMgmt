@@ -5,6 +5,7 @@
     <title>Bengal Remedies</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -17,39 +18,12 @@
     <!--    <link rel="stylesheet" href="assets/css/main.css" />
     -->
 
-
-
-
-
-
     <script>
-        var port;
-        var host;
 
         $(document).ready(function() {
-
-
-$.ajax({
-                type: 'GET',
-                url: '/loadConfig',
-                dataType: 'json',
-                cache: false,
-                timeout: 600000,
-                success: function(data) {
-
-                    port = data.port;
-                    host = data.host;
-
-                },
-                error: function (e) {
-                    alert("Please contact Admn for "+page+ " is not directed as expected");
-                }
-            });
             
 // only about us will be displayed
 
-            document.getElementById("contactAlert").isDisabled;
-            $("#contactAlert").hide();
             LoadForAboutUs();
             $(achievement).hide();
             $(thirdParty).hide();
@@ -62,7 +36,7 @@ $.ajax({
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://'+host+':'+ port + '/productShop/product-details.html';
+                        window.location.href = '/productShop/product-details.html';
                         // replace
                     },
                     error: function (e) {
@@ -80,7 +54,7 @@ $.ajax({
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://'+host+':'+ port + '/productShop/indexShop.html';
+                        window.location.href = '/productShop/indexShop.html';
                         // replace
                     },
                     error: function (e) {
@@ -98,7 +72,7 @@ $.ajax({
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://'+host+':'+ port + '/productShop/login.html';
+                        window.location.href = '/productShop/login.html';
                         // replace
                     },
                     error: function (e) {
@@ -119,9 +93,9 @@ $.ajax({
 
 
                 //var response = JSON.parse(xhttp.responseText);
-                var page = $(this).attr('http://'+host+':'+ port + '/productShop/indexShop.html');
+                var page = $(this).attr('/productShop/indexShop.html');
 
-                    window.location = 'http://'+host+':'+ port + '/productShop/indexShop.html';
+                    window.location = '/productShop/indexShop.html';
 
 
         }
@@ -168,57 +142,15 @@ $.ajax({
             });
         }
 
-     function customerContactDetailsForProduct(){
 
-    var contactDetailsForOrder = {};
-    contactDetailsForOrder["contactName"] = document.getElementById("contactName").value;
-    contactDetailsForOrder["contactEmail"] = document.getElementById("contactEmail").value;
-    contactDetailsForOrder["contactPhone"] = document.getElementById("contactPhone").value;
-
-    alert("Saving your information");
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "/customerDetailsForProductOrder",
-        data: JSON.stringify(contactDetailsForOrder),
-        dataType: 'json',
-        cache: false,
-        timeout: 600000,
-
-        success: function (data) {
-
-            var cust = { 'customer_Id': data.customerId,
-                         'customer_name':data.customerName,
-                         'customer_email' : data.custEmail,
-                         'customer_mobile': data.custPrimeryPhone };
-            sessionStorage.setItem('cust', JSON.stringify(cust));
-            var customer = JSON.parse(sessionStorage.cust);
-            alert("Welcome " + customer.customer_name);
-            console.log("SUCCESS : ", data);
-            $('#btn-contact').prop("disabled", false);
-            sessionStorage.userVisited = 'Y';
-
-
-
-        },
-       error: function(xhr, textStatus, error){
-       alert(" Fail to save customer Information ");
-      alert(xhr.responseText);
-
-  }
-    });
-
-
-}
         function contactUs() {
-
-
             var contactDetails = {}
             contactDetails["name"] = $("#name").val();
             contactDetails["email"] = $("#email").val();
             contactDetails["comments"] = $("#comments").val();
             contactDetails["phoneNo"] = $("#phoneNo").val();
             $('#btn-contact').prop("disabled", false);
+
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
@@ -228,26 +160,18 @@ $.ajax({
                 cache: false,
                 timeout: 600000,
                 success: function (data) {
-                    $("#contactAlert").show();
-                    var json = "Thanks For your interest. Our Member will contact you shortly"
-                        + JSON.stringify(data, null, 4) + "</pre>";
-
                     console.log("SUCCESS : ", data);
-                    $('#btn-contact').prop("disabled", false);
                 },
                 error: function (e) {
-                    $("#contactAlert").show();
                     console.log("ERROR : ", e);
-                    $('#btn-contact').prop("disabled", false);
                 }
             });
         }
 
          function redirectURLToHome( url ) {
-
-            	window.location.href = 'http://'+host+':'+ port + url;
-
+            	window.location.href = url;
             }
+
     </script>
 
 
@@ -424,7 +348,7 @@ $.ajax({
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a onClick="redirectURLToHome('/start.html')">Home</a></li>
+                <li><a onClick="redirectURLToHome('start.html')">Home</a></li>
                 <li><a href="#about" onclick="LoadForAboutUs()">About Us</a></li>
                 <li><a href="#achievement"  onclick="LoadForOurAchivement()">our Achivement</a></li>
                 <li><a href="#thirdParty" onclick="LoadForThirdParty()">Third Party</a></li>
@@ -521,19 +445,22 @@ $.ajax({
 </div>
 <!--<div id="feedbackFailure" class="container text-left"> Thanks For your interest. There is a issue in sending mail. Please contact in +91-8981989350 <br></div>-->
 
-<div>
+<div class="modal-dialog">
     <iframe width="420" height="315" src="https://www.youtube.com/embed/8JmqGzeE8xQ" frameborder="0" allowfullscreen></iframe>
     <iframe width="420" height="315" src="https://www.youtube.com/embed/kbXBu_DZarw" frameborder="0" allowfullscreen></iframe>
     <iframe width="420" height="315" src="https://www.youtube.com/embed/B6eWtJiHOW4" frameborder="0" allowfullscreen></iframe>
 </div>
 <!-- Container (Contact Section) -->
-<div id="contact" class="container">
-    <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
+<section>
+    <!-- Container (Contact Section) -->
+    <div id="contact" class="container">
+        <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
 
 
         <div class="col-md-4">
             <p></p>
-            <p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara, Shobhabazar, Kolkata, West Bengal 700006</em></p>
+            <p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara,
+                Shobhabazar, Kolkata, West Bengal 700006</em></p>
             <p><span class="glyphicon glyphicon-phone"></span><em>Phone: +91-8981089350</em></p>
             <p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
         </div>
@@ -551,49 +478,48 @@ $.ajax({
                 </div>
                 <div class="row">
                     <div class="col-sm-12 form-group" class="form-group">
-                        <input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number" type="phoneNo" max maxlength="10" minlength="10">
+                        <input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number"
+                               type="phoneNo" required max maxlength="10" minlength="10" pattern="[7-9]{1}[0-9]{9}"
+                               data-error="give 10 digit Mobile no">
                     </div>
                 </div>
                 <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-                <br>
+
                 <div class="row">
                     <div class="col-md-12 form-group" class="form-group">
-                        <button class="btn pull-right" id="btn-contact" type="submit" >send</button>
-                        <button  type="reset" class="btn">reset</button>
+                        <button class="btn pull-right" id="btn-contact" type="submit">send</button>
+                        <button type="reset" class="btn">reset</button>
                     </div>
-
                 </div>
             </div>
         </form>
 
 
-    <br>
-    <h2 class="text-center">Key Faces</h2>
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
-        <li><a data-toggle="tab" href="#menu1">Mr. Kundu</a></li>
-        <li><a data-toggle="tab" href="#menu2">Ruma</a></li>
-    </ul>
 
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
-            <h2>Somnath Chatterjee, CEO</h2>
-            <p>Man, we've been on the road for some time now.</p>
-        </div>
-        <div id="menu1" class="tab-pane fade">
-            <h2>Mr. Kundu, Manager</h2>
-            <p>Always with people! </p>
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <h2>Ruma Chatterjee, MD</h2>
-            <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+        <h4 class="text-center">Key Faces</h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
+            <li><a data-toggle="tab" href="#menu1">Manager</a></li>
+            <li><a data-toggle="tab" href="#menu2">MD</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h2>Somnath Chatterjee, CEO</h2>
+                <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h2>Manager</h2>
+                <p>Always with people! </p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h2>MD</h2>
+                <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- contact details before product details -->
-
-
+</section>
 
 <div id="map" style="width:400px;height:400px;background:yellow" class="container text-center"></div>
 

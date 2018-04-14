@@ -16,16 +16,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
 	<script>
-
 var port;
 var host;
-
 		 $(document).ready(function() {
-
-
-
         $.ajax({
                 type: 'GET',
                 url: '/loadConfig',
@@ -44,8 +38,7 @@ var host;
             });
         });
 
-
- function contactUs() {
+         function contactUs() {
 
             var contactDetails = {}
             contactDetails["name"] = $("#name").val();
@@ -54,6 +47,7 @@ var host;
             contactDetails["phoneNo"] = $("#phone").val();
 
  		document.getElementById("submit").style.visibility = "hidden";
+ 		document.getElementById("reset").style.visibility = "hidden";
             $.ajax({
                 type: "POST",
 
@@ -71,24 +65,24 @@ var host;
                $(".modal").show();
             },
             complete: function () {
-                $(".modal").hide();
+
             } ,
                 success: function (data) {
 
-					window.location.href = 'http://'+host+':'+ port + '/loginSocial.html';
+					window.location.replace = '/loginSocial.html';
+					  $(".modal").hide();
 
                 },
 
                 error: function (jqXHR, exception) {
 
-					window.location.href = 'http://'+host+':'+ port + '/loginSocial.html';
+					window.location.replace = '/start.html';
+					  $(".modal").hide();
                 }
 
             });
 
         }
-
-
 	</script>
 	<style>
 		.modal-body {
@@ -154,26 +148,27 @@ var host;
 					Sending your comments  to our team
 				</div>
 			</div>
-			<form data-toggle="validator" onsubmit="contactUs()">
+			<form data-toggle="validator" >
 
 				<div class="field half first">
 					<label for="name">Name</label>
-					<input type="text" name="name" id="name" />
+					<input class="form-control" type="text" name="name" id="name" required/>
 				</div>
 				<div class="field half">
 					<label for="email">Email</label>
-					<input type="text" name="email" id="email" />
+					<input class="form-control"  type="email" name="email" id="email" data-error="email address is invalid"/>
 				</div>
 				<div class="field half">
 					<label for="phone">Phone</label>
-					<input type="text" name="phone" id="phone" />
+					<input class="form-control"  type="text" name="phone" id="phone" required max maxlength="10" minlength="10"
+						   data-error="give 10 digit Mobile no"/>
 				</div>
 				<div class="field">
 					<label for="message">Message</label>
 					<textarea name="message" id="message" rows="4"></textarea>
 				</div>
 				<ul class="actions">
-					<li><input type="submit" value="Send Message" class="special" id="submit" /></li>
+					<li><input type="submit" value="Send Message" class="special" id="submit" onclick="contactUs()"/></li>
 					<li><input type="reset" value="Reset" /></li>
 				</ul>
 

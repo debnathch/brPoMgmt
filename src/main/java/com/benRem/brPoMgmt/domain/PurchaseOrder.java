@@ -1,8 +1,8 @@
 package com.benRem.brPoMgmt.domain;
 
-import com.sun.javafx.beans.IDProperty;
+
 import lombok.Data;
-import lombok.Generated;
+
 
 import javax.persistence.*;
 import java.io.Serializable;

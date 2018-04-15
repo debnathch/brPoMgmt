@@ -43,7 +43,7 @@
     <script>
 
     function sendRateChart() {
-    alert('sending Rate chart');
+
 
      var customer = JSON.parse(sessionStorage.cust);
 
@@ -90,7 +90,7 @@
         timeout: 600000,
 
         success: function (data) {
-        alert(data.customerId);
+        //alert(data.customerId);
 
             var cust = { 'customer_id': data.customerId,
                          'customer_name':data.customerName,
@@ -294,7 +294,7 @@ table.search('TABLET').draw();
 
                 error: function (e) {
 
-                    alert(" Error ....");
+                    (" Error ....");
 
                     var json = "<h5>Ajax Response</h5>";
                     $('#feedbackSuccess').html(json);
@@ -367,7 +367,7 @@ table.search('TABLET').draw();
 
                     success: function (data) {
 
-                        alert("Added to card successFully : ");
+                        ("Added to card successFully : ");
 
                         var json = "Thanks For your interest. Our Member will contact you shortly"
 
@@ -388,7 +388,7 @@ table.search('TABLET').draw();
                 document.getElementById("qty_"+id).value = 0;
 
             } else{
-                alert("please select atleast one item")
+                ("please select atleast one item")
 
             }
 
@@ -455,7 +455,7 @@ $.ajax({
 
                             var a = document.createElement("a");
 
-                            a.setAttribute('href',"#");
+                            a.setAttribute('href',"#productTable");
 
 
 
@@ -483,7 +483,7 @@ $.ajax({
 
                     error: function (e) {
 
-                        alert("Please contact Admn for "+page+ " is not directed as expected");
+                        ("Please contact Admn for "+page+ " is not directed as expected");
 
                     }
 
@@ -507,7 +507,7 @@ $.ajax({
 
                             var a = document.createElement("a");
 
-                            a.setAttribute('href',"#");
+                            a.setAttribute('href',"#productTable");
 
 
 
@@ -535,7 +535,7 @@ $.ajax({
 
                     error: function (e) {
 
-                        alert("Please contact Admn for "+page+ " is not directed as expected");
+                        ("Please contact Admn for "+page+ " is not directed as expected");
 
                     }
 
@@ -562,11 +562,10 @@ function openNav() {
 
 }
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+function closeNav(url) {
 
-
-
+       window.location.replace  = url;
+       document.getElementById("mySidenav").style.width = "0";
 
 }
 
@@ -627,6 +626,7 @@ body {
             font-size: 20px;
             color: #111;
         }
+
 
         @media (max-width: 300px) {
             .carousel-caption {
@@ -759,31 +759,6 @@ body {
 </nav>
 
 <header id="header"><!--header-->
-    <div class="header_top"><!--header_top-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="contactinfo">
-                        <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i></a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="social-icons pull-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--/header_top-->
 
     <div class="header-middle"><!--header-middle-->
         <div class="container">
@@ -813,7 +788,90 @@ body {
     <div class="header-bottom"><!--header-bottom-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-9">
+
+                <div class="col-sm-10" >
+                    <section id="slider">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                                            <li data-target="#slider-carousel" data-slide-to="1"></li>
+                                            <li data-target="#slider-carousel" data-slide-to="2"></li>
+                                        </ol>
+
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <div class="col-sm-6">
+                                                    <h1><span>E- Medicine</span>-SHOPPER</h1>
+                                                    <h3>Online Order </h3>
+                                                    <p>Place Order with Best Rate. </p>
+                                                    <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <img src="images/home/girl1.jpg" class="girl img-responsive" alt=""/>
+                                                    <img src="images/home/pricing.jpg" class="pricing" alt=""/>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="col-sm-6">
+                                                    <h1><span>E-Medicine</span>-SHOPPER</h1>
+                                                    <h3>Online Order </h3>
+                                                    <p>Place Order with Best Rate. </p>
+                                                    <button type="button" class="btn btn-default get" onclick="sendRateChart()">Get it now</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <img src="images/home/girl2.jpg" class="girl img-responsive" alt=""/>
+                                                    <img src="images/home/pricing.png" class="pricing" alt=""/>
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-sm-6">
+                                                    <h1><span>E-Medicine</span>-SHOPPER</h1>
+                                                    <h3>Online Order </h3>
+                                                    <p>Place Order with Best Rate. </p>
+                                                    <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <img src="images/home/girl3.jpg" class="girl img-responsive" alt=""/>
+                                                    <img src="images/home/pricing.png" class="pricing" alt=""/>
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-sm-6">
+                                                    <h1><span>E-Medicine</span>-SHOPPER</h1>
+                                                    <h3>Online Order </h3>
+                                                    <p>Place Order with Best Rate. </p>
+                                                    <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <img src="images/home/girl4.jpg" class="girl img-responsive" alt=""/>
+                                                    <img src="images/home/pricing.png" class="pricing" alt=""/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                                            <i class="fa fa-angle-left"></i>
+                                        </a>
+                                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse"
                                 data-target=".navbar-collapse">
@@ -829,24 +887,6 @@ body {
                         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; <h2>Category</h2></span>
                     </div>
 
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <form method="get" action="http://www.google.com/search" target="_blank">
-                            <input type="text" name="q" placeholder="Google Search"/>
-                            <!--<input type="submit" value="search"/>-->
-                        </form>
-                        <ul class="nav navbar-nav collapse navbar-collapse">
-
-                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="blog.html">Blog List</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -886,7 +926,7 @@ body {
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Popup Title</h4>
+                <h5 class="modal-title">Give your contact details to proceed </h5>
             </div>
             <div class="modal-body">
                 <form role="form" data-toggle="validator" onsubmit="customerContactDetailsForProduct()">
@@ -924,83 +964,7 @@ body {
     </div>
 </div>
 
-<section id="slider">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#slider-carousel" data-slide-to="1"></li>
-                        <li data-target="#slider-carousel" data-slide-to="2"></li>
-                    </ol>
 
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="col-sm-6">
-                                <h1><span>E- Medicine</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl1.jpg" class="girl img-responsive" alt=""/>
-                                <img src="images/home/pricing.jpg" class="pricing" alt=""/>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E-Medicine</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get" onclick="sendRateChart()">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl2.jpg" class="girl img-responsive" alt=""/>
-                                <img src="images/home/pricing.png" class="pricing" alt=""/>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E-Medicine</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl3.jpg" class="girl img-responsive" alt=""/>
-                                <img src="images/home/pricing.png" class="pricing" alt=""/>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E-Medicine</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl4.jpg" class="girl img-responsive" alt=""/>
-                                <img src="images/home/pricing.png" class="pricing" alt=""/>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
 
 
 <section>
@@ -1008,12 +972,12 @@ body {
         <div class="row">
 
                 <div id="mySidenav"class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a class="closebtn" onclick="closeNav('#productTable')">&times;</a>
 
                     <div class="brands_products" ><!--brands_products-->
                             <h2>COMPANY TYPE</h2>
                             <div class="brands-name collapse navbar-collapse" >
-                                <ul class="nav nav-pills nav-stacked" id="companyType" onclick="closeNav()"><a href=#productTable"></a>
+                                <ul class="nav nav-pills nav-stacked" id="companyType" onclick="closeNav('#productTable')">
 
                                 </ul>
                             </div>
@@ -1022,7 +986,7 @@ body {
                     <div class="brands_products" ><!--brands_products-->
                         <h2>PRODUCT TYPE</h2>
                         <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav()"><a href=#productTable"></a>
+                            <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav('#productTable')">
 
                             </ul>
                         </div>
@@ -1034,7 +998,7 @@ body {
 
 
             <div id="productTable" class="col-sm-10 container" >
-                <h4>Product List</h4>
+                <h4 class="col-md-5">Product List</h4>
 
                 <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>
                 <table id="productList" class="display table-bordered table-condensed table-striped table-hover">
@@ -1124,8 +1088,8 @@ body {
         <h3 class="text-center">Key Faces</h3>
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
-            <li><a data-toggle="tab" href="#menu1">Mr. Kundu</a></li>
-            <li><a data-toggle="tab" href="#menu2">Ruma</a></li>
+            <li><a data-toggle="tab" href="#menu1">Manager</a></li>
+            <li><a data-toggle="tab" href="#menu2">MD</a></li>
         </ul>
 
         <div class="tab-content">
@@ -1134,17 +1098,18 @@ body {
                 <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
             </div>
             <div id="menu1" class="tab-pane fade">
-                <h2>Mr. Kundu, Manager</h2>
+                <h2>Manager</h2>
                 <p>Always with people! </p>
             </div>
             <div id="menu2" class="tab-pane fade">
-                <h2>Ruma Chatterjee, MD</h2>
+                <h2>MD</h2>
                 <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
             </div>
         </div>
     </div>
 
 </section>
+
 
 
 <!-- Footer -->

@@ -49,25 +49,6 @@
         $(document).ready(function() {
 // only about us will be displayed
 
-var port;
-var host;
-
-$.ajax({
-                type: 'GET',
-                url: '/loadConfig',
-                dataType: 'json',
-                cache: false,
-                timeout: 600000,
-                success: function(data) {
-
-                    port = data.port;
-                    host = data.host;
-
-                },
-                error: function (e) {
-                    alert("Please contact Admn for "+page+ " is not directed as expected");
-                }
-            });
 
  $('#successOrderModal').modal('hide');
             $('a.home-link').click( function() {
@@ -78,7 +59,7 @@ $.ajax({
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://'+host+':'+ port + '/index.html';
+                        window.location.href = '/index.html';
                         // replace
                     },
                     error: function (e) {
@@ -92,10 +73,7 @@ $.ajax({
 
            function LoadOrerPage() {
 
-                //var response = JSON.parse(xhttp.responseText);
-                //var page = $(this).attr('http://'+host+':'+ port + '/indexShop.html');
-
-                    window.location.href = 'http://'+host+':'+ port + '/indexShop.html';
+                    window.location.href = '/productShop/indexShop.html';
 
 
         }
@@ -236,6 +214,7 @@ $.ajax({
                         + JSON.stringify(data, null, 4) + "</pre>";
                     $('#successOrderModal').modal('show');
                     console.log("SUCCESS : ", data);
+                    //window.location.href = '/cart.html';
 					//LoadOrerPage();
                 },
                 error: function (e) {
@@ -320,7 +299,9 @@ $.ajax({
 
         });
 
-
+   function redirectURLToHome() {
+            	window.location.href = '/cart.html';
+            }
 
 
     </script>
@@ -328,6 +309,11 @@ $.ajax({
 
     <style>
 
+
+        body {
+            background-image: url("/productShop/images/shopBG.jpg");
+            font-family: "Lato", sans-serif;
+        }
 		h3, h4 {
 			margin: 10px 0 30px 0;
 			letter-spacing: 10px;
@@ -528,7 +514,7 @@ $.ajax({
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
 
-                        <li><button class="btn pull-left" id="btnorder" onclick="SubmitOrder()">place Your order</button></li>
+                        <li><button class="btn btn-default get" id="btnorder" type = "button" onclick="SubmitOrder()">place Your order</button></li>
                         <li><a href="login.html" ><span><i class="glyphicon glyphicon-user" id="displayUser" ></i></span>  </a></li>
 
                     </ul>
@@ -606,7 +592,7 @@ $.ajax({
                                 <br>
                                 <div class="row">
                                     <div class="col-md-12 form-group" class="form-group">
-                                        <a class="btn pull-right" id="-Product"  >..CONTINUE..</a>
+                                        <a class="btn pull-right" id="-Product" onclick="redirectURLToHome()" >..CONTINUE..</a>
 
                                     </div>
 
@@ -623,7 +609,7 @@ $.ajax({
 
                 $("#-Product").click(function(){
 
-   window.location.href = "http://'+host+':'+ port + '/productShop/indexShop.html";
+   window.location.href = '/productShop/indexShop.html';
 
 
 });
@@ -631,7 +617,7 @@ $.ajax({
 
             <div class="col-sm-10 padding-right">
                 <h5>Your Cart List</h5>
-                <h5 id = "refreshLine" style="color:red;">Cart is Empty Now</h5>
+                <h4 id = "refreshLine" style="color:red;">Cart is Empty Now</h4>
                 <table id="productList" class="display table-bordered table-condensed table-striped table-hover">
 
                     <!-- Header Table -->

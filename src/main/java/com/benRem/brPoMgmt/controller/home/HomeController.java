@@ -80,21 +80,13 @@ public class HomeController {
     }
 
 
-    @RequestMapping(value ="/contactUs", method = RequestMethod.POST)
-    public ResponseEntity<?> contactUs(@Valid @RequestBody ContactDetails contDetails, Errors errors){
+    @RequestMapping(value ="/contactUs", method = RequestMethod.POST, consumes = "application/json")
+
+    public ResponseEntity<?> contactUs(@Valid @RequestBody ContactDetails contDetails){
 
         AjaxResponseBody result = new AjaxResponseBody();
 
         //If error, just return a 400 bad request, along with the error message
-        if (errors.hasErrors()) {
-
-            result.setMsg(errors.getAllErrors()
-                    .stream().map(x -> x.getDefaultMessage())
-                    .collect(Collectors.joining(",")));
-
-            return ResponseEntity.badRequest().body(result);
-
-        }
 
         log.debug("****** contating Bengal Remedies *****"+contDetails.getEmail());
         try {

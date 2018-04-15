@@ -24,6 +24,7 @@
             
 // only about us will be displayed
 
+ $('#successContactModal').modal('hide');
             LoadForAboutUs();
             $(achievement).hide();
             $(thirdParty).hide();
@@ -151,6 +152,14 @@
             contactDetails["phoneNo"] = $("#phoneNo").val();
             $('#btn-contact').prop("disabled", false);
 
+             $.ajaxSetup({
+                                beforeSend: function () {
+                           $(".modal").show();
+                        },
+                        complete: function () {
+                            $(".modal").hide();
+                        }
+                    });
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
@@ -161,9 +170,12 @@
                 timeout: 600000,
                 success: function (data) {
                     console.log("SUCCESS : ", data);
+                     $('#successContactModal').modal('show');
                 },
                 error: function (e) {
+
                     console.log("ERROR : ", e);
+                     $('#successContactModal').modal('show');
                 }
             });
         }
@@ -417,7 +429,26 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+<div class="modal" style="display: none">
+    <div class="center">
+        <img alt="" src="images/Spin.gif" />
 
+    </div>
+</div>
+<div class="modal fade" id="successContactModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Order is placed successFully</h3>
+                <h5 class="modal-title">Our Member will contact you shortly.</h5>
+            </div>
+
+        </div>
+
+    </div>
+</div>
 <!-- About us (The Home Section) -->
 <div id="about" class="container text-left">
     <p id="aboutUs"></p>

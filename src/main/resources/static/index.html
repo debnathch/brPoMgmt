@@ -24,6 +24,7 @@
             
 // only about us will be displayed
 
+ $('#adminLoginModal').modal('hide');
  $('#successContactModal').modal('hide');
             LoadForAboutUs();
             $(achievement).hide();
@@ -182,6 +183,35 @@
 
          function redirectURLToHome( url ) {
             	window.location.href = url;
+            }
+
+            function adminOpen(){
+                $('#adminLoginModal').modal('show');
+            }
+
+            function adminLogin(){
+
+               var pwd =  $("#pwd").val();
+
+             $.ajax({
+                type: 'POST',
+
+                url: '/adminLogin',
+  				data: { "password" : pwd},
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+
+                success: function (data) {
+
+                    window.location.href = '/productShop/admin.html';
+
+                },
+                error: function (e) {
+                }
+
+            });
+
             }
 
     </script>
@@ -370,7 +400,7 @@
                 <li><a href="#order"  onclick="LoadOrerPage()">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="productShop/login.html" class="login-link">Login</a></li>
-                <li><a href="productShop/admin.html" class="login-link">Admin</a></li>
+                <li><a onclick="adminOpen()">Admin</a></li>
 
 
             </ul>
@@ -445,6 +475,40 @@
                 <h5 class="modal-title">Our Member will contact you shortly.</h5>
             </div>
 
+        </div>
+
+    </div>
+</div>
+<div id="adminLoginModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Admin Login </h5>
+            </div>
+            <div class="modal-body">
+                <form role="form" data-toggle="validator" >
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-sm-12 form-group" class="form-group">
+                                <input class="form-control" id="pwd" name="pwd" placeholder="password" type="password" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12 form-group" class="form-group">
+                                <button class="btn pull-right" id="loginAdmin" type="button" onclick="adminLogin()" >send</button>
+                                <button  type="reset" class="btn">reset</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
 
     </div>

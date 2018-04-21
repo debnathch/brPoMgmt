@@ -75,22 +75,23 @@
         function customerContactDetailsForProduct(){
 
     var contactDetailsForOrder = {};
-    contactDetailsForOrder["contactName"] = document.getElementById("contactName").value;
-    contactDetailsForOrder["contactEmail"] = document.getElementById("contactEmail").value;
-    contactDetailsForOrder["contactPhone"] = document.getElementById("contactPhone").value;
+    contactDetailsForOrder["contactName"] = $("#contactName").val();
+    contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
+    contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
 
 
     $.ajax({
+
         type: "POST",
         contentType: "application/json",
         url: "/customerDetailsForProductOrder",
         data: JSON.stringify(contactDetailsForOrder),
         dataType: 'json',
-        cache: false,
+        cache: true,
         timeout: 600000,
 
         success: function (data) {
-        //alert(data.customerId);
+        alert(data.customerId);
 
             var cust = { 'customer_id': data.customerId,
                          'customer_name':data.customerName,
@@ -100,14 +101,25 @@
             customer = JSON.parse(sessionStorage.cust);
 
             console.log("SUCCESS : ", data);
-            $('#btn-contact').prop("disabled", false);
+
             sessionStorage.userVisited = 'Y';
 
 
 
         },
-       error: function(xhr, textStatus, error){
+       error: function(jqXHR, exception){
 
+
+            var cust = { 'customer_id': data.customerId,
+                         'customer_name':data.customerName,
+                         'customer_email' : data.custEmail,
+                         'customer_mobile': data.custPrimeryPhone };
+            sessionStorage.setItem('cust', JSON.stringify(cust));
+            customer = JSON.parse(sessionStorage.cust);
+
+            console.log("SUCCESS : ", data);
+
+            sessionStorage.userVisited = 'Y';
 
 
   }

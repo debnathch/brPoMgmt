@@ -53,7 +53,7 @@ public class HomeController {
 
 
 
-    @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST)
+    @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> customerDetailsForProductOrder(@Valid @RequestBody ContactDetailsForOrder contactDetailsForOrder){
 
         log.debug(contactDetailsForOrder.getContactEmail()+"****** entry to add product *****"+contactDetailsForOrder.getContactPhone());

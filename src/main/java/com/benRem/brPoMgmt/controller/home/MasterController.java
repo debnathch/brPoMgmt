@@ -20,7 +20,7 @@ import javax.validation.Valid;
 
 public class MasterController {
 
-    @Value("${server.port}")
+/*    @Value("${server.port}")
     private String port;
 
     @Value("${server.host}")
@@ -42,5 +42,5 @@ public class MasterController {
         }
 
 
-    }
+    }*/
 }

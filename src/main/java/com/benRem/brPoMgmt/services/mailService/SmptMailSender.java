@@ -30,8 +30,7 @@ import org.thymeleaf.context.Context;
 @Slf4j
 public class SmptMailSender {
 
-@Autowired
-private JavaMailSender javaMailSender;
+
 	@Autowired
 private	PurchaeOrderDao purchaseOrderDao;
 

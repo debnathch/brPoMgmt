@@ -38,23 +38,23 @@ private	PurchaeOrderDao purchaseOrderDao;
  @Autowired 
  private TemplateEngine templateEngine;
 
- @Value("${mail.port}")
+/* @Value("${mail.port}")
  private String mailPort;
 
  @Value("${mail.username}")
  private String mailUserName;
 
  @Value("${mail.password}")
- private String mailPassword;
+ private String mailPassword;*/
 
 
  public void sendSimpleMail(ContactDetails toMail)
             throws MessagingException {
 	 try {
 	  HtmlEmail email = new HtmlEmail();
-	    String authuser = mailUserName;
-	    String authpwd = mailPassword;
-	    email.setSmtpPort(Integer.valueOf(mailPort));
+	    String authuser = "debnath.chaterje@gmail.com";
+	    String authpwd = "debnath1982";
+	    email.setSmtpPort(Integer.valueOf("587"));
 	   // email.setAuthenticator(new DefaultAuthenticator(authuser, authpwd));
 	    email.setAuthentication(authuser, authpwd);
 	    email.setDebug(true);
@@ -80,9 +80,9 @@ private	PurchaeOrderDao purchaseOrderDao;
 			throws MessagingException {
 		try {
 			HtmlEmail email = new HtmlEmail();
-			String authuser = mailUserName;
-			String authpwd = mailPassword;
-			email.setSmtpPort(Integer.valueOf(mailPort));
+			String authuser = "debnath.chaterje@gmail.com";
+			String authpwd = "debnath1982";
+			email.setSmtpPort(Integer.valueOf("587"));
 			// email.setAuthenticator(new DefaultAuthenticator(authuser, authpwd));
 			email.setAuthentication(authuser, authpwd);
 			email.setDebug(true);
@@ -131,9 +131,9 @@ private	PurchaeOrderDao purchaseOrderDao;
 			throws Exception {
 
 			HtmlEmail email = new HtmlEmail();
-			String authuser = mailUserName;
-			String authpwd = mailPassword;
-			email.setSmtpPort(Integer.valueOf(mailPort));
+		String authuser = "debnath.chaterje@gmail.com";
+		String authpwd = "debnath1982";
+		email.setSmtpPort(Integer.valueOf("587"));
 			// email.setAuthenticator(new DefaultAuthenticator(authuser, authpwd));
 			email.setAuthentication(authuser, authpwd);
 			email.setDebug(true);

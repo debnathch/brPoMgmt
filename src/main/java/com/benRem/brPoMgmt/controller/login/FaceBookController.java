@@ -2,6 +2,9 @@ package com.benRem.brPoMgmt.controller.login;
 
 import com.benRem.brPoMgmt.dao.CustomerDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.PagedList;
@@ -12,10 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+
 @Controller
 @RequestMapping("/facebook")
 //FaceBook app secret bd1ac4c094d537a664c049e5af93d9b1
 //appId facebook 642087329301902
+
+
 public class FaceBookController {
 
     @Autowired
@@ -23,6 +30,12 @@ public class FaceBookController {
 
     private Facebook facebook;
     private ConnectionRepository connectionRepository;
+
+    @Bean
+    @Scope(value="request", proxyMode= ScopedProxyMode.INTERFACES)
+    Facebook facebook() {
+        return connectionRepository.getPrimaryConnection(Facebook.class).getApi();
+    }
 
     public FaceBookController(Facebook facebook, ConnectionRepository connectionRepository) {
         this.facebook = facebook;

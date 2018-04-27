@@ -17,9 +17,7 @@ security:
     resource:
       userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
       preferTokenInfo: true
-server:
-  port: 8085
-  host: localhost
+
 mail:
   port: 587
   username: debnath.chaterje@gmail.com

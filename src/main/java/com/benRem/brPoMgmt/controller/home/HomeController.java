@@ -49,7 +49,7 @@ public class HomeController {
     @RequestMapping(value ="/home", method = RequestMethod.GET)
     public void greeting(HttpServletResponse response) throws IOException {
         log.debug("****** entry to website *****");
-        response.sendRedirect("start.html");
+        response.sendRedirect("/static/start.html");
         //return new RedirectView("start.html",true);
     }
 

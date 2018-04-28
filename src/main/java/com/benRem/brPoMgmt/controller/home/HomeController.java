@@ -48,7 +48,7 @@ public class HomeController {
     public RedirectView greeting()  {
         log.debug("****** entry to website *****");
 
-        return new RedirectView("start.html");
+        return new RedirectView("start.html",true);
     }
 
 

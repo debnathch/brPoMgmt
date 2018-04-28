@@ -45,10 +45,10 @@ public class HomeController {
     }
 
     @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public RedirectView greeting()  {
+    public String greeting()  {
         log.debug("****** entry to website *****");
 
-        return new RedirectView("start.html");
+        return  "start";
     }
 
 

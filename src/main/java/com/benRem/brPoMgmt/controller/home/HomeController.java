@@ -48,7 +48,7 @@ public class HomeController {
     public String greeting()  {
         log.debug("****** entry to website *****");
 
-        return "forward:start.html";
+        return "forward:/start.html";
     }
 
 

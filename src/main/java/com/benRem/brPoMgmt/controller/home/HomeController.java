@@ -41,14 +41,14 @@ public class HomeController {
     @RequestMapping(value ="/welcome", method = RequestMethod.GET)
     public RedirectView welcome()  {
         log.debug("****** landed to home page*****");
-        return new RedirectView("/static/index.html");
+        return new RedirectView("index.html");
     }
 
     @RequestMapping(value ="/home", method = RequestMethod.GET)
     public RedirectView greeting()  {
         log.debug("****** entry to website *****");
 
-        return new RedirectView("start.html");
+        return new RedirectView("static/start.html");
     }
 
 

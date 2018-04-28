@@ -44,7 +44,7 @@ public class HomeController {
         return new RedirectView("index.html");
     }
 
-    @RequestMapping(value ="/home", method = RequestMethod.POST)
+    @RequestMapping(value ="/home", method = RequestMethod.GET)
     public RedirectView greeting()  {
         log.debug("****** entry to website *****");
 

@@ -44,11 +44,11 @@ public class HomeController {
         return new RedirectView("index.html");
     }
 
-    @RequestMapping(value ="/home", method = RequestMethod.GET)
+    @RequestMapping(value ="/home", method = RequestMethod.POST)
     public RedirectView greeting()  {
         log.debug("****** entry to website *****");
 
-        return new RedirectView("www.google.com",true);
+        return new RedirectView("start.html");
     }
 
 

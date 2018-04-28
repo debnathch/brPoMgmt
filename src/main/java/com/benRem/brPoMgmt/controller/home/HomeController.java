@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.stream.Collectors;
 
 /**
@@ -47,10 +45,10 @@ public class HomeController {
     }
 
     @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public void greeting(HttpServletResponse response) throws IOException {
+    public RedirectView greeting()  {
         log.debug("****** entry to website *****");
-        response.sendRedirect("/static/start.html");
-        //return new RedirectView("start.html",true);
+
+        return new RedirectView("www.google.com",true);
     }
 
 

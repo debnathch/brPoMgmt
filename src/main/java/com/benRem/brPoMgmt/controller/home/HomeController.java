@@ -39,9 +39,10 @@ public class HomeController {
     CustomerDao custDao;
 
     @RequestMapping(value ="/welcome", method = RequestMethod.GET)
-    public RedirectView welcome()  {
+    public String welcome()  {
         log.debug("****** landed to home page*****");
-        return new RedirectView("index.html");
+        //return new RedirectView("index.html");
+        return "forward:index.html";
     }
 
     @RequestMapping(value ="/home", method = RequestMethod.GET)

@@ -45,13 +45,14 @@ public class HomeController {
         return new RedirectView("index.html");
     }
 
-    @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public ModelAndView greeting()  {
+    @RequestMapping(value ="/home")
+    public String home()  {
         log.debug("****** entry to website *****");
 
-         RedirectView redirectView = new RedirectView("start.html",true);
+         RedirectView redirectView = new RedirectView("/start.html",true);
 
-        return new ModelAndView(redirectView);
+        //return new ModelAndView(redirectView);
+        return "start.html";
     }
 
 

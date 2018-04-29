@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>Bengal Remedies</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script>
+
+
+         function contactUs() {
+
+            var contactDetails = {}
+            contactDetails["name"] = $("#name").val();
+            contactDetails["email"] = $("#email").val();
+            contactDetails["comments"] = $("#message").val();
+            contactDetails["phoneNo"] = $("#phone").val();
+			window.location.href = '#success';
+            $.ajax({
+
+                type: "POST",
+                contentType: "application/json",
+                url: "/contactUs",
+                data: JSON.stringify(contactDetails),
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+                async: false,
+
+            });
+
+        }
+
+        function refresh(){
+        window.location.href = '#intro';
+        }
+
+	</script>
+
+</head>
+
+<body>
+<!-- loader gif-->
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+	<!-- Header -->
+	<header id="header">
+		<img src="images/logo.gif" width=100 height=100/>
+
+		<div class="content">
+			<div class="inner">
+				<h2>Bengal Remedies</h2>
+				<h3>Quality ** Confidence ** Commitment </h3>
+				<p><a href="http://bengalremedi.com/" target="_blank">Our another Website</a></p>
+			</div>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="#intro">     ** Welcome For Tour **     </a></li>
+
+				<li><a href="#contact">   ** Don't Have Liscence !! **   </a></li>
+				<!--<li><a href="#elements">Elements</a></li>-->
+			</ul>
+		</nav>
+	</header>
+	<div
+			class="fb-like"
+			data-share="true"
+			data-width="450"
+			data-show-faces="true">
+	</div>
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<article id="intro">
+			<h3 class="major">Welcome to Bengal Remedies Family</h3>
+			<iframe width="550" height="330" src="https://www.youtube.com/embed/QRQPPurmPSg" frameborder="0" allowfullscreen></iframe>
+			<div class="row">
+
+				<div class="col-md-12">
+					<a class="btn pull-left" id="btn-welcome" href="/loginSocial.html">Take a Tour</a>
+					<a class="btn pull-right" id="btn-contact" href="/productShop/login.html">Login/Register</a>
+				</div>
+			</div>
+
+		</article>
+
+		<article id="success">
+			<h4 class="major">Our Team Will Get Back to You Shortly</h4>
+			<button onclick="refresh()">Welcome</button>
+		</article>
+		<!-- Contact -->
+		<article id="contact">
+			<h2 class="major">Contact</h2>
+
+			<form data-toggle="validator" onsubmit="contactUs()">
+
+				<div class="field half first">
+					<label for="name">Name</label>
+					<input class="form-control" type="text" name="name" id="name" required/>
+				</div>
+				<div class="field half">
+					<label for="email">Email</label>
+					<input class="form-control"  type="email" name="email" id="email" data-error="email address is invalid"/>
+				</div>
+				<div class="field half">
+					<label for="phone">Phone</label>
+					<input class="form-control"  type="text" name="phone" id="phone" required max maxlength="10" minlength="10" pattern="[7-9]{1}[0-9]{9}"
+						   data-error="give 10 digit Mobile no"/>
+				</div>
+				<div class="field">
+					<label for="message">Message</label>
+					<textarea name="message" id="message" rows="4"></textarea>
+				</div>
+				<ul class="actions">
+					<li><input type="submit" value="Send Message" id="submit" /></li>
+					<li><input type="reset" value="Reset" id="reset"/></li>
+					<li><button onclick="refresh()" id="refreshBtn">home</button></li>
+				</ul>
+			</form>
+
+
+			<ul class="icons">
+				<li><a href="https://plus.google.com/+RUMACHATTERJEE" target="_blank" class="icon fa-google"><span class="label">Google</span></a></li>
+				<li><a href="https://www.facebook.com/bengal.remedies" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+
+
+			</ul>
+		</article>
+
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<ul class="icons">
+			<li><a href="https://plus.google.com/+RUMACHATTERJEE" target="_blank" class="icon fa-google"><span class="label">Google</span></a></li>
+			<li><a href="https://www.facebook.com/bengal.remedies" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+
+		</ul>
+		<p class="copyright">&copy; bengal Remeides: <a href="https://www.facebook.com/bengal.remedies">2017</a>.</p>
+	</footer>
+
+</div>
+
+<!-- BG -->
+<div id="bg"></div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

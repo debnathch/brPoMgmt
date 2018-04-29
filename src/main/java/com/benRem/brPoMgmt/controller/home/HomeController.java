@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.mail.MessagingException;
@@ -45,10 +46,12 @@ public class HomeController {
     }
 
     @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public RedirectView greeting()  {
+    public ModelAndView greeting()  {
         log.debug("****** entry to website *****");
 
-        return new RedirectView("start.html");
+         RedirectView redirectView = new RedirectView("start.html",true);
+
+        return new ModelAndView(redirectView);
     }
 
 

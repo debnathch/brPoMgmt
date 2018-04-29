@@ -49,7 +49,7 @@ public class HomeController {
     public ModelAndView greeting()  {
         log.debug("****** entry to website *****");
 
-         RedirectView redirectView = new RedirectView("static/start.html",true);
+         RedirectView redirectView = new RedirectView("start.html",true);
 
         return new ModelAndView(redirectView);
     }

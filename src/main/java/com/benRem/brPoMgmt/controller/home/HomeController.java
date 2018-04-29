@@ -51,7 +51,7 @@ public class HomeController {
 
          RedirectView redirectView = new RedirectView("start.html",true);
 
-        return new ModelAndView("forward:/start.html");
+        return new ModelAndView(redirectView);
     }
 
 

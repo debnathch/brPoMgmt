@@ -15,8 +15,8 @@ import javax.mail.MessagingException;
 @RunWith(MockitoJUnitRunner.class)
 public class BrPoMgmtApplicationTests {
 
-	@InjectMocks
-	SmptMailSender smptMailSender;
+	/*@InjectMocks
+	SmptMailSender smptMailSender;*/
 
 	@Test
 	public void contextLoads() {
@@ -27,7 +27,7 @@ public class BrPoMgmtApplicationTests {
 		Customer cust = new Customer();
 
 		try {
-			smptMailSender.sendRateWithAttachement(cust);
+			//smptMailSender.sendRateWithAttachement(cust);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -52,7 +52,7 @@ public class HomeController {
         //res.sendRedirect("start.html");
         //response.sendRedirect("https://twitter.com");
         System.out.println("entering ");
-         return new ModelAndView("start.html");
+         return new ModelAndView("start");
 
 
     }

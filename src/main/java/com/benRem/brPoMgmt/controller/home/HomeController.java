@@ -54,6 +54,11 @@ public class HomeController {
         return new ModelAndView(redirectView);
     }
 
+    @RequestMapping(value="/error" )
+    public String error(){
+        return "redirected:/error.html";
+    }
+
 
 
     @RequestMapping(value ="/customerDetailsForProductOrder", method = RequestMethod.POST, consumes = "application/json")

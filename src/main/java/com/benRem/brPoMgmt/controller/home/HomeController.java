@@ -47,21 +47,21 @@ public class HomeController {
         return new RedirectView("index.html");
     }
 
-   /* @RequestMapping(value ="/home", method = RequestMethod.GET)
+    @RequestMapping(value ="/home", method = RequestMethod.GET)
     public ModelAndView greeting(HttpServletResponse response) throws IOException {
         log.debug("****** entry to website *****");
 
-         RedirectView redirectView = new RedirectView("start.html",true);
+         //RedirectView redirectView = new RedirectView(".html",true);
         //response.sendRedirect("start.html");
-        return new ModelAndView(redirectView);
-    }*/
+        return new ModelAndView("redirect:start.htm");
+    }
 
-    @RequestMapping(value ="/home", method = RequestMethod.GET)
+  /*  @RequestMapping(value ="/home", method = RequestMethod.GET)
     public String greeting(HttpServletResponse response) throws IOException {
         log.debug("****** entry to website *****");
 
         return "start.html";
-    }
+    }*/
 /*
 
     @RequestMapping(value="/error" )

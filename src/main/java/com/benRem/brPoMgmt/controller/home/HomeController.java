@@ -53,11 +53,13 @@ public class HomeController {
 
         return new ModelAndView(redirectView);
     }
+/*
 
     @RequestMapping(value="/error" )
     public String errorHandler(){
         return "redirected:/error.html";
     }
+*/
 
 
 

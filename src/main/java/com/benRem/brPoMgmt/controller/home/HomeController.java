@@ -55,7 +55,7 @@ public class HomeController {
     }
 
     @RequestMapping(value="/error" )
-    public String error(){
+    public String errorHandler(){
         return "redirected:/error.html";
     }
 

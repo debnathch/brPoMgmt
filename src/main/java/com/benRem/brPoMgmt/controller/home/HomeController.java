@@ -12,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -47,21 +44,21 @@ public class HomeController {
         return new RedirectView("index.html");
     }
 
-  /*  @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public RedirectView greeting() throws IOException {
+    @GetMapping(value ="/home")
+    public String greeting() throws IOException {
         log.debug("****** entry to website *****");
 
-         return new RedirectView("start.html");
+         return "start";
 
 
-    }*/
+    }
 
-   @RequestMapping(value ="/home", method = RequestMethod.GET)
+  /* @RequestMapping(value ="/home", method = RequestMethod.GET)
     public String greeting() throws IOException {
         log.debug("****** entry to website *****");
 
         return "start";
-    }
+    }*/
 /*
 
     @RequestMapping(value="/error" )

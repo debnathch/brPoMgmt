@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +47,7 @@ public class HomeController {
         log.debug("****** landed to home page*****");
         return new RedirectView("index.html");
     }
-
+/*
     @RequestMapping(value ="/home", method = RequestMethod.GET)
     public ModelAndView greeting(HttpServletResponse response) throws IOException {
         log.debug("****** entry to website *****");
@@ -54,14 +55,14 @@ public class HomeController {
          //RedirectView redirectView = new RedirectView(".html",true);
         //response.sendRedirect("start.html");
         return new ModelAndView("redirect:start.htm");
-    }
+    }*/
 
-  /*  @RequestMapping(value ="/home", method = RequestMethod.GET)
-    public String greeting(HttpServletResponse response) throws IOException {
+ @RequestMapping(value ="/home", method = RequestMethod.GET)
+    public String greeting(Model model) throws IOException {
         log.debug("****** entry to website *****");
 
-        return "start.html";
-    }*/
+        return "start";
+    }
 /*
 
     @RequestMapping(value="/error" )

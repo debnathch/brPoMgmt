@@ -41,14 +41,18 @@ public class HomeController {
     @RequestMapping(value ="/welcome", method = RequestMethod.GET)
     public RedirectView welcome()  {
         log.debug("****** landed to home page*****");
-        return new RedirectView("index.html");
+        return new RedirectView("index");
     }
 
-    @GetMapping(value ="/home")
-    public String greeting() throws IOException {
+    @RequestMapping(
+            value = "/home",
+            method = RequestMethod.GET)
+    public ModelAndView greeting() throws IOException {
         log.debug("****** entry to website *****");
-
-         return "start";
+        //res.sendRedirect("start.html");
+        //response.sendRedirect("https://twitter.com");
+        System.out.println("entering ");
+         return new ModelAndView("start");
 
 
     }

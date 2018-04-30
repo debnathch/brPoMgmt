@@ -6,8 +6,8 @@
     <groupId>com.benRem</groupId>
     <artifactId>brPoMgmt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
+    <!--<packaging>jar</packaging>
+-->
     <name>brPoMgmt</name>
     <description>Demo project for Spring Boot</description>
 
@@ -24,6 +24,7 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <packaging>war</packaging>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

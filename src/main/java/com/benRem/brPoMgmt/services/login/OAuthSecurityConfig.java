@@ -66,7 +66,7 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http
+       /* http
                 // Starts authorizing configurations.
                 .authorizeRequests()
                 // Ignore the "/" and "/index.html"
@@ -84,7 +84,7 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAt(filter(), BasicAuthenticationFilter.class)
                 .csrf()
                 //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-                .disable();
+                .disable();*/
     }
 
     /*This method for creating filter for OAuth authentication.*/

@@ -243,14 +243,14 @@
                 <!--<configuration>
                     <mainClass>com.benRem.brPoMgmt.BrPoMgmtApplication</mainClass>
                     <layout>ZIP</layout>
-                </configuration>
+                </configuration> -->
                 <executions>
                     <execution>
                         <goals>
                             <goal>repackage</goal>
                         </goals>
                     </execution>
-                </executions>-->
+                </executions>
             </plugin>
         </plugins>
     </build>

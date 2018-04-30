@@ -239,7 +239,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!--<configuration>
+                <configuration>
                     <mainClass>com.benRem.brPoMgmt.BrPoMgmtApplication</mainClass>
                     <layout>ZIP</layout>
                 </configuration>
@@ -249,7 +249,7 @@
                             <goal>repackage</goal>
                         </goals>
                     </execution>
-                </executions>-->
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name="br_purchase_order" , schema = "purchase_order")
+@Table(name="br_purchase_order" , schema = "heroku_b623f1513b9ff48")
 @Data
 public class PurchaseOrder implements Serializable {
 

@@ -220,6 +220,13 @@
     <build>
         <resources>
             <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>static</directory>
+                <targetPath>static</targetPath>
+            </resource>
+            <resource>
                 <directory>${project.sources}</directory>
                 <filtering>true</filtering>
                 <excludes>

@@ -3,8 +3,9 @@
 <head>
 
     <title>Bengal Remedies || E-Medicine-Shopper</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -49,6 +50,12 @@
         $(document).ready(function() {
 // only about us will be displayed
 
+$(function(){
+     var navMain = $("#myNavbar");
+     navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
+     });
+ });
 
  $('#successOrderModal').modal('hide');
             $('a.home-link').click( function() {

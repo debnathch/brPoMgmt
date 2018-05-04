@@ -3,8 +3,8 @@
 <head>
 
     <title>Bengal Remedies</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -23,6 +23,13 @@
         $(document).ready(function() {
             
 // only about us will be displayed
+
+$(function(){
+     var navMain = $("#myNavbar");
+     navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
+     });
+ });
 
  $('#adminLoginModal').modal('hide');
  $('#successContactModal').modal('hide');
@@ -391,11 +398,11 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a onClick="redirectURLToHome('start.html')">Home</a></li>
+                <li><a onclick="redirectURLToHome('start.html')">Home</a></li>
                 <li><a href="#about" onclick="LoadForAboutUs()">About Us</a></li>
                 <li><a href="#achievement"  onclick="LoadForOurAchivement()">our Achivement</a></li>
                 <li><a href="#thirdParty" onclick="LoadForThirdParty()">Third Party</a></li>
-                <li><a href="http://bengalremedi.com/"  target="_blank" class="gallery-link" >Gallery</a></li>
+                <li><a href="http://bengalremedi.com/"  target="_blank"  >Gallery</a></li>
 
                 <li><a href="#order"  onclick="LoadOrerPage()">Products</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -498,8 +505,8 @@
                         <br>
                         <div class="row">
                             <div class="col-md-12 form-group" class="form-group">
-                                <button class="btn pull-right" id="loginAdmin" type="button" onclick="adminLogin()" >send</button>
-                                <button  type="reset" class="btn">reset</button>
+                                <button class="col-md-6" class="btn pull-right" id="loginAdmin" type="button" onclick="adminLogin()" >send</button>
+                                <button class="col-md-6" type="reset" class="btn">reset</button>
                             </div>
 
                         </div>

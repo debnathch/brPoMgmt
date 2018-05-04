@@ -3,8 +3,8 @@
 <head>
 
     <title>Bengal Remedies || E-Medicine-Shopper</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -134,6 +134,13 @@ var customer;
 
         $(document).ready(function() {
 
+
+$(function(){
+     var navMain = $("#myNavbar");
+     navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
+     });
+ });
 
  if(sessionStorage.userVisited == 'Y') {
         node = document.getElementById('refreshLine');

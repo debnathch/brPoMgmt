@@ -12,7 +12,7 @@ import java.math.BigInteger;
  */
 
 @Entity
-@Table(name="customer", schema = "heroku_b623f1513b9ff48")
+@Table(name="customer", schema = "purchase_order")
 @Data
 public class Customer implements Serializable {
 

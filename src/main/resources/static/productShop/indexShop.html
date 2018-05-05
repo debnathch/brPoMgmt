@@ -152,22 +152,22 @@ $(function(){
 
   table = $('#productList').DataTable({
 
+                searchHighlight: true,
+
                 "sAjaxSource": "/product",
                 "sAjaxDataProp": "",
 
                 "order": [[ 0, "asc" ]],
 
-                retrieve: true,
-
-                searchHighlight: true,
+                "retrieve": true,
 
                 "aoColumns": [
 
-                    { "mData": "companyMake.parent_company_name" , "sWidth": "10%"},
+                    { "mData": "companyMake.parent_company_name" , "sWidth": "30%"},
 
-                    { "mData": "companyMake.company_name" , "sWidth": "10%"},
+                    { "mData": "companyMake.company_name" , "sWidth": "30%"},
 
-                    { "mData": "productType.prod_type_name" , "sWidth": "10%"},
+                    { "mData": "productType.prod_type_name" , "sWidth": "30%"},
 
                     { "mData": "product_name" , "sWidth": "20%" },
                     { "mData": "product_description" , "sWidth": "30%" },
@@ -1016,11 +1016,11 @@ body {
 
 
 
-            <div id="productTable" class="col-sm-10 container" >
+            <div id="productTable" class="col-sm-10 " >
                 <h4 class="col-md-5">Product List</h4>
 
                 <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>
-                <table id="productList" class="display table-bordered table-condensed table-striped table-hover">
+                <table id="productList" class=" container-fluid display table-bordered table-condensed table-striped table-hover">
 
                     <!-- Header Table -->
                     <thead>
@@ -1028,8 +1028,8 @@ body {
 
                         <th>company</th>
                         <th>division</th>
-                        <th>type</th>
-                        <th>product name</th>
+                        <th >type</th>
+                        <th >product name</th>
                         <th>product description</th>
                         <th>box description</th>
                         <th>Quantity</th>

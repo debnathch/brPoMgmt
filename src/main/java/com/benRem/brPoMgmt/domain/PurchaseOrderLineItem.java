@@ -11,7 +11,7 @@ import java.math.BigInteger;
  */
 
 @Entity
-@Table(name="br_purchase_order_line" , schema = "heroku_b623f1513b9ff48")
+@Table(name="br_purchase_order_line" , schema = "purchase_order")
 @Data
 public class PurchaseOrderLineItem implements Serializable {
 

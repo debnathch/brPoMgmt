@@ -3,6 +3,7 @@ package com.benRem.brPoMgmt.services.login;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,6 +18,8 @@ import org.springframework.security.oauth2.client.token.grant.code.Authorization
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+import javax.inject.Inject;
+
 /**
  * Modifying or overriding the default spring boot security.
  */
@@ -25,9 +28,12 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Slf4j
 public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Inject private SecurityProperties securityProperties;
+
     private OAuth2ClientContext oauth2ClientContext;
     private AuthorizationCodeResourceDetails authorizationCodeResourceDetails;
     private ResourceServerProperties resourceServerProperties;
+
 
     @Autowired
     public void setOauth2ClientContext(OAuth2ClientContext oauth2ClientContext) {
@@ -65,6 +71,8 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
     We can specify our authorization criteria inside this method.*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        http.requiresChannel().anyRequest().requiresSecure();
 
         http
                 // Starts authorizing configurations.

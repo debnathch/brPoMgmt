@@ -1,2 +1,35 @@
+spring:
+  profiles:
+    active: google
+# Spring Security configuration
+security:
+  oauth2:
+    client:
+      clientId: 837663666068-vfk7ut298mcbb5t601fd9afh56rj1erp.apps.googleusercontent.com
+      clientSecret: ripmTGqKehCbqkt5CBXEfDe5
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
 server:
   port: 8085
+  host: localhost
+mail:
+  port: 587
+  username: debnath.chaterje@gmail.com
+  password: debnath1982
+logging:
+  level:
+    root:
+      org.springframework.web: ERROR
+      com.benRem.brPoMgmt: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  #file: logs/logfile.log

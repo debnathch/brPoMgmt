@@ -6,15 +6,15 @@
     <groupId>com.benRem</groupId>
     <artifactId>brPoMgmt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
+    <!--<packaging>jar</packaging>
+-->
     <name>brPoMgmt</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
+        <version>1.5.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -24,6 +24,7 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <packaging>war</packaging>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,12 +44,20 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!-- social -->
         <dependency>
             <groupId>org.springframework.social</groupId>
             <artifactId>spring-social-web</artifactId>
-
+            <version>1.1.6.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-core</artifactId>
+            <version>1.1.6.RELEASE</version>
         </dependency>
         <!-- facebook -->
         <dependency>
@@ -95,12 +104,12 @@
             <version>1.16.6</version>
         </dependency>
         <!-- logging start -->
-        <dependency>
+       <!-- <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.19</version>
-        </dependency>
-        <dependency>
+        </dependency>-->
+       <!-- <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.5</version>
@@ -120,7 +129,7 @@
             <artifactId>log4j-jcl</artifactId>
             <version>2.5</version>
         </dependency>
-
+-->
 
         <!--WebJars-->
         <dependency>
@@ -153,14 +162,105 @@
             <version>20170516</version>
         </dependency>
 
+        <!-- Apache POI for EXCEL processing  -->
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+        <!-- swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.6.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- swagger end -->
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.0.4.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+        <!-- Security -->
+
 
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Camden.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>static</directory>
+                <targetPath>static</targetPath>
+            </resource>
+            <resource>
+                <directory>${project.sources}</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.ttf</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.sources}</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.woff</include>
+                    <include>**/*.ttf</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--<configuration>
+                    <mainClass>com.benRem.brPoMgmt.BrPoMgmtApplication</mainClass>
+                    <layout>ZIP</layout>
+                </configuration> -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

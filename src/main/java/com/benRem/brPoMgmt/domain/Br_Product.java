@@ -11,11 +11,11 @@ import org.json.JSONObject;
 
 
 @Entity
-@Table(name="br_product_list")
+@Table(name="br_product_list", schema = "heroku_b623f1513b9ff48")
 @Data
 public class Br_Product implements Serializable {
 	
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="prod_id")
 	int product_id;
 
@@ -23,6 +23,11 @@ public class Br_Product implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "company_id")
 	private Company company;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "prod_type_id")
+	private ProductType productType;
+
 
 	@Column(name="prod_name")
 	String product_name;
@@ -35,12 +40,16 @@ public class Br_Product implements Serializable {
 	
 	@Column(name="prod_trade_price")
 	Float product_trade_price;
-	
-	@Column(name="prod_mrp_incl_vat")
+
+	@Column(name="prod_hsn_code")
+	String product_hsn_code;
+
+
+	/*@Column(name="prod_mrp_incl_vat")
 	Float product_mrp_price_icl_vat;
 	
 	@Column(name="prod_net_exclude_vat")
-	Float product_net_exclude_vat;
+	Float product_net_exclude_vat;*/
 
 
 	public Br_Product(){
@@ -50,14 +59,23 @@ public class Br_Product implements Serializable {
 		this.product_name = name;
 	}
 
-	public Br_Product(String name, Company company){
+	public Br_Product(String name, Company company,ProductType productType){
 		this.product_name = name;
 		this.company = company;
+		this.productType = productType;
 	}
 
 
 
-	public Company getCompany() {
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
+    public Company getCompany() {
 		return company;
 	}
 
@@ -96,21 +114,20 @@ public class Br_Product implements Serializable {
 	public void setProduct_trade_price(Float product_trade_price) {
 		this.product_trade_price = product_trade_price;
 	}
-
-	public Float getProduct_mrp_price_icl_vat() {
-		return product_mrp_price_icl_vat;
+	public int getProduct_id() {
+		return product_id;
 	}
 
-	public void setProduct_mrp_price_icl_vat(Float product_mrp_price_icl_vat) {
-		this.product_mrp_price_icl_vat = product_mrp_price_icl_vat;
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
 	}
 
-	public Float getProduct_net_exclude_vat() {
-		return product_net_exclude_vat;
+	public String getProduct_hsn_code() {
+		return product_hsn_code;
 	}
 
-	public void setProduct_net_exclude_vat(Float product_net_exclude_vat) {
-		this.product_net_exclude_vat = product_net_exclude_vat;
+	public void setProduct_hsn_code(String product_hsn_code) {
+		this.product_hsn_code = product_hsn_code;
 	}
 
 	public String toString(){
@@ -123,9 +140,15 @@ public class Br_Product implements Serializable {
 		JSONObject companyObj = new JSONObject();
 		companyObj.put("company_name", this.company.getCompany_name());
 		companyObj.put("company_id", this.company.getCompany_id());
+		companyObj.put("parent_company_name", this.company.getParent_company_name());
+
 		jsonInfo.put("companyMake", companyObj);
+		JSONObject productType = new JSONObject();
+		productType.put("prod_type_name", this.productType.getProd_type_name());
+		jsonInfo.put("productType",productType);
 		jsonInfo.put("product_description",this.product_description);
 		jsonInfo.put("product_pack_size",this.product_pack_size);
+
 
 		info = jsonInfo.toString();
 		return info;

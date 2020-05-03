@@ -15,11 +15,15 @@ public class Products {
 
     CompanyMake companyMake;
 
+    ProductType productType;
+
     String product_name;
 
     String product_description;
 
     String product_pack_size;
+
+    String product_qty;
 
 
 }

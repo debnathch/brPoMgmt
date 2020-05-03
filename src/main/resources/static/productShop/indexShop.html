@@ -3,8 +3,8 @@
 <head>
 
     <title>Bengal Remedies || E-Medicine-Shopper</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -33,59 +33,229 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="/js/datatable.js"></script>
+    <script src="http://bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
+    <!--<script src="/js/datatable.js"></script>-->
 
 
     <!-- load the about content to UI  http://www.jquery-az.com/jquery/demo.php?ex=69.0_1-->
 
+
     <script>
 
-        $(function () {
+    function sendRateChart() {
 
-            var goToCartIcon = function($addTocartBtn){
-                var $cartIcon = $(".my-cart-icon");
-                var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
-                $addTocartBtn.prepend($image);
-                var position = $cartIcon.position();
-                $image.animate({
-                    top: position.top,
-                    left: position.left
-                }, 500 , "linear", function() {
-                    $image.remove();
-                });
-            }
 
-            $('.my-cart-btn').myCart({
-                classCartIcon: 'my-cart-icon',
-                classCartBadge: 'my-cart-badge',
-                classProductQuantity: 'my-product-quantity',
-                classProductRemove: 'my-product-remove',
-                classCheckoutCart: 'my-cart-checkout',
-                affixCartIcon: true,
-                showCheckoutModal: true,
-                clickOnAddToCart: function($addTocart){
-                    goToCartIcon($addTocart);
+     var customer = JSON.parse(sessionStorage.cust);
+
+      $.ajax({
+                type: 'GET',
+
+                url: '/sendChartToCustomer',
+  				data: { "customerId" : customer.customer_id},
+                dataType: 'json',
+                cache: false,
+                timeout: 600000,
+
+                success: function (data) {
+
+                     $("#rateChartSendModal").modal('show');
+                    console.log("SUCCESS : ", data);
+
                 },
-                clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
-                    console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
-                },
-                checkoutCart: function(products, totalPrice, totalQuantity) {
-                    console.log("checking out", products, totalPrice, totalQuantity);
-                },
-                getDiscountPrice: function(products, totalPrice, totalQuantity) {
-                    console.log("calculating discount", products, totalPrice, totalQuantity);
-                    return totalPrice * 0.5;
+                error: function (e) {
+                alert("There is a problem. Our Member will contact you shortly");
+                    console.log("ERROR : ", e);
+                    $('#btn-order').prop("disabled", false);
                 }
             });
 
-        });
 
+    }
+
+        function customerContactDetailsForProduct(){
+
+    var contactDetailsForOrder = {};
+    contactDetailsForOrder["contactName"] = $("#contactName").val();
+    contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
+    contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
+
+
+    $.ajax({
+
+        type: "POST",
+        contentType: "application/json",
+        url: "/customerDetailsForProductOrder",
+        data: JSON.stringify(contactDetailsForOrder),
+        dataType: 'json',
+        cache: true,
+        timeout: 600000,
+
+        success: function (data) {
+        alert(data.customerId);
+
+            var cust = { 'customer_id': data.customerId,
+                         'customer_name':data.customerName,
+                         'customer_email' : data.custEmail,
+                         'customer_mobile': data.custPrimeryPhone };
+            sessionStorage.setItem('cust', JSON.stringify(cust));
+            customer = JSON.parse(sessionStorage.cust);
+
+            console.log("SUCCESS : ", data);
+
+            sessionStorage.userVisited = 'Y';
+
+
+
+        },
+       error: function(jqXHR, exception){
+
+
+            var cust = { 'customer_id': data.customerId,
+                         'customer_name':data.customerName,
+                         'customer_email' : data.custEmail,
+                         'customer_mobile': data.custPrimeryPhone };
+            sessionStorage.setItem('cust', JSON.stringify(cust));
+            customer = JSON.parse(sessionStorage.cust);
+
+            console.log("SUCCESS : ", data);
+
+            sessionStorage.userVisited = 'Y';
+
+
+  }
+    });
+
+
+}
+
+var table;
+var node;
+var customer;
 
         $(document).ready(function() {
+
+
+$(function(){
+     var navMain = $("#myNavbar");
+     navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
+     });
+ });
+
+ if(sessionStorage.userVisited == 'Y') {
+        node = document.getElementById('refreshLine');
+        node.style.visibility = 'hidden';
+        console.log(node.style.visibility );
+    }
+
+// start
+
+  table = $('#productList').DataTable({
+
+                searchHighlight: true,
+
+                "sAjaxSource": "/product",
+                "sAjaxDataProp": "",
+
+                "order": [[ 0, "asc" ]],
+
+                "retrieve": true,
+
+                "aoColumns": [
+
+                    { "mData": "companyMake.parent_company_name" , "sWidth": "30%"},
+
+                    { "mData": "companyMake.company_name" , "sWidth": "30%"},
+
+                    { "mData": "productType.prod_type_name" , "sWidth": "30%"},
+
+                    { "mData": "product_name" , "sWidth": "20%" },
+                    { "mData": "product_description" , "sWidth": "30%" },
+                    { "mData": "product_pack_size" , "sWidth": "10%"},
+
+                    {
+                        "mData": "product_id",
+
+                        "bSortable": false,
+
+                        "mRender": function(data, type, full) {
+
+                            id = data;
+
+
+                            if(sessionStorage.userVisited == 'Y'){
+                                return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." >';
+                            } else {
+                                 return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." disabled>';
+                            }
+
+
+                        }, "sWidth": "10%"
+
+                    },
+
+
+
+                    {
+
+
+
+                        "mData": "product_id",
+
+                        "bSortable": false,
+
+                        "mRender": function(data, type, full) {
+
+                            id = data.toString();
+
+                            var a = parseInt(id);
+
+                            if(sessionStorage.userVisited == 'Y') {
+                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')"><i class="fa fa-shopping-cart">' + 'ADD' + '</button>';
+                            } else {
+                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')" disabled><i class="fa fa-shopping-cart" >' + 'ADD' + '</button>';
+                            }
+
+
+                        }, "sWidth": "10%"
+
+                    }
+
+
+
+                ]
+
+            });
+
+table.search('BENGAL').draw();
+
+ $('#productList thead th').each( function () {
+
+
+        var title = $(this).text();
+
+
+         if(!title.match(/^(box description|Quantity|Add to Cart)$/)) {
+            $(this).html( '<input type="text" placeholder="'+title+'" />' );
+        }
+    });
+
+     // Apply the search
+    table.columns().every( function () {
+        var that = this;
+
+
+        $( 'input', this.header() ).on( 'keyup change', function () {
+        table.search('').draw();
+            if ( that.search() !== this.value ) {
+                that.search( this.value ).draw();
+            }
+        } );
+    } );
+
+// end
 // only about us will be displayed
-
-
-            $('a.home-link').click( function() {
+             $('a.home-link').click( function() {
                 var page = $(this).attr('href');
                 $.ajax({
                     type: 'GET',
@@ -93,8 +263,8 @@
                     data: page,
                     success: function(content) {
 
-                        window.location.href = 'http://localhost:8085/index.html';
-                        // replace
+                        window.location.href = '/index.html';
+
                     },
                     error: function (e) {
                         alert("Please contact Admn for "+page+ " is not directed as expected");
@@ -104,7 +274,6 @@
             });
 
         });
-
 
         function contactUs() {
 
@@ -116,152 +285,359 @@
             $('#btn-contact').prop("disabled", false);
             $.ajax({
                 type: "POST",
+
                 contentType: "application/json",
+
                 url: "/contactUs",
+
                 data: JSON.stringify(contactDetails),
+
                 dataType: 'json',
+
                 cache: false,
+
                 timeout: 600000,
+
                 success: function (data) {
                     alert(" success ....");
                     var json = "Thanks For your interest. Our Member will contact you shortly"
+
                         + JSON.stringify(data, null, 4) + "</pre>";
-                    $('#feedbackSuccess').html(json);
 
+                    $('#feedbackSuccess').html(json);
                     console.log("SUCCESS : ", data);
+
                     $('#btn-contact').prop("disabled", false);
+
                 },
+
                 error: function (e) {
-                    alert(" Error ....");
+
+                    (" Error ....");
+
                     var json = "<h5>Ajax Response</h5>";
-
                     $('#feedbackSuccess').html(json);
-
-
                     console.log("ERROR : ", e);
+
                     $('#btn-contact').prop("disabled", false);
+
                 }
+
             });
+
         }
 
-
         //counter of item increate logic
+
         function clickCounter(cartQuty) {
 
             if(typeof(Storage) !== "undefined") {
                 if (sessionStorage.clickcount) {
-                    alert(cartQuty + " count  "+sessionStorage.clickcount);
-                    sessionStorage.clickcount = Number(sessionStorage.clickcount)+parseInt(cartQuty);
+                    sessionStorage.clickcount = Number(sessionStorage.clickcount)+parseInt("1");
+
                 } else {
-                    alert(sessionStorage.clickcount + " count else")
                     sessionStorage.clickcount = 1;
                 }
                 //localStorage.clickcount = 0
+
                 document.getElementById("itemCount").innerHTML =  sessionStorage.clickcount;
             } else {
                 document.getElementById("itemCount").innerHTML = "Sorry, your browser does not support web storage...";
             }
+
         }
 
+
+
 // after adding into cart
+
         function addToCart(id){
 
             if(document.getElementById("qty_"+id).value != 0){
-                var cartQuty = document.getElementById("qty_"+id).value;
-                var orderItem = {};
 
+                var cartQuty = document.getElementById("qty_"+id).value;
+
+                var orderItem = {};
                 clickCounter(cartQuty);
+
+                var customer = JSON.parse(sessionStorage.cust);
+
                 orderItem["prod_id"]=id;
+
                 orderItem["prod_qty"]=cartQuty;
 
+                orderItem["customerId"]= customer.customer_id;
+
                 $.ajax({
+
                     type: "POST",
+
                     contentType: "application/json",
+
                     url: "/addCart",
+
                     data: JSON.stringify(orderItem),
+
                     dataType: 'json',
+
                     cache: false,
+
                     timeout: 600000,
+
                     success: function (data) {
-                        alert("Added to card successFully : ");
+
+                        ("Added to card successFully : ");
+
                         var json = "Thanks For your interest. Our Member will contact you shortly"
+
                             + JSON.stringify(data, null, 4) + "</pre>";
 
+
+
                         console.log("Added to card successFully : ", data);
-
                     },
-                    error: function (e) {
 
+                    error: function (e) {
                         console.log("ERROR to add the item to cart. Please call 8981089350: ", e);
 
                     }
+
                 });
+
                 document.getElementById("qty_"+id).value = 0;
+
             } else{
+                ("please select atleast one item")
 
-                alert("please select atleast one item")
             }
-
-
 
         }
 
+    function filterProductTable(productType){
 
+               table.search(productType).draw();
+
+        }
 
         $(document).ready( function () {
 
-
             var id =  parseInt(0);
+             console.log(sessionStorage.cust);
 
+            if(sessionStorage.cust != undefined) {
+
+
+
+            var customer = JSON.parse(sessionStorage.cust);
+
+
+$.ajax({
+
+            type: 'GET',
+
+            url: '/fetchCartCount',
+
+            data: {"customerId":customer.customer_id},
+
+            dataType: 'json',
+
+            success: function(data) {
+             sessionStorage.clickcount =  parseInt(data);
+             document.getElementById("itemCount").innerHTML = sessionStorage.clickcount;
+          } // Success Function
+
+          });   // Ajax Call
+
+                 }
             var orderItem = {};
-
-
-            var table = $('#productList').DataTable({
-                "sAjaxSource": "/product",
-                "sAjaxDataProp": "",
-                "order": [[ 0, "asc" ]],
-                "aoColumns": [
+            var ulP = document.getElementById("productType");
+            var ulC = document.getElementById("companyType");
 
 
 
-                    { "mData": "companyMake.company_name" , "sWidth": "10%"},
-                    { "mData": "product_name" , "sWidth": "20%" },
-                    { "mData": "product_description" , "sWidth": "30%" },
-                    { "mData": "product_pack_size" , "sWidth": "10%"},
-                    {
-                        "mData": "product_id",
-                        "bSortable": false,
-                        "mRender": function(data, type, full) {
-                            id = data;
 
-                            return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY...">';
-                        }, "sWidth": "10%"
+$.ajax({
+
+                    type: 'GET',
+
+                    url: '/productType',
+
+                    dataType: 'json',
+
+                    success: function(data) {
+
+
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            var li = document.createElement("li");
+
+                            var a = document.createElement("a");
+
+                            a.setAttribute('href',"#productTable");
+
+
+
+                            a.setAttribute('onClick',"filterProductTable('"+data[i].prod_type_name+"')");
+
+                            var span = document.createElement("span");
+
+                            span.setAttribute('class',"pull-right");
+
+                            a.appendChild(document.createTextNode(data[i].prod_type_name));
+
+                            a.appendChild(span);
+
+                            li.appendChild(a);
+
+
+
+                            ulP.appendChild(li);
+
+                        }
+
+
+
                     },
 
-                    {
+                    error: function (e) {
 
-                        "mData": "product_id",
-                        "bSortable": false,
-                        "mRender": function(data, type, full) {
+                        ("Please contact Admn for "+page+ " is not directed as expected");
 
-                            id = data.toString();
-                            var a = parseInt(id);
-
-
-                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')"><i class="fa fa-shopping-cart">' + 'ADD' + '</button>';
-                        }, "sWidth": "10%"
                     }
 
+                });
+
+                $.ajax({
+
+                    type: 'GET',
+
+                    url: '/companyType',
+
+                    dataType: 'json',
+
+                    success: function(data) {
 
 
-                ]
 
-            })
+                        for (var i = 0; i < data.length; i++) {
+
+                            var li = document.createElement("li");
+
+                            var a = document.createElement("a");
+
+                            a.setAttribute('href',"#productTable");
+
+
+
+                            a.setAttribute('onClick',"filterProductTable('"+data[i].company_name+"')");
+
+                            var span = document.createElement("span");
+
+                            span.setAttribute('class',"pull-right");
+
+                            a.appendChild(document.createTextNode(data[i].company_name));
+
+                            a.appendChild(span);
+
+                            li.appendChild(a);
+
+
+
+                            ulC.appendChild(li);
+
+                        }
+
+
+
+                    },
+
+                    error: function (e) {
+
+                        ("Please contact Admn for "+page+ " is not directed as expected");
+
+                    }
+
+                });
+
+
         });
+
+        $(function() {
+
+         if(sessionStorage.userVisited != 'Y'){
+            $("#popModal").modal('show');
+                document.getElementById("displayUser").innerHTML='Welcome Anonymous';
+            } else {
+                var customer = JSON.parse(sessionStorage.cust);
+                document.getElementById("displayUser").innerHTML='Welcome ' + customer.customer_name + '';
+            }
+        });
+
+
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+
+}
+
+function closeNav(url) {
+
+       window.location.replace  = url;
+       document.getElementById("mySidenav").style.width = "0";
+
+}
+
     </script>
 
 
     <style>
+
+body {
+    background-image: url("/productShop/images/shop.jpg");
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav div ul h2 {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav div ul h2 :hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav div ul h2 {font-size: 18px;}
+}
+
 
         h3, h4 {
             margin: 10px 0 30px 0;
@@ -269,6 +645,7 @@
             font-size: 20px;
             color: #111;
         }
+
 
         @media (max-width: 300px) {
             .carousel-caption {
@@ -372,6 +749,7 @@
             position: relative;
         }
 
+
     </style>
 
 
@@ -386,12 +764,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="indexShop.html" class="navbar-brand" > <img src="images/home/logo.gif" class="image-circle" width=150 height=102/></a>
+            <a href="indexShop.html" class="navbar-brand"> <img src="images/home/logo.gif" class="image-circle" width=150
+                                                            height=102/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.html" class="home-link">Home</a></li>
-                <li><a href="#">Order</a></li>
                 <li><a href="#contact">Contact</a></li>
 
             </ul>
@@ -400,31 +778,6 @@
 </nav>
 
 <header id="header"><!--header-->
-    <div class="header_top"><!--header_top-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="contactinfo">
-                        <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +91-9836711699</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> @.com</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="social-icons pull-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--/header_top-->
 
     <div class="header-middle"><!--header-middle-->
         <div class="container">
@@ -436,13 +789,14 @@
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-                        <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                        <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                        <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                        <!--<li><a href="cart.html"><i class="fa fa-shopping-cart badge badge-notify my-cart-badge"></i> Cart</a></li>-->
-                        <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
-                        <li><a href="cart.html"><i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span class="badge-cart" id="itemCount"></span></i-cart> </a> </li>
 
+                        <!--<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>-->
+                        <li><a href="cart.html">
+                            <i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span
+                                    class="badge-cart" id="itemCount"></span></i-cart>
+                        </a></li>
+                        <li> </li>
+                        <li><a href="login.html" ><span><i class="glyphicon glyphicon-user" id="displayUser" ></i></span>  </a></li>
                     </ul>
                 </div>
             </div>
@@ -453,256 +807,233 @@
     <div class="header-bottom"><!--header-bottom-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-9">
+
+                <div class="col-sm-10" >
+                    <section id="slider">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                                            <li data-target="#slider-carousel" data-slide-to="1"></li>
+                                            <li data-target="#slider-carousel" data-slide-to="2"></li>
+                                        </ol>
+
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <div class="col-sm-6">
+                                                    <h1><span>E- Medicine</span>-SHOPPER</h1>
+                                                    <h3>Online Order </h3>
+                                                    <p>Place Order with Best Rate. </p>
+                                                    <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <img src="images/home/girl1.jpg" class="girl img-responsive" alt=""/>
+                                                    <img src="images/home/pricing.jpg" class="pricing" alt=""/>
+                                                </div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="col-sm-6">
+                                                    <h1><span>E-Medicine</span>-SHOPPER</h1>
+                                                    <h3>Online Order </h3>
+                                                    <p>Place Order with Best Rate. </p>
+                                                    <button type="button" class="btn btn-default get" onclick="sendRateChart()">Get it now</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <img src="images/home/girl2.jpg" class="girl img-responsive" alt=""/>
+                                                    <img src="images/home/pricing.png" class="pricing" alt=""/>
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-sm-6">
+                                                    <h1><span>E-Medicine</span>-SHOPPER</h1>
+                                                    <h3>Online Order </h3>
+                                                    <p>Place Order with Best Rate. </p>
+                                                    <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <img src="images/home/girl3.jpg" class="girl img-responsive" alt=""/>
+                                                    <img src="images/home/pricing.png" class="pricing" alt=""/>
+                                                </div>
+                                            </div>
+
+                                            <div class="item">
+                                                <div class="col-sm-6">
+                                                    <h1><span>E-Medicine</span>-SHOPPER</h1>
+                                                    <h3>Online Order </h3>
+                                                    <p>Place Order with Best Rate. </p>
+                                                    <button type="button" class="btn btn-default get" onclick="sendRateChart()" >Get it now</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <img src="images/home/girl4.jpg" class="girl img-responsive" alt=""/>
+                                                    <img src="images/home/pricing.png" class="pricing" alt=""/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                                            <i class="fa fa-angle-left"></i>
+                                        </a>
+                                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="mainmenu pull-left">
-                        <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="indexShop.html" class="active">Home</a></li>
-                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="shop.html">Products</a></li>
-                                    <li><a href="product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                    <div class="mainmenu pull-left" >
 
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="blog.html">Blog List</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <!-- <h2>Category</h2>-->
+                        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; <h2>Category</h2></span>
                     </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div><!--/header-bottom-->
 </header><!--/header-->
 
-<section id="slider"><!--slider-->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#slider-carousel" data-slide-to="1"></li>
-                        <li data-target="#slider-carousel" data-slide-to="2"></li>
-                    </ol>
-
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.jpg"  class="pricing" alt="" />
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png"  class="pricing" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png" class="pricing" alt="" />
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h3>Online Order </h3>
-                                <p>Place Order with Best Rate. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="images/home/girl4.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png" class="pricing" alt="" />
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
+<!-- mail modal for rate chart -->
+<!-- loader gif-->
+<div class="modal" style="display: none">
+    <div class="center">
+        <img alt="" src="images/Spin.gif" />
+    </div>
+</div>
+<div id="rateChartSendModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Rate Chart Send</h4>
+            </div>
+            <div class="modal-body">
 
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
+
     </div>
-</section><!--/slider-->
+</div>
+
+<!-- Popup Modal -->
+<div id="popModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Give your contact details to proceed </h5>
+            </div>
+            <div class="modal-body">
+                <form role="form" data-toggle="validator" onsubmit="customerContactDetailsForProduct()">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-sm-6 form-group" class="form-group">
+                                <input class="form-control" id="contactName" name="name" placeholder="Name" type="text" required>
+                            </div>
+                            <div class="col-sm-6 form-group" class="form-group">
+                                <input class="form-control" id="contactEmail" name="email" placeholder="Email" type="email"
+                                       data-error="email address is invalid" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group" class="form-group">
+                                <input class="form-control" id="contactPhone" name="phoneNo" placeholder="Phone Number" type="phoneNo" max maxlength="10" minlength="10">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12 form-group" class="form-group">
+                                <button class="btn pull-right" id="btn-contact-Product" type="submit" >send</button>
+                                <button  type="reset" class="btn">reset</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
 
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-2">
-                <div class="left-sidebar">
-                    <h2>Category</h2>
-                    <div class="panel-group category-products" id="accordian">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        Bengal Remedies
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="sportswear" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">BETA </a></li>
-                                        <li><a href="#">NON BETA </a></li>
-                                        <li><a href="#">INJECTION </a></li>
-                                        <li><a href="#">EYE</a></li>
-                                        <li><a href="#">HERBAL </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        DWARIKA PHERMA
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="mens" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">BETA</a></li>
-                                        <li><a href="#">NON BETA</a></li>
-                                        <li><a href="#">EYE</a></li>
 
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                <div id="mySidenav"class="sidenav">
+                    <a class="closebtn" onclick="closeNav('#productTable')">&times;</a>
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#womens">
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                        JM
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="womens" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <ul>
-                                        <li><a href="#">Fendi</a></li>
-                                        <li><a href="#">Guess</a></li>
-                                        <li><a href="#">Valentino</a></li>
-                                        <li><a href="#">Dior</a></li>
-                                        <li><a href="#">Versace</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title"><a href="#">ILPL</a></h5>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h5 class="panel-title"><a href="#">MAHA ABTAR</a></h5>
-                            </div>
-                        </div>
+                    <div class="brands_products" ><!--brands_products-->
+                            <h2>COMPANY TYPE</h2>
+                            <div class="brands-name collapse navbar-collapse" >
+                                <ul class="nav nav-pills nav-stacked" id="companyType" onclick="closeNav('#productTable')">
 
-                    </div><!--/category-products-->
+                                </ul>
+                            </div>
+                        </div><!--/brands_products-->
 
-                    <div class="brands_products"><!--brands_products-->
-                        <h2>Brands</h2>
+                    <div class="brands_products" ><!--brands_products-->
+                        <h2>PRODUCT TYPE</h2>
                         <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#"> <span class="pull-right"></span>Syrup</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Tablet Erde</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Injection</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Herbal</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Oinment</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Eye-Product</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Beta</a></li>
-                                <li><a href="#"> <span class="pull-right"></span>Non-Beta</a></li>
+                            <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav('#productTable')">
+
                             </ul>
                         </div>
                     </div><!--/brands_products-->
 
-                 <!--   <div class="price-range">&lt;!&ndash;price-range&ndash;&gt;
-                        <h2>Price Range</h2>
-                        <div class="well text-center">
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                            <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-                        </div>
-                    </div>&lt;!&ndash;/price-range&ndash;&gt;
-
-                    <div class="shipping text-center">&lt;!&ndash;shipping&ndash;&gt;
-                        <img src="images/home/shipping.jpg" alt="" />
-                    </div>&lt;!&ndash;/shipping&ndash;&gt;-->
 
                 </div>
-            </div>
 
 
 
-            <div class="col-sm-10 padding-right">
-                <h4>Product List</h4>
-                <table id="productList" class="display table-bordered table-condensed table-striped table-hover">
+            <div id="productTable" class="col-sm-10 " >
+                <h4 class="col-md-5">Product List</h4>
+
+                <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>
+                <table id="productList" class=" container-fluid display table-bordered table-condensed table-striped table-hover">
 
                     <!-- Header Table -->
                     <thead>
                     <tr>
 
                         <th>company</th>
-                        <th>product name</th>
+                        <th>division</th>
+                        <th >type</th>
+                        <th >product name</th>
                         <th>product description</th>
                         <th>box description</th>
                         <th>Quantity</th>
                         <th>Add to Cart</th>
-
 
 
                     </tr>
@@ -710,14 +1041,6 @@
                     <!-- Footer Table -->
                     <tfoot>
                     <tr>
-<!--
-                        <th>company</th>
-                        <th>product name</th>
-                        <th>product description</th>
-                        <th>box description</th>
-                        <th>Quantity</th>
-                        <th>Add to Cart</th>-->
-
 
 
                     </tr>
@@ -737,74 +1060,74 @@
 
 </section>
 
- <section>
-     <!-- Container (Contact Section) -->
-     <div id="contact" class="container">
-         <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
+<section>
+    <!-- Container (Contact Section) -->
+    <div id="contact" class="container">
+        <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
 
 
-         <div class="col-md-4">
-             <p></p>
-             <p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara, Shobhabazar, Kolkata, West Bengal 700006</em></p>
-             <p><span class="glyphicon glyphicon-phone"></span><em>Phone: +91-8981089350</em></p>
-             <p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
-         </div>
+        <div class="col-md-4">
+            <p></p>
+            <p><span class="glyphicon glyphicon-map-marker"></span><em>1, Kali Dutta St, Manicktala, Darjipara,
+                Shobhabazar, Kolkata, West Bengal 700006</em></p>
+            <p><span class="glyphicon glyphicon-phone"></span><em>Phone: +91-8981089350</em></p>
+            <p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
+        </div>
 
-         <form role="form" id="contactForm" data-toggle="validator" onsubmit="contactUs()">
-             <div class="col-md-8">
-                 <div class="row">
-                     <div class="col-sm-6 form-group" class="form-group">
-                         <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-                     </div>
-                     <div class="col-sm-6 form-group" class="form-group">
-                         <input class="form-control" id="email" name="email" placeholder="Email" type="email"
-                                data-error="Bruh, that email address is invalid" required>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-sm-12 form-group" class="form-group">
-                         <input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number" type="phoneNo" minlength="10">
-                     </div>
-                 </div>
-                 <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-                 <br>
-                 <div class="row">
-                     <div class="col-md-12 form-group" class="form-group">
-                         <button class="btn pull-right" id="btn-contact" type="submit" >send</button>
-                         <button  type="reset" class="btn">reset</button>
-                     </div>
-                 </div>
-             </div>
-         </form>
-
-
-         <br>
-         <h3 class="text-center">Key Faces</h3>
-         <ul class="nav nav-tabs">
-             <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
-             <li><a data-toggle="tab" href="#menu1">Mr. Kundu</a></li>
-             <li><a data-toggle="tab" href="#menu2">Ruma</a></li>
-         </ul>
-
-         <div class="tab-content">
-             <div id="home" class="tab-pane fade in active">
-                 <h2>Somnath Chatterjee, CEO</h2>
-                 <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
-             </div>
-             <div id="menu1" class="tab-pane fade">
-                 <h2>Mr. Kundu, Manager</h2>
-                 <p>Always with people! </p>
-             </div>
-             <div id="menu2" class="tab-pane fade">
-                 <h2>Ruma Chatterjee, MD</h2>
-                 <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
-             </div>
-         </div>
-     </div>
-
- </section>
+        <form role="form" id="contactForm" data-toggle="validator" onsubmit="contactUs()">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-6 form-group" class="form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group" class="form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+                               data-error="Bruh, that email address is invalid" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group" class="form-group">
+                        <input class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone Number"
+                               type="phoneNo" minlength="10">
+                    </div>
+                </div>
+                <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+                <br>
+                <div class="row">
+                    <div class="col-md-12 form-group" class="form-group">
+                        <button class="btn pull-right" id="btn-contact" type="submit">send</button>
+                        <button type="reset" class="btn">reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
 
 
+        <br>
+        <h3 class="text-center">Key Faces</h3>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Somnath Chatterjee</a></li>
+            <li><a data-toggle="tab" href="#menu1">Manager</a></li>
+            <li><a data-toggle="tab" href="#menu2">MD</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h2>Somnath Chatterjee, CEO</h2>
+                <p>Man, we've been on the road for some time now. Looking forward to Academy of FineArts.</p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h2>Manager</h2>
+                <p>Always with people! </p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <h2>MD</h2>
+                <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 
 
@@ -846,10 +1169,11 @@
             } // End if
         });
     })
+
 </script>
 
 </body>
-<script>
+<!--<script>
     function codeAddress() {
         chatteron.init({
             chatterOnClientID: "a190e0e35e89ac76b539d2ea6be02d43485b0dc824532c2c",
@@ -857,8 +1181,10 @@
             label            : "Chat here"
         });
     }
+
 </script>
 <script src="https://chatteron.io/web-sdk/scripts/web-sdk.js" onload="codeAddress();">
-</script>
+</script>-->
+
 </html>
 © 2017 copy rights Bengal Remeides

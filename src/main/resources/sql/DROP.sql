@@ -7,20 +7,20 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `purchase_order` ;
+DROP SCHEMA IF EXISTS `bengalremedi_app`;
 
 
 
 -- -----------------------------------------------------
 -- Schema purchase_order
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `purchase_order` DEFAULT CHARACTER SET utf8 ;
-USE `purchase_order` ;
+CREATE SCHEMA IF NOT EXISTS `bengalremedi_app`DEFAULT CHARACTER SET utf8 ;
+USE `bengalremedi_app`;
 
 -- -----------------------------------------------------
--- Table `purchase_order`.`purchase_order`
+-- Table `bengalremedi_app`.`bengalremedi_app`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `purchase_order`.`br_purchase_order` ;
+DROP TABLE IF EXISTS `bengalremedi_app`.`br_purchase_order` ;
 
 
 
@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS `purchase_order`.`br_purchase_order` ;
 -- purchase order line item
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `purchase_order`.`br_purchase_order_line` ;
+DROP TABLE IF EXISTS `bengalremedi_app`.`br_purchase_order_line` ;
 
 
 
@@ -39,37 +39,37 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
--- INSERT INTO `purchase_order`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', '1','1','20' ,'2016-10-03 00:00:00', 'Y');
+-- INSERT INTO `bengalremedi_app`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', '1','1','20' ,'2016-10-03 00:00:00', 'Y');
 
 
 -- COMPANY DETAILS
 
-DROP TABLE IF EXISTS `purchase_order`.`company` ;
+DROP TABLE IF EXISTS `bengalremedi_app`.`company` ;
 
 
 
 
 
 -- DRUG DETAILS
- DROP TABLE IF EXISTS `purchase_order`.`br_drug_details` ;
+ DROP TABLE IF EXISTS `bengalremedi_app`.`br_drug_details` ;
 
 
 -- PRODUCT TYPE
 
-DROP TABLE IF EXISTS `purchase_order`.`br_product_type` ;
+DROP TABLE IF EXISTS `bengalremedi_app`.`br_product_type` ;
 
 
 -- -----------------------------------------------------
 -- product list
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `purchase_order`.`br_product_list` ;
+DROP TABLE IF EXISTS `bengalremedi_app`.`br_product_list` ;
 
 
 -- -----------------------------------------------------
 -- drug associated with product
 -- -----------------------------------------------------
 
-  DROP TABLE IF EXISTS `purchase_order`.`br_drug_prod_associate` ;
+  DROP TABLE IF EXISTS `bengalremedi_app`.`br_drug_prod_associate` ;
 
 
 

@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name="br_product_type", schema = "heroku_b623f1513b9ff48")
+@Table(name="br_product_type", schema = "bengalremedi_app")
 @Data
 public class ProductType implements Serializable {
 

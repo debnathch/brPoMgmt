@@ -2,21 +2,65 @@ spring:
   profiles:
     active: google
 # Spring Security configuration
-security:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 5014057553-8gm9um6vnli3cle5rgigcdjpdrid14m9.apps.googleusercontent.com
+            clientSecret: tWZKVLxaD_ARWsriiiUFYoIk
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 642087329301902
+            clientSecret: 6968806878a59c676d59a3c567b296cd
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - public_profile
+          github:
+            clientId: d3e47fc2ddd966fa4352
+            clientSecret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - read:user
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+
+app:
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
   oauth2:
-    client:
-      clientId: 837663666068-vfk7ut298mcbb5t601fd9afh56rj1erp.apps.googleusercontent.com
-      clientSecret: ripmTGqKehCbqkt5CBXEfDe5
-      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
-      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
-      clientAuthenticationScheme: form
-      scope:
-        - openid
-        - email
-        - profile
-    resource:
-      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
-      preferTokenInfo: true
+    # After successfully authenticating with the OAuth2 Provider,
+    # we'll be generating an auth token for the user and sending the token to the
+    # redirectUri mentioned by the client in the /oauth2/authorize request.
+    # We're not using cookies because they won't work well in mobile clients.
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect
+#security:
+#  oauth2:
+#    client:
+#      clientId: 837663666068-vfk7ut298mcbb5t601fd9afh56rj1erp.apps.googleusercontent.com
+#      clientSecret: ripmTGqKehCbqkt5CBXEfDe5
+#      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+#      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+#      clientAuthenticationScheme: form
+#      scope:
+#        - openid
+#        - email
+#        - profile
+#    resource:
+#      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+#      preferTokenInfo: true
 server:
   port: 8085
   host: localhost

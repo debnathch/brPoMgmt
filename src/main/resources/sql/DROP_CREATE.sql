@@ -10,6 +10,16 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 DROP SCHEMA IF EXISTS `bengalremedi_app` ;
 
 CREATE SCHEMA `bengalremedi_app` ;
+
+--------------------------------
+----- users
+---------------------------------
+ DROP TABLE IF EXISTS `bengalremedi_app`.`customer` ;
+
+  CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`users` (
+
+  )
+
 -------------------------------
 -- Customer Table
 -------------------------------

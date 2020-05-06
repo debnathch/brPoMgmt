@@ -20,6 +20,7 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -78,11 +79,11 @@ public class HomeController {
 
         log.debug(contactDetailsForOrder.getContactEmail()+"****** entry to add product *****"+contactDetailsForOrder.getContactPhone());
 
-        Customer returnCustomer = null;
+        Optional<Customer> returnCustomer = null;
         try {
             returnCustomer = custDao.searchForCustomer(contactDetailsForOrder.getContactPhone());
             if(returnCustomer ==null){
-                returnCustomer = custDao.createCustomer(contactDetailsForOrder);
+                returnCustomer = Optional.ofNullable(custDao.createCustomer(contactDetailsForOrder));
 
             }
             return ResponseEntity.ok(returnCustomer) ;

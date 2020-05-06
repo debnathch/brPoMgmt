@@ -1,7 +1,6 @@
 package com.benRem.brPoMgmt.controller.product;
 
 import com.benRem.brPoMgmt.dao.ProductDao;
-import com.benRem.brPoMgmt.dao.PurchaeOrderDao;
 import com.benRem.brPoMgmt.domain.Br_Product;
 import com.benRem.brPoMgmt.domain.Company;
 import com.benRem.brPoMgmt.reqResObj.response.ProductType;

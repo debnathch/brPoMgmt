@@ -3,6 +3,7 @@ package com.benRem.brPoMgmt.dao;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.benRem.brPoMgmt.domain.*;
 import com.benRem.brPoMgmt.repository.*;
@@ -48,7 +49,7 @@ public class PurchaeOrderDao {
 
 
 		try {
-			Customer cust = customerRepository.findOne(customerId);
+			Optional<Customer> cust = customerRepository.findById(customerId);
 			List<PurchaseOrder> poCart = findPurchaseOrderAsCart(customerId.toString());
 
 			// customer dont have any product in cart
@@ -59,7 +60,7 @@ public class PurchaeOrderDao {
 				orderToCart.setIsActivate(puchaseOrderConstant.isActivate.constParam());
 				orderToCart.setIsCart(puchaseOrderConstant.isCart.constParam());
 				orderToCart.setOrderDate(new java.sql.Timestamp(System.currentTimeMillis()));
-				orderToCart.setCustomer(cust);
+				orderToCart.setCustomer(cust.get());
 				orderToCart = orderCartRepository.save(orderToCart);
 
 				// id cart is saved successfully then system will add the line item with this cart.
@@ -70,13 +71,13 @@ public class PurchaeOrderDao {
 					purchaseOrderLineItem.setPoId(orderToCart.getPoId());
 
 					//fetch product details from prodId
-					Br_Product product = productRepository.findOne(Integer.valueOf(orderCart.getProd_id()));
+					Optional<Br_Product> product = productRepository.findById(Integer.valueOf(orderCart.getProd_id()));
 
-					purchaseOrderLineItem.setProdId(product.getProduct_id());
-					purchaseOrderLineItem.setProduct_name(product.getProduct_name());
-					purchaseOrderLineItem.setProduct_description(product.getProduct_description());
-					purchaseOrderLineItem.setProduct_pack_size(product.getProduct_pack_size());
-					purchaseOrderLineItem.setProduct_hsn_code(product.getProduct_hsn_code());
+					purchaseOrderLineItem.setProdId(product.get().getProduct_id());
+					purchaseOrderLineItem.setProduct_name(product.get().getProduct_name());
+					purchaseOrderLineItem.setProduct_description(product.get().getProduct_description());
+					purchaseOrderLineItem.setProduct_pack_size(product.get().getProduct_pack_size());
+					purchaseOrderLineItem.setProduct_hsn_code(product.get().getProduct_hsn_code());
 					purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
 
 
@@ -102,13 +103,13 @@ public class PurchaeOrderDao {
 
 					purchaseOrderLineItem.setPoId(orderToCart.getPoId());
 					//fetch product details from prodId
-					Br_Product product = productRepository.findOne(Integer.valueOf(orderCart.getProd_id()));
+					Optional<Br_Product> product = productRepository.findById(Integer.valueOf(orderCart.getProd_id()));
 
-					purchaseOrderLineItem.setProdId(product.getProduct_id());
-					purchaseOrderLineItem.setProduct_name(product.getProduct_name());
-					purchaseOrderLineItem.setProduct_description(product.getProduct_description());
-					purchaseOrderLineItem.setProduct_pack_size(product.getProduct_pack_size());
-					purchaseOrderLineItem.setProduct_hsn_code(product.getProduct_hsn_code());
+					purchaseOrderLineItem.setProdId(product.get().getProduct_id());
+					purchaseOrderLineItem.setProduct_name(product.get().getProduct_name());
+					purchaseOrderLineItem.setProduct_description(product.get().getProduct_description());
+					purchaseOrderLineItem.setProduct_pack_size(product.get().getProduct_pack_size());
+					purchaseOrderLineItem.setProduct_hsn_code(product.get().getProduct_hsn_code());
 					purchaseOrderLineItem.setProductQty(new BigInteger(orderCart.getProd_qty()));
 
 
@@ -138,7 +139,7 @@ public class PurchaeOrderDao {
 
 
 		try {
-			Customer cust = customerRepository.findOne(new BigInteger(customerId));
+			Optional<Customer> cust = customerRepository.findById(new BigInteger(customerId));
 			List<PurchaseOrder> poCart = findPurchaseOrderAsCart(customerId.toString());
 
 			if (!poCart.isEmpty()) {
@@ -146,7 +147,7 @@ public class PurchaeOrderDao {
 				PurchaseOrder po = poCart.get(0);
 
 
-				smptp.sendMailForOrder(cust, po.getPoLineItems());
+				smptp.sendMailForOrder(cust.get(), po.getPoLineItems());
 
 				log.debug(" Mail sent and order placed successfully ");
 			}
@@ -195,12 +196,12 @@ public class PurchaeOrderDao {
 				for(PurchaseOrderLineItem poLine : poLineItems){
 
 					CartProduct cartProduct = new CartProduct();
-					Br_Product brProduct = productRepository.findOne(Integer.valueOf(poLine.getProdId()));
-					cartProduct.setCompany(brProduct.getCompany());
-					cartProduct.setProduct_description(brProduct.getProduct_description());
-					cartProduct.setProduct_id(brProduct.getProduct_id());
-					cartProduct.setProduct_name(brProduct.getProduct_name());
-					cartProduct.setProduct_pack_size(brProduct.getProduct_pack_size());
+					Optional<Br_Product> brProduct = productRepository.findById(Integer.valueOf(poLine.getProdId()));
+					cartProduct.setCompany(brProduct.get().getCompany());
+					cartProduct.setProduct_description(brProduct.get().getProduct_description());
+					cartProduct.setProduct_id(brProduct.get().getProduct_id());
+					cartProduct.setProduct_name(brProduct.get().getProduct_name());
+					cartProduct.setProduct_pack_size(brProduct.get().getProduct_pack_size());
 					cartProduct.setProduct_qty(poLine.getProductQty().toString());
 
 					cartProducts.add(cartProduct);
@@ -219,7 +220,7 @@ public class PurchaeOrderDao {
 
 
 		try {
-			Customer cust = customerRepository.findOne(customerId);
+			Optional<Customer> cust = customerRepository.findById(customerId);
 			List<PurchaseOrder> poCart = findPurchaseOrderAsCart(customerId.toString());
 
 			PurchaseOrder orderToCart = poCart.get(0);
@@ -245,7 +246,7 @@ public class PurchaeOrderDao {
 	// this method will update the quantity of the added cart item.
 	private void deletePoLineItemWithQty(PurchaseOrderLineItem poLineItem) {
 
-		orderLineItemRepository.delete(poLineItem.getPoLineItemId());
+		orderLineItemRepository.deleteById(poLineItem.getPoLineItemId());
 	}
 
 	public Iterable<PurchaseOrder> FindPurchaseOrder(){
@@ -262,9 +263,9 @@ public class PurchaeOrderDao {
 	//method will trigger for order
 	public String triggertoSendRateChart(String customerId) {
 
-		Customer cust = customerRepository.findOne(new BigInteger(customerId));
+		Optional<Customer> cust = customerRepository.findById(new BigInteger(customerId));
 		try {
-			smptp.sendRateWithAttachement(cust);
+			smptp.sendRateWithAttachement(cust.get());
 			return "success";
 		} catch (Exception e) {
 			e.printStackTrace();

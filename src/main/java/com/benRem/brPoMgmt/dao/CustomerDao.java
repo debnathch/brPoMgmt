@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 /**
  * Created by debnathchatterjee on 13/07/17.
@@ -32,9 +33,9 @@ public class CustomerDao {
 
     }
 
-    public Customer searchForCustomer(String custId){
+    public Optional<Customer> searchForCustomer(String custId){
 
-       return  customerRepository.findOne(new BigInteger(custId));
+       return  customerRepository.findById(new BigInteger(custId));
     }
 
     public void updateCustomer(){

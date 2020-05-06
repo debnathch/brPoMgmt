@@ -118,7 +118,7 @@ public class OrderController {
                 for(PurchaseOrder po : poList){
                     // check any orderItem is there in the po or not. if there is no order item delete the po.
                     if(po.getPoLineItems().isEmpty()) {
-                        purchaseOrderRepo.delete(po.getPoId());
+                        purchaseOrderRepo.delete(po);
                         cartCount --;
                     }
                 }

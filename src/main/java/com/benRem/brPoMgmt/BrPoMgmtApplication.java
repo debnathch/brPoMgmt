@@ -1,22 +1,23 @@
 package com.benRem.brPoMgmt;
 
+import com.benRem.brPoMgmt.services.springsocial.config.AppProperties;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
 import org.springframework.context.annotation.Bean;
 
 import org.apache.catalina.Context;
 
 @SpringBootApplication
-@EnableOAuth2Sso // Without this, basic authentication is invoked
+@EnableConfigurationProperties(AppProperties.class)
 public class BrPoMgmtApplication extends SpringBootServletInitializer {
 
 	@Override
@@ -27,23 +28,6 @@ public class BrPoMgmtApplication extends SpringBootServletInitializer {
 		SpringApplication.run(BrPoMgmtApplication.class, args);
 	}
 
-	@Bean
-	public EmbeddedServletContainerFactory servletContainer() {
-		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
-			@Override
-			protected void postProcessContext(Context context) {
-				SecurityConstraint securityConstraint = new SecurityConstraint();
-				securityConstraint.setUserConstraint("CONFIDENTIAL");
-				SecurityCollection collection = new SecurityCollection();
-				collection.addPattern("/*");
-				securityConstraint.addCollection(collection);
-				context.addConstraint(securityConstraint);
-			}
-		};
-
-		tomcat.addAdditionalTomcatConnectors(redirectConnector());
-		return tomcat;
-	}
 
 	private Connector redirectConnector() {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");

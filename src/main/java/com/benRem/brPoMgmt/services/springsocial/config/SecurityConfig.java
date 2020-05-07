@@ -91,13 +91,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .csrf()
                     .disable()
-                .formLogin()
+               /* .formLogin()
                     .disable()
                 .httpBasic()
                     .disable()
                 .exceptionHandling()
                     .authenticationEntryPoint(new RestAuthenticationEntryPoint())
-                    .and()
+                    .and()*/
                 .authorizeRequests()
                     .antMatchers("/",
                         "/error",
@@ -112,8 +112,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                     .antMatchers("/auth/**", "/oauth2/**")
                         .permitAll()
-                    .anyRequest()
-                        .authenticated()
+                    /*.anyRequest()
+                        .authenticated()*/
                     .and()
                 .oauth2Login()
                     .authorizationEndpoint()

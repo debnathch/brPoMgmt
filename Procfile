@@ -1,1 +1,1 @@
-java $JAVA_OPTS -Dserver.port=$PORT -jar target/brPoMgmt-0.0.1-SNAPSHOT.war
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/brPoMgmt-0.0.1-SNAPSHOT.war

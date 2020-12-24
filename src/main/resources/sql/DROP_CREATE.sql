@@ -7,16 +7,16 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `bengalremedi_app` ;
+DROP SCHEMA IF EXISTS `heroku_7f5f4c0dfe6e1e3` ;
 
-CREATE SCHEMA `bengalremedi_app` ;
+CREATE SCHEMA `heroku_7f5f4c0dfe6e1e3` ;
 -------------------------------
 -- Customer Table
 -------------------------------
 
-     DROP TABLE IF EXISTS `bengalremedi_app`.`customer` ;
+     DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`customer` ;
 
-  CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`customer` (
+  CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`customer` (
        `customer_id`  BIGINT NOT NULL ,
        `customer_name` varchar(255) NOT NULL,
        `customer_gst` varchar(255) ,
@@ -34,15 +34,15 @@ CREATE SCHEMA `bengalremedi_app` ;
 -- -----------------------------------------------------
 -- Schema purchase_order
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `bengalremedi_app` DEFAULT CHARACTER SET utf8 ;
-USE `bengalremedi_app` ;
+CREATE SCHEMA IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3` DEFAULT CHARACTER SET utf8 ;
+USE `heroku_7f5f4c0dfe6e1e3` ;
 
 -- -----------------------------------------------------
--- Table `bengalremedi_app`.`bengalremedi_app`
+-- Table `heroku_7f5f4c0dfe6e1e3`.`heroku_7f5f4c0dfe6e1e3`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bengalremedi_app`.`br_purchase_order` ;
+DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_purchase_order` ;
 
-CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_purchase_order` (
+CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_purchase_order` (
   `po_id`  BIGINT(1) NOT NULL AUTO_INCREMENT,
  -- `po_line_item_id`  INT NOT NULL,
   `customer_id` BIGINT NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_purchase_order` (
   `is_active`  varchar(5) NOT NULL,
   `order_date` TIMESTAMP NULL,
   PRIMARY KEY (`po_id`)
---  foreign key  (`po_line_item_id`) REFERENCES `bengalremedi_app`.`br_purchase_order_line`(`po_line_item_id`)
+--  foreign key  (`po_line_item_id`) REFERENCES `heroku_7f5f4c0dfe6e1e3`.`br_purchase_order_line`(`po_line_item_id`)
   );
 
 
@@ -58,9 +58,9 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_purchase_order` (
 -- purchase order line item
 -- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `bengalremedi_app`.`br_purchase_order_line` ;
+DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_purchase_order_line` ;
 
-CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_purchase_order_line` (
+CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_purchase_order_line` (
 
   `po_line_item_id`  BIGINT(1) NOT NULL AUTO_INCREMENT,
   `po_id`  BIGINT NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_purchase_order_line` (
 
   PRIMARY KEY (`po_line_item_id`),
 
-  foreign key  (`po_id`) REFERENCES `bengalremedi_app`.`br_purchase_order`(`po_id`)
+  foreign key  (`po_id`) REFERENCES `heroku_7f5f4c0dfe6e1e3`.`br_purchase_order`(`po_id`)
   );
 
 
@@ -85,16 +85,16 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_purchase_order_line` (
 -- order cart
 -- -----------------------------------------------------
 
--- DROP TABLE IF EXISTS `bengalremedi_app`.`order_cart` ;
+-- DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`order_cart` ;
 
--- CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`order_cart` (
+-- CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`order_cart` (
 --  `customer_id` DOUBLE NOT NULL,
 --  `prod_id`  INT NOT NULL,
 --  `product_quantity`  INT NOT NULL,
 
 --  PRIMARY KEY (`customer_id`),
 
---   foreign key  (`prod_id`) REFERENCES `bengalremedi_app`.`br_product_list`(`prod_id`));
+--   foreign key  (`prod_id`) REFERENCES `heroku_7f5f4c0dfe6e1e3`.`br_product_list`(`prod_id`));
 
 
 
@@ -105,13 +105,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
--- INSERT INTO `bengalremedi_app`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', '1','1','20' ,'2016-10-03 00:00:00', 'Y');
+-- INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_purchase_order` (`po_id`, `order_from`, `order_date`, `po_details_id`) VALUES ('2', '1','1','20' ,'2016-10-03 00:00:00', 'Y');
 
 
 -- COMPANY DETAILS
 
-DROP TABLE IF EXISTS `bengalremedi_app`.`company` ;
-CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`company` (
+DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`company` ;
+CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`company` (
   `company_id`  INT NOT NULL,
 
   `company_name` varchar(255) NOT NULL,
@@ -126,51 +126,51 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`company` (
 
 
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (1,  'BENGAL REMEDIES', 1, 'BENGAL REMEDIES' ,'KOLKATA', 'Parent Company');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (2,  'DWARKA PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (3,  'BENGAL PHERMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (4,  'JM HEALTHCARE', 2, 'JM_REMEDIES','CHANDIGARH', 'Parent Company');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (5,  'JM REMEDIES', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (6,  'ALPIC', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (7,  'KAN BIOTECH', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (8,  'MAHAAVTAR', 2, 'MAHAAVTAR' ,'DELHI', 'Parent Company');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (9,  'TOTAL CARE', 2, 'TOTAL CARE' ,'AMBALA', 'child Company');
 
-INSERT INTO `bengalremedi_app`.`company`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (10,  'GENIAL', 2, 'GENIAL' ,'CHANDIGARH', 'child Company');
 
 
 -- DRUG DETAILS
- DROP TABLE IF EXISTS `bengalremedi_app`.`br_drug_details` ;
+ DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_drug_details` ;
 
-CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_drug_details` (
+CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_drug_details` (
   `drug_id`  INT NOT NULL,
   `drug_name` varchar(255) NOT NULL,
   `drug_power` INT ,
@@ -179,9 +179,9 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_drug_details` (
 
 -- PRODUCT TYPE
 
-DROP TABLE IF EXISTS `bengalremedi_app`.`br_product_type` ;
+DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_product_type` ;
 
-CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_product_type` (
+CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_product_type` (
   `prod_type_id`  INT NOT NULL,
   `prod_type_name` varchar(255) NOT NULL,
    `prod_type_drug_comb` varchar(255) NOT NULL,
@@ -190,63 +190,63 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_product_type` (
    -- -----------------------------------------------------
 -- insert statement .. product type data
 -- -----------------------------------------------------
-INSERT INTO `bengalremedi_app`.`br_product_type`
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (1,  'TABLET', 'TABLET');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (2,  'LIQUID', 'LIQUID');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (3,  'CAPSULES', 'CAPSULES');
 
-     INSERT INTO `bengalremedi_app`.`br_product_type`
+     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (4,  'DRY SYRUP', 'DRY SYRUP');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (5,  'INJECTION', 'INJECTION');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (6,  'OINMENTS', 'OINMENTS');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (7,  'OPTHA', 'OPTHA');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (8,  'HERBAL', 'HERBAL');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (9,  'CARDIAC', 'CARDIAC');
 
-     INSERT INTO `bengalremedi_app`.`br_product_type`
+     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (10,  'DIABATIC', 'DIABATIC');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (11,  'TOOTHPASTE', 'TOOTH PASTE');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
     values (12,  'POWDER', 'Powder');
 
-    INSERT INTO `bengalremedi_app`.`br_product_type`
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
         (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
         values (13,  'SOFTGEL CAPSULES', 'CAPSULES');
 
 -- -----------------------------------------------------
 -- product list
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bengalremedi_app`.`br_product_list` ;
-CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_product_list` (
+DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_product_list` ;
+CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_product_list` (
   `prod_id`  INT NOT NULL AUTO_INCREMENT,
 
   `prod_type_id` INT NOT NULL,
@@ -258,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_product_list` (
   `prod_trade_price` FLOAT ,
   `prod_hsn_code` varchar(100) ,
 
-	foreign key  (`prod_type_id`) REFERENCES `bengalremedi_app`.`br_product_type`(`prod_type_id`),
+	foreign key  (`prod_type_id`) REFERENCES `heroku_7f5f4c0dfe6e1e3`.`br_product_type`(`prod_type_id`),
 
 	PRIMARY KEY (`prod_id`));
 
@@ -267,15 +267,15 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_product_list` (
 -- drug associated with product
 -- -----------------------------------------------------
 
-  DROP TABLE IF EXISTS `bengalremedi_app`.`br_drug_prod_associate` ;
+  DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_drug_prod_associate` ;
 
-CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_drug_prod_associate` (
+CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_drug_prod_associate` (
   `drug_prod_assoc_id`  INT NOT NULL,
   `drug_id`  INT NOT NULL,
   `prod_id` INT NOT NULL,
   `drug_prod_details` varchar(255) NOT NULL,
-  foreign key  (`drug_id`) REFERENCES `bengalremedi_app`.`br_drug_details`(`drug_id`),
-   foreign key  (`prod_id`) REFERENCES `bengalremedi_app`.`br_product_list`(`prod_id`),
+  foreign key  (`drug_id`) REFERENCES `heroku_7f5f4c0dfe6e1e3`.`br_drug_details`(`drug_id`),
+   foreign key  (`prod_id`) REFERENCES `heroku_7f5f4c0dfe6e1e3`.`br_product_list`(`prod_id`),
   PRIMARY KEY (`drug_prod_assoc_id`));
 
 

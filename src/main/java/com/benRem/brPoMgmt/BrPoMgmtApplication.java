@@ -27,7 +27,7 @@ public class BrPoMgmtApplication extends SpringBootServletInitializer {
 		SpringApplication.run(BrPoMgmtApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public EmbeddedServletContainerFactory servletContainer() {
 		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
 			@Override
@@ -43,7 +43,7 @@ public class BrPoMgmtApplication extends SpringBootServletInitializer {
 
 		tomcat.addAdditionalTomcatConnectors(redirectConnector());
 		return tomcat;
-	}
+	}*/
 
 	private Connector redirectConnector() {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");

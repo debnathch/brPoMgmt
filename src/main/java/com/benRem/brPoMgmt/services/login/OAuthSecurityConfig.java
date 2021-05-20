@@ -23,8 +23,8 @@ import javax.inject.Inject;
 /**
  * Modifying or overriding the default spring boot security.
  */
-@Configurable
-@EnableWebSecurity
+/*
+
 @Slf4j
 public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -51,24 +51,30 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
         this.resourceServerProperties = resourceServerProperties;
     }
 
-    /* This method is for overriding the default AuthenticationManagerBuilder.
+    */
+/* This method is for overriding the default AuthenticationManagerBuilder.
      We can specify how the user details are kept in the application. It may
-     be in a database, LDAP or in memory.*/
+     be in a database, LDAP or in memory.*//*
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         super.configure(auth);
     }
 
-    /* This method is for overriding some configuration of the WebSecurity
+    */
+/* This method is for overriding some configuration of the WebSecurity
      If you want to ignore some request or request patterns then you can
-     specify that inside this method.*/
+     specify that inside this method.*//*
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
     }
 
-    /*This method is used for override HttpSecurity of the web Application.
-    We can specify our authorization criteria inside this method.*/
+    */
+/*This method is used for override HttpSecurity of the web Application.
+    We can specify our authorization criteria inside this method.*//*
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -95,7 +101,9 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable();
     }
 
-    /*This method for creating filter for OAuth authentication.*/
+    */
+/*This method for creating filter for OAuth authentication.*//*
+
     private OAuth2ClientAuthenticationProcessingFilter filter() {
         //Creating the filter for "/google/login" url
         OAuth2ClientAuthenticationProcessingFilter oAuth2Filter = new OAuth2ClientAuthenticationProcessingFilter(
@@ -114,4 +122,4 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return oAuth2Filter;
     }
-}
+}*/

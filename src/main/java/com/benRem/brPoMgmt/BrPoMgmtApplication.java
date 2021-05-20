@@ -16,18 +16,18 @@ import org.springframework.context.annotation.Bean;
 import org.apache.catalina.Context;
 
 @SpringBootApplication
-@EnableOAuth2Sso // Without this, basic authentication is invoked
+//@EnableOAuth2Sso // Without this, basic authentication is invoked
 public class BrPoMgmtApplication extends SpringBootServletInitializer {
 
-	@Override
+	/*@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(BrPoMgmtApplication.class);
-	}
+	}*/
 	public static void main(String[] args) {
 		SpringApplication.run(BrPoMgmtApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public EmbeddedServletContainerFactory servletContainer() {
 		TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
 			@Override
@@ -43,7 +43,7 @@ public class BrPoMgmtApplication extends SpringBootServletInitializer {
 
 		tomcat.addAdditionalTomcatConnectors(redirectConnector());
 		return tomcat;
-	}
+	}*/
 
 	private Connector redirectConnector() {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");

@@ -1095,7 +1095,7 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
     values (184, 1,6, 'CORT -6', 'Deflazacort 6mg', '10x10 ALU ALU', '65.45', '85' );
-    values
+
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
     values (185, 1,6, 'OSTOCERIN -50', 'Diacerein 50mg', '10x10 ALU ALU', '65.45', '85' );

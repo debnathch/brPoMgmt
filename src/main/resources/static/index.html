@@ -13,12 +13,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- loading main css and js -->
+    <link rel="stylesheet" href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
+    <!--Floating WhatsApp javascript-->
+    <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
 
     <script src="assets/js/main.js"></script>
     <!--    <link rel="stylesheet" href="assets/css/main.css" />
     -->
 
+    <script type="text/javascript">
+ $(function() {
+  $('#WAButton').floatingWhatsApp({
+    phone: '919836711699', //WhatsApp Business phone number International format-
+    //Get it with Toky at https://toky.co/en/features/whatsapp.
+    headerTitle: 'Chat with us on WhatsApp!', //Popup Title
+    popupMessage: 'Hello, how can we help you?', //Popup Message
+    showPopup: true, //Enables popup display
+    buttonImage: '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', //Button Image
+    //headerColor: 'crimson', //Custom header color
+    //backgroundColor: 'crimson', //Custom background button color
+    position: "right"
+  });
+});
+    </script>
+
     <script>
+
+
 
         $(document).ready(function() {
             
@@ -559,7 +580,7 @@ $(function(){
     <div id="contact" class="container-fluid ">
         <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
 
-
+        <div id="WAButton"></div>
         <div class="container-fluid">
             <p></p>
             <p><span class="glyphicon glyphicon-map-marker"></span><em>82, N.S Bose Road , Uttarpara , Hooghly , 712258</em></p>

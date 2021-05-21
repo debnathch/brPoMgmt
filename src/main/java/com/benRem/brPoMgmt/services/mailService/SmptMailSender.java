@@ -81,7 +81,7 @@ private	PurchaeOrderDao purchaseOrderDao;
 		try {
 			HtmlEmail email = new HtmlEmail();
 			String authuser = "debnath.chaterje@gmail.com";
-			String authpwd = "debnath1982";
+			String authpwd = "deb-2011leena261";
 			email.setSmtpPort(Integer.valueOf("587"));
 			// email.setAuthenticator(new DefaultAuthenticator(authuser, authpwd));
 			email.setAuthentication(authuser, authpwd);

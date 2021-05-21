@@ -35,10 +35,31 @@
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="http://bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
     <!--<script src="/js/datatable.js"></script>-->
-
+    <!--JQuery whatsapp chat starts-->
+    <!--Jquery-->
+  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+    <!--Floating WhatsApp css-->
+    <link rel="stylesheet" href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
+    <!--Floating WhatsApp javascript-->
+    <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
 
     <!-- load the about content to UI  http://www.jquery-az.com/jquery/demo.php?ex=69.0_1-->
 
+    <script type="text/javascript">
+ $(function() {
+  $('#WAButton').floatingWhatsApp({
+    phone: '919836711699', //WhatsApp Business phone number International format-
+    //Get it with Toky at https://toky.co/en/features/whatsapp.
+    headerTitle: 'Chat with us on WhatsApp!', //Popup Title
+    popupMessage: 'Hello, how can we help you?', //Popup Message
+    showPopup: true, //Enables popup display
+    buttonImage: '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', //Button Image
+    //headerColor: 'crimson', //Custom header color
+    //backgroundColor: 'crimson', //Custom background button color
+    position: "right"
+  });
+});
+    </script>
 
     <script>
 
@@ -1132,6 +1153,8 @@ body {
 
 <!-- Footer -->
 <footer class="footer">
+    <!--Div where the WhatsApp will be rendered-->
+    <div id="WAButton"></div>
     <div class="container text-right">
         <a href="https://www.facebook.com/bengal.remedies"><i class="fa fa-facebook"></i></a>
         <a href="https://plus.google.com/+RUMACHATTERJEE"><i class="fa fa-google-plus"></i></a>

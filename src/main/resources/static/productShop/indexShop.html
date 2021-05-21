@@ -100,54 +100,8 @@
     contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
     contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
 
-
-    $.ajax({
-
-        type: "POST",
-        contentType: "application/json",
-        url: "/customerDetailsForProductOrder",
-        data: JSON.stringify(contactDetailsForOrder),
-        dataType: 'json',
-        cache: true,
-        timeout: 600000,
-
-        success: function (data) {
-        alert(data.customerId);
-
-            var cust = { 'customer_id': data.customerId,
-                         'customer_name':data.customerName,
-                         'customer_email' : data.custEmail,
-                         'customer_mobile': data.custPrimeryPhone };
-            sessionStorage.setItem('cust', JSON.stringify(cust));
-            customer = JSON.parse(sessionStorage.cust);
-
-            console.log("SUCCESS : ", data);
-
-            sessionStorage.userVisited = 'Y';
-
-
-
-        },
-       error: function(jqXHR, exception){
-
-
-            var cust = { 'customer_id': data.customerId,
-                         'customer_name':data.customerName,
-                         'customer_email' : data.custEmail,
-                         'customer_mobile': data.custPrimeryPhone };
-            sessionStorage.setItem('cust', JSON.stringify(cust));
-            customer = JSON.parse(sessionStorage.cust);
-
-            console.log("SUCCESS : ", data);
-
-            sessionStorage.userVisited = 'Y';
-
-
-  }
-    });
-
-
-}
+    sessionStorage.userVisited = 'Y';
+   }
 
 var table;
 var node;

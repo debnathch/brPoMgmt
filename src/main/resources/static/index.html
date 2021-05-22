@@ -21,6 +21,7 @@
     <!--    <link rel="stylesheet" href="assets/css/main.css" />
     -->
 
+
     <script type="text/javascript">
  $(function() {
   $('#WAButton').floatingWhatsApp({
@@ -406,6 +407,17 @@ $(function(){
     </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1542412259123245',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v10.0'
+    });
+  };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -558,18 +570,12 @@ $(function(){
    <p id="thirdPartystory"></p>
 <br>
 </div>
-<div class="container-fluid  modal-dialog">
-
-    <video controls autoplay>
-        <source src="BR.mp4" type="video/mp4">
-
-        Your browser does not support HTML5 video.
-    </video>
-
-</div>
 <!--<div id="feedbackFailure" class="container text-left"> Thanks For your interest. There is a issue in sending mail. Please contact in +91-8981989350 <br></div>-->
 
 <div class="container-fluid  modal-dialog">
+    <iframe class="resp-iframe" src="https://www.youtube.com/embed/mX9d32trVyQ" frameborder="0" allowfullscreen></iframe>
+    <iframe class="resp-iframe" src="https://www.youtube.com/embed/9MprudUSlbk" frameborder="0" allowfullscreen></iframe>
+    <iframe class="resp-iframe" src="https://www.youtube.com/embed/Y_wh4WNQtB0" frameborder="0" allowfullscreen></iframe>
     <iframe class="resp-iframe" src="https://www.youtube.com/embed/8JmqGzeE8xQ" frameborder="0" allowfullscreen></iframe>
     <iframe class="resp-iframe" src="https://www.youtube.com/embed/kbXBu_DZarw" frameborder="0" allowfullscreen></iframe>
     <iframe class="resp-iframe" src="https://www.youtube.com/embed/B6eWtJiHOW4" frameborder="0" allowfullscreen></iframe>
@@ -581,6 +587,12 @@ $(function(){
         <h5 class="text-center"><em>!! Want to become Our new member? Drop a note.!!</em></h5>
 
         <div id="WAButton"></div>
+        <div class="fb-messengermessageus"
+             messenger_app_id="1542412259123245"
+             page_id="XYZ"
+             color="blue"
+             size="large">
+        </div>
         <div class="container-fluid">
             <p></p>
             <p><span class="glyphicon glyphicon-map-marker"></span><em>82, N.S Bose Road , Uttarpara , Hooghly , 712258</em></p>

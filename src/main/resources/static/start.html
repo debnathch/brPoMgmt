@@ -12,6 +12,21 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+	<script type="text/javascript">
+ $(function() {
+  $('#WAButton').floatingWhatsApp({
+    phone: '919433019750', //WhatsApp Business phone number International format-
+    //Get it with Toky at https://toky.co/en/features/whatsapp.
+    headerTitle: 'Chat with us on WhatsApp!', //Popup Title
+    popupMessage: 'Hello, ping here to connect with you .. ', //Popup Message
+    showPopup: true, //Enables popup display
+    buttonImage: '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', //Button Image
+    //headerColor: 'crimson', //Custom header color
+    backgroundColor: 'crimson', //Custom background button color
+    position: "right"
+  });
+});
+    </script>
 	<script>
 
 
@@ -88,9 +103,11 @@
 			<div class="row">
 
 				<div class="col-md-12">
+					<div id="WAButton"><a style="font-weight:bold" color="hotpink" href="tel:+919433019750"  > call us @ +91-9433019750</a></div>
 					<a class="btn pull-left" id="btn-welcome" href="/index.html">Take a Tour</a>
 					<a class="btn pull-right" id="btn-contact" href="https://www.indiamart.com/chatterjee-enterprise-hooghly/products-and-services.html">IndiaMart</a>
 				</div>
+
 			</div>
 
 		</article>

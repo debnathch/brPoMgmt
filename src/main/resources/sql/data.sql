@@ -1620,7 +1620,8 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
          values (305, 1,1, 'ALPROBEN-0.5', 'ALPRAZOLAM TAB','10X10', '', '' );
 
-
+update `heroku_7f5f4c0dfe6e1e3`.`br_product_list` set `prod_type_id` = 15 where  `prod_id`=304;
+update `heroku_7f5f4c0dfe6e1e3`.`br_product_list` set `prod_type_id` = 15 where  `prod_id`=305;
 --------------------------- Bengal Remedies Oinment added---------
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
@@ -1763,6 +1764,81 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
          values (338, 1,1, 'D-LORA-5', 'Desloratadine 5 mg tab', '1X10 ALU-ALU','', '' );
 
+
+----------------Dwarka Pharma Tablet capsule added --
+
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (338, 1,1, 'D-LORA-5', 'Desloratadine 5 mg tab', '1X10 ALU-ALU','', '' );
+         values (339, 1,2, 'DP-MOL 650', 'Paracetamol IP -650 mg.', '20X10 BLISTER','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (340, 1,2, 'DAZ-250', 'Azithromycine 250mg Tablet', '10X6','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (341, 1,2, 'DP-40', 'Azithromycine 250mg Tablet', '10X6','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (342, 1,2, 'DPDOM-C', 'Cinnarizine -20 mg+ Domperidone - 10 mg', '10x10','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (343, 1,2, 'DP-ZYME-TAB', 'Pancreatin  Digestive Enzyme Tab', '10x10  TAB','', '' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (344, 1,2, 'DPO-200', 'OFLOXACIN -200 TABLET', '10X10','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (345, 1,2, 'D-ZOLE PLUS', 'Albendazole- 400 mg +Ivermectin', '10x1','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (346, 1,2, 'OMD-20 Blister pack', 'Omeprazole-20mg +Excipients q.s.', '20x10 BLISTER','', '' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (347, 1,2, 'OMD-PLUS Blister pack', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.', '20x10 BLISTER','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (348, 1,2, 'Dpflox-500', 'Levofloxacin -500', '10x10','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (349, 1,2, 'DPDOL-P', 'Tramadol Hydrochloride-37.5mg+Paracetamol-325mg', '10x10','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (350, 1,2, 'MAHAGRA-100', 'Sildenafil -100 mg', '10x1x4 BLISTER','', '' );
+
+
+----------- Dwarka pharma --- oinment added ------
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (351, 2,2, 'DP-KUF', '5ml:C.P. Maleate -2.5mg, Ammonium Chloride -125 mg, Sodium Citrate -55mg Syrup', '100 ml','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (352, 2,2, 'DP-KUF-DX', 'DEXTROMETHORPHAN-10 MG + PHENYLPHRINE-5MG +CHLORPHENIRAMINE-2MG', '100 ml','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (353, 2,2, 'DP-CYPO', '5ml:Cyproheptadine Hydrochloride I.P 2mg+ Tricholine Citrate 275mg+In a flavoured  Syrupy Base.', '200 ml','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (354, 2,2, 'DP-VIT-Z', 'Vitamin B-Complex With Choline,L-Lysine & Zinc', '200 ml','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (355, 2,2, 'DP-ZYME', 'Each 10ml :Fungal Diastase(1:2000)-40 mg+ Cinnamon Oil 0.2mg + Cardamom Oil-0.4mg+Caraway Oil-.4 mg', '200 ml','', '' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
+         values (356, 2,2, 'D-ZOLE PLUS-10ml', 'Albendazole-200 mg + Ivermetcin - 3 mg', '10 ml','', '' );

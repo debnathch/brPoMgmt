@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBGT0B561G"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-VBGT0B561G');
+</script>
     <title>Bengal Remedies || E-Medicine-Shopper</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -108,7 +116,6 @@ var node;
 var customer;
 
         $(document).ready(function() {
-
 
 $(function(){
      var navMain = $("#myNavbar");
@@ -396,7 +403,6 @@ table.search('BENGAL').draw();
         $(document).ready( function () {
 
             var id =  parseInt(0);
-             console.log(sessionStorage.cust);
 
             if(sessionStorage.cust != undefined) {
 
@@ -528,7 +534,7 @@ $.ajax({
 
                     error: function (e) {
 
-                        ("Please contact Admn for "+page+ " is not directed as expected");
+                        ("Please contact Admin for "+page+ " is not directed as expected");
 
                     }
 
@@ -560,6 +566,22 @@ function closeNav(url) {
        window.location.replace  = url;
        document.getElementById("mySidenav").style.width = "0";
 
+}
+
+function refreshSearch(){
+    table.search(' ').draw();
+}
+
+var mySidenavCount = 0;
+
+document.onclick = function(e){
+
+    if(document.getElementById("mySidenav").style.width == "250px" && mySidenavCount ==0){
+        mySidenavCount = mySidenavCount+1;
+     } else {
+         mySidenavCount = 0;
+         document.getElementById("mySidenav").style.width = "0";
+     }
 }
 
     </script>
@@ -596,7 +618,7 @@ table th:nth-child(5), td:nth-child(5) {
     padding-top: 60px;
 }
 
-.sidenav div ul h2 {
+. div ul h2 {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -605,11 +627,11 @@ table th:nth-child(5), td:nth-child(5) {
     transition: 0.3s;
 }
 
-.sidenav div ul h2 :hover {
+. div ul h2 :hover {
     color: #f1f1f1;
 }
 
-.sidenav .closebtn {
+. .closebtn {
 
     position: absolute;
     top: 0;
@@ -619,8 +641,8 @@ table th:nth-child(5), td:nth-child(5) {
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav div ul h2 {font-size: 18px;}
+  . {padding-top: 15px;}
+  . div ul h2 {font-size: 18px;}
 }
 
 
@@ -905,13 +927,13 @@ table th:nth-child(5), td:nth-child(5) {
                             </div>
                         </div><!--/brands_products-->
 
-                    <!--<div class="brands_products" >&lt;!&ndash;brands_products&ndash;&gt;
+                    <div class="brands_products" ><!--brands_products-->
                         <h2>PRODUCT TYPE</h2>
                         <div class="brands-name">
                             <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav('#productTable')">
 
                             </ul>
-                        </div>-->
+                        </div>
                     </div><!--/brands_products-->
 
 
@@ -921,6 +943,7 @@ table th:nth-child(5), td:nth-child(5) {
 
             <div id="productTable" class="col-sm-10 " >
                 <h4 class="col-md-5">Product List</h4>
+                <button onclick="refreshSearch()">Clear Search Filter</button>
 
                <!-- <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>-->
                 <table id="productList" class=" container-fluid display table-bordered table-condensed table-striped table-hover">

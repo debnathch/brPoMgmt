@@ -9,10 +9,11 @@
   gtag('js', new Date());
 
   gtag('config', 'G-VBGT0B561G');
-</script>
+
+    </script>
     <title>Bengal Remedies || E-Medicine-Shopper</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -40,17 +41,27 @@
 
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-   <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
+    <script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="http://bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
 
     <!--JQuery whatsapp chat starts-->
     <!--Jquery-->
-  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+    <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
     <!--Floating WhatsApp css-->
-    <link rel="stylesheet" href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
+    <link rel="stylesheet"
+          href="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.css">
     <!--Floating WhatsApp javascript-->
-    <script type="text/javascript" src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
+    <script type="text/javascript"
+            src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"></script>
 
     <!-- load the about content to UI  http://www.jquery-az.com/jquery/demo.php?ex=69.0_1-->
 
@@ -69,48 +80,20 @@
   });
 });
 
-function format ( d ) {
-    // `d` is the original data object for the row
-    var id = d.product_id;
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:75px;">'+
-
-        '<tr>'+
-
-            '<td>Division:</td>'+
-            '<td>'+d.companyMake.company_name+'</td>'+
-             '<td>Size:</td>'+
-            '<td>'+d.product_pack_size+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Type Of Product:</td>'+
-            '<td>'+d.productType.prod_type_name+'</td>'+
-            '<td>Images:</td>'+
-            '<td> <a href="'+d.product_url+'" target="popup" onclick="window.open('+'+d.product_url+'+','+'popup'+','+'width=600,height=600'+'); return false;">'+
-                    '<img alt="ImgProd" src="images/imgProd.png" width=150" height="70"></a>'+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>'+'<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." disabled>'+'</td>'+
-            '<td>'+'<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')" disabled><i class="fa fa-shopping-cart" >' + 'ADD' + '</button>'+'</td>'+
-            '<td>'+ d.productType.product_drug_type+'</td>'+
-        '</tr>'+
-    '</table>';
-}
-
     </script>
 
     <script>
 
     function sendRateChart() {
-
      var customer = JSON.parse(sessionStorage.cust);
       $.ajax({
                 type: 'GET',
-
                 url: '/sendChartToCustomer',
   				data: { "customerId" : customer.customer_id},
                 dataType: 'json',
                 cache: false,
                 timeout: 600000,
+
                 success: function (data) {
                      $("#rateChartSendModal").modal('show');
                     console.log("SUCCESS : ", data);
@@ -122,38 +105,37 @@ function format ( d ) {
                     $('#btn-order').prop("disabled", false);
                 }
             });
+
     }
 
-   function customerContactDetailsForProduct(){
+    function customerContactDetailsForProduct(){
 
-    var contactDetailsForOrder = {};
-    contactDetailsForOrder["contactName"] = $("#contactName").val();
-    contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
-    contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
+        var contactDetailsForOrder = {};
+        contactDetailsForOrder["contactName"] = $("#contactName").val();
+        contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
+        contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
 
-    sessionStorage.userVisited = 'Y';
+        sessionStorage.userVisited = 'Y';
    }
 
 var table;
 var node;
 var customer;
 
-$(document).ready(function() {
+        $(document).ready(function() {
 
-
-
-    $(function(){
-         var navMain = $("#myNavbar");
-         navMain.on("click", "a", null, function () {
-             navMain.collapse('hide');
-         });
+$(function(){
+     var navMain = $("#myNavbar");
+     navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
      });
+ });
 
-     if(sessionStorage.userVisited == 'Y') {
-            node = document.getElementById('refreshLine');
-            node.style.visibility = 'hidden';
-            console.log(node.style.visibility );
-        }
+ if(sessionStorage.userVisited == 'Y') {
+        node = document.getElementById('refreshLine');
+        node.style.visibility = 'hidden';
+        console.log(node.style.visibility );
+    }
 
 // start
 
@@ -161,63 +143,75 @@ $(document).ready(function() {
 
                 searchHighlight: true,
                 responsive: true,
-                fixedColumns: true,
                 "sAjaxSource": "/product",
                 "sAjaxDataProp": "",
                 "order": [[ 0, "asc" ]],
                 "retrieve": true,
-
                 "aoColumns": [
-                    {
-                        "className":      'details-control',
-                        "orderable":      true,
-                        "data":           "product_name",
-                        "defaultContent": '',
 
+                    { "mData": "product_name" , "sWidth": "10%" },
+                    { "mData": "product_description" , "sWidth": "30%" },
+
+                    { "mData": "productType.prod_type_name" },
+                    { "mData": "product_pack_size" },
+                    { "mData": "companyMake.company_name" },
+                    { "mData": "productType.product_drug_type" },
+                    { "mData": "product_url",
+                        "mRender": function(data, type, full) {
+
+                            return '<a href='+data+' target="popup" onclick="window.open('+'+data+'+','+'popup'+','+'width=600,height=600'+'); return false;">'+
+                            '<img alt="ImgProd" src="images/imgProd.png" width=150" height="70"></a>';
+                        }
                     },
-                    { "mData": "product_description" , "Width": "30%" },
-                    { "mData": "companyMake.company_name" , "Width": "30%"}
+                    {
+                        "mData": "product_id",
+                        "bSortable": false,
+                        "mRender": function(data, type, full) {
+                            id = data;
+                            if(sessionStorage.userVisited == 'Y'){
+                                return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." >';
+                            } else {
+                                 return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." disabled>';
+                            }
+                        }, "sWidth": "10%"
+                    },
 
+                    {
+                        "mData": "product_id",
+                        "bSortable": false,
+                        "mRender": function(data, type, full) {
+                            id = data.toString();
+                            var a = parseInt(id);
+                            if(sessionStorage.userVisited == 'Y') {
+                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')"><i class="fa fa-shopping-cart">' + 'ADD' + '</button>';
+                            } else {
+                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')" disabled><i class="fa fa-shopping-cart" >' + 'ADD' + '</button>';
+                            }
+                        }, "sWidth": "10%"
+                    }
                 ]
-
             });
-     $('#productList tbody').on('click', 'td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row( tr );
 
-            if ( row.child.isShown() ) {
-                // This row is already open - close it
-                row.child.hide();
-                tr.removeClass('shown');
-            }
-            else {
-                row.child( format(row.data()) ).show();
-                tr.addClass('shown');
-            }
-        } );
+table.search('BENGAL').draw();
 
-    table.search('BENGAL').draw();
-
-     $('#productList thead th').each( function () {
-            var title = $(this).text();
-             if(!title.match(/^(box description|Quantity|Add to Cart)$/)) {
-                $(this).html( '<input type="text" placeholder="'+title+'" />' );
-            }
-        });
+ $('#productList thead th').each( function () {
+        var title = $(this).text();
+         if(!title.match(/^(box description|Quantity|Add to Cart)$/)) {
+            $(this).html( '<input type="text" placeholder="'+title+'" />' );
+        }
+    });
 
      // Apply the search
+
     table.columns().every( function () {
         var that = this;
-
-
         $( 'input', this.header() ).on( 'keyup change', function () {
-        table.search('').draw();
+         // table.search('').draw();
             if ( that.search() !== this.value ) {
                 that.search( this.value ).draw();
             }
         } );
     } );
-
 // end
 // only about us will be displayed
              $('a.home-link').click( function() {
@@ -227,9 +221,7 @@ $(document).ready(function() {
                     url: '/productShop',
                     data: page,
                     success: function(content) {
-
                         window.location.href = '/index.html';
-
                     },
                     error: function (e) {
                         alert("Please contact Admn for "+page+ " is not directed as expected");
@@ -237,11 +229,9 @@ $(document).ready(function() {
                 });
                 return false; // to stop link
             });
-
         });
 
         function contactUs() {
-
             var contactDetails = {}
             contactDetails["name"] = $("#name").val();
             contactDetails["email"] = $("#email").val();
@@ -250,87 +240,58 @@ $(document).ready(function() {
             $('#btn-contact').prop("disabled", false);
             $.ajax({
                 type: "POST",
-
                 contentType: "application/json",
-
                 url: "/contactUs",
-
                 data: JSON.stringify(contactDetails),
-
                 dataType: 'json',
-
                 cache: false,
-
                 timeout: 600000,
-
                 success: function (data) {
                     alert(" success ....");
                     var json = "Thanks For your interest. Our Member will contact you shortly"
-
                         + JSON.stringify(data, null, 4) + "</pre>";
-
                     $('#feedbackSuccess').html(json);
                     console.log("SUCCESS : ", data);
-
                     $('#btn-contact').prop("disabled", false);
-
                 },
-
                 error: function (e) {
-
                     (" Error ....");
-
                     var json = "<h5>Ajax Response</h5>";
                     $('#feedbackSuccess').html(json);
                     console.log("ERROR : ", e);
-
                     $('#btn-contact').prop("disabled", false);
-
                 }
-
             });
-
         }
 
         //counter of item increate logic
 
         function clickCounter(cartQuty) {
-
             if(typeof(Storage) !== "undefined") {
                 if (sessionStorage.clickcount) {
                     sessionStorage.clickcount = Number(sessionStorage.clickcount)+parseInt("1");
-
                 } else {
                     sessionStorage.clickcount = 1;
                 }
                 //localStorage.clickcount = 0
-
                 document.getElementById("itemCount").innerHTML =  sessionStorage.clickcount;
             } else {
                 document.getElementById("itemCount").innerHTML = "Sorry, your browser does not support web storage...";
             }
-
         }
-
-
 
 // after adding into cart
 
         function addToCart(id){
-
             if(document.getElementById("qty_"+id).value != 0){
-
                 var cartQuty = document.getElementById("qty_"+id).value;
-
                 var orderItem = {};
                 clickCounter(cartQuty);
                 var customer = JSON.parse(sessionStorage.cust);
                 orderItem["prod_id"]=id;
                 orderItem["prod_qty"]=cartQuty;
                 orderItem["customerId"]= customer.customer_id;
-
                 $.ajax({
-
                     type: "POST",
                     contentType: "application/json",
                     url: "/addCart",
@@ -338,7 +299,6 @@ $(document).ready(function() {
                     dataType: 'json',
                     cache: false,
                     timeout: 600000,
-
                     success: function (data) {
                         ("Added to card successFully : ");
                         var json = "Thanks For your interest. Our Member will contact you shortly"
@@ -348,111 +308,67 @@ $(document).ready(function() {
 
                     error: function (e) {
                         console.log("ERROR to add the item to cart. Please call 8981089350: ", e);
-
                     }
-
                 });
-
                 document.getElementById("qty_"+id).value = 0;
-
             } else{
                 ("please select atleast one item")
-
             }
-
         }
 
     function filterProductTable(productType){
+       table.search(productType).draw();
+    }
 
-               table.search(productType).draw();
 
-        }
-
-        $(document).ready( function () {
-
+    $(document).ready( function () {
             var id =  parseInt(0);
-
             if(sessionStorage.cust != undefined) {
-
-
-
             var customer = JSON.parse(sessionStorage.cust);
-
-
 $.ajax({
-
             type: 'GET',
-
             url: '/fetchCartCount',
-
             data: {"customerId":customer.customer_id},
-
             dataType: 'json',
-
             success: function(data) {
              sessionStorage.clickcount =  parseInt(data);
              document.getElementById("itemCount").innerHTML = sessionStorage.clickcount;
           } // Success Function
-
           });   // Ajax Call
-
                  }
             var orderItem = {};
             var ulP = document.getElementById("productType");
             var ulC = document.getElementById("companyType");
 
-
-
-
-$.ajax({
-
+                $.ajax({
                     type: 'GET',
-
                     url: '/productType',
-
                     dataType: 'json',
-
                     success: function(data) {
-
-
-
                         for (var i = 0; i < data.length; i++) {
-
                             var li = document.createElement("li");
-
                             var a = document.createElement("a");
-
                             a.setAttribute('href',"#productTable");
-
-
-
                             a.setAttribute('onClick',"filterProductTable('"+data[i].prod_type_name+"')");
-
                             var span = document.createElement("span");
-
                             span.setAttribute('class',"pull-right");
-
                             a.appendChild(document.createTextNode(data[i].prod_type_name));
                             a.appendChild(span);
                             li.appendChild(a);
                             ulP.appendChild(li);
-
                         }
                     },
-
                     error: function (e) {
                         ("Please contact Admin for page is not directed as expected");
                     }
-
                 });
 
-                $.ajax({
 
+                $.ajax({
                     type: 'GET',
                     url: '/companyType',
                     dataType: 'json',
                     success: function(data) {
-
                         for (var i = 0; i < data.length; i++) {
                             var li = document.createElement("li");
                             var a = document.createElement("a");
@@ -464,10 +380,8 @@ $.ajax({
                             a.appendChild(span);
                             li.appendChild(a);
                             ulC.appendChild(li);
-
                         }
                     },
-
                     error: function (e) {
                         ("Please contact Admin for "+page+ " is not directed as expected");
                     }
@@ -485,8 +399,6 @@ $.ajax({
             }
         });
 
-
-
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
 
@@ -496,7 +408,6 @@ function closeNav(url) {
 
        window.location.replace  = url;
        document.getElementById("mySidenav").style.width = "0";
-
 }
 
 function refreshSearch(){
@@ -514,9 +425,7 @@ document.onclick = function(e){
          document.getElementById("mySidenav").style.width = "0";
      }
 }
-
     </script>
-
 
     <style>
 
@@ -524,16 +433,6 @@ body {
     background-image: url("/productShop/images/shop.jpg");
     font-family: "Lato", sans-serif;
 }
-td.details-control {
-
-    background: url('images/Add.png') no-repeat center right;
-    cursor: pointer;
-}
-
-tr.shown td.details-control {
-    background: url('images/Sub.png') no-repeat center right;
-}
-
 
 
 .sidenav {
@@ -688,6 +587,7 @@ tr.shown td.details-control {
         }
 
 
+
     </style>
 
 
@@ -702,8 +602,9 @@ tr.shown td.details-control {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="indexShop.html" class="navbar-brand"> <img src="images/home/logo.gif" class="image-circle" width=150
-                                                            height=102/></a>
+            <a href="indexShop.html" class="navbar-brand"> <img src="images/home/logo.gif" class="image-circle"
+                                                                width=150
+                                                                height=102/></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -733,8 +634,9 @@ tr.shown td.details-control {
                             <i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span
                                     class="badge-cart" id="itemCount"></span></i-cart>
                         </a></li>
-                        <li> </li>
-                        <li><a href="login.html" ><span><i class="glyphicon glyphicon-user" id="displayUser" ></i></span>  </a></li>
+                        <li></li>
+                        <li><a href="login.html"><span><i class="glyphicon glyphicon-user" id="displayUser"></i></span>
+                        </a></li>
                     </ul>
                 </div>
             </div>
@@ -756,7 +658,7 @@ tr.shown td.details-control {
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="mainmenu pull-left" >
+                    <div class="mainmenu pull-left">
 
                         <!-- <h2>Category</h2>-->
                         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; <h2>Category</h2></span>
@@ -772,7 +674,7 @@ tr.shown td.details-control {
 <!-- loader gif-->
 <div class="modal" style="display: none">
     <div class="center">
-        <img alt="" src="images/Spin.gif" />
+        <img alt="" src="images/Spin.gif"/>
     </div>
 </div>
 <div id="rateChartSendModal" class="modal fade" role="dialog">
@@ -840,66 +742,63 @@ tr.shown td.details-control {
 </div>-->
 
 
-
-
 <section>
     <div class="container">
         <div class="row">
 
-                <div id="mySidenav"class="sidenav">
-                    <a class="closebtn" onclick="closeNav('#productTable')">&times;</a>
+            <div id="mySidenav" class="sidenav">
+                <a class="closebtn" onclick="closeNav('#productTable')">&times;</a>
 
-                    <div class="brands_products" ><!--brands_products-->
-                            <h2>COMPANY TYPE</h2>
-                            <div class="brands-name collapse navbar-collapse" >
-                                <ul class="nav nav-pills nav-stacked" id="companyType" onclick="closeNav('#productTable')">
+                <div class="brands_products"><!--brands_products-->
+                    <h2>COMPANY TYPE</h2>
+                    <div class="brands-name">
+                        <ul class="nav nav-pills nav-stacked" id="companyType" onclick="closeNav('#productTable')">
 
-                                </ul>
-                            </div>
-                        </div><!--/brands_products-->
-
-                    <div class="brands_products" ><!--brands_products-->
-                        <h2>PRODUCT TYPE</h2>
-                        <div class="brands-name">
-                            <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav('#productTable')">
-
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
+                </div><!--/brands_products-->
 
+                <div class="brands_products"><!--brands_products-->
+                    <h2>PRODUCT TYPE</h2>
+                    <div class="brands-name">
+                        <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav('#productTable')">
 
+                        </ul>
+                    </div>
                 </div>
 
 
+            </div>
 
-            <div id="productTable" class="col-sm-10 " >
+
+            <div id="productTable" class="col-sm-10 ">
                 <h4 class="col-md-5">Product List</h4>
                 <button onclick="refreshSearch()">Clear Search Filter</button>
 
-               <!-- <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>-->
-                <table id="productList" class=" container-fluid display table-bordered table-condensed table-striped table-hover" style="width:100%">
+                <!-- <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>-->
+                <table id="productList"
+                       class=" nowrap container-fluid display table-bordered table-condensed table-striped table-hover">
 
                     <!-- Header Table -->
                     <thead>
                     <tr>
-                        <th >search product name</th>
+
+                        <th>search product name</th>
                         <th>search composition</th>
-                       <!-- <th >search type</th>-->
-                       <!-- <th>box description</th>-->
-                      <!--  <th>search company</th>-->
+                        <th>search type</th>
+                        <th>box description</th>
                         <th>search division</th>
-                        <!--<th>Quantity</th>
+                        <th>Search prod Category</th>
+                        <th>Image</th>
+
+                        <th>Quantity</th>
                         <th>Add to Cart</th>
--->
+
 
                     </tr>
                     </thead>
                     <!-- Footer Table -->
                     <tfoot>
-                    <tr>
-
-
-                    </tr>
                     </tfoot>
                 </table>
 
@@ -907,7 +806,7 @@ tr.shown td.details-control {
 
             <div class="row">
 
-                <div class="col-sm-10" >
+                <div class="col-sm-10">
                     <section id="slider">
                         <div class="container">
                             <div class="row">
@@ -924,7 +823,8 @@ tr.shown td.details-control {
                                                 <div class="col-sm-6">
                                                     <h1><span>Cardiac and Diabetic</span></h1>
                                                     <img src="https://drive.google.com/uc?export=view&id=0B6GvgjXMxtHKUW9mbzBXWVZ2ZGs"
-                                                         style="width: 800px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+                                                         style="width: 800px; max-width: 100%; height: auto"
+                                                         title="Click for the larger version."/></a>
                                                 </div>
                                                 <!--<div class="col-sm-2">
                                                     <img src="images/home/girl1.jpg" class="girl img-responsive" alt=""/>
@@ -936,7 +836,8 @@ tr.shown td.details-control {
                                                     <h1><span>Other</span></h1>
                                                     <a href="https://drive.google.com/uc?export=view&id=0B6GvgjXMxtHKNGI2YnFFYzZxY1E">
                                                         <img src="https://drive.google.com/uc?export=view&id=0B6GvgjXMxtHKNGI2YnFFYzZxY1E"
-                                                             style="width: 800px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+                                                             style="width: 800px; max-width: 100%; height: auto"
+                                                             title="Click for the larger version."/></a>
                                                 </div>
                                                 <!-- <div class="col-sm-2">
                                                      <img src="images/home/girl2.jpg" class="girl img-responsive" alt=""/>
@@ -949,7 +850,8 @@ tr.shown td.details-control {
                                                     <h1><span>E-Medicine</span></h1>
                                                     <a href="https://drive.google.com/uc?export=view&id=0B6GvgjXMxtHKb3h5Y0VOcDhGRFE">
                                                         <img src="https://drive.google.com/uc?export=view&id=0B6GvgjXMxtHKb3h5Y0VOcDhGRFE"
-                                                             style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+                                                             style="width: 500px; max-width: 100%; height: auto"
+                                                             title="Click for the larger version."/></a>
                                                 </div>
                                                 <!--  <div class="col-sm-2">
                                                       <img src="images/home/girl3.jpg" class="girl img-responsive" alt=""/>
@@ -962,7 +864,8 @@ tr.shown td.details-control {
                                                     <h1><span>Eye Care</span></h1>
                                                     <a href="https://drive.google.com/uc?export=view&id=0B6GvgjXMxtHKLU9kMzAxUkJCOUU">
                                                         <img src="https://drive.google.com/uc?export=view&id=0B6GvgjXMxtHKLU9kMzAxUkJCOUU"
-                                                             style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+                                                             style="width: 500px; max-width: 100%; height: auto"
+                                                             title="Click for the larger version."/></a>
                                                 </div>
                                                 <!--    <div class="col-sm-2">
                                                         <img src="images/home/girl4.jpg" class="girl img-responsive" alt=""/>
@@ -972,10 +875,12 @@ tr.shown td.details-control {
 
                                         </div>
 
-                                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                                        <a href="#slider-carousel" class="left control-carousel hidden-xs"
+                                           data-slide="prev">
                                             <i class="fa fa-angle-left"></i>
                                         </a>
-                                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                                        <a href="#slider-carousel" class="right control-carousel hidden-xs"
+                                           data-slide="next">
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>
@@ -1007,9 +912,14 @@ tr.shown td.details-control {
 
         <div class="col-md-4">
             <p></p>
-            <p><span class="glyphicon glyphicon-map-marker"></span><em>82, N.S Bose Road , Uttarpara , Hooghly , 712258</em></p>
-            <p><span class="glyphicon glyphicon-phone"></span><a style="font-weight:bold" color="hotpink" href="tel:+919433019750"  > Phone: +91-8981089350 / 8981089348 </a></p>
-            <p><span class="glyphicon glyphicon-phone"></span><a style="font-weight:bold" color="hotpink" href="https://www.indiamart.com/chatterjee-enterprise-hooghly/products-and-services.html"  target="_blank"> visit IndiaMart page </a></p>
+            <p><span class="glyphicon glyphicon-map-marker"></span><em>82, N.S Bose Road , Uttarpara , Hooghly ,
+                712258</em></p>
+            <p><span class="glyphicon glyphicon-phone"></span><a style="font-weight:bold" color="hotpink"
+                                                                 href="tel:+919433019750"> Phone: +91-8981089350 /
+                8981089348 </a></p>
+            <p><span class="glyphicon glyphicon-phone"></span><a style="font-weight:bold" color="hotpink"
+                                                                 href="https://www.indiamart.com/chatterjee-enterprise-hooghly/products-and-services.html"
+                                                                 target="_blank"> visit IndiaMart page </a></p>
             <p><span class="glyphicon glyphicon-envelope"></span><em>Email: ben.remedi@gmail.com</em></p>
         </div>
 
@@ -1069,11 +979,11 @@ tr.shown td.details-control {
 </section>
 
 
-
 <!-- Footer -->
 <footer class="footer">
     <!--Div where the WhatsApp will be rendered-->
-    <div id="WAButton"><a style="font-weight:bold" color="hotpink" href="tel:+919433019750"  > call us @ +91-9433019750</a></div>
+    <div id="WAButton"><a style="font-weight:bold" color="hotpink" href="tel:+919433019750"> call us @
+        +91-9433019750</a></div>
     <div class="container text-right">
         <a href="https://www.facebook.com/bengal.remedies"><i class="fa fa-facebook"></i></a>
         <a href="https://plus.google.com/+RUMACHATTERJEE"><i class="fa fa-google-plus"></i></a>
@@ -1110,6 +1020,7 @@ tr.shown td.details-control {
             } // End if
         });
     })
+
 
 </script>
 

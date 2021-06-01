@@ -297,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `bengalremedi_app`.`br_product_list` (
 -- LIQUIDS
 INSERT INTO `bengalremedi_app`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_hsn_code`)
-    values (1, 2,1, 'ALLZYME Syrup-100', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '100 ml', '65.45', '85');
+    values (1, 2,1, 'ALLZYME Syrup-100', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '100 ml', '65.45', 'https://drive.google.com/file/d/1laDml-D_xX9-hIPyMT6A9X5T76SfJck_/view');
 
 INSERT INTO `bengalremedi_app`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)

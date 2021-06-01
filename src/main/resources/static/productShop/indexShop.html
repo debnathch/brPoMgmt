@@ -39,8 +39,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+   <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
     <script src="http://bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
 
     <!--JQuery whatsapp chat starts-->
@@ -67,15 +68,41 @@
     position: "right"
   });
 });
+
+function format ( d ) {
+    // `d` is the original data object for the row
+    var id = d.product_id;
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:75px;">'+
+
+        '<tr>'+
+
+            '<td>Division:</td>'+
+            '<td>'+d.companyMake.company_name+'</td>'+
+             '<td>Size:</td>'+
+            '<td>'+d.product_pack_size+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Type Of Product:</td>'+
+            '<td>'+d.productType.prod_type_name+'</td>'+
+            '<td>Images:</td>'+
+            '<td> <a href="'+d.product_url+'" target="popup" onclick="window.open('+'+d.product_url+'+','+'popup'+','+'width=600,height=600'+'); return false;">'+
+                    '<img alt="ImgProd" src="images/imgProd.png" width=150" height="70"></a>'+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>'+'<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." disabled>'+'</td>'+
+            '<td>'+'<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')" disabled><i class="fa fa-shopping-cart" >' + 'ADD' + '</button>'+'</td>'+
+            '<td>'+ d.productType.product_drug_type+'</td>'+
+        '</tr>'+
+    '</table>';
+}
+
     </script>
 
     <script>
 
     function sendRateChart() {
 
-
      var customer = JSON.parse(sessionStorage.cust);
-
       $.ajax({
                 type: 'GET',
 
@@ -84,9 +111,7 @@
                 dataType: 'json',
                 cache: false,
                 timeout: 600000,
-
                 success: function (data) {
-
                      $("#rateChartSendModal").modal('show');
                     console.log("SUCCESS : ", data);
 
@@ -97,11 +122,9 @@
                     $('#btn-order').prop("disabled", false);
                 }
             });
-
-
     }
 
-        function customerContactDetailsForProduct(){
+   function customerContactDetailsForProduct(){
 
     var contactDetailsForOrder = {};
     contactDetailsForOrder["contactName"] = $("#contactName").val();
@@ -115,20 +138,22 @@ var table;
 var node;
 var customer;
 
-        $(document).ready(function() {
+$(document).ready(function() {
 
-$(function(){
-     var navMain = $("#myNavbar");
-     navMain.on("click", "a", null, function () {
-         navMain.collapse('hide');
+
+
+    $(function(){
+         var navMain = $("#myNavbar");
+         navMain.on("click", "a", null, function () {
+             navMain.collapse('hide');
+         });
      });
- });
 
- if(sessionStorage.userVisited == 'Y') {
-        node = document.getElementById('refreshLine');
-        node.style.visibility = 'hidden';
-        console.log(node.style.visibility );
-    }
+     if(sessionStorage.userVisited == 'Y') {
+            node = document.getElementById('refreshLine');
+            node.style.visibility = 'hidden';
+            console.log(node.style.visibility );
+        }
 
 // start
 
@@ -136,90 +161,49 @@ $(function(){
 
                 searchHighlight: true,
                 responsive: true,
+                fixedColumns: true,
                 "sAjaxSource": "/product",
                 "sAjaxDataProp": "",
-
                 "order": [[ 0, "asc" ]],
-
                 "retrieve": true,
 
                 "aoColumns": [
-
-
-                    { "mData": "product_name" , "sWidth": "20%" },
-                    { "mData": "product_description" , "sWidth": "30%" },
-
-                    { "mData": "productType.prod_type_name" , "sWidth": "30%"},
-                    { "mData": "product_pack_size" , "sWidth": "10%"},
-                    { "mData": "companyMake.parent_company_name" , "sWidth": "30%"},
-
-                    { "mData": "companyMake.company_name" , "sWidth": "30%"},
                     {
-                        "mData": "product_id",
-
-                        "bSortable": false,
-
-                        "mRender": function(data, type, full) {
-
-                            id = data;
-
-
-                            if(sessionStorage.userVisited == 'Y'){
-                                return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." >';
-                            } else {
-                                 return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." disabled>';
-                            }
-
-
-                        }, "sWidth": "10%"
+                        "className":      'details-control',
+                        "orderable":      true,
+                        "data":           "product_name",
+                        "defaultContent": '',
 
                     },
-
-
-
-                    {
-
-
-
-                        "mData": "product_id",
-
-                        "bSortable": false,
-
-                        "mRender": function(data, type, full) {
-
-                            id = data.toString();
-
-                            var a = parseInt(id);
-
-                            if(sessionStorage.userVisited == 'Y') {
-                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')"><i class="fa fa-shopping-cart">' + 'ADD' + '</button>';
-                            } else {
-                            return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')" disabled><i class="fa fa-shopping-cart" >' + 'ADD' + '</button>';
-                            }
-
-
-                        }, "sWidth": "10%"
-
-                    }
-
-
+                    { "mData": "product_description" , "Width": "30%" },
+                    { "mData": "companyMake.company_name" , "Width": "30%"}
 
                 ]
 
             });
+     $('#productList tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row( tr );
 
-table.search('BENGAL').draw();
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                row.child( format(row.data()) ).show();
+                tr.addClass('shown');
+            }
+        } );
 
- $('#productList thead th').each( function () {
+    table.search('BENGAL').draw();
 
-
-        var title = $(this).text();
-
-
-         if(!title.match(/^(box description|Quantity|Add to Cart)$/)) {
-            $(this).html( '<input type="text" placeholder="'+title+'" />' );
-        }
-    });
+     $('#productList thead th').each( function () {
+            var title = $(this).text();
+             if(!title.match(/^(box description|Quantity|Add to Cart)$/)) {
+                $(this).html( '<input type="text" placeholder="'+title+'" />' );
+            }
+        });
 
      // Apply the search
     table.columns().every( function () {
@@ -340,41 +324,25 @@ table.search('BENGAL').draw();
 
                 var orderItem = {};
                 clickCounter(cartQuty);
-
                 var customer = JSON.parse(sessionStorage.cust);
-
                 orderItem["prod_id"]=id;
-
                 orderItem["prod_qty"]=cartQuty;
-
                 orderItem["customerId"]= customer.customer_id;
 
                 $.ajax({
 
                     type: "POST",
-
                     contentType: "application/json",
-
                     url: "/addCart",
-
                     data: JSON.stringify(orderItem),
-
                     dataType: 'json',
-
                     cache: false,
-
                     timeout: 600000,
 
                     success: function (data) {
-
                         ("Added to card successFully : ");
-
                         var json = "Thanks For your interest. Our Member will contact you shortly"
-
                             + JSON.stringify(data, null, 4) + "</pre>";
-
-
-
                         console.log("Added to card successFully : ", data);
                     },
 
@@ -465,25 +433,15 @@ $.ajax({
                             span.setAttribute('class',"pull-right");
 
                             a.appendChild(document.createTextNode(data[i].prod_type_name));
-
                             a.appendChild(span);
-
                             li.appendChild(a);
-
-
-
                             ulP.appendChild(li);
 
                         }
-
-
-
                     },
 
                     error: function (e) {
-
                         ("Please contact Admin for page is not directed as expected");
-
                     }
 
                 });
@@ -491,56 +449,29 @@ $.ajax({
                 $.ajax({
 
                     type: 'GET',
-
                     url: '/companyType',
-
                     dataType: 'json',
-
                     success: function(data) {
 
-
-
                         for (var i = 0; i < data.length; i++) {
-
                             var li = document.createElement("li");
-
                             var a = document.createElement("a");
-
                             a.setAttribute('href',"#productTable");
-
-
-
                             a.setAttribute('onClick',"filterProductTable('"+data[i].company_name+"')");
-
                             var span = document.createElement("span");
-
                             span.setAttribute('class',"pull-right");
-
                             a.appendChild(document.createTextNode(data[i].company_name));
-
                             a.appendChild(span);
-
                             li.appendChild(a);
-
-
-
                             ulC.appendChild(li);
 
                         }
-
-
-
                     },
 
                     error: function (e) {
-
                         ("Please contact Admin for "+page+ " is not directed as expected");
-
                     }
-
                 });
-
-
         });
 
         $(function() {
@@ -593,17 +524,17 @@ body {
     background-image: url("/productShop/images/shop.jpg");
     font-family: "Lato", sans-serif;
 }
+td.details-control {
 
-table th:nth-child(8), td:nth-child(8) {
-  display: none;
-}
-table th:nth-child(7), td:nth-child(7) {
-  display: none;
+    background: url('images/Add.png') no-repeat center right;
+    cursor: pointer;
 }
 
-table th:nth-child(5), td:nth-child(5) {
-  display: none;
+tr.shown td.details-control {
+    background: url('images/Sub.png') no-repeat center right;
 }
+
+
 
 .sidenav {
     height: 100%;
@@ -946,21 +877,20 @@ table th:nth-child(5), td:nth-child(5) {
                 <button onclick="refreshSearch()">Clear Search Filter</button>
 
                <!-- <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>-->
-                <table id="productList" class=" container-fluid display table-bordered table-condensed table-striped table-hover">
+                <table id="productList" class=" container-fluid display table-bordered table-condensed table-striped table-hover" style="width:100%">
 
                     <!-- Header Table -->
                     <thead>
                     <tr>
-
                         <th >search product name</th>
                         <th>search composition</th>
-                        <th >search type</th>
-                        <th>box description</th>
-                        <th>search company</th>
+                       <!-- <th >search type</th>-->
+                       <!-- <th>box description</th>-->
+                      <!--  <th>search company</th>-->
                         <th>search division</th>
-                        <th>Quantity</th>
+                        <!--<th>Quantity</th>
                         <th>Add to Cart</th>
-
+-->
 
                     </tr>
                     </thead>

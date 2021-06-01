@@ -145,10 +145,11 @@ public class Br_Product implements Serializable {
 		jsonInfo.put("companyMake", companyObj);
 		JSONObject productType = new JSONObject();
 		productType.put("prod_type_name", this.productType.getProd_type_name());
+		productType.put("product_drug_type", this.productType.getProduct_drug_type());
 		jsonInfo.put("productType",productType);
 		jsonInfo.put("product_description",this.product_description);
 		jsonInfo.put("product_pack_size",this.product_pack_size);
-
+		jsonInfo.put("product_url",this.product_hsn_code);
 
 		info = jsonInfo.toString();
 		return info;

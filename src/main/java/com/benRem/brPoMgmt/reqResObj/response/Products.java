@@ -25,6 +25,8 @@ public class Products {
 
     String product_qty;
 
+    String product_url;
+
 
 }
 

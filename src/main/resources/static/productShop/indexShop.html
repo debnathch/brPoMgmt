@@ -105,16 +105,13 @@
                     $('#btn-order').prop("disabled", false);
                 }
             });
-
     }
 
     function customerContactDetailsForProduct(){
-
         var contactDetailsForOrder = {};
         contactDetailsForOrder["contactName"] = $("#contactName").val();
         contactDetailsForOrder["contactEmail"] = $("#contactEmail").val();
         contactDetailsForOrder["contactPhone"] = $("#contactPhone").val();
-
         sessionStorage.userVisited = 'Y';
    }
 
@@ -122,7 +119,7 @@ var table;
 var node;
 var customer;
 
-        $(document).ready(function() {
+$(document).ready(function() {
 
 $(function(){
      var navMain = $("#myNavbar");
@@ -149,16 +146,14 @@ $(function(){
                 "retrieve": true,
                 "aoColumns": [
 
-                    { "mData": "product_name" , "sWidth": "10%" },
-                    { "mData": "product_description" , "sWidth": "30%" },
-
-                    { "mData": "productType.prod_type_name" },
-                    { "mData": "product_pack_size" },
+                    { "mData": "product_name" },
+                    { "mData": "product_description" },
                     { "mData": "companyMake.company_name" },
+                    { "mData": "product_pack_size" },
+                    { "mData": "productType.prod_type_name" },
                     { "mData": "productType.product_drug_type" },
                     { "mData": "product_url",
                         "mRender": function(data, type, full) {
-
                             return '<a href='+data+' target="popup" onclick="window.open('+'+data+'+','+'popup'+','+'width=600,height=600'+'); return false;">'+
                             '<img alt="ImgProd" src="images/imgProd.png" width=150" height="70"></a>';
                         }
@@ -173,7 +168,7 @@ $(function(){
                             } else {
                                  return '<input id="qty_'+id+'" type="number" name="quantity" value="0" min="1" style="width:100%;"  placeholder="QTY..." disabled>';
                             }
-                        }, "sWidth": "10%"
+                        }
                     },
 
                     {
@@ -187,9 +182,17 @@ $(function(){
                             } else {
                             return '<button  class="btn btn-info btn-sm add-to-cart btn btn-danger my-cart-btn" onclick="addToCart('+id+')" disabled><i class="fa fa-shopping-cart" >' + 'ADD' + '</button>';
                             }
-                        }, "sWidth": "10%"
+                        }
                     }
-                ]
+                ],
+                "aoColumnDefs": [
+                {
+                    render: function (data, type, full, meta) {
+                        return "<div class='text-wrap width-50'>" + data + "</div>";
+                    },
+                    targets: 5
+                }
+             ]
             });
 
 table.search('BENGAL').draw();
@@ -433,7 +436,16 @@ body {
     background-image: url("/productShop/images/shop.jpg");
     font-family: "Lato", sans-serif;
 }
+.text-wrap{
+    white-space:normal;
+}
+.width-200{
+    width:200px;
+}
 
+table.dataTable td {
+  word-break: break-word;
+}
 
 .sidenav {
     height: 100%;
@@ -585,9 +597,6 @@ body {
         .fa {
             position: relative;
         }
-
-
-
     </style>
 
 
@@ -628,7 +637,6 @@ body {
             <div class="col-sm-8">
                 <div class="shop-menu pull-right">
                     <ul class="nav navbar-nav">
-
                         <!--<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>-->
                         <li><a href="cart.html">
                             <i-cart class="fa fa-shopping-cart" style="font-size:48px;color:#ff8925"><span
@@ -745,15 +753,12 @@ body {
 <section>
     <div class="container">
         <div class="row">
-
             <div id="mySidenav" class="sidenav">
                 <a class="closebtn" onclick="closeNav('#productTable')">&times;</a>
-
                 <div class="brands_products"><!--brands_products-->
                     <h2>COMPANY TYPE</h2>
                     <div class="brands-name">
                         <ul class="nav nav-pills nav-stacked" id="companyType" onclick="closeNav('#productTable')">
-
                         </ul>
                     </div>
                 </div><!--/brands_products-->
@@ -762,14 +767,10 @@ body {
                     <h2>PRODUCT TYPE</h2>
                     <div class="brands-name">
                         <ul class="nav nav-pills nav-stacked" id="productType" onclick="closeNav('#productTable')">
-
                         </ul>
                     </div>
                 </div>
-
-
             </div>
-
 
             <div id="productTable" class="col-sm-10 ">
                 <h4 class="col-md-5">Product List</h4>
@@ -777,35 +778,29 @@ body {
 
                 <!-- <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>-->
                 <table id="productList"
-                       class=" nowrap container-fluid display table-bordered table-condensed table-striped table-hover">
+                       class="wrap container-fluid display table-bordered table-condensed table-striped table-hover table dt-responsive"
+                       cellspacing="0" width="100%">
 
                     <!-- Header Table -->
                     <thead>
                     <tr>
-
-                        <th>search product name</th>
-                        <th>search composition</th>
-                        <th>search type</th>
-                        <th>box description</th>
-                        <th>search division</th>
-                        <th>Search prod Category</th>
+                        <th>product name</th>
+                        <th>composition</th>
+                        <th>division</th>
+                        <th>Packaging</th>
+                        <th>Product type</th>
+                        <th>Product Category</th>
                         <th>Image</th>
-
                         <th>Quantity</th>
                         <th>Add to Cart</th>
-
-
                     </tr>
                     </thead>
                     <!-- Footer Table -->
                     <tfoot>
                     </tfoot>
                 </table>
-
             </div>
-
             <div class="row">
-
                 <div class="col-sm-10">
                     <section id="slider">
                         <div class="container">
@@ -817,7 +812,6 @@ body {
                                             <li data-target="#slider-carousel" data-slide-to="1"></li>
                                             <li data-target="#slider-carousel" data-slide-to="2"></li>
                                         </ol>
-
                                         <div class="carousel-inner">
                                             <div class="item active">
                                                 <div class="col-sm-6">

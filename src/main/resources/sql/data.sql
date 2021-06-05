@@ -68,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_purchase_order_line` (
   `prod_name` varchar(255) NOT NULL,
     `prod_id`  INT NOT NULL,
     `prod_description` varchar(255) NOT NULL,
-    `prod_pack_size` varchar(255) NOT NULL,
-    `prod_trade_price` FLOAT ,
-    `prod_hsn_code` varchar(100) ,
+    `prod_pack_size` varchar(50) NOT NULL,
+    `prod_cat_type_code`  INT NOT NULL,
+    `prod_hsn_code` varchar(200) ,
 
    `product_quantity` INT NOT NULL,
 
@@ -115,12 +115,12 @@ DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`company` ;
 CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`company` (
   `company_id`  INT NOT NULL,
 
-  `company_name` varchar(255) NOT NULL,
+  `company_name` varchar(50) NOT NULL,
   `parent_company_id` INT NOT NULL,
-   `parent_company_name` varchar(255) NOT NULL,
+   `parent_company_name` varchar(50) NOT NULL,
 
-  `company_address` varchar(255) NOT NULL,
-  `company_desc` varchar(255)  ,
+  `company_address` varchar(100) NOT NULL,
+  `company_desc` varchar(100)  ,
 
 
   PRIMARY KEY (`company_id`));
@@ -140,33 +140,6 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (3,  'BENGAL PHARMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
 
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (4,  'JM HEALTHCARE', 2, 'JM_REMEDIES','CHANDIGARH', 'Parent Company');
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (5,  'JM REMEDIES', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (6,  'ALPIC', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (7,  'KAN BIOTECH', 2, 'JM_REMEDIES' ,'CHANDIGARH', 'child Company');
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (8,  'MAHAAVTAR', 2, 'MAHAAVTAR' ,'DELHI', 'Parent Company');
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (9,  'TOTAL CARE', 2, 'TOTAL CARE' ,'AMBALA', 'child Company');
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
-	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
-    values (10,  'GENIAL', 2, 'GENIAL' ,'CHANDIGARH', 'child Company');
 
 -- DRUG DETAILS
  DROP TABLE IF EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_drug_details` ;
@@ -218,7 +191,7 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-    values (7,  'OPTHA', 'OPTHA-DROP');
+    values (7,  'EYE CARE', 'OPTHA-DROP');
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 	(`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
@@ -247,11 +220,51 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
             (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
-            values (14,  'NASAL DROP', 'DROP');
+            values (14,  'DROP', 'DROP');
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
             (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
             values (15,  'PSYCHIATRIST DIVISION', 'TABLET-CAPSULE');
+
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+            (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+            values (16,  'GASTROENTERITIS DIVISION', 'TABLET-CAPSULE-LIQUID-DROP');
+
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+            (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+            values (17,  'ANTIBIOTIC-ANTI FUNGAL', 'TABLET-LIQUID');
+
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+            (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+            values (18,  'VITAMIN-IMMUNITY', 'TABLET-LIQUID');
+
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+            (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+            values (19,  'CHILD CARE', 'TABLET-LIQUID');
+
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+            (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+            values (20,  'EURO CARE', 'TABLET-LIQUID');
+
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+            (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+            values (21,  'CALCIUM IRON', 'TABLET-LIQUID');
+
+   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+        (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+        values (22,  'PAIN RELIE', 'CAPSULES');
+
+    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+        (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+        values (23,  'GENERAL', 'CAPSULES');
+
+   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+        (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+        values (24,  'SKIN CARE', 'CAPSULES');
+
+   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_type`
+        (`prod_type_id`,`prod_type_name`, `prod_type_drug_comb`)
+        values (25,  'GEL', 'GEL');
 -- -----------------------------------------------------
 -- product list
 -- -----------------------------------------------------
@@ -265,11 +278,11 @@ CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_product_list` (
 
   `prod_description` varchar(1000) NOT NULL,
   `prod_pack_size` varchar(255) NOT NULL,
-  `prod_trade_price` FLOAT ,
+  `prod_cat_type_code` INT NOT NULL ,
   `prod_hsn_code` varchar(100) ,
 
 	foreign key  (`prod_type_id`) REFERENCES `heroku_7f5f4c0dfe6e1e3`.`br_product_type`(`prod_type_id`),
-
+	foreign key  (`prod_cat_type_code`) REFERENCES `heroku_7f5f4c0dfe6e1e3`.`br_product_type`(`prod_type_id`),
 	PRIMARY KEY (`prod_id`));
 
 
@@ -289,441 +302,436 @@ CREATE TABLE IF NOT EXISTS `heroku_7f5f4c0dfe6e1e3`.`br_product_list` (
 --  PRIMARY KEY (`drug_prod_assoc_id`));
 
 
-
-
-
-
-
 -- LIQUIDS
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price`,  `prod_hsn_code`)
-    values (1, 2,1, 'ALLZYME Syrup-100', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '100 ml', '65.45', 'https://drive.google.com/file/d/1laDml-D_xX9-hIPyMT6A9X5T76SfJck_/view');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code`,  `prod_hsn_code`)
+    values (1, 16,1, 'ALLZYME Syrup-100', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '100 ml', 2, '1-1KLGGfoKyfr4IX-i3DbysqTmD9rwxC4');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (2, 2,1, 'ALLZYME Syrup-200', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '200 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (2, 16,1, 'ALLZYME Syrup-200', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '200 ml', 2, '1-1KLGGfoKyfr4IX-i3DbysqTmD9rwxC4');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (3, 2,1, 'ALLZYME DROP', 'Each ml Diastase (1:2000) - 20mg + Cinnamon Oil - 0.20mg+Caraway - 0.40mg + Cardamom - 0.40mg', '15 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (3, 16,1, 'ALLZYME DROP', 'Each ml Diastase (1:2000) - 20mg + Cinnamon Oil - 0.20mg+Caraway - 0.40mg + Cardamom - 0.40mg', '15 ml', 2, '1poMkzR1gj_z90YjwO24B2EV6SaXFEFdl');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (4, 2,1, 'ALMACAINE GEL', 'Each 5ml:Oxetacaine 10mg+ Magnesium Hydroxide 250mg +Hydroxide Gel 250mg+ Dimethicone 50mg', '200 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (4, 16,1, 'ALMACAINE GEL', 'Each 5ml:Oxetacaine 10mg+ Magnesium Hydroxide 250mg +Hydroxide Gel 250mg+ Dimethicone 50mg', '200 ml', 2, '1dGfAOSCEBhyv3bWBHr4gdAp5xh9X6xes');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (5, 2,1, 'ANDOLIV Syrup-100', 'Tricholine Citrate 500mg + Andrographis 500mg', '100 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (5, 16,1, 'ANDOLIV Syrup-100', 'Tricholine Citrate 500mg + Andrographis 500mg', '100 ml', 2, '1jGQ25hm0DoI9rSmW8YwCmVCSuck2AL1b');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (6, 2,1, 'ANDOLIV Syrup-200', 'Tricholine Citrate 500mg + Andrographis 500mg', '200 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (6, 16,1, 'ANDOLIV Syrup-200', 'Tricholine Citrate 500mg + Andrographis 500mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (7, 2,1, 'ANIGEL', 'Each 5m :Mg. Hydrox 250mg+Dried Al.Hydroxi Gel 250mg+Simethicone 50mg', '170 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (7, 16,1, 'ANIGEL', 'Each 5m :Mg. Hydrox 250mg+Dried Al.Hydroxi Gel 250mg+Simethicone 50mg', '170 ml', 2, '1VBqK34ZQxXnkswspQkCS0xiyeSFV6tZD');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (8, 2,1, 'AZIBRA - 200(DPCO)', 'Azithromycin 200mg', '15 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (8, 17,1, 'AZIBRA - 200(DPCO)', 'Azithromycin 200mg', '15 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (9, 2,1, 'BRAZYME SYRUP-100', 'Azithromycin 100mg', '100 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (9, 16,1, 'BRAZYME SYRUP-100', 'Azithromycin 100mg', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (10, 2,1, 'BRAZYME SYRUP-200', 'Azithromycin 200mg', '200 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (10, 16,1, 'BRAZYME SYRUP-200', 'Azithromycin 200mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (11, 2,1, 'BR-CYPO Syrup-100', 'Each 5ml:Cyproheptadine 2mg + Tricholine Citrate 275mg + Sorbitol 3.575gm', '100 ml', '65.45', '85');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (11, 16,1, 'BR-CYPO Syrup-100', 'Each 5ml:Cyproheptadine 2mg + Tricholine Citrate 275mg + Sorbitol 3.575gm', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (12, 2,1, 'BR-CYPO Syrup-200', 'Each 5ml:Cyproheptadine 2mg + Tricholine Citrate 275mg + Sorbitol 3.575gm', '200 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (12, 16,1, 'BR-CYPO Syrup-200', 'Each 5ml:Cyproheptadine 2mg + Tricholine Citrate 275mg + Sorbitol 3.575gm', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (13, 2,1, 'BN CYPO SYRUP-100', 'Each 5ml:Cyproheptadine 2mg + Tricholine Citrate 275mg', '100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (13, 16,1, 'BN CYPO SYRUP-100', 'Each 5ml:Cyproheptadine 2mg + Tricholine Citrate 275mg', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (14, 2,1, 'BN CYPO SYRUP-200', 'Each 5ml:Cyproheptadine 2mg + Tricholine Citrate 275mg', '200 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (14, 16,1, 'BN CYPO SYRUP-200', 'Each 5ml:Cyproheptadine 2mg + Tricholine Citrate 275mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (15, 2,1, 'CAL-D-PLUS Syrup-100', 'Vit-A 2500I.U. + Vit-D 200 I.U +B1 2.5mg + B2 2.5mg+B6 1mg+B3 25mg + B12 1.5mg+Cal.Gluconate 45mg + Cal.Lactate 400mg', '100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (15, 21,1, 'CAL-D-PLUS Syrup-100', 'Vit-A 2500I.U. + Vit-D 200 I.U +B1 2.5mg + B2 2.5mg+B6 1mg+B3 25mg + B12 1.5mg+Cal.Gluconate 45mg + Cal.Lactate 400mg', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (16, 2,1, 'CAL-D-PLUS Syrup-200', 'Vit-A 2500I.U. + Vit-D 200 I.U +B1 2.5mg + B2 2.5mg+B6 1mg+B3 25mg + B12 1.5mg+Cal.Gluconate 45mg + Cal.Lactate 400mg', '200 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (16, 21,1, 'CAL-D-PLUS Syrup-200', 'Vit-A 2500I.U. + Vit-D 200 I.U +B1 2.5mg + B2 2.5mg+B6 1mg+B3 25mg + B12 1.5mg+Cal.Gluconate 45mg + Cal.Lactate 400mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (17, 2,1, 'INDSOL SYRUP', 'Disodium Hydroden Citrate B.P 1400mg', '100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (17, 20,1, 'INDSOL SYRUP', 'Disodium Hydroden Citrate B.P 1400mg', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (18, 2,1, 'ALLZYME Syrup-200', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '200 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (18, 16,1, 'ALLZYME Syrup-200', 'Alpha Amylase 60mg+ Cinnamon Oil 0.125mg + Cardamom Oil 0.25mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (19, 2,1, 'LINAVIT SYRUP-100', 'Each 10ml : B1 5mg + B2 2.5mg + B3 30mg + B6 1.5mg + L-Lysine 250mg','100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (19, 18,1, 'LINAVIT SYRUP-100', 'Each 10ml : B1 5mg + B2 2.5mg + B3 30mg + B6 1.5mg + L-Lysine 250mg','100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (20, 2,1, 'LINAVIT SYRUP-200', 'Each 10ml : B1 5mg + B2 2.5mg + B3 30mg + B6 1.5mg + L-Lysine 250mg', '200 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (20, 18,1, 'LINAVIT SYRUP-200', 'Each 10ml : B1 5mg + B2 2.5mg + B3 30mg + B6 1.5mg + L-Lysine 250mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (21, 2,1, 'RB-PLUS Syrup', 'Folic Acid 0.5mg + Ferrous Fumarate 100mg', '200 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (21, 21,1, 'RB-PLUS Syrup', 'Folic Acid 0.5mg + Ferrous Fumarate 100mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (22, 2,1, 'SABEX + -50', 'Each 5ml:Bromhexine Hydrochloride 2mg + Terbutaline Sulphate 1.25mg + Guaiphenesin 50mg + Menthol 0.5mg', '50 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (22, 23,1, 'SABEX + -50', 'Each 5ml:Bromhexine Hydrochloride 2mg + Terbutaline Sulphate 1.25mg + Guaiphenesin 50mg + Menthol 0.5mg', '50 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (23, 2,1, 'SABEX + -100', 'Each 5ml:Bromhexine Hydrochloride 2mg + Terbutaline Sulphate 1.25mg + Guaiphenesin 50mg + Menthol 0.5mg','100ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (23, 23,1, 'SABEX + -100', 'Each 5ml:Bromhexine Hydrochloride 2mg + Terbutaline Sulphate 1.25mg + Guaiphenesin 50mg + Menthol 0.5mg','100ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (24, 2,1, 'SABEX LS-50', 'Each 5ml contains:Ambroxol Hydrochloride- 30 mg+LevoSalbutamol (As Sulphate)-1.0 mg+Guaiphenesin-50 mg+flavoured Mentholated Syrupy', '50 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (24, 23,1, 'SABEX LS-50', 'Each 5ml contains:Ambroxol Hydrochloride- 30 mg+LevoSalbutamol (As Sulphate)-1.0 mg+Guaiphenesin-50 mg+flavoured Mentholated Syrupy', '50 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (25, 2,1, 'SABEX LS-100', 'B1 1.25mg + B2 1.5mg + B3 15mg + B6 0.5mg + Glutamic Acid 25mg + L-Lysine 300mg', '100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (25, 23,1, 'SABEX LS-100', 'B1 1.25mg + B2 1.5mg + B3 15mg + B6 0.5mg + Glutamic Acid 25mg + L-Lysine 300mg', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (26, 2,1, 'SONAL VIT-100', 'B1 1.25mg + B2 1.5mg + B3 15mg + B6 0.5mg + Glutamic Acid 25mg + L-Lysine 300mg', '100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (26, 18,1, 'SONAL VIT-100', 'B1 1.25mg + B2 1.5mg + B3 15mg + B6 0.5mg + Glutamic Acid 25mg + L-Lysine 300mg', '100 ml', 2, '1C5E3oTUZ21hG6IjAe8i-Hmgj3wP5QzQU' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (27, 2,1, 'SONAL VIT-200', 'B1 1.25mg + B2 1.5mg + B3 15mg + B6 0.5mg + Glutamic Acid 25mg + L-Lysine 300mg', '200 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (27, 18,1, 'SONAL VIT-200', 'B1 1.25mg + B2 1.5mg + B3 15mg + B6 0.5mg + Glutamic Acid 25mg + L-Lysine 300mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (28, 2,1, 'SUCRAP SUSP-100', 'Each 5ml :Sucralfate usp 1.0 mg', '100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (28, 16,1, 'SUCRAP SUSP-100', 'Each 5ml :Sucralfate usp 1.0 mg', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (29, 2,1, 'SUCRAP SUSP-175', 'Each 5ml :Sucralfate usp 1.0 mg', '175 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (29, 16,1, 'SUCRAP SUSP-175', 'Each 5ml :Sucralfate usp 1.0 mg', '175 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (30, 2,1, 'SUCRAP-O SUSP-170', 'Each 10 ml :Sucralfate-1.0gm+Oxetacaine 20mg', '170 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (30, 16,1, 'SUCRAP-O SUSP-170', 'Each 10 ml :Sucralfate-1.0gm+Oxetacaine 20mg', '170 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (31, 2,1, 'SUCRAP-O SUSP-100', 'Each 10 ml :Sucralfate-1.0gm+Oxetacaine 20mg','100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (31, 16,1, 'SUCRAP-O SUSP-100', 'Each 10 ml :Sucralfate-1.0gm+Oxetacaine 20mg','100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (32, 2,1, 'SUMIRON-XT', 'Each 5 ml Contains:Ferrous Ascorbate Elemental Iron-30 mg+Folic Acid-550 mcg', '200 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (32, 16,1, 'SUMIRON-XT', 'Each 5 ml Contains:Ferrous Ascorbate Elemental Iron-30 mg+Folic Acid-550 mcg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (33, 2,1, 'BR-LAX', '5ml:Sodiun Picosulphate-3.33mg, Milk of Magnesia-3.75ml & Liquid Paraffin -1.25mlSuspension', '170 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (33, 12,1, 'BR-LAX', '5ml:Sodiun Picosulphate-3.33mg, Milk of Magnesia-3.75ml & Liquid Paraffin -1.25mlSuspension', '170 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 
 -- TABLETS
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (34, 1, 1,'AZIBRA-500(DPCO)', 'Azithromycin 500mg', '10x3 tab', '449.20', '85');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (34, 17, 1,'AZIBRA-500(DPCO)', 'Azithromycin 500mg', '10x3 tab', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (35, 1, 1, 'B-FLU','Fluconazole-150mg' ,'20X1 Tab BLISTER',	'184.00'	,'230.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (35, 17, 1, 'B-FLU','Fluconazole-150mg' ,'20X1 Tab BLISTER',	1,'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (36, 1, 1, 'BRACEF-200LB',	'Cefixime  200 mg + +Lactic Acid Bacillus-60million spo',	'10 Tab ALU-ALU',	'1001.00',	'1300.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (36, 17, 1, 'BRACEF-200LB',	'Cefixime  200 mg + +Lactic Acid Bacillus-60million spo',	'10 Tab ALU-ALU',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (37, 1,1, 'BRACEF-CV',	'Cefixime  200 mg +Clavulanate Potassium 125 mg'	,'10 Tab ALU-ALU',	'154.00',	'200.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (37, 17,1, 'BRACEF-CV',	'Cefixime  200 mg +Clavulanate Potassium 125 mg'	,'10 Tab ALU-ALU',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (38, 1, 1, 'BRACEF-O(DPCO)',	'Cefixime 200mg+Ofloxacin 200mg',	'10 Tab ALU-ALU',	'89.60',	'112.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (38, 17, 1, 'BRACEF-O(DPCO)',	'Cefixime 200mg+Ofloxacin 200mg',	'10 Tab ALU-ALU',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (39, 1,1,  'BRAMOX-625-LB',	'Amoxy 500mg+ Clavulanate125mg+Lactic Acid Bacillus-60million spo',	'10 Tab ALU-ALU',	'184.80',	'240.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (39, 17,1,  'BRAMOX-625-LB',	'Amoxy 500mg+ Clavulanate125mg+Lactic Acid Bacillus-60million spo',	'10 Tab ALU-ALU',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
      INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (40, 1,1,  'BRAMOX-KID',	'Amoxycillin 200 mg + Clavulanic Acid 28.5 mg',	'10 Tab ALU-ALU',	'77.00',	'100.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (40, 17,1,  'BRAMOX-KID',	'Amoxycillin 200 mg + Clavulanic Acid 28.5 mg',	'10 Tab ALU-ALU',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
      INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (41, 1, 1, 'BRAZOL-400',	'Albendazole 400 mg', 	'20X1 BLISTER',	'163.20',	'204.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (41, 16, 1, 'BRAZOL-400',	'Albendazole 400 mg', 	'20X1 BLISTER',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
      INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (42, 1, 1, 'BROND-4',	'Ondansetron-4 mg(MOUTH DESOLVING)'	 , '1X10 BLISTER',	'34.65',	'45.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (42, 16, 1, 'BROND-4',	'Ondansetron-4 mg(MOUTH DESOLVING)'	 , '1X10 BLISTER',	1,	'1zOHzSc9BcESt1yoDvxjiD75A7II4XUH8');
 
      INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (43, 1, 1, 'CHYMOBEN FORTE',	'Trypsin-Chymotrypsin, 100000 Armour units of enzymatic activity',	'1X10',	'98.00',	'127.50');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (43, 23, 1, 'CHYMOBEN FORTE',	'Trypsin-Chymotrypsin, 100000 Armour units of enzymatic activity',	'1X10',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
      INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (44, 1, 1, 'DKORT-6',	'Deflazacort - 6 mg tab (Alu Alu)',	'1X10',	'55.44',	'72.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (44, 23, 1, 'DKORT-6',	'Deflazacort - 6 mg tab (Alu Alu)',	'1X10',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
       INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (45, 1,1,  'ESO-DSR',	'Esomeprazole Magnesium Trihydrate 40mg Domperidone I.P. 30mg (ALU ALU)',	'1X10',	'61.60',	'80.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (45, 16,1,  'ESO-DSR',	'Esomeprazole Magnesium Trihydrate 40mg Domperidone I.P. 30mg (ALU ALU)',	'1X10',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (46, 1,1, 'FENTA-S',	'Aceclofenac 100 mg + Paracetamol 325 mg + serratiopeptidase 15 mg',	'1X10 BLISTER',	'50.05',	'65.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (46, 22,1, 'FENTA-S',	'Aceclofenac 100 mg + Paracetamol 325 mg + serratiopeptidase 15 mg',	'1X10 BLISTER',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (47, 1,1, 'FEVER X Tablet',	'Paracetamol 500mg + Phenylephrine 5mg + Cetirizine - 5mg','20X10 BLISTER',	'616.00',	'800.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (47, 23,1, 'FEVER X Tablet',	'Paracetamol 500mg + Phenylephrine 5mg + Cetirizine - 5mg','20X10 BLISTER',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (48, 1,1,'HYPEN(DPCO)','Aceclofenac 100 mg + Paracetamol 325 mg',  	'20X10 BLISTER',	'464.00',	'580.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (48, 22,1,'HYPEN(DPCO)','Aceclofenac 100 mg + Paracetamol 325 mg',  	'20X10 BLISTER',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (49, 1,1, 'LEEV-5'	,'Levocetirizine Dihydrochloride 5mg',	'1X10 BLISTER',	'15.40',	'20.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (49, 22,1, 'LEEV-5'	,'Levocetirizine Dihydrochloride 5mg',	'1X10 BLISTER',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (50, 1,1, 'LEEV-M',	'Montelukast 10mg + Levocetirizine 5 mg  ALU-ALU',	'1X10 BLISTER',	'80.85',	'105.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (50, 22,1, 'LEEV-M',	'Montelukast 10mg + Levocetirizine 5 mg  ALU-ALU',	'1X10 BLISTER',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (51, 1,1, 'SUMIRON XT',	'Ferrous Ascorbate 100mg + Folic Acid 1.5mg + B12 15mcg + Zinc Sulphate',	'1X10'	,'69.30',	'90.00');
+	( `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (51, 21,1, 'SUMIRON XT',	'Ferrous Ascorbate 100mg + Folic Acid 1.5mg + B12 15mcg + Zinc Sulphate',	'1X10'	,1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (52, 1,1, 'POTON-40',	'Pantoprazole 40mg',	 '1X10 ALU-ALU'	,'36.96',	'48.00');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (52, 16,1, 'POTON-40',	'Pantoprazole 40mg',	 '1X10 ALU-ALU'	,1,	'1Mz6azflqsXaONh_gwqvFRLCFZ6P3leNm');
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (53, 1,1, 'Terbi-Rx',	'Terbinafine- 250 mg',	 '1x7x10'	,'1190',	'246');
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (53, 24,1, 'Terbi-Rx',	'Terbinafine- 250 mg',	 '1x7x10'	,1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
 
 
 
 -- capsules Entry --
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (54, 3,1, 'BR-DSR', 'Rabeprazole 20mg+Domperidone 30mg Capsule ', '1X10 ALU-ALU', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (54, 16,1, 'BR-DSR', 'Rabeprazole 20mg+Domperidone 30mg Capsule ', '1X10 ALU-ALU', 3, '1LwHMZXaGvFkXYrL5OzOFhiuDdOflCGZy' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (55, 3,1, 'BR-L', 'Rabeprazole 20mg+Levosulpride-75 mg', '10x10 ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (55, 16,1, 'BR-L', 'Rabeprazole 20mg+Levosulpride-75 mg', '10x10 ', 3, '1GDwo0R-CyC2FbTDlnKkTzxmbzxJC2wbK' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (56, 3,1, 'BrV7 SOFT GEL', '"CALCITRIOL 0.25MCG. CALCIAM CARBONATE 500MG, OMEGA 3 FATTY ACID ETHYL ESTER 60MG EICOSAPENTAENOIC ACID 90MG, DOCOSAHEXAENOIC ACID MG,ETHYLCOBALAMINE 1500MCG
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (56, 18,1, 'BrV7 SOFT GEL', '"CALCITRIOL 0.25MCG. CALCIAM CARBONATE 500MG, OMEGA 3 FATTY ACID ETHYL ESTER 60MG EICOSAPENTAENOIC ACID 90MG, DOCOSAHEXAENOIC ACID MG,ETHYLCOBALAMINE 1500MCG
  FOLIC ACID 400MCG/
 DISODIUM TETRABORATE EQ:TO ELEMENTAL BORON 1.5MG/
-VITAMIN K2-7 - 45 MCG" ', '  5X2X15 BLISTER', '65.45', '85' );
+VITAMIN K2-7 - 45 MCG" ', '  5X2X15 BLISTER', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (57, 3,1, 'CAL-D SOFT GEL', 'CALCIUM CARBONATE-500mg,CALCITRIOL 0.25MCG,ZINC-7.5mg ', ' 5X2X15 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (57, 21,1, 'CAL-D SOFT GEL', 'CALCIUM CARBONATE-500mg,CALCITRIOL 0.25MCG,ZINC-7.5mg ', ' 5X2X15 BLISTER', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (58, 3,1, 'POTON-DSR', 'Pantoprazole 40mg + Domperidone 30mg', '    1X10 ALU-ALU', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (58, 16,1, 'POTON-DSR', 'Pantoprazole 40mg + Domperidone 30mg', '    1X10 ALU-ALU', 3, '1e-6KbBeHZLIY5RTShiXjKrO8cG965xpR' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (59, 3,1, 'SONAL VIT', 'Multivitamin Capsule ', '    10X10 ALU-ALU', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (59, 18,1, 'SONAL VIT', 'Multivitamin Capsule ', '    10X10 ALU-ALU', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 -- DRY SYRUP Entry --
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (60, 4,1, 'BRAMOX D/S(DPCO)', 'Amoxy 200mg+ Clavu 28.5 mg + W.F.I', '1 X 30ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (60, 17,1, 'BRAMOX D/S(DPCO)', 'Amoxy 200mg+ Clavu 28.5 mg + W.F.I', '1 X 30ml', 4, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 -- Injectables Entry --
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (61, 5,1, 'BENCEF 1GM(DPCO)', 'Ceftriaxone 1 gm', '1 vial', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (61, 17,1, 'BENCEF 1GM(DPCO)', 'Ceftriaxone 1 gm', '1 vial', 5, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (62, 5,1, 'BENCEF-S 1500(DPCO)', 'Ceftriaxone 1000 mg + Sulbactam 500 mg', '1 vial', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (62, 17,1, 'BENCEF-S 1500(DPCO)', 'Ceftriaxone 1000 mg + Sulbactam 500 mg', '1 vial', 5, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (63, 5,1, 'BR-20 IV', 'Rabeprazole 20mg', '1 vial', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (63, 16,1, 'BR-20 IV', 'Rabeprazole 20mg', '1 vial', 5, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (64, 5,1, 'POTON- 40 I.V(DPCO)', 'Pantoprazole Sodium 40 mg', '1 vial', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (64, 16,1, 'POTON- 40 I.V(DPCO)', 'Pantoprazole Sodium 40 mg', '1 vial', 5, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 -- OIENMENT Entry --
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (65, 6,1, 'TERBI-PLUS  CREAM', 'Ofloxacin IP 0.75% + Ornidazole IP- 2.00 % + Terbinafine Hydrochloride BP-1.00 % +Clobetasol Propionate IP - 0.05 %', '15 gm.', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (65, 24,1, 'TERBI-PLUS  CREAM', 'Ofloxacin IP 0.75% + Ornidazole IP- 2.00 % + Terbinafine Hydrochloride BP-1.00 % +Clobetasol Propionate IP - 0.05 %', '15 gm.', 6, '155AFu7AMgNiG5Zb_U8j2xwh4hLUyl3jd' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (66, 6,1, 'CLOB-NM  CREAM', 'Clobetasol Propionat IP 0.05% + Neomycin Sulphate IP-0.5% + Miconazole Nitrate IP-2.0%', '15 gm.', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (66, 24,1, 'CLOB-NM  CREAM', 'Clobetasol Propionat IP 0.05% + Neomycin Sulphate IP-0.5% + Miconazole Nitrate IP-2.0%', '15 gm.', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 -- OPTHA Entry--
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (67, 7,1, 'FLURAC ', 'FLURBIPROFEN SODIUM-0.03% ,PHENYL ETHYL ALCOHOL-0.025', '1 X 5ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (67, 7,1, 'FLURAC ', 'FLURBIPROFEN SODIUM-0.03% ,PHENYL ETHYL ALCOHOL-0.025', '1 X 5ml', 7, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (68, 7,1, 'GANTEAR', 'CARBOXYMETHYLCELLULOSE SODIUM-0.5%,  STABILIZED OXYCHLORO COMPLEX-0.005%', '1 X 10ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (68, 7,1, 'GANTEAR', 'CARBOXYMETHYLCELLULOSE SODIUM-0.5%,  STABILIZED OXYCHLORO COMPLEX-0.005%', '1 X 10ml',7, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (69, 7,1, 'GANTEAR+', 'CARBOXYMETHYLCELLULOSE SODIUM-1%, STABILIZED OXYCHLORO COMPLEX-0.0075%', '1 X 10ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (69, 7,1, 'GANTEAR+', 'CARBOXYMETHYLCELLULOSE SODIUM-1%, STABILIZED OXYCHLORO COMPLEX-0.0075%', '1 X 10ml', 7, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (70, 7,1, 'LOPITA', 'OLOPATADINE HYDROCHLORIDE - 0.1 % ,BENZALKONIUM CHLORIDE SOLUTION - 0.02 %', '1 X 5ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (70, 7,1, 'LOPITA', 'OLOPATADINE HYDROCHLORIDE - 0.1 % ,BENZALKONIUM CHLORIDE SOLUTION - 0.02 %', '1 X 5ml', 7, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (71, 7,1, 'NOPEC', 'NAPHAZOLINE HYDROCHLORIDE - 0.1 % , CHLORPHENIRAMINE MALEATE - 0.01 % , HYDROXYPROPYLMETHYLCELLULOSE-0.25 % , BENZALKONIUM CHLORIDE SOLUTION - 0.02', '1 X 10ml.', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (71, 7,1, 'NOPEC', 'NAPHAZOLINE HYDROCHLORIDE - 0.1 % , CHLORPHENIRAMINE MALEATE - 0.01 % , HYDROXYPROPYLMETHYLCELLULOSE-0.25 % , BENZALKONIUM CHLORIDE SOLUTION - 0.02', '1 X 10ml.', 7, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (72, 7,1, 'PENAC', 'POTASSIUM IODIDE 3.3%,CALCIUM CHLORIDE 1.0%,  SODIUM CHLORIDE - 0.83%, METHYL PARABEN - 0.023%, PROPYL PARABEN - 0.011%', '1 X 10ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (72, 7,1, 'PENAC', 'POTASSIUM IODIDE 3.3%,CALCIUM CHLORIDE 1.0%,  SODIUM CHLORIDE - 0.83%, METHYL PARABEN - 0.023%, PROPYL PARABEN - 0.011%', '1 X 10ml', 7, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (73, 7,1, 'MOXIB', 'MOXIFLOXACIN HYDROCHLORIDE- 0.5 ', '1 X 5ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (73, 7,1, 'MOXIB', 'MOXIFLOXACIN HYDROCHLORIDE- 0.5 ', '1 X 5ml', 7, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (74, 7,1, 'MOXIB-KT', 'MOXIFLOXACIN HYDROCHLORIDE- 0.5 % KETOROLAC TROMETHAMINE- 0.5%,  BENZALKONIUM CHLORIDE SOLUTION -0.02%', '1 X 5ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (74, 7,1, 'MOXIB-KT', 'MOXIFLOXACIN HYDROCHLORIDE- 0.5 % KETOROLAC TROMETHAMINE- 0.5%,  BENZALKONIUM CHLORIDE SOLUTION -0.02%', '1 X 5ml', 7, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (75, 7,1, 'Clin-n', 'SODIUM CHLORIDE IP-O.65%, BENZALKONIUM CHLORIDE SOLUTION-0.02%,', '1X15 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (75, 7,1, 'Clin-n', 'SODIUM CHLORIDE IP-O.65%, BENZALKONIUM CHLORIDE SOLUTION-0.02%,', '1X15 ml', 7, '1YW7YcnGz6nDWnuulP_WFHTaOrtgyIU81' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (76, 7,1, 'BR-OCL', 'LIGNOCAINE HYDROCHLORIDE IP-2%,CLOTRIMAZOLE IP-1%,OFLOXACIN IP-0.3%,BECLOMETHASONE DIPROPIONATE IP-0.025%', '1 X 5ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (76, 7,1, 'BR-OCL', 'LIGNOCAINE HYDROCHLORIDE IP-2%,CLOTRIMAZOLE IP-1%,OFLOXACIN IP-0.3%,BECLOMETHASONE DIPROPIONATE IP-0.025%', '1 X 5ml', 7, '1ZLNooYHpBuZB-kr72alPtu0qUQMMev2R' );
 
 -- HERBAL Entry--
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (77, 8,1, 'BELIV', 'LIVER STIMULANT SYRUP', '200ML', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (77, 8,1, 'BELIV', 'LIVER STIMULANT SYRUP', '200ML', 8, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (78, 8,1, 'ALLZYME-H', 'DIGESTIVE ENZYME', '200ML', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (78, 8,1, 'ALLZYME-H', 'DIGESTIVE ENZYME', '200ML', 8, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (79, 8,1, 'FEMINA', 'UTERINE TONIC', '200ML', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (79, 8,1, 'FEMINA', 'UTERINE TONIC', '200ML', 8, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (80, 8,1, 'HONEY-X', 'HERBAL COUGH EXP WITH HONEY', '100 ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (80, 8,1, 'HONEY-X', 'HERBAL COUGH EXP WITH HONEY', '100 ml', 8, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (81, 8,1, 'HERBOFIT', 'NATURAL HEALTH REJUVELATOR', '200ML', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (81, 8,1, 'HERBOFIT', 'NATURAL HEALTH REJUVELATOR', '200ML', 8, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (82, 8,1, ' ARTHINA', 'HERBAL PAIN OIL', '100ML', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (82, 8,1, ' ARTHINA', 'HERBAL PAIN OIL', '100ML', 8, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (83, 8,1, ' ARTHINA', 'HERBAL PAIN OIL', '50ML', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (83, 8,1, ' ARTHINA', 'HERBAL PAIN OIL', '50ML', 8, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 -- CARDIAC Entry--
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (84, 9,1, ' BR-AMLO-5', 'AMLODIPINE-5 MG TABLETS', '10X10 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (84, 9,1, ' BR-AMLO-5', 'AMLODIPINE-5 MG TABLETS', '10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (85, 9,1, ' BR-AMLO-AT', 'AMLODIPINE-5 MG + ATENOLOL-50 MG TABLETS', '10X10 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (85, 9,1, ' BR-AMLO-AT', 'AMLODIPINE-5 MG + ATENOLOL-50 MG TABLETS', '10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (86, 9,1, ' B-Sartan-40', 'TELMISARTAN-40 MG TABLETS', '10X10 ALU ALU   ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (86, 9,1, ' B-Sartan-40', 'TELMISARTAN-40 MG TABLETS', '10X10 ALU ALU   ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (87, 9,1, ' B-sartan-80', 'TELMISARTAN-80 MG TABLETS', '10X10 ALU ALU  ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (87, 9,1, ' B-sartan-80', 'TELMISARTAN-80 MG TABLETS', '10X10 ALU ALU  ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (88, 9,1, ' B-sartan-80', 'TELMISARTAN-80 MG TABLETS', '10X10 ALU ALU  ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (88, 9,1, ' B-sartan-80', 'TELMISARTAN-80 MG TABLETS', '10X10 ALU ALU  ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (89, 9,1, ' B-Sartan-H', 'TELMISARTAN-40 MG +HYDROCHLOROTHIAZIDE-12.5 MG TABLETS', '10X10 ALU ALU    ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (89, 9,1, ' B-Sartan-H', 'TELMISARTAN-40 MG +HYDROCHLOROTHIAZIDE-12.5 MG TABLETS', '10X10 ALU ALU    ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (90, 9,1, ' B-Virtin-D', 'FLUNARIZINE DiHcl Eq.to Flunarizine-5 MG + DOMPERIDONE-10 MG + PARA-325 MG TABLETS', '10X10 ALU ALU ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (90, 9,1, ' B-Virtin-D', 'FLUNARIZINE DiHcl Eq.to Flunarizine-5 MG + DOMPERIDONE-10 MG + PARA-325 MG TABLETS', '10X10 ALU ALU ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 -- DIABETIC Entry--
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (91, 10,1, ' SUGAMIN-1', 'GLIMEPIRIDIE-1 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS', '10X10 BLISTER ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (91, 10,1, ' SUGAMIN-1', 'GLIMEPIRIDIE-1 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS', '10X10 BLISTER ', 10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (92, 10,1, ' SUGAMIN-2', 'GLIMEPIRIDIE-2 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS', '10X10 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (92, 10,1, ' SUGAMIN-2', 'GLIMEPIRIDIE-2 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS', '10X10 BLISTER', 10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (93, 10,1, ' BR-VOGLI 2', 'VOGLIBOSE 0.2 MG TABLETS', '10X10 ALU ALU ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (93, 10,1, ' BR-VOGLI 2', 'VOGLIBOSE 0.2 MG TABLETS', '10X10 ALU ALU ', 10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (94, 10,1, ' BR-VOGLI 3', 'VOGLIBOSE 0.3 MG TABLETS', '10X10 ALU ALU ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (94, 10,1, ' BR-VOGLI 3', 'VOGLIBOSE 0.3 MG TABLETS', '10X10 ALU ALU ', 10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (95, 10,1, ' BR-VOGLI 2M', 'METFORMIN-500 MG + VOGLIBOSE-0.2 MG BILAYERED TABLETS', '10X10 ALU ALU ','65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (95, 10,1, ' BR-VOGLI 2M', 'METFORMIN-500 MG + VOGLIBOSE-0.2 MG BILAYERED TABLETS', '10X10 ALU ALU ',10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (96, 10,1, 'BR-VOGLI 3M', 'METFORMIN-500 MG + VOGLIBOSE-0.3 MG BILAYERED TABLETS', '10X10 ALU ALU ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (96, 10,1, 'BR-VOGLI 3M', 'METFORMIN-500 MG + VOGLIBOSE-0.3 MG BILAYERED TABLETS', '10X10 ALU ALU ', 10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 -- DWARKA PHERMA --
@@ -731,1117 +739,752 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 -- Tablets Capsules --
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (97, 1,2, 'D-PAIN', 'Aceclofenac I.P. 100mg+Paracetamol IP 325mg +Excipients q.s.', '10X2X10 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (97, 22,2, 'D-PAIN', 'Aceclofenac I.P. 100mg+Paracetamol IP 325mg +Excipients q.s.', '10X2X10 BLISTER', 1, '1dTPKcV86k6-hZ93cgcMTu0NgAJ3xr1Rs' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (98, 1,2, 'DAZ-500-(DPCO)', 'Azithromycine 500mg Tablet', ' 10X3 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (98, 17,2, 'DAZ-500-(DPCO)', 'Azithromycine 500mg Tablet', ' 10X3 BLISTER', 1, '1qfQ4wsh0hbGqZu7WJpXPYdwS5YyGABWv' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (99, 1,2, 'DP-40', 'Pantoprazole Sodium IP eq. to Pantoprazole -40mg+ Excipients q.s.', '10x10 ALU ALU', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (99, 16,2, 'DP-40', 'Pantoprazole Sodium IP eq. to Pantoprazole -40mg+ Excipients q.s.', '10x10 ALU ALU', 1, '1f0MdjzlmVA1Lbnx-BBaQRKA5P1wxyCrk' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (100,1,2, 'D-PAIN+ ', 'Aceclofenac- 100 mg + Paracetamol- 325 mg + serratiopeptidase- 10 mg tab+Excipients q.s.', '(ALU ALU 10x10 TAB)', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (100,22,2, 'D-PAIN+ ', 'Aceclofenac- 100 mg + Paracetamol- 325 mg + serratiopeptidase- 10 mg tab+Excipients q.s.', '(ALU ALU 10x10 TAB)', 1, '1iqfGejc4LTesVi7j1exUH8MTI8HYpZCW' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (101, 1,2, 'DPCEF-200LB', 'Cefixime I.P. eq to Cefixime(anhydrous)-  200 mg+Lactic Acid Bacillus 2.5 billion spores +Excipients q.s.', '10X10 ALU ALU ','65.45', '85' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (102, 1,2, 'DPCEF-O', 'Cefixime- 200mg(As Cefixime Trihydrate)+Ofloxacin I.P.- 200mg', '10X10 ALU ALU ', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (103, 1,2, 'DPCET', 'Levocetirizine Dihydrochloride I.P. - 5mg+Excipients-q.s.', '10X10 ALU ALU', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (101, 17,2, 'DPCEF-200LB', 'Cefixime I.P. eq to Cefixime(anhydrous)-  200 mg+Lactic Acid Bacillus 2.5 billion spores +Excipients q.s.', '10X10 ALU ALU ',1, '1p8DdoJ8f5XBLnRTLNX5m83a1VUnE8hFB' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (104, 1,2, 'DPCET -M', 'Levocetirizine Dihydrochloride IP- 5mg+Montelukast Sodium IP eq. to Montelukast -10mg+Exicipients q.s.', '10X10 ALU ALU', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (102, 17,2, 'DPCEF-O', 'Cefixime- 200mg(As Cefixime Trihydrate)+Ofloxacin I.P.- 200mg', '10X10 ALU ALU ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (103, 23,2, 'DPCET', 'Levocetirizine Dihydrochloride I.P. - 5mg+Excipients-q.s.', '10X10 ALU ALU', 1, '1giFn4goE26GVG3X11dR3kQgYdgm0Y23W' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (105, 1,2, 'DP-COLD+', 'Paracetamol IP 500mg+Phenylephrine-5mg+Cetirizine-5mg Tablet', '20x10 BLISTER ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (104, 23,2, 'DPCET -M', 'Levocetirizine Dihydrochloride IP- 5mg+Montelukast Sodium IP eq. to Montelukast -10mg+Exicipients q.s.', '10X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (106, 1,2, 'DP-DSR', 'Pantoprazole 40mg + Domperidone  -30mg Capsule', '10X10 ALU ALU ', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (107, 1,2, 'Dpmol-MR', 'Diclofence Potassium B.P.- 50mg+Paracetamol I.P.-325mg,+Cholorzoxane U.S.P-250mg+Excipients q.s.', '10X10 ALU ALU ','65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (105, 23,2, 'DP-COLD+', 'Paracetamol IP 500mg+Phenylephrine-5mg+Cetirizine-5mg Tablet', '20x10 BLISTER ', 1, '1W45T8KnMIUgkkhKwhiR44Apj-rqf0SeQ' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (108, 1,2, 'DR-DSR', 'Rabeprazole Sodium IP -20mg +Domperidone IP 30mg Capsule+Excipients q.s ', '10X10 ALU ALU ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (106, 16,2, 'DP-DSR', 'Pantoprazole 40mg + Domperidone  -30mg Capsule', '10X10 ALU ALU ', 1, '140shKTj_JM8sKvfR-Af59x2VAfF_o_-x' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (109, 1,2, 'DZOLE-400', 'Albendazole- 400 mg +Excipients q.s.', 'Blister 1x20 TAB', '65.45', '85' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (110, 1,2, 'OMD-20', 'Omeprazole-20mg +Excipients q.s.', '20X15 ALUMINIUM STRIP', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (107, 22,2, 'Dpmol-MR', 'Diclofence Potassium B.P.- 50mg+Paracetamol I.P.-325mg,+Cholorzoxane U.S.P-250mg+Excipients q.s.', '10X10 ALU ALU ',1, '1zGvLpkL2meJcZIg3dsFoNL0TzqS0PaoL' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (111, 1,2, 'OMD-PLUS', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.', '20x15 ALUMINIUM STRIP ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (108, 16,2, 'DR-DSR', 'Rabeprazole Sodium IP -20mg +Domperidone IP 30mg Capsule+Excipients q.s ', '10X10 ALU ALU ', 1, '11FK9xcyLTpNSjGeeS8ozhfs8np6raBt6' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (109, 16,2, 'DZOLE-400', 'Albendazole- 400 mg +Excipients q.s.', 'Blister 1x20 TAB', 1, '1oWp-WiAso6dPcpnEB4EZ9HaKPbUEkPEg' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (112, 1,2, 'OMD-SR', 'Omeprazole-20mg + Domperidone -30mg', '10x10 ALU ALU ', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (113, 1,2, 'PARALORE', 'Aceclofenac BP 100mg+Paracetamol IP 325mg Tablet', '2X5X10 BLISTER','65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (110, 16,2, 'OMD-20', 'Omeprazole-20mg +Excipients q.s.', '20X15 ALUMINIUM STRIP', 1, '1lma4BnY8FYNcCCqEUcCZPf16ZSKIBUbb' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (114, 1,2, 'DPCLAV-LB', 'Amoxycillin Trihydrate I.P eq. to Amoxycillin-500mg+Potassium Clavulanate Diluted I.P eq. to Clavulanic Acid -125mg+Lactic Acid Bacillus 60 million spores Excipients q.s', '10X10 ALU ALU ', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (115, 1,2, 'DP-OZ', 'Ofloxacin I.P.-200 Mg. + Ornidazole I.P.-500  Mg+Excipients q.s.', '10X10 BLISTER ', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (111, 16,1, 'OMD-PLUS', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.', '20x15 ALUMINIUM STRIP ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (116, 1,2, 'DPVIT-G', 'Ginseng Exrtact  UPS - 40Mg + Vitamin-A  (as Acetate) - 2500Iu+Vitamin-D3-200Iu + Vitamin-B1 IP-2Mg + Vitamin-B2 IP - 3Mg + Vitamin-B6 IP - 1.5Mg + Cynocobalamin IP - 1Mcg+  Itamin-C (Coated) IP- 50Mg +Vitamin-E (As Acetate) 5%- 10Iu + Calcium  Pantothenate - 5Mg + Niacinamide IP - 26Mg + Folic Acid  IP- 300Mcg + Calcium Carbonate IP -187.3Mg + Carbonyl Iron - 10Mg + Potassium Sulphate IP - 10Mg + Magnesium Sulphate IP - 30Mg + Manganese Sulphate IP- 1.5Mg + Zinc Sulphate Monohydrate IP - 2.2Mg+Selenium Dioxide 40mcg+Cupric Sulphate IP 2mcg+Excipients q.s.
-+ Selenium Dioxide- 40Mcg + Cupric Sulphate - 2Mcg + ', '10X10 ALU ALU', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (112, 16,2, 'OMD-SR', 'Omeprazole-20mg + Domperidone -30mg', '10x10 ALU ALU ', 1, '1SHE2M6jsgTl6VYuhIiv0p3PEec8aH-Ku' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (113, 22,2, 'PARALORE', 'Aceclofenac BP 100mg+Paracetamol IP 325mg Tablet', '2X5X10 BLISTER',1, '13jD_oOdOvtczZ1D-0lQp-eS9YWcyjTyD' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (117, 1,2, 'DP-WIN', 'DIclofence Potassium BP- 50mg+Paracetamol IP-325mg+Excipients q.s.', '20x10 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (114, 17,2, 'DPCLAV-LB', 'Amoxycillin Trihydrate I.P eq. to Amoxycillin-500mg+Potassium Clavulanate Diluted I.P eq. to Clavulanic Acid -125mg+Lactic Acid Bacillus 60 million spores Excipients q.s', '10X10 ALU ALU ', 1, '1_9kA0euxrfPUCIFkaAEq7i7jwTC9Xt38' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (115, 17,2, 'DP-OZ', 'Ofloxacin I.P.-200 Mg. + Ornidazole I.P.-500  Mg+Excipients q.s.', '10X10 BLISTER ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (118, 1,2, 'LYCO-LVIT', 'Lycopene (10%)-5Mg+ Lutein( 10% )- 6Mg + Vitamin-A  (as Acetate) - 2500Iu+ Vitamin-E (as Acetate) -10Iu +Ascorbic Acid IP -50mg + Zinc Sulphate Monhydrate IP -27.5Mg + Selenium Dioxide - 75Mcg+ Calcium Pantothenate - 5Mg+Excipients q.s.', '10X10  ALU ALU CAP', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (119, 1,2, 'Dpamlo-5', 'Amlodipine Besylate I.P eq. to Amlodipine -5mg+Excipients q.s.', '10x10 BLISTER ','65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (116, 18,1, 'DPVIT-G', 'Ginseng Exrtact  UPS - 40Mg + Vitamin-A  (as Acetate) - 2500Iu+Vitamin-D3-200Iu + Vitamin-B1 IP-2Mg + Vitamin-B2 IP - 3Mg + Vitamin-B6 IP - 1.5Mg + Cynocobalamin IP - 1Mcg+  Itamin-C (Coated) IP- 50Mg +Vitamin-E (As Acetate) 5%- 10Iu + Calcium  Pantothenate - 5Mg + Niacinamide IP - 26Mg + Folic Acid  IP- 300Mcg + Calcium Carbonate IP -187.3Mg + Carbonyl Iron - 10Mg + Potassium Sulphate IP - 10Mg + Magnesium Sulphate IP - 30Mg + Manganese Sulphate IP- 1.5Mg + Zinc Sulphate Monohydrate IP - 2.2Mg+Selenium Dioxide 40mcg+Cupric Sulphate IP 2mcg+Excipients q.s.
++ Selenium Dioxide- 40Mcg + Cupric Sulphate - 2Mcg + ', '10X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (120, 1,2, 'Dpamlo-AT', 'Amlodipine Besylate IP eq. to Amlodipine-5mg+Anteolol IP-50mg+Excipients q.s.', '10x10 BLISTER', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (121, 1,2, 'Cetri-10', 'Cetirizine Hydrochloride IP- 10Mg+Excipients q.s.', '10X10 Blister', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (117, 22,1, 'DP-WIN', 'DIclofence Potassium BP- 50mg+Paracetamol IP-325mg+Excipients q.s.', '20x10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (122, 1,2, 'Moxit-L-250', 'Amoxycillin Trihydrate IP eq. to Amoxycillin (anhydrous)-250mg+Lactic Acid Bacillus 1.66 billion spores.+Excipients q.s.', '10X10 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (118, 18,2, 'LYCO-LVIT', 'Lycopene (10%)-5Mg+ Lutein( 10% )- 6Mg + Vitamin-A  (as Acetate) - 2500Iu+ Vitamin-E (as Acetate) -10Iu +Ascorbic Acid IP -50mg + Zinc Sulphate Monhydrate IP -27.5Mg + Selenium Dioxide - 75Mcg+ Calcium Pantothenate - 5Mg+Excipients q.s.', '10X10  ALU ALU CAP', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (119, 9,2, 'Dpamlo-5', 'Amlodipine Besylate I.P eq. to Amlodipine -5mg+Excipients q.s.', '10x10 BLISTER ',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (123, 1,2, 'Moxit-L-500', 'Amoxycillin Trihydrate IP eq. to Amoxycillin(anhydrous)-500mg+Lactic Acid Bacillus 1.66 billion spores +Excipients q.s.', '10x10 BLISTER' ,'65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (120, 9,2, 'Dpamlo-AT', 'Amlodipine Besylate IP eq. to Amlodipine-5mg+Anteolol IP-50mg+Excipients q.s.', '10x10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (121, 23,2, 'Cetri-10', 'Cetirizine Hydrochloride IP- 10Mg+Excipients q.s.', '10X10 Blister', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (124, 1,2, 'Nimoli', 'Nimesulide   B.P.   100Mg +Excipients q.s', '20x10 BLISTER', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (122, 17,2, 'Moxit-L-250', 'Amoxycillin Trihydrate IP eq. to Amoxycillin (anhydrous)-250mg+Lactic Acid Bacillus 1.66 billion spores.+Excipients q.s.', '10X10 BLISTER', 1, '15dM6lVzhDno_nldbOK6Zro5JSWgHzYuT' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (123, 17,2, 'Moxit-L-500', 'Amoxycillin Trihydrate IP eq. to Amoxycillin(anhydrous)-500mg+Lactic Acid Bacillus 1.66 billion spores +Excipients q.s.', '10x10 BLISTER' ,1, '15hKPoAryd8cv1K1meMC6oxDAF6AWAOsBs' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (124, 23,2, 'Nimoli', 'Nimesulide   B.P.   100Mg +Excipients q.s', '20x10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 -- OINMENT
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (125, 6,2, 'DPVINE-MA cream', 'Povidone Iodine IP-5.0% w/w(0.5% w/w available Iodine)+Metronidazole with alovera ip-1.0% w/w+water-soluable ointment base q.s', '15 mg', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (125, 23,2, 'DPVINE-MA cream', 'Povidone Iodine IP-5.0% w/w(0.5% w/w available Iodine)+Metronidazole with alovera ip-1.0% w/w+water-soluable ointment base q.s', '15 mg', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (126, 6,2, 'Arthina gel', 'Diclofenac Diethylamine B.P. -1.16 %+Linseed Oil B.P. 3%+Methyl  Salicylate-10%++Menthol-5%+Benzyl Alcohol-1%', '30mg', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (126, 22,2, 'Arthina gel', 'Diclofenac Diethylamine B.P. -1.16 %+Linseed Oil B.P. 3%+Methyl  Salicylate-10%++Menthol-5%+Benzyl Alcohol-1%', '30mg', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 -- LIQUID
 
 
+
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (127, 2,2, 'DP-KUF', '5ml:C.P. Maleate -2.5mg, Ammonium Chloride -125 mg, Sodium Citrate -55mg Syrup', '100ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (128, 23,2, 'DP-KUF-A', '5ml: Ambroxol Hydrochloride I.P- 15.00mg+ Guaiphenesin I.P-50.00mg+Terbutaline Sulphate I.P-1.25mg+In a flavoured Syrup & Sorbitol base', '100ml', 2, '17H13ZLrPDiqfRK9asA1QdJVqkccSHhWy' );
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (129, 23,2, 'DP-CYPO', '5ml:Cyproheptadine Hydrochloride I.P 2mg+ Tricholine Citrate 275mg+In a flavoured  Syrupy Base.', '200ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (128, 2,2, 'DP-KUF-A', '5ml: Ambroxol Hydrochloride I.P- 15.00mg+ Guaiphenesin I.P-50.00mg+Terbutaline Sulphate I.P-1.25mg+In a flavoured Syrup & Sorbitol base', '100ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (130, 18,2, 'DP-VIT', '10ml: Thiamine Hydrochloride I.P -5mg+Riboflavine I.P-25mg+Pyridoxine Hydrochloride I.P -1.50mg+Niacinamide I.P30mg+Cyanocobalamin I.P -2.5mcg+Choline Dihydrogen Citrate USNF -30mg+Lysin Hydrochloride USP 250mg', '200ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (129, 2,2, 'DP-CYPO', '5ml:Cyproheptadine Hydrochloride I.P 2mg+ Tricholine Citrate 275mg+In a flavoured  Syrupy Base.', '200ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (131, 16,2, 'DP-ZYME', 'Each 10ml :Fungal Diastase(1:2000)-40 mg+ Cinnamon Oil 0.2mg + Cardamom Oil-0.4mg+Caraway Oil-.4 mg', '200ml', 2, '1ch83JduYIcpTp07RtaPRQk17dv02OAOa' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (130, 2,2, 'DP-VIT', '10ml: Thiamine Hydrochloride I.P -5mg+Riboflavine I.P-25mg+Pyridoxine Hydrochloride I.P -1.50mg+Niacinamide I.P30mg+Cyanocobalamin I.P -2.5mcg+Choline Dihydrogen Citrate USNF -30mg+Lysin Hydrochloride USP 250mg', '200ml', '65.45', '85' );
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (131, 2,2, 'DP-ZYME', 'Each 10ml :Fungal Diastase(1:2000)-40 mg+ Cinnamon Oil 0.2mg + Cardamom Oil-0.4mg+Caraway Oil-.4 mg', '200ml', '65.45', '85' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (132, 2,2, 'DP CAINE', '5ml:Dried Aluminium Hydroxide I.P-300mg+Magnesium Hydroxide I.P-200mg+Dimethicone I.P-50mg+Oxethazine B.P-10mg+Flavoured Aqua-Sorbitol base Q.S', '200ml', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (132, 16,2, 'DP CAINE', '5ml:Dried Aluminium Hydroxide I.P-300mg+Magnesium Hydroxide I.P-200mg+Dimethicone I.P-50mg+Oxethazine B.P-10mg+Flavoured Aqua-Sorbitol base Q.S', '200ml', 2, '1NuCX0QquzQhTvfbNRWdc5udmToiT4RTG' );
 
 -- tooth paste
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (133, 11,2, 'DENT-O', 'Potassium Nitrate-5% w/w, + Sodium Monofluorophosphate-0.70%w/w,Triclosan-0.30% w/w.In a flavoured base.q.s', '50mg', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (133, 11,2, 'DENT-O', 'Potassium Nitrate-5% w/w, + Sodium Monofluorophosphate-0.70%w/w,Triclosan-0.30% w/w.In a flavoured base.q.s', '50mg', 11, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
--- JM HEALTH --- ALPIC --
--- Tablets
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (134, 1,6, 'SERTA-10', 'Serratiopeptidase 10 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (135, 1,6, 'PANTAPIC - 40', 'Pantoprazole 40 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (136, 1,6, 'PANTAPIC - D', 'Pantoprazole 40 mg Domperidone 10 mg', '10x10 ALU ALU', '65.45', '85' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (137, 1,6, 'PANTAPIC - DSR', 'Pantoprazole 40 mg (DSR)Domperidone 30 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (138, 1,6, 'OMECID -D', 'Omeprazole 20 mg Domperidone 10 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (139, 1,6, 'OMECID - 20', 'Omeprazole 20 mg ', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (140, 1,6, 'RABPRO - 20', 'Rabeprazole 20 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (141, 1,6, 'RABPRO - D', 'Rabeprazole 20 mg and Domperidone 10 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (142, 1,6, 'RABPRO - DSR', 'Rabeprazole 20 mg  (DSR)Domperidone 30 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (143, 1,6, 'ALFLOX -OZ', 'Ofloxacin 200 mg+Ornidazole 500 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (144, 1,6, 'ALFLOX - 200', 'Ofloxacin Usp 200 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (145, 1,6, 'ALFER-XT TAB', 'Ferrous Ascorbate 100mg+ Folic Acid 1.5mg+Zinc Sulphate 7.5mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (146, 1,6, 'NIMI-PLUS', 'Nimesulide 100 mg + Paracetamol 325 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (147, 1,6, 'PARAGESIC', 'Diclo Pot 50mg + Paracetamol 325mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (148, 1,6, 'PARAGESIC - S', 'Diclofenac 50mg + Para 325mg + Serra 10mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (149, 1,6, 'DICMOL -MR', 'Diclofence 50mg + Paracetamol 325mg, Chlorzoxane 250', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (150, 1,6, 'ACEFAN PLUS', 'Aceclofenac 100 mg + Paracetamol 325 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (151, 1,6, 'ACEFAN - SP', 'ACC 100mg + Serra 10mg + Para 325mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (152, 1,6, 'ALPROTIC SACHET', 'A blend of 6 Natural Probiotics Strains,Prebiotic (Fructo Oligo Saccharides) & Zinc Sachet', '20x 1.5gm', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (153, 1,6, 'MOXY PIC -250', 'z', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (154, 1,6, 'MOXY PIC - 500', 'Serratiopeptidase 10 mg', '10x15 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (155, 1,6, 'VEECLAV - 375', 'Amoxicillin 250mg + lavulanic Acid 125 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (156, 1,6, 'VEECLAV - 625', ' Amoxycillin 500 mg+ Clavulanic Acid 125 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (157, 1,6, 'VEECLAV - DT', 'Amoxycillin 200 mg + Clavulanic Acid 28.5 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (158, 1,6, 'MOXY - D', 'Amoxycillin 250mg+Dicloxacillin 250mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (159, 1,6, 'SANCEF -100', 'Cefixime 100 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (160, 1,6, 'SANCEF - 200', 'Cefixime 200 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (161, 1,6, 'SANCEF -CV', '"Cefixime 200 mg + lavulanic 125 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (166, 1,6, 'SANCEF - O', 'Cefixime 200 + Ofloxacin 200 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (167, 1,6, 'SANCEF-AZ', 'Cefixime 200 + Azithromycin 250 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (168, 1,6, 'AZIPIC -250', 'Azithromycin 250 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (169, 1,6, 'AZIPIC -500', 'Azithromycin 500 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (170, 1,6, 'ALROXIME -250', 'Cefuroxime 250', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (171, 1,6, 'ALROXIME  - 500', 'Cefuroxime 500', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (172, 1,6, 'SERTA-10', 'Serratiopeptidase 10 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (173, 1,6, 'ZINRON -5', '"Cap Carbonyl Iron Equiv. to Elemental iron 100mg+vitamin C 75mg + Folic Acid 1.5 mg+vit. B12 15mg + zinc sulphate monohydrate 61.8mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (174, 1,6, 'GLOWVIT PLUS', 'Ginseng, Ashwagandha, Multivitamin, Multimineral & Anti Oxidants ', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (175, 1,6, 'LYCOPIC', 'Lycopene with Multivitamins', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (176, 1,6, 'LYCOPIC-G', 'Lycopene Grap Seeds lutein, vitamins, zinc & selenium', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (177, 1,6, 'KEEPOD -100', 'Cefpodoxime Proxtil 100 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (178, 1,6, 'KEEPOD - 200', 'Cefpodoxime Proxtil 200 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (179, 1,6, 'KEEPOD - CV', '"Cefpodoxime Proxtil 200 mg + Clavulanic 125 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (180, 1,6, 'LEVOLIC 500', 'Levofloxacin 500 mg', '10x10 ALU ALU', '65.45', '85' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (181, 1,6, 'MONTE-PLUS KID', 'Levocetirizine Hcl….2.5mg + Montelukast Sodium…..5mg', '10x10 ALU ALU', '65.45', '85' );
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (182, 1,6, 'COLD-RID', 'Caffeine + cetirizine + Phenylephrine + Paracetamol 325', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (183, 1,6, 'FUNGAL GUARD-150', 'Fluconazole U.S.P. 150mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (184, 1,6, 'CORT -6', 'Deflazacort 6mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (185, 1,6, 'OSTOCERIN -50', 'Diacerein 50mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (186, 1,6, 'OSTOCERIN -PLUS', 'Diacerein 50mg+ Glucosamine ', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (187, 1,6, 'NERVINE -GM', 'Methylcobalamin 500mcg+Gabapentin 300 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (188, 1,6, 'NERVINE - P', 'Methylcobalamin 500mcg+Pregabalin 75mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (189, 1,6, 'RABE-IT', 'Rabeprazole Sodium 20mg + Itopride Hydrochloride 150mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (190, 1,6, 'KEEPOD D/S', 'D/S Cefodoxime Proxtil 50 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (191, 1,6, 'GLOWVIT -MV', 'MULTI VITAMIN DROP', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (192, 1,6, 'VEECLAV D/S', 'D/S Amoxy 200mg+ Clavu 28.5 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (193, 1,6, 'SANCEF D/S', 'D/S Cefixime(anhydrous) 50 mg', '10x10 ALU ALU', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (194, 1,6, 'ALPIZYME DROP', 'DIGESTIVE ENZYME DROP', '10x10 ALU ALU', '65.45', '85' );
-
--- LIQUID --
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (195, 2,6, 'ALPICYP SYRUP', 'CYPROHEPTADINE+TRICOLINE CITRATE SYRUP', '200ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (196, 2,6, 'ALFER-XT', 'Ferrous Ascorbate 100mg+ Folic Acid 1.5mg+Zinc Sulphate 7.5mg', '200ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (197, 2,6, 'MEGAHIS', 'Each 5ml contains: Magaldrate IP 400mg + Simethicone IP 20mg +Colour: Sunset Yellow FCF', '170ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (198, 2,6, 'MONTE PLUS SYRUP', 'Levocetirizine Hcl….2.5mg + Montelukast Sodium…..4mg', '30ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (199, 2,6, 'ALPICYP SYRUP', 'CYPROHEPTADINE+TRICOLINE CITRATE SYRUP', '100ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (200, 2,6, 'KUFRID', 'Each 5ml contains: Terbutaline Sulphate IP   1.25mg + Bromhexine Hydrochloridel IP 2mg + Guaiphenesin IP 50mgMenthol IP 0.5mg + Flavoured palatable base  q.s.+ Colour: Sunset Yellow FCF ', '100ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (201, 2,6, 'EUROBION SYRUP', 'Enriched with B-Complex & L-Lysine Syrup', '200ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (202, 2,6, 'LYCOPIC', 'Lycopene with Multivitamin & Multimineral Syrup', '200ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (203, 2,6, 'ALPIZYME-200', '"Each 5ml contains: Fungal Diastase IP 50mg + Pepsin IP 10mg', '200ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (204, 2,6, 'ALPIZYME-100', '"Each 5ml contains: Fungal Diastase IP 50mg + Pepsin IP 10mg', '200ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (205, 2,6, 'KUFRID-DX-SYP', 'DEXTROMETHORPHAN HCL+CPM+PHENYLEPHRINE', '100ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (206, 2,6, 'GLOWVIT MV SYP', 'MULTIVITAMIN+MULTIMINAREL SYRUP', '200ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (207, 2,6, 'ALCYCIP SYP', 'CYPROHEPTADINE+TRICOLINE CITRATE', '200ml', '65.45', '85' );
-
--- powder section --
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (208, 12,6, 'GROWVIT PLUS', 'Protein Powder with Mecbalamin', '200ml', '65.45', '85' );
-
--- Injectable --
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (209, 5,6, 'ALXONE-500', 'Ceftriaxone 500 mg', '10ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (210, 5,6, 'ALXONE-1000', 'Ceftriaxone1000 mg', '10ml', '65.45', '85' );
-
-    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (211, 5,6, 'ALXONE-SB  375', 'Ceftriaxone 250 mg + Sulbactam 125 mg', '10ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (212, 5,6, 'ALXONE-SB  750', 'Ceftriaxone 500 mg + Sulbactam 250 mg', '10ml', '65.45', '85' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (213, 5,6, 'GYNORONE-200', 'Natural Micronised Progestrone 200 mg + (Dispo Pack)', '3ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (214, 5,6, 'MIKA - 250', 'Amikacin 250 mg', '2ml', '65.45', '85' );
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (215, 5,6, 'MIKA - 500', 'Amikacin 500 mg', '2ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (216, 5,6, 'GROWVIT PLUS', 'Protein Powder with Mecbalamin', '2ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (217, 5,6, 'VEEDECK-25', 'Nandrolone Decanoate 25 mg (Dispo pack)', '2ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (218, 5,6, 'VEEDECK-50', 'Nandrolone Decanoate 50 mg (Dispo pack)', '2ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (219, 5,6, 'PENTAPIC-40', 'Pantoptazole 40 mg / ml', '40MG/ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (220, 5,6, 'NERVINE -PLUS', 'Mecobalamin 1000mcg+Pyridoxine  Hydrochloride 100mg+Niacinamide 100mg +Benzyl Alcohol 1.5% v/v', '200ml', '65.45', '85' );
-
-    INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (221, 5,6, 'NERVINE', 'Mecobalamin 1500mcg', '200ml', '65.45', '85' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (222, 5,6, 'RABPRO-20 INJ', 'Rabeprazole Sodium Injection IP', '200ml', '65.45', '85' );
 
 ------------------------
--------------------
+------------------- BENGAL START
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (223, 1,3, 'AZIBEN-500LB', 'Azithromycin 500mg+ Lactic Acid Bacillus', '10X3 BLISTER', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (223, 17,3, 'AZIBEN-500LB', 'Azithromycin 500mg+ Lactic Acid Bacillus', '10X3 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (224, 1,3, 'BP-FLU-150', 'Fluconazole-150mg', '20X1 BLISTER', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (224, 17,3, 'BP-FLU-150', 'Fluconazole-150mg', '20X1 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (225, 1,3, 'BP-FLUE-200', 'Fluconazole-200mg', '20X1 BLISTER', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (225, 17,3, 'BP-FLUE-200', 'Fluconazole-200mg', '20X1 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (226, 1,3, 'CAL-D-500', '"CALCIUM CARBONATE 1250 mg Eq. to Elemental Calcium - 500mg+VITAMIN-D3 - 250IU+ MAGNESIUM SULPHATE- 40MG + MANGANESE SULPHATE - 1.8MG + ZINC SULPHATE MONOYDRATE - 7.5MG + COPPER SULPHATE Eq. to Elemental Copper - 1MG + SODIUM TETRABORATE Eq. to elemental - 250MCG"', '10X10 BLISTER', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (226, 19,3, 'CAL-D-500', '"CALCIUM CARBONATE 1250 mg Eq. to Elemental Calcium - 500mg+VITAMIN-D3 - 250IU+ MAGNESIUM SULPHATE- 40MG + MANGANESE SULPHATE - 1.8MG + ZINC SULPHATE MONOYDRATE - 7.5MG + COPPER SULPHATE Eq. to Elemental Copper - 1MG + SODIUM TETRABORATE Eq. to elemental - 250MCG"', '10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (227, 1,3, 'BPCEF-200', 'Cefixime  200 mg', '10X1Tab ALU-ALU', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (227, 17,3, 'BPCEF-200', 'Cefixime  200 mg', '10X1Tab ALU-ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (228, 1,3, 'BP-MOX-625', 'Amoxy 500mg+ Clavulanate125mg', '10X1X10 ALU-ALU', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (228, 17,3, 'BP-MOX-625', 'Amoxy 500mg+ Clavulanate125mg', '10X1X10 ALU-ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (229, 1,3, 'BP-MOX-LB', 'Amoxy 500mg+ Clavulanate125mg+Lactic Acid Bacillus-60million spo', '10X1X10 ALU-ALU', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (229, 17,3, 'BP-MOX-LB', 'Amoxy 500mg+ Clavulanate125mg+Lactic Acid Bacillus-60million spo', '10X1X10 ALU-ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (230, 1,3, 'BP-MOX- KID', 'Amoxycillin 200 mg + Clavulanic Acid 28.5 mg', '10X1X10 ALU-ALU', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (230, 17,3, 'BP-MOX- KID', 'Amoxycillin 200 mg + Clavulanic Acid 28.5 mg', '10X1X10 ALU-ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (231, 1,3, 'IV-ZOLE-400', 'Albendazole 400 mg  + IVERMECTIN- 12 mg', '10X1 BLISTER', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (231, 23,3, 'IV-ZOLE-400', 'Albendazole 400 mg  + IVERMECTIN- 12 mg', '10X1 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (232, 1,3, 'PAIN -OS', 'Aceclofenac 100 mg + Paracetamol 325 mg + serratiopeptidase 15 mg', '10 X1X10 ALUALU', '100', '100' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (232, 22,3, 'PAIN -OS', 'Aceclofenac 100 mg + Paracetamol 325 mg + serratiopeptidase 15 mg', '10 X1X10 ALUALU',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
- 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-     values (233, 1,3, 'PAIN O', 'Aceclofenac 100 mg + Paracetamol 325 mg', '10X10 ALU ALU', '100', '100' );
+ 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+     values (233, 22,3, 'PAIN O', 'Aceclofenac 100 mg + Paracetamol 325 mg', '10X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
- 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-     values (234, 1,3, 'BPLEV-5', 'Levocetirizine Dihydrochloride 5mg', '10X10 ALU ALU', '100', '100' );
+ 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+     values (234, 23,3, 'BPLEV-5', 'Levocetirizine Dihydrochloride 5mg', '10X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
- 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-     values (235, 1,3, 'BPLEV-M kid', 'MONTELUKAST-5 MG + LEVOCETIRIZINE-2.5 MG KID TABLETS', '10x10 ALU', '100', '100' );
+ 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+     values (235, 23,3, 'BPLEV-M kid', 'MONTELUKAST-5 MG + LEVOCETIRIZINE-2.5 MG KID TABLETS', '10x10 ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
- 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-     values (236, 1,3, 'BPLEV-M', 'Montelukast 10mg + Levocetirizine 5 mg  ALU-ALU', '10X1X10  ALU ALU', '100', '100' );
+ 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+     values (236, 23,3, 'BPLEV-M', 'Montelukast 10mg + Levocetirizine 5 mg  ALU-ALU', '10X1X10  ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
- 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-     values (237, 1,3, 'PANTOBEN-40', 'Montelukast 10mg + Levocetirizine 5 mg  ALU-ALU', '10X1X10  ALU ALU', '100', '100' );
+ 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+     values (237, 23,3, 'PANTOBEN-40', 'Montelukast 10mg + Levocetirizine 5 mg  ALU-ALU', '10X1X10  ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
- 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-     values (238, 1,3, 'FEXOBEN-180', 'Fexofenadine Hcl 180mg', '10X1X10 ALU ALU', '100', '100' );
+ 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+     values (238, 1,3, 'FEXOBEN-180', 'Fexofenadine Hcl 180mg', '10X1X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
- 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-     values (239, 1,3, 'FEXOBEN-120', 'Fexofenadine Hcl 120mg', '10X1X10 ALU ALU', '100', '100' );
+ 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+     values (239, 1,3, 'FEXOBEN-120', 'Fexofenadine Hcl 120mg', '10X1X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
- 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-     values (240, 1,3, 'COLDBEN', 'CETIRIZINE-5 MG + PHENYLEPHRINE-5 MG +  PARA-500 MG TABLETS', '20X10 BLISTER', '100', '100' );
+ 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+     values (240, 23,3, 'COLDBEN', 'CETIRIZINE-5 MG + PHENYLEPHRINE-5 MG +  PARA-500 MG TABLETS', '20X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-      values (241, 1,3, 'ONDABEN-4', 'Ondansetron-4 mg-(Mouth Dissolving)', '10X1X10 ALU ALU', '100', '100' );
+  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+      values (241, 1,3, 'ONDABEN-4', 'Ondansetron-4 mg-(Mouth Dissolving)', '10X1X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-      values (242, 1,3, 'FEXO-M', 'MONTELUKAST-10 MG + FEXOFENADINE-120 MG UNCOATED CHEWABLE TABLETS', '10X1X10 ALU ALU', '100', '100' );
+  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+      values (242, 23,3, 'FEXO-M', 'MONTELUKAST-10 MG + FEXOFENADINE-120 MG UNCOATED CHEWABLE TABLETS', '10X1X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-      values (243, 1,3, 'FAROBEN-200', 'FAROPENEM -200 m.g.', '10x1x6', '100', '100' );
+  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+      values (243, 17,3, 'FAROBEN-200', 'FAROPENEM -200 m.g.', '10x1x6', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-      values (244, 1,3, 'BP-LIN-600', 'LINEZOLID TABLETS 600mg', '5X1X10', '100', '100' );
+  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+      values (244, 17,3, 'BP-LIN-600', 'LINEZOLID TABLETS 600mg', '5X1X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-      values (245, 1,3, 'URIEASY-0.4', 'Tamsulosin Hydrochloride IP 0.4 mg+Prolonged Release Capsules - urology', '10X10', '100', '100' );
+  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+      values (245, 20,3, 'URIEASY-0.4', 'Tamsulosin Hydrochloride IP 0.4 mg+Prolonged Release Capsules - urology', '10X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-      values (246, 3,3, 'BPRAB-DSR', 'Rabeprazole 20mg+Domperidone 30mg Capsule', '10X1X10 ALU-ALU', '100', '100' );
+  	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+      values (246, 16,3, 'BPRAB-DSR', 'Rabeprazole 20mg+Domperidone 30mg Capsule', '10X1X10 ALU-ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-       values (247, 3,3, 'PANTOBEN-DSR', 'Pantoprazole 40mg + Domperidone 30mg', '10X1X10 ALU-ALU', '100', '100' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-       values (248, 3,3, 'M-VITAL-G', '"Ginseng Exrtact - 40Mg + Vitamin-A Acetate - 2500Iu+Vitamin-D3- 200Iu + Vitamin-B1-2Mg + Vitamin-B2 - 3Mg + Vitamin-B6 - 1.5Mg + Cynocobalamin - 1Mcg+  Itamin-C Coated - 50Mg +Vitamin-E As Acetate (50%) - 10Iu + Calcium D Pantothenate - 5Mg + Niacinamide - 26Mg + Folic Acid - 300Mcg + Calcium Carbonate -187.3Mg + Carbonyl Iron - 10Mg + Potassium Sulphate - 10Mg + Magnesium Sulphate - 30Mg + Manganese Sulphate- 1.5Mg + Zinc Sulphate Monohydrate - 2.2Mg+ Selenium Dioxide- 40Mcg + Cupric Sulphate - 2Mcg +"', '10X1X10 ALU ALU', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-       values (249, 3,3, 'LYCOBEN-L', '"Lycopene 10%-5Mg+ Lutein 10% - 6Mg + Vitamin-A Acetate - 2500Iu+ Vitamin-E As Acetate 50% -10Iu + Vitamin-C Coated - 50Mg+ Zinc Sulphate Monhydrate -27.5Mg + Selenium Dioxide - 75Mcg + Folic Acid - 300Mcg + Calcium Pantothenate - 5Mg"', '10X1X10  ALU ALU CAP', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-       values (250, 3,3, 'BPITRA-100', 'ITRACONAZOLE-100', '10X1X10 ALU ALU CAP', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-       values (251, 3,3, 'BPITRA-200', 'ITRACONAZOLE-200', '10X1X4  ALU ALU CAP', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-       values (252, 3,3, 'ESOBEN-DSR', 'Esomeprazole Magnesium Trihydrate 40mg Domperidone I.P. 30mg', '10X1X10 ALU ALU', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-       values (253, 3,3, 'NERVABEN', '"Methylcobalamin 750mcg+Pregabalin 75mg cap"', '10X1X10 ALU-ALU', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (254, 3,3, 'PCOBEN', 'METHYLCOBALAMIN IP - 1500MCG ALPHA LIPOIC ACID USP 100 MG VITAMIN-B1 IP 10MG VITAMIN-B6 IP 3MG FOLIC ACID IP 1.5MG NIACINAMIDE IP 50MG', '10X10 ALU  ALU', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (255, 3,3, 'BPZOLE-20', 'Omeprazole-20mg', '10X10 ALU ALU', '100', '100' );
+   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+       values (247, 16,3, 'PANTOBEN-DSR', 'Pantoprazole 40mg + Domperidone 30mg', '10X1X10 ALU-ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (256, 3,3, 'BPZOLE PLUS', 'Omeprazole-20mg + Domperidone -10mg', '10X10 ALU ALU', '100', '100' );
+   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+       values (248, 18,3, 'M-VITAL-G', '"Ginseng Exrtact - 40Mg + Vitamin-A Acetate - 2500Iu+Vitamin-D3- 200Iu + Vitamin-B1-2Mg + Vitamin-B2 - 3Mg + Vitamin-B6 - 1.5Mg + Cynocobalamin - 1Mcg+  Itamin-C Coated - 50Mg +Vitamin-E As Acetate (50%) - 10Iu + Calcium D Pantothenate - 5Mg + Niacinamide - 26Mg + Folic Acid - 300Mcg + Calcium Carbonate -187.3Mg + Carbonyl Iron - 10Mg + Potassium Sulphate - 10Mg + Magnesium Sulphate - 30Mg + Manganese Sulphate- 1.5Mg + Zinc Sulphate Monohydrate - 2.2Mg+ Selenium Dioxide- 40Mcg + Cupric Sulphate - 2Mcg +"', '10X1X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (257, 2,3, 'BP-ZYME-100', '"Each 5 ml contains :Diastase (1 : 1200 ) I.P 50 mg (Fungal, Derived from Aspergillus Oryzae) Pepsin (1 : 3000)  I.P 10 mg Flavoured syrup base Colour : Caramel I.P', '100 ml ', '100', '100' );
+   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+       values (249, 18,3, 'LYCOBEN-L', '"Lycopene 10%-5Mg+ Lutein 10% - 6Mg + Vitamin-A Acetate - 2500Iu+ Vitamin-E As Acetate 50% -10Iu + Vitamin-C Coated - 50Mg+ Zinc Sulphate Monhydrate -27.5Mg + Selenium Dioxide - 75Mcg + Folic Acid - 300Mcg + Calcium Pantothenate - 5Mg"', '10X1X10  ALU ALU CAP', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (258, 2,3, 'BP-ZYME-200', 'Each 5 ml contains :Diastase (1 : 1200 ) I.P 50 mg (Fungal, Derived from Aspergillus Oryzae) Pepsin (1 : 3000)  I.P 10 mg Flavoured syrup base Colour : Caramel I.P', '200 ml ', '100', '100' );
+   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+       values (250, 24,3, 'BPITRA-100', 'ITRACONAZOLE-100', '10X1X10 ALU ALU CAP', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (259, 2,3, 'BPVIT  SYRUP-200', 'Each 5ml : Thiamine Hydrochloride I.P -1.5mg+Riboflavine 5 phosphate Sodium Salt Equv.to Reboflavine I.P.- 1.5mg+Pyridoxine Hydrochloride I.P. - 0.5mg+Cyanocobalamin I.P. -2.5mcg+Niacinamide I.P. - 15mg+Elemental Zinc as Zink Sulphate I.P. - 10mg+Choline Dihydrogen Citrate USNF -30MG+Lysine Monohydrochloride USP 250mg+Sorbitol Solution(70%) I.P. -0.5 gm+In a flavoured syrupy base', '200 ml', '100', '100' );
+   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+       values (251, 24,3, 'BPITRA-200', 'ITRACONAZOLE-200', '10X1X4  ALU ALU CAP', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (260, 2,3, 'BPVIT  SYRUP-100', 'Each 5ml : Thiamine Hydrochloride I.P -1.5mg+Riboflavine 5 phosphate Sodium Salt Equv.to Reboflavine I.P.- 1.5mg+Pyridoxine Hydrochloride I.P. - 0.5mg+Cyanocobalamin I.P. -2.5mcg+Niacinamide I.P. - 15mg+Elemental Zinc as Zink Sulphate I.P. - 10mg+Choline Dihydrogen Citrate USNF -30MG+Lysine Monohydrochloride USP 250mg+Sorbitol Solution(70%) I.P. -0.5 gm+In a flavoured syrupy base', '100 ml', '100', '100' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (261, 2,3, 'BP-VIT DROP Multi-Vitamin & Lysine Drops (Paediatric use) Dose: For Infant Less than 1 year Upto adult 2 ml. daily', '"Each ml contains : Vitamin A concentrate I.P, 2000 IU (Oily form) Cholecalciferol (Vit-D3) ,I.P 200 IU, Thiamine Hydrochloride ,I.P 0.70 mg Riboflavine-5-Phosphate Sodium, I.P 0.70 mg Pyridoxine Hydrochloride ,I.P     0.70 mg Niacinamide ,I.P 7 mg Lysine Hydrochloride U.S.P ,25 mg Ascorbic Acid (Vit. C) I.P  20 mg Flavoured  syrup & Sorbitol base , Q.S Colour  : Caramel  I.P"', '30 ml', '100', '100' );
-
+   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+       values (252, 16,3, 'ESOBEN-DSR', 'Esomeprazole Magnesium Trihydrate 40mg Domperidone I.P. 30mg', '10X1X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (263, 2,3, 'BPKUF- LS - 100', 'Each 5ml contains:Ambroxol Hydrochloride I.P- 30 mg+LevoSalbutamol sulphate eq. to Levosalbutamol-1.0 mg+Guaiphenesin I.P-50 mg', '100 ml ', '100', '100' );
-
+   	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+       values (253, 23,3, 'NERVABEN', '"Methylcobalamin 750mcg+Pregabalin 75mg cap"', '10X1X10 ALU-ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (264, 2,3, 'BPKUF- LS - 50', 'Each 5ml contains:Ambroxol Hydrochloride I.P- 30 mg+LevoSalbutamol sulphate eq. to Levosalbutamol-1.0 mg+Guaiphenesin I.P-50 mg', '50 ml ', '100', '100' );
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (254, 23,3, 'PCOBEN', 'METHYLCOBALAMIN IP - 1500MCG ALPHA LIPOIC ACID USP 100 MG VITAMIN-B1 IP 10MG VITAMIN-B6 IP 3MG FOLIC ACID IP 1.5MG NIACINAMIDE IP 50MG', '10X10 ALU  ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (255, 16,3, 'BPZOLE-20', 'Omeprazole-20mg', '10X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (265, 2,3, 'AZIBEN - 200 Azithromycin Oral Suspension I.P', '"Each 5 ml contains : Azithromycin Dihydrate , I.P Equivalent to Azithromycin 200 mg Flavoured syrup & Sorbitol base Q.S Colour : Quinoline Yellow WS"', '15 ml ', '100', '100' );
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (256, 16,3, 'BPZOLE PLUS', 'Omeprazole-20mg + Domperidone -10mg', '10X10 ALU ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (266, 2,3, 'SUCRABEN-O SUSPENSION', 'Each 10 ml :Sucralfate USP-1.0gm+Oxetacaine I.P. 20mg+In a flavoured syrup & Sorbitol base.','170ml', '100', '100' );
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (257, 16,3, 'BP-ZYME-100', '"Each 5 ml contains :Diastase (1 : 1200 ) I.P 50 mg (Fungal, Derived from Aspergillus Oryzae) Pepsin (1 : 3000)  I.P 10 mg Flavoured syrup base Colour : Caramel I.P', '100 ml ', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (267, 2,3, 'Lycoben Syrup', 'Lycopene, Antioxidants, Multivitamin & Multiminerals Syrup','200ml', '100', '100' );
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (258, 16,3, 'BP-ZYME-200', 'Each 5 ml contains :Diastase (1 : 1200 ) I.P 50 mg (Fungal, Derived from Aspergillus Oryzae) Pepsin (1 : 3000)  I.P 10 mg Flavoured syrup base Colour : Caramel I.P', '200 ml ', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (268, 14,3, 'Lycoben Syrup', 'Lycopene, Antioxidants, Multivitamin & Multiminerals Syrup','200ml', '100', '100' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (269, 6,3, 'DICLOBEN GEL-10', 'Diclofenac Diethylamine B.P. -1.16 %+Linseed Oil B.P. 3%+Methyl  Salicylate-10%++Menthol-5%+Benzyl Alcohol-1%','10 gm', '100', '100' );
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (259, 18,3, 'BPVIT  SYRUP-200', 'Each 5ml : Thiamine Hydrochloride I.P -1.5mg+Riboflavine 5 phosphate Sodium Salt Equv.to Reboflavine I.P.- 1.5mg+Pyridoxine Hydrochloride I.P. - 0.5mg+Cyanocobalamin I.P. -2.5mcg+Niacinamide I.P. - 15mg+Elemental Zinc as Zink Sulphate I.P. - 10mg+Choline Dihydrogen Citrate USNF -30MG+Lysine Monohydrochloride USP 250mg+Sorbitol Solution(70%) I.P. -0.5 gm+In a flavoured syrupy base', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (270, 6,3, 'DICLOBEN GEL-30', '"Diclofenac Diethylamine B.P. -1.16 %+Linseed Oil B.P. 3%+Methyl  Salicylate-10%++Menthol-5%+Benzyl Alcohol-1%"','30 gm', '100', '100' );
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (260, 18,3, 'BPVIT  SYRUP-100', 'Each 5ml : Thiamine Hydrochloride I.P -1.5mg+Riboflavine 5 phosphate Sodium Salt Equv.to Reboflavine I.P.- 1.5mg+Pyridoxine Hydrochloride I.P. - 0.5mg+Cyanocobalamin I.P. -2.5mcg+Niacinamide I.P. - 15mg+Elemental Zinc as Zink Sulphate I.P. - 10mg+Choline Dihydrogen Citrate USNF -30MG+Lysine Monohydrochloride USP 250mg+Sorbitol Solution(70%) I.P. -0.5 gm+In a flavoured syrupy base', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (271, 6,3, 'B-FUSIDIC OINMENT', 'Fusidic Acid Ointment - 2.0% IP','10 gm', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (272, 6,3, 'BP-BACT OINMENT', 'Mupirocin Ointment -2.0% IP','5gm', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (273, 6,3, 'B-FAIR OINMENT', 'Hydroqiinone,Mometasone Furoate & Tretinoin Cream','20 gm', '100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (274, 6,3, 'AMOFINE CREAM', 'Amorolfine 0.25%','30 gm', '100', '100' );
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (261, 18,3, 'BP-VIT DROP Multi-Vitamin & Lysine Drops (Paediatric use) Dose: For Infant Less than 1 year Upto adult 2 ml. daily', '"Each ml contains : Vitamin A concentrate I.P, 2000 IU (Oily form) Cholecalciferol (Vit-D3) ,I.P 200 IU, Thiamine Hydrochloride ,I.P 0.70 mg Riboflavine-5-Phosphate Sodium, I.P 0.70 mg Pyridoxine Hydrochloride ,I.P     0.70 mg Niacinamide ,I.P 7 mg Lysine Hydrochloride U.S.P ,25 mg Ascorbic Acid (Vit. C) I.P  20 mg Flavoured  syrup & Sorbitol base , Q.S Colour  : Caramel  I.P"', '30 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-        values (275, 6,3, 'ACNE CLEAR GEL', 'CLINDAMYCIN PHOSPHATE WITH ADAPALENE GEL','10 gm', '100', '100' );
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (263, 23,3, 'BPKUF- LS - 100', 'Each 5ml contains:Ambroxol Hydrochloride I.P- 30 mg+LevoSalbutamol sulphate eq. to Levosalbutamol-1.0 mg+Guaiphenesin I.P-50 mg', '100 ml ', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (264, 23,3, 'BPKUF- LS - 50', 'Each 5ml contains:Ambroxol Hydrochloride I.P- 30 mg+LevoSalbutamol sulphate eq. to Levosalbutamol-1.0 mg+Guaiphenesin I.P-50 mg', '50 ml ', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (265, 17,3, 'AZIBEN - 200 Azithromycin Oral Suspension I.P', '"Each 5 ml contains : Azithromycin Dihydrate , I.P Equivalent to Azithromycin 200 mg Flavoured syrup & Sorbitol base Q.S Colour : Quinoline Yellow WS"', '15 ml ', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (266, 16,3, 'SUCRABEN-O SUSPENSION', 'Each 10 ml :Sucralfate USP-1.0gm+Oxetacaine I.P. 20mg+In a flavoured syrup & Sorbitol base.','170ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (267, 18,3, 'Lycoben Syrup', 'Lycopene, Antioxidants, Multivitamin & Multiminerals Syrup','200ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (268, 18,3, 'Lycoben Syrup', 'Lycopene, Antioxidants, Multivitamin & Multiminerals Syrup','200ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (269,22,3, 'DICLOBEN GEL-10', 'Diclofenac Diethylamine B.P. -1.16 %+Linseed Oil B.P. 3%+Methyl  Salicylate-10%++Menthol-5%+Benzyl Alcohol-1%','10 gm', 25, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (270, 22,3, 'DICLOBEN GEL-30', '"Diclofenac Diethylamine B.P. -1.16 %+Linseed Oil B.P. 3%+Methyl  Salicylate-10%++Menthol-5%+Benzyl Alcohol-1%"','30 gm',25, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (271,23,3, 'B-FUSIDIC OINMENT', 'Fusidic Acid Ointment - 2.0% IP','10 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (272, 23,3, 'BP-BACT OINMENT', 'Mupirocin Ointment -2.0% IP','5gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (273, 24,3, 'B-FAIR OINMENT', 'Hydroqiinone,Mometasone Furoate & Tretinoin Cream','20 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (274, 24,3, 'AMOFINE CREAM', 'Amorolfine 0.25%','30 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+    	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+        values (275, 24,3, 'ACNE CLEAR GEL', 'CLINDAMYCIN PHOSPHATE WITH ADAPALENE GEL',25, 25, '1lxtzX0MRsL3Uni6IsWeeG8GRKzpmVDeY' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (276, 6,3, 'BPTASOL OINMENT', 'CLOBETASOL-.05%+SALICYLIC ACID-6%','20gm', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (276, 24,3, 'BPTASOL OINMENT', 'CLOBETASOL-.05%+SALICYLIC ACID-6%','20gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (277, 12,3, 'BP-LAX LAXATIVE POWDER', 'ISABGOL-4gm+MULATHI RT.-500mg.+SANNAY-1.25GM+SAUNF SD.-600 MG+LEMON EXT.-150MG','30 gm', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (277, 16,3, 'BP-LAX LAXATIVE POWDER', 'ISABGOL-4gm+MULATHI RT.-500mg.+SANNAY-1.25GM+SAUNF SD.-600 MG+LEMON EXT.-150MG','30 gm', 12, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 -------------------------
 ----------------------- Bengal remedies Optha added -----
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (278, 7,1, 'MOXIB-D', 'MOXIFLOXACIN HYDROCHLORIDE- IP eq.to Moxifloxacin  0.5 % w/v +Sterile Buffered Aqueous Isotonic Base q.s. +Dexamethasone-0.1% ','1 X 5ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (278, 7,1, 'MOXIB-D', 'MOXIFLOXACIN HYDROCHLORIDE- IP eq.to Moxifloxacin  0.5 % w/v +Sterile Buffered Aqueous Isotonic Base q.s. +Dexamethasone-0.1% ','1 X 5ml', 14, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (279, 7,1, 'B-WAX EAR DROP', 'PARADICHLOROBENZENE & BENZOCAINE EZR DROPS','10 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (279, 7,1, 'B-WAX EAR DROP', 'PARADICHLOROBENZENE & BENZOCAINE EZR DROPS','10 ml', 14, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (280, 7,1, 'XYLO-H NASAL DROP', 'XYLOMETAZOLIN-0.10% HCL','10 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (280, 7,1, 'XYLO-H NASAL DROP', 'XYLOMETAZOLIN-0.10% HCL','10 ml', 14, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (281, 7,1, 'B-ROXIM EYE/EAR DROPS', 'Ofloxacin -0.3% + Betamethasone - 0.1%','10 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (281, 7,1, 'B-ROXIM EYE/EAR DROPS', 'Ofloxacin -0.3% + Betamethasone - 0.1%','10 ml', 14, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 --------------------------------
 --------------------------------- BEngal Remedies cardiac updated product
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (282, 9,1, 'SUGAMIN-1', 'GLIMEPIRIDIE-1 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (282, 9,1, 'SUGAMIN-1', 'GLIMEPIRIDIE-1 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (283, 9,1, 'SUGAMIN-2', 'GLIMEPIRIDIE-2 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (283, 9,1, 'SUGAMIN-2', 'GLIMEPIRIDIE-2 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (284, 9,1, 'BR-VOGLI 2', 'VOGLIBOSE 0.2 MG TABLETS','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (284, 9,1, 'BR-VOGLI 2', 'VOGLIBOSE 0.2 MG TABLETS','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (285, 9,1, 'BR-VOGLI', 'METFORMIN-500 MG + VOGLIBOSE-0.2 MG BILAYERED TABLETS','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (285, 9,1, 'BR-VOGLI', 'METFORMIN-500 MG + VOGLIBOSE-0.2 MG BILAYERED TABLETS','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (286, 9,1, 'B-Virtin-D', 'FLUNARIZINE DiHcl Eq.to Flunarizine-5 MG + DOMPERIDONE-10 MG + PARA-325 MG TABLETS','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (286, 9,1, 'B-Virtin-D', 'FLUNARIZINE DiHcl Eq.to Flunarizine-5 MG + DOMPERIDONE-10 MG + PARA-325 MG TABLETS','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (287, 9,1, 'ATROBEN-10-TAB', 'ATORVASTATIN 10 MG TAB','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (287, 9,1, 'ATROBEN-10-TAB', 'ATORVASTATIN 10 MG TAB','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (288, 9,1, 'ATROBEN-FB-TAB', 'ATORVASTATIN 10 MG  FENOFIBRATE 160 MG  TAB','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (288, 9,1, 'ATROBEN-FB-TAB', 'ATORVASTATIN 10 MG  FENOFIBRATE 160 MG  TAB','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (289, 9,1, 'B-SARTAN-A-TAB', 'Telmisartan-40 mg+Amlodipine-5 mg','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (289, 9,1, 'B-SARTAN-A-TAB', 'Telmisartan-40 mg+Amlodipine-5 mg','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 --------------- LIQUID bengal remedies added ---------
 ---------------------------------------------------
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (290, 2,1, 'BNCYPO 100', 'Each 5ml:Cyproheptadine Hydrochloride I.P.  2mg + Tricholine Citrate 275mg+Sorbitol Solution (70%) Q.S.+Flavoured Syrupy Base','100 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (290, 23,1, 'BNCYPO 100', 'Each 5ml:Cyproheptadine Hydrochloride I.P.  2mg + Tricholine Citrate 275mg+Sorbitol Solution (70%) Q.S.+Flavoured Syrupy Base','100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (291, 2,1, 'BLLEV-M Syrup', 'MONTELUKAST-4MG+ LEVOSETIRIZINE-2.5MG','60 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (291, 23,1, 'BLLEV-M Syrup', 'MONTELUKAST-4MG+ LEVOSETIRIZINE-2.5MG','60 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (292, 2,1, 'SABEX- LS 100', 'Each 5ml contains:Ambroxol Hydrochloride I.P- 30 mg+LevoSalbutamol sulphate eq. to Levosalbutamol-1.0 mg+Guaiphenesin I.P-50 mg','100 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (292, 23,1, 'SABEX- LS 100', 'Each 5ml contains:Ambroxol Hydrochloride I.P- 30 mg+LevoSalbutamol sulphate eq. to Levosalbutamol-1.0 mg+Guaiphenesin I.P-50 mg','100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (293, 2,1, 'SABEX- LS 50', 'Each 5ml contains:Ambroxol Hydrochloride I.P- 30 mg+LevoSalbutamol sulphate eq. to Levosalbutamol-1.0 mg+Guaiphenesin I.P-50 mg','50 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (293, 23,1, 'SABEX- LS 50', 'Each 5ml contains:Ambroxol Hydrochloride I.P- 30 mg+LevoSalbutamol sulphate eq. to Levosalbutamol-1.0 mg+Guaiphenesin I.P-50 mg','50 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (294, 2,1, 'SABEX-DX', 'DEXTROMETHORPHAN-10 MG + PHENYLPHRINE-5MG + CHLORPHENIRAMINE-2MG','100 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (294, 23,1, 'SABEX-DX', 'DEXTROMETHORPHAN-10 MG + PHENYLPHRINE-5MG + CHLORPHENIRAMINE-2MG','100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (295, 2,1, 'SABEX-LC', 'Levocetirizine  Hydrochloride I.P.- 2.5 mg +AMBROXOL-15mg + GUAPHENSIN-50 mg+MENTHOL-1 mg','100 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (295, 23,1, 'SABEX-LC', 'Levocetirizine  Hydrochloride I.P.- 2.5 mg +AMBROXOL-15mg + GUAPHENSIN-50 mg+MENTHOL-1 mg','100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (296, 2,1, 'SABEX-LS-JUNIOR', 'LEVOSULBUTAMOL -0.5MG+AMBROXOL HYDROCHLORIDE-15 MG+GUAIPHENESIN-50 MG','60 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (296, 19,1, 'SABEX-LS-JUNIOR', 'LEVOSULBUTAMOL -0.5MG+AMBROXOL HYDROCHLORIDE-15 MG+GUAIPHENESIN-50 MG','60 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (297, 2,1, 'Sonalvit', '5ml:Thiamine Hydrochloride I.P-1.25mg+Riboflavine I.P.- 1.5mg+Pyridoxine Hydrochloride I.P -0.5mg+Niacinamide I.P. -','200 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (297, 18,1, 'Sonalvit', '5ml:Thiamine Hydrochloride I.P-1.25mg+Riboflavine I.P.- 1.5mg+Pyridoxine Hydrochloride I.P -0.5mg+Niacinamide I.P. -','100 ml', 2, '1C5E3oTUZ21hG6IjAe8i-Hmgj3wP5QzQU' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (298, 2,1, 'BNCYPO 200', 'Each 5ml:Cyproheptadine Hydrochloride I.P.  2mg + Tricholine Citrate 275mg+Sorbitol Solution (70%) Q.S.+Flavoured Syrupy Base','200 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (298, 23,1, 'BNCYPO 200', 'Each 5ml:Cyproheptadine Hydrochloride I.P.  2mg + Tricholine Citrate 275mg+Sorbitol Solution (70%) Q.S.+Flavoured Syrupy Base','200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (299, 2,1, 'SUCRAP SUSPENSION 170', 'Each 5ml :Sucralfate usp 1.0 mg+In a flavoured syrup & Sorbitol base Q.S.','170 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (299, 23,1, 'SUCRAP SUSPENSION 170', 'Each 5ml :Sucralfate usp 1.0 mg+In a flavoured syrup & Sorbitol base Q.S.','170 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (300, 2,1, 'SUCRAP SUSPENSION 100', 'Each 5ml :Sucralfate usp 1.0 mg+In a flavoured syrup & Sorbitol base Q.S.','100 ml', '100', '100' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (301, 2,1, 'SUCRAP-O SUSPENSION 170', 'Each 10 ml :Sucralfate USP-1.0gm+Oxetacaine I.P. 20mg+In a flavoured syrup & Sorbitol base.','170 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (300, 23,1, 'SUCRAP SUSPENSION 100', 'Each 5ml :Sucralfate usp 1.0 mg+In a flavoured syrup & Sorbitol base Q.S.','100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (302, 2,1, 'SUCRAP-O SUSPENSION 100', 'Each 10 ml :Sucralfate USP-1.0gm+Oxetacaine I.P. 20mg+In a flavoured syrup & Sorbitol base.','100 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (301, 23,1, 'SUCRAP-O SUSPENSION 170', 'Each 10 ml :Sucralfate USP-1.0gm+Oxetacaine I.P. 20mg+In a flavoured syrup & Sorbitol base.','170 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (303, 2,1, 'SONALVIT-L SYP', 'Lycopene with Multivitamin & Multimineral Syrup','200 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (302, 23,1, 'SUCRAP-O SUSPENSION 100', 'Each 10 ml :Sucralfate USP-1.0gm+Oxetacaine I.P. 20mg+In a flavoured syrup & Sorbitol base.','100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (303, 18,1, 'SONALVIT-L SYP', 'Lycopene with Multivitamin & Multimineral Syrup','200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 ------------------------------------ PSYCHIATRIST DIVISION Bengal remedies
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (304, 1,1, 'ESCLOBEN TAB', 'ESCITALOPRAM & CLONAZEPAM','10X10-ALU-ALU', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (304, 15,1, 'ESCLOBEN TAB', 'ESCITALOPRAM & CLONAZEPAM','10X10-ALU-ALU', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (305, 1,1, 'ALPROBEN-0.5', 'ALPRAZOLAM TAB','10X10', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (305, 15,1, 'ALPROBEN-0.5', 'ALPRAZOLAM TAB','10X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
-update `heroku_7f5f4c0dfe6e1e3`.`br_product_list` set `prod_type_id` = 15 where  `prod_id`=304;
-update `heroku_7f5f4c0dfe6e1e3`.`br_product_list` set `prod_type_id` = 15 where  `prod_id`=305;
 --------------------------- Bengal Remedies Oinment added---------
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (306, 6,1, 'PERMEBEN CREAM', 'PERMETHRIN  5 % + BENZYL ALCHOHOL-1 %','30 gm', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (306, 24,1, 'PERMEBEN CREAM', 'PERMETHRIN  5 % + BENZYL ALCHOHOL-1 %','30 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (307, 6,1, 'LULIBEN CREAM', 'LICONAZOLE 1%','10 gm', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (307, 24,1, 'LULIBEN CREAM', 'LICONAZOLE 1%','10 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (308, 6,1, 'KETOBEN CREAM', 'KETOCONAZOLE 2%','30 gm', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (308, 24,1, 'KETOBEN CREAM', 'KETOCONAZOLE 2%','30 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (309, 6,1, 'CLOB-NM  Cream', '"Clobetasol Propionat IP 0.05% w/w+ Neomycin Sulphate IP-0.5% w/w+ Miconazole Nitrate IP-2.0%w/w+cream base q.s.','115 gm', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (309, 24,1, 'CLOB-NM  Cream', '"Clobetasol Propionat IP 0.05% w/w+ Neomycin Sulphate IP-0.5% w/w+ Miconazole Nitrate IP-2.0%w/w+cream base q.s.','115 gm', 6, '18FceFRfaKfgACKuDAXkGrVRYWs2u36vf' );
 
 
 --------------------------- Bengal Remedies Injection added---------
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (310, 5,1, 'B-ROXIM INJ', 'CEFUROXIME 1500 MG','1.5 mg', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (310, 5,1, 'B-ROXIM INJ', 'CEFUROXIME 1500 MG','1.5 mg', 5, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (311, 5,1, 'B-CAN INJ', 'AMIKACIN 500 MG','2 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (311, 5,1, 'B-CAN INJ', 'AMIKACIN 500 MG','2 ml', 5, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (312, 5,1, 'ESO-40', 'Esomeprazole Sodium - 40 mg','1 vial', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (312, 5,1, 'ESO-40', 'Esomeprazole Sodium - 40 mg','1 vial', 5, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (313, 5,1, 'CLOB-NM  Cream', '"Clobetasol Propionat IP 0.05% w/w+ Neomycin Sulphate IP-0.5% w/w+ Miconazole Nitrate IP-2.0%w/w+cream base q.s.','115 gm', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (313, 5,1, 'CLOB-NM  Cream', '"Clobetasol Propionat IP 0.05% w/w+ Neomycin Sulphate IP-0.5% w/w+ Miconazole Nitrate IP-2.0%w/w+cream base q.s.','115 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 ------------ Bengal remedies dry syrup added -------
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (314, 5,1, 'BR-POD-100-DS', 'Cefpodoxime Proxetil Oral Suspension IP','1X30 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (314, 5,1, 'BR-POD-100-DS', 'Cefpodoxime Proxetil Oral Suspension IP','1X30 ml', 4, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (315, 5,1, 'BRAMOX- DS', '"Amoxycillin Trihydrate IP eq. to Amoxycillin(anhydrous) 200mg+Potassium  Clavulanate diluted IP eqv. To Clavunic Acid - 28.5 mg + Excipients q.s.','1 X 30 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (315, 5,1, 'BRAMOX- DS', '"Amoxycillin Trihydrate IP eq. to Amoxycillin(anhydrous) 200mg+Potassium  Clavulanate diluted IP eqv. To Clavunic Acid - 28.5 mg + Excipients q.s.','1 X 30 ml', 4, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
-update `heroku_7f5f4c0dfe6e1e3`.`br_product_list` set `prod_type_id`=5 where `prod_id` = 313;
 
 ------ Bengal Remedies Capsule added  --
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (316, 3,1, 'Sonalvit', 'Ginseng -40mg+Aswagandha -50mg+Vitamin A (as Acetate)-5000 I.U.+Vitamin D3-400 I.U.+Vitamin B1-6mg+Vitamin B2- 5mg+Vitamin B6 -2mg+Vitamin C -75mg+Vitamin E Acetate 20 I.U.+Calcium Pantothenate-5mg+Nicotinamide -45mg+Folic Acid - 1mg+Calcium Carbonate -187.3mg+Carbonyl Iron eq. to elemental Iron -10mg+Potassium Sulphate -10mg+Copper Sulphate - 2mcg+Potassium Iodide -1mg+Manganese Sulphate -50mg+Zinc Sulphate Monohydrate eq.to elemental Zinc -2.2 mg+Selenium Dioxide eq.to elemental Selenium -40mcg+Lactobacillus Sporogenes 60 million.','10X1X10 ALU-ALU', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (316, 18,1, 'Sonalvit', 'Ginseng -40mg+Aswagandha -50mg+Vitamin A (as Acetate)-5000 I.U.+Vitamin D3-400 I.U.+Vitamin B1-6mg+Vitamin B2- 5mg+Vitamin B6 -2mg+Vitamin C -75mg+Vitamin E Acetate 20 I.U.+Calcium Pantothenate-5mg+Nicotinamide -45mg+Folic Acid - 1mg+Calcium Carbonate -187.3mg+Carbonyl Iron eq. to elemental Iron -10mg+Potassium Sulphate -10mg+Copper Sulphate - 2mcg+Potassium Iodide -1mg+Manganese Sulphate -50mg+Zinc Sulphate Monohydrate eq.to elemental Zinc -2.2 mg+Selenium Dioxide eq.to elemental Selenium -40mcg+Lactobacillus Sporogenes 60 million.','10X1X10 ALU-ALU', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (317, 3,1, 'Itraben-200', 'Itraconazole Capsules -200 mg','10X1X10 ALU-ALU', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (317, 24,1, 'Itraben-200', 'Itraconazole Capsules -200 mg','10X1X10 ALU-ALU', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (318, 3,1, 'Itraben-100', 'Itraconazole Capsules -100 mg','10X1X10 ALU-ALU', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (318, 24,1, 'Itraben-100', 'Itraconazole Capsules -100 mg','10X1X10 ALU-ALU', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (319, 3,1, 'Brom-20-Cap', 'Omeprazole-20mg +Excipients q.s.','"10X10 ALUMINIUM STRIP"', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (319, 16,1, 'Brom-20-Cap', 'Omeprazole-20mg +Excipients q.s.','"10X10 ALUMINIUM STRIP"', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (320, 3,1, 'BROM-D-Cap', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.','"20X15 ALUMINIUM STRIP', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (320, 16,1, 'BROM-D-Cap', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.','"20X15 ALUMINIUM STRIP', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (321, 3,1, 'BRAMOX- DS', '"Amoxycillin Trihydrate IP eq. to Amoxycillin(anhydrous) 200mg+Potassium  Clavulanate diluted IP eqv. To Clavunic Acid - 28.5 mg + Excipients q.s.','1 X 30 ml', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (321, 17,1, 'BRAMOX- DS', '"Amoxycillin Trihydrate IP eq. to Amoxycillin(anhydrous) 200mg+Potassium  Clavulanate diluted IP eqv. To Clavunic Acid - 28.5 mg + Excipients q.s.','1 X 30 ml', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (322, 3,1, 'POTON-L', 'Pantoprazole-40mg + Levosulpiride -75 mg','10X1X10', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (322, 16,1, 'POTON-L', 'Pantoprazole-40mg + Levosulpiride -75 mg','10X1X10', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (323, 3,1, 'BROM-D-Cap', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.','"20X15 ALUMINIUM STRIP', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (323, 16,1, 'BROM-D-Cap', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.','"20X15 ALUMINIUM STRIP', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (324, 3,1, 'Br-V7', 'CALCITRIOL 0.25MCG. CALCIAM CARBONATE 500MG, OMEGA 3 FATTY ACID ETHYL ESTER 60MG EICOSAPENTAENOIC ACID 90MG, DOCOSAHEXAENOIC ACID 60mg MG,METHYLCOBALAMINE 1500MCG FOLIC ACID 400MG/ DISODIUM TETRABORATE EQ:TO ELEMENTAL BORON 1.5MG/ VITAMIN K2-7 - 45 MCG','5X2X15 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (324, 16,1, 'Br-V7', 'CALCITRIOL 0.25MCG. CALCIAM CARBONATE 500MG, OMEGA 3 FATTY ACID ETHYL ESTER 60MG EICOSAPENTAENOIC ACID 90MG, DOCOSAHEXAENOIC ACID 60mg MG,METHYLCOBALAMINE 1500MCG FOLIC ACID 400MG/ DISODIUM TETRABORATE EQ:TO ELEMENTAL BORON 1.5MG/ VITAMIN K2-7 - 45 MCG','5X2X15 BLISTER', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 --------- update tablet section for bengal remedies
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (325, 1,1, 'LANSOBEN-DT', 'LANSOPRAZOLE MOUTH DISSOLVING TAB-15 MG','10X1X10', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (325, 19,1, 'LANSOBEN-DT', 'LANSOPRAZOLE MOUTH DISSOLVING TAB-15 MG','10X1X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (326, 1,1, 'BR-LID-600', 'LINEZOLID TABLETS 600mg','5X1X10', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (326, 17,1, 'BR-LID-600', 'LINEZOLID TABLETS 600mg','5X1X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (327, 1,1, 'DROTAMEF', 'DROTAVERINE HCL-80mg + MEFENAMIC ACID-250gm','5x4x10', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (327, 23,1, 'DROTAMEF', 'DROTAVERINE HCL-80mg + MEFENAMIC ACID-250gm','5x4x10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (328, 1,1, 'B-ROXIM -500', 'Cefuroxime -500mg','1x10', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (328, 17,1, 'B-ROXIM -500', 'Cefuroxime -500mg','1x10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (329, 1,1, 'ORNIDABEN-500', 'Ornidazole Tablets IP 500 mg','10X10 BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (329, 16,1, 'ORNIDABEN-500', 'Ornidazole Tablets IP 500 mg','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (330, 1,1, 'ALLZYME-TAB', 'Each enteric coated tablet : Pancreatin I.P - 212.5 mg','110X10', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (330, 16,1, 'ALLZYME-TAB', 'Each enteric coated tablet : Pancreatin I.P - 212.5 mg','110X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (331, 1,1, 'AZIBRA-500LB', 'Azithromycin IP eqv.to Azithromycin(anhydrous)-500mg+Lactic Acid Bacillus 60 million spores+Excipients q.s.','10x3', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (331, 17,1, 'AZIBRA-500LB', 'Azithromycin IP eqv.to Azithromycin(anhydrous)-500mg+Lactic Acid Bacillus 60 million spores+Excipients q.s.','10x3', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (332, 1,1, 'B-FLU-200', 'Fluconazole I.P.-200mg+Excipients q.s.','20X1 Tab BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (332, 17,1, 'B-FLU-200', 'Fluconazole I.P.-200mg+Excipients q.s.','20X1 Tab BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (333, 1,1, 'B-FLU-400', 'Fluconazole I.P.-200mg+Excipients q.s.','20X1 Tab BLISTER', '100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (333, 17,1, 'B-FLU-400', 'Fluconazole I.P.-200mg+Excipients q.s.','20X1 Tab BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (334, 1,1, 'Bracef -AZ', 'Cefixime I.P.   Eq.to Cefixime(anhydrous)200 mg +Potassium Clavulanate Diluted I.P. Azithromycin 250mg tablets', '10X1X10','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (334, 17,1, 'Bracef -AZ', 'Cefixime I.P.   Eq.to Cefixime(anhydrous)200 mg +Potassium Clavulanate Diluted I.P. Azithromycin 250mg tablets', '10X1X10',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (335, 1,1, 'BRAMOX-625', '"Amoxy Trihydrate I.P. eq. to Amoxycillin (Anhydrous)- 500mg+Potassium Clavunate  Diluted I.P.125mg', '10X1X10','100', '100' );
-
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (336, 1,1, 'Chymoben- Forte', '1,00,000 Armour units of enzymatic activity supplied by purified concentrate which has specific Trypsin and Chymotrypsin activity in a ratio of approximately six to one.+Excipients q.s.', '1X10','100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (337, 1,1, 'HYPEN', 'HYPEN	Aceclofenac  I.P. 100 mg + Paracetamol I.P. 325 mg+Excipients q.s.', '20X10 BLISTER','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (335, 17,1, 'BRAMOX-625', '"Amoxy Trihydrate I.P. eq. to Amoxycillin (Anhydrous)- 500mg+Potassium Clavunate  Diluted I.P.125mg', '10X1X10',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (338, 1,1, 'D-LORA-5', 'Desloratadine 5 mg tab', '1X10 ALU-ALU','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (336, 23,1, 'Chymoben- Forte', '1,00,000 Armour units of enzymatic activity supplied by purified concentrate which has specific Trypsin and Chymotrypsin activity in a ratio of approximately six to one.+Excipients q.s.', '1X10',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (337, 22,1, 'HYPEN', 'HYPEN	Aceclofenac  I.P. 100 mg + Paracetamol I.P. 325 mg+Excipients q.s.', '20X10 BLISTER',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (338, 23,1, 'D-LORA-5', 'Desloratadine 5 mg tab', '1X10 ALU-ALU',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 ---------------- Dwarka Pharma Tablet capsule added --
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (339, 1,2, 'DP-MOL 650', 'Paracetamol IP -650 mg.', '20X10 BLISTER','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (339, 23,2, 'DP-MOL 650', 'Paracetamol IP -650 mg.', '20X10 BLISTER',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (340, 1,2, 'DAZ-250', 'Azithromycine 250mg Tablet', '10X6','100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (341, 1,2, 'DP-40', 'Azithromycine 250mg Tablet', '10X6','100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (342, 1,2, 'DPDOM-C', 'Cinnarizine -20 mg+ Domperidone - 10 mg', '10x10','100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (343, 1,2, 'DP-ZYME-TAB', 'Pancreatin  Digestive Enzyme Tab', '10x10  TAB','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (340, 17,2, 'DAZ-250', 'Azithromycine 250mg Tablet', '10X6',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (344, 1,2, 'DPO-200', 'OFLOXACIN -200 TABLET', '10X10','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (342, 23,2, 'DPDOM-C', 'Cinnarizine -20 mg+ Domperidone - 10 mg', '10x10',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (345, 1,2, 'D-ZOLE PLUS', 'Albendazole- 400 mg +Ivermectin', '10x1','100', '100' );
-
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (346, 1,2, 'OMD-20 Blister pack', 'Omeprazole-20mg +Excipients q.s.', '20x10 BLISTER','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (343, 16,2, 'DP-ZYME-TAB', 'Pancreatin  Digestive Enzyme Tab', '10x10  TAB',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (347, 1,2, 'OMD-PLUS Blister pack', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.', '20x10 BLISTER','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (344, 17,2, 'DPO-200', 'OFLOXACIN -200 TABLET', '10X10',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (348, 1,2, 'Dpflox-500', 'Levofloxacin -500', '10x10','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (345, 23,2, 'D-ZOLE PLUS', 'Albendazole- 400 mg +Ivermectin', '10x1',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (349, 1,2, 'DPDOL-P', 'Tramadol Hydrochloride-37.5mg+Paracetamol-325mg', '10x10','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (346, 16,2, 'OMD-20 Blister pack', 'Omeprazole-20mg +Excipients q.s.', '20x10 BLISTER',1, '1lma4BnY8FYNcCCqEUcCZPf16ZSKIBUbb' );
+
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (350, 1,2, 'MAHAGRA-100', 'Sildenafil -100 mg', '10x1x4 BLISTER','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (347, 16,2, 'OMD-PLUS Blister pack', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.', '20x10 BLISTER',1, '1kybSDBHCiEjHqgqgXAUv9GLZ1JdhZsVD' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (348, 17,2, 'Dpflox-500', 'Levofloxacin -500', '10x10',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (349, 22,2, 'DPDOL-P', 'Tramadol Hydrochloride-37.5mg+Paracetamol-325mg', '10x10',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (350, 23,2, 'MAHAGRA-100', 'Sildenafil -100 mg', '10x1x4 BLISTER',1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
 ----------- Dwarka pharma --- oinment added ------
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (351, 2,2, 'DP-KUF', '5ml:C.P. Maleate -2.5mg, Ammonium Chloride -125 mg, Sodium Citrate -55mg Syrup', '100 ml','100', '100' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (352, 2,2, 'DP-KUF-DX', 'DEXTROMETHORPHAN-10 MG + PHENYLPHRINE-5MG +CHLORPHENIRAMINE-2MG', '100 ml','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (352, 23,2, 'DP-KUF-DX', 'DEXTROMETHORPHAN-10 MG + PHENYLPHRINE-5MG +CHLORPHENIRAMINE-2MG', '100 ml',2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (353, 2,2, 'DP-CYPO', '5ml:Cyproheptadine Hydrochloride I.P 2mg+ Tricholine Citrate 275mg+In a flavoured  Syrupy Base.', '200 ml','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (353, 23,2, 'DP-CYPO', '5ml:Cyproheptadine Hydrochloride I.P 2mg+ Tricholine Citrate 275mg+In a flavoured  Syrupy Base.', '100 ml',2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (354, 2,2, 'DP-VIT-Z', 'Vitamin B-Complex With Choline,L-Lysine & Zinc', '200 ml','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (354, 18,2, 'DP-VIT-Z', 'Vitamin B-Complex With Choline,L-Lysine & Zinc', '200 ml',2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (355, 2,2, 'DP-ZYME', 'Each 10ml :Fungal Diastase(1:2000)-40 mg+ Cinnamon Oil 0.2mg + Cardamom Oil-0.4mg+Caraway Oil-.4 mg', '200 ml','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (355, 16,2, 'DP-ZYME', 'Each 10ml :Fungal Diastase(1:2000)-40 mg+ Cinnamon Oil 0.2mg + Cardamom Oil-0.4mg+Caraway Oil-.4 mg', '200 ml',2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-         values (356, 2,2, 'D-ZOLE PLUS-10ml', 'Albendazole-200 mg + Ivermetcin - 3 mg', '10 ml','100', '100' );
+     	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+         values (356, 16,2, 'D-ZOLE PLUS-10ml', 'Albendazole-200 mg + Ivermetcin - 3 mg', '10 ml',2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-    values (357, 1,6, 'MONTE PLUS', 'Montelukast 10mg + Levocetirizine 5 mg', '10x10 ALU ALU', '65.45', '85' );
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+	values (358, 17,1, 'BR-POD-50-DS', 'Cefpodoxime Proxetil Oral Suspension IP','1X30 ml', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
-INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
-	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_trade_price` ,  `prod_hsn_code`)
-	values (358, 5,1, 'BR-POD-50-DS', 'Cefpodoxime Proxetil Oral Suspension IP','1X30 ml', '100', '100' );

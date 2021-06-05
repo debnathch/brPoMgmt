@@ -34,12 +34,13 @@ public class Br_Product implements Serializable {
 	
 	@Column(name="prod_description")
 	String product_description;
-	
+
 	@Column(name="prod_pack_size")
 	String product_pack_size;
-	
-	@Column(name="prod_trade_price")
-	Float product_trade_price;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "prod_cat_type_code")
+	private ProductType productTypeCat;
 
 	@Column(name="prod_hsn_code")
 	String product_hsn_code;
@@ -65,9 +66,15 @@ public class Br_Product implements Serializable {
 		this.productType = productType;
 	}
 
+	public ProductType getProductTypeCat() {
+		return productTypeCat;
+	}
 
+	public void setProductTypeCat(ProductType productTypeCat) {
+		this.productTypeCat = productTypeCat;
+	}
 
-    public ProductType getProductType() {
+	public ProductType getProductType() {
         return productType;
     }
 
@@ -107,13 +114,6 @@ public class Br_Product implements Serializable {
 		this.product_pack_size = product_pack_size;
 	}
 
-	public Float getProduct_trade_price() {
-		return product_trade_price;
-	}
-
-	public void setProduct_trade_price(Float product_trade_price) {
-		this.product_trade_price = product_trade_price;
-	}
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -150,7 +150,7 @@ public class Br_Product implements Serializable {
 		jsonInfo.put("product_description",this.product_description);
 		jsonInfo.put("product_pack_size",this.product_pack_size);
 		jsonInfo.put("product_url",this.product_hsn_code);
-
+		jsonInfo.put("prod_cat_type_code",this.productTypeCat.getProd_type_name());
 		info = jsonInfo.toString();
 		return info;
 	}

@@ -154,11 +154,13 @@ $(function(){
                     { "mData": "companyMake.company_name" },
                     { "mData": "product_pack_size" },
                     { "mData": "productType.prod_type_name" },
-                    { "mData": "productType.product_drug_type" },
+                    { "mData": "prod_cat_type_code" },
+
                     { "mData": "product_url",
                         "mRender": function(data, type, full) {
-                            return '<a href='+data+' target="popup" onclick="window.open('+'+data+'+','+'popup'+','+'width=600,height=600'+'); return false;">'+
-                            '<img alt="ImgProd" src="images/imgProd.png" width=150" height="70"></a>';
+
+                            return '<a href=https://drive.google.com/file/d/'+data+'/view?usp=sharing target="popup" onclick="window.open(this.href,'+'popup'+','+'width=600,height=600'+'); return false;">'+
+                            '<img alt="Product thumbnail" src="https://drive.google.com/thumbnail?id='+data+'" width=150" height="70"></a>';
                         }
                     },
                     {
@@ -389,7 +391,8 @@ $.ajax({
                         }
                     },
                     error: function (e) {
-                        ("Please contact Admin for "+page+ " is not directed as expected");
+
+                    alert("Please contact Admin for "+page+ " is not directed as expected");
                     }
                 });
         });
@@ -776,7 +779,7 @@ table.dataTable td {
             </div>
 
             <div id="productTable" class="col-sm-10 ">
-                <h4 class="col-md-5">Product List</h4>
+                <h4 class="col-md-5">....</h4>
                 <button onclick="refreshSearch()">Clear Search Filter</button>
 
                 <!-- <h5 id = "refreshLine" style="color:red;">Refresh Page to Give your Contact Number for Order</h5>-->

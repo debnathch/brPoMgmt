@@ -27,6 +27,8 @@ public class Products {
 
     String product_url;
 
+    String prod_cat_type_code ;
+
 
 }
 

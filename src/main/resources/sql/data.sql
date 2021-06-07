@@ -139,6 +139,9 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
 	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
     values (3,  'BENGAL PHARMA', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`company`
+	(`company_id`,`company_name`, `parent_company_id`,`parent_company_name`,`company_address`, `company_desc`)
+    values (4,  'DWARKA REMEDIES', 1,'BENGAL REMEDIES' ,'KOLKATA', 'BENGAL REMEDIES');
 
 
 -- DRUG DETAILS
@@ -325,7 +328,7 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (6, 16,1, 'ANDOLIV Syrup-200', 'Tricholine Citrate 500mg + Andrographis 500mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
+    values (6, 16,1, 'ANDOLIV Syrup-200', 'Tricholine Citrate 500mg + Andrographis 500mg', '200 ml', 2, '1jGQ25hm0DoI9rSmW8YwCmVCSuck2AL1b');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
@@ -337,11 +340,11 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
     INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (9, 16,1, 'BRAZYME SYRUP-100', 'Azithromycin 100mg', '100 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
+    values (9, 16,1, 'BRAZYME SYRUP-100', 'Azithromycin 100mg', '100 ml', 2, '1FecREv6NmIDayfkamfXr_nDLt5O1oyBB');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (10, 16,1, 'BRAZYME SYRUP-200', 'Azithromycin 200mg', '200 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
+    values (10, 16,1, 'BRAZYME SYRUP-200', 'Azithromycin 200mg', '200 ml', 2, '1FecREv6NmIDayfkamfXr_nDLt5O1oyBB');
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
@@ -433,7 +436,7 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (33, 12,1, 'BR-LAX', '5ml:Sodiun Picosulphate-3.33mg, Milk of Magnesia-3.75ml & Liquid Paraffin -1.25mlSuspension', '170 ml', 2, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+    values (33, 12,1, 'BR-LAX', '5ml:Sodiun Picosulphate-3.33mg, Milk of Magnesia-3.75ml & Liquid Paraffin -1.25mlSuspension', '170 ml', 2, '1prSfe3l-G-1dmGGTbfSUsmAX4MxYEwMr' );
 
 
 
@@ -484,7 +487,7 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
       INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (45, 16,1,  'ESO-DSR',	'Esomeprazole Magnesium Trihydrate 40mg Domperidone I.P. 30mg (ALU ALU)',	'1X10',	1,	'1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq');
+    values (45, 16,1,  'ESO-DSR',	'Esomeprazole Magnesium Trihydrate 40mg Domperidone I.P. 30mg (ALU ALU)',	'1X10',	1,	'1qIasm4d7uemmD-T7yUfojVq3yNVrlllY');
 
 
   INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
@@ -550,7 +553,11 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (58, 16,1, 'POTON-DSR', 'Pantoprazole 40mg + Domperidone 30mg', '    1X10 ALU-ALU', 3, '1e-6KbBeHZLIY5RTShiXjKrO8cG965xpR' );
+    values (58, 16,1, 'POTON-DSR', 'Pantoprazole 40mg + Domperidone 30mg prolonged release', '    1X10 ALU-ALU', 3, '1e-6KbBeHZLIY5RTShiXjKrO8cG965xpR' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (134, 16,1, 'POTON-D', 'Pantoprazole 40mg + Domperidone 30mg', '    1X10 ALU-ALU', 3, '1Dy7_jumEHABGX1o9jMN_8FcDrbFarcNZ' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
@@ -677,15 +684,15 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (84, 9,1, ' BR-AMLO-5', 'AMLODIPINE-5 MG TABLETS', '10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+    values (84, 9,1, ' BR-AMLO-5', 'AMLODIPINE-5 MG TABLETS', '10X10 BLISTER', 1, '1qZmiAy5uguqoiic_B2BCV4BCXSo93GSp' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (85, 9,1, ' BR-AMLO-AT', 'AMLODIPINE-5 MG + ATENOLOL-50 MG TABLETS', '10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+    values (85, 9,1, ' BR-AMLO-AT', 'AMLODIPINE-5 MG + ATENOLOL-50 MG TABLETS', '10X10 BLISTER', 1, '1qbGV3w2jmkU14d6x6uU6LjbCLBUInITA' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (86, 9,1, ' B-Sartan-40', 'TELMISARTAN-40 MG TABLETS', '10X10 ALU ALU   ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+    values (86, 9,1, ' B-Sartan-40', 'TELMISARTAN-40 MG TABLETS', '10X10 ALU ALU   ', 1, '1qjCvooe6vVaSnyZrqdifGeMNjiU2un6_' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
@@ -697,7 +704,7 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (89, 9,1, ' B-Sartan-H', 'TELMISARTAN-40 MG +HYDROCHLOROTHIAZIDE-12.5 MG TABLETS', '10X10 ALU ALU    ', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+    values (89, 9,1, ' B-Sartan-H', 'TELMISARTAN-40 MG +HYDROCHLOROTHIAZIDE-12.5 MG TABLETS', '10X10 ALU ALU    ', 1, '1r-1mOizL_stfdlKsuQTOEsUznClbMA86' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
@@ -707,12 +714,12 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (91, 10,1, ' SUGAMIN-1', 'GLIMEPIRIDIE-1 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS', '10X10 BLISTER ', 10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+    values (91, 10,1, ' SUGAMIN-1', 'GLIMEPIRIDIE-1 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS', '10X10 BLISTER ', 10, '1qRPSHb-K4OUgImMsQqStDvhpfXf4QjSd' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (92, 10,1, ' SUGAMIN-2', 'GLIMEPIRIDIE-2 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS', '10X10 BLISTER', 10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+    values (92, 10,1, ' SUGAMIN-2', 'GLIMEPIRIDIE-2 MG + METFORMIN-500 MG + PIOGLITAZONE-15 MG BILAYERED TABLETS', '10X10 BLISTER', 10, '1qePgKWUplJj8xgBipZ42zAPN4V-hQ-UR' );
 
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
@@ -731,7 +738,7 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-    values (96, 10,1, 'BR-VOGLI 3M', 'METFORMIN-500 MG + VOGLIBOSE-0.3 MG BILAYERED TABLETS', '10X10 ALU ALU ', 10, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+    values (96, 10,1, 'BR-VOGLI 3M', 'METFORMIN-500 MG + VOGLIBOSE-0.3 MG BILAYERED TABLETS', '10X10 ALU ALU ', 10, '1rBpUWDfJQh-6RgevyKxKJ6asFpgAy2_1' );
 
 
 -- DWARKA PHERMA --
@@ -913,6 +920,54 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
     values (133, 11,2, 'DENT-O', 'Potassium Nitrate-5% w/w, + Sodium Monofluorophosphate-0.70%w/w,Triclosan-0.30% w/w.In a flavoured base.q.s', '50mg', 11, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 
+--------- Dwarka Remedies Start here -------------
+-------------------------------------------------
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (135, 22,4, 'ACEMAC-PLUS', 'Aceclofenac 100mg+Paracetamol   I.P. 500mg(Blister Pack)', '10x2x10', 1, '1I1KxFgCPSK9PXYd5yZW_sY4ZKERZnD5f' );
+
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (136, 17,4, 'AMICLOX', 'Ampicillin Trihydrate-250mg + Cloxacillin Sodium -250mg (Blister Pack)', '10x2x15', 1, '11SN0myyPhQTnWoH4vhyPAwZVdLZQusJM7' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (137, 17,4, 'AMOCLOX', 'Amoxycillin Trihydrate-250mg + Cloxacillin Sodium- 250mg(Blister Pack)', '10x2x15', 1, '1ZPTBtR_iFOC1X-C9o-U6zT0z1ylUt9U-' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (138, 17,4, 'AZIMIN-500', 'Azithromycin tab 500mg', '3X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (139, 23,4, 'CEFOLAB', 'Cefixime IP 200 mg', '10x10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (140, 23,4, 'CEFOLAB-O', 'Cefixime IP 200 mg + Ofloxacin Tab', '10X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (141, 17,4, 'DOLOFLU-FORTE', 'Fluconazole  USP.  200mg(Blister Pack)', '20x1', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (142, 22,4, 'DUM', 'Paracetamol 500 mg+Diclofenac  Pottasium    50mg', '10x2x10', 1, '1z3xUtJC7zml8MF_WbE4ZALf9DrUvastU' );
+
+INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
+	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
+    values (143, 17,4, 'FLOXWIN –OZ', 'Ofloxacin-200mg +Ornidazole -500mg Colour – Sunset Yellow Lake', '10X10', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+
+
+
+
+
+
+--------- Dwarka Remedies Ends here -------------
+-------------------------------------------------
 
 ------------------------
 ------------------- BENGAL START
@@ -1194,7 +1249,7 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
  INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-         values (289, 9,1, 'B-SARTAN-A-TAB', 'Telmisartan-40 mg+Amlodipine-5 mg','10X10 BLISTER', 1, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+         values (289, 9,1, 'B-SARTAN-A-TAB', 'Telmisartan-40 mg+Amlodipine-5 mg','10X10 BLISTER', 1, '1qs9AcufJgS3ZQ5L-m1Z5gNsYyoQt8MK4' );
 
 
 --------------- LIQUID bengal remedies added ---------
@@ -1276,15 +1331,15 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-         values (306, 24,1, 'PERMEBEN CREAM', 'PERMETHRIN  5 % + BENZYL ALCHOHOL-1 %','30 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+         values (306, 24,1, 'PERMEBEN CREAM', 'PERMETHRIN  5 % + BENZYL ALCHOHOL-1 %','30 gm', 6, '1CDxmxzjouI5tHdb0msQknzG4oxpoTTiC' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-         values (307, 24,1, 'LULIBEN CREAM', 'LICONAZOLE 1%','10 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+         values (307, 24,1, 'LULIBEN CREAM', 'LICONAZOLE 1%','10 gm', 6, '1ouUkcLQeCGBONkTwJjdft3vrouYOnrIg' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-         values (308, 24,1, 'KETOBEN CREAM', 'KETOCONAZOLE 2%','30 gm', 6, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+         values (308, 24,1, 'KETOBEN CREAM', 'KETOCONAZOLE 2%','30 gm', 6, '1LDCdp1CJODyytSDuOBj_vKjgFz12PvaM' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
@@ -1335,17 +1390,17 @@ INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-         values (319, 16,1, 'Brom-20-Cap', 'Omeprazole-20mg +Excipients q.s.','"10X10 ALUMINIUM STRIP"', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+         values (319, 16,1, 'Brom-20-Cap', 'Omeprazole-20mg +Excipients q.s.','"10X10 ALUMINIUM STRIP"', 3, '1qO85OiRTkAARiRpXiutZVZ9WojLQCRDy' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-         values (320, 16,1, 'BROM-D-Cap', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.','"20X15 ALUMINIUM STRIP', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+         values (320, 16,1, 'BROM-D-Cap', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.','"20X15 ALUMINIUM STRIP', 3, '1qO_pGeqpkg67I_6WSA_1iQJq9cKKyDwS' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
          values (321, 17,1, 'BRAMOX- DS', '"Amoxycillin Trihydrate IP eq. to Amoxycillin(anhydrous) 200mg+Potassium  Clavulanate diluted IP eqv. To Clavunic Acid - 28.5 mg + Excipients q.s.','1 X 30 ml', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
 
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
-         values (322, 16,1, 'POTON-L', 'Pantoprazole-40mg + Levosulpiride -75 mg','10X1X10', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );
+         values (322, 16,1, 'POTON-L', 'Pantoprazole-40mg + Levosulpiride -75 mg','10X1X10', 3, '1qR5FVGrGYf0aygfk5dIEZrtttS1Gc8Uc' );
 INSERT INTO `heroku_7f5f4c0dfe6e1e3`.`br_product_list`
      	(  `prod_id`, `prod_type_id`,`company_id`,`prod_name`,`prod_description`, `prod_pack_size`, `prod_cat_type_code` ,  `prod_hsn_code`)
          values (323, 16,1, 'BROM-D-Cap', 'OmeprazoleI.P. -20mg + Domperidone -10mg+Excipients q.s.','"20X15 ALUMINIUM STRIP', 3, '1wolsRjnRgaVSZg6Fr6CILpO2P-fF-Cuq' );

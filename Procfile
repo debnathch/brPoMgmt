@@ -1,2 +1,4 @@
 web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/brPoMgmt-0.0.1-SNAPSHOT.war
+web: gunicorn
 heroku ps:scale web=1
+
